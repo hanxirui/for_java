@@ -12,13 +12,13 @@ import java.util.List;
 
 public class Main {
 
-    private static final String[] IMAGE_TYPES = new String[] { "png", "gif", "jpg", "PNG", "GIF", "JPG" };
+    private static final String[] IMAGE_TYPES = new String[] { ".png", ".gif", ".jpg", ".swf", ".fla", ".psd", ".PNG", ".GIF", ".JPG" };
     private static final String[] FILE_TYPES = new String[] { "mxml", "as", "css" };
     
-    private static final String IMAGE_TARGET_PATH = "/Users/hanxirui/Documents/workspace/workshop_bmc/RIIL_Flex_Project/trunk/sources/ALLIMAGE";
-
+    private static final String IMAGE_TARGET_PATH = "/Users/hanxirui/Documents/workspace/workshop_bmc/RIIL_Flex_Project/trunk/sources/ALLIMAGE/";
+    private static final String flexProjectPath = "/Users/hanxirui/Documents/workspace/workshop_bmc/RIIL_Flex_Project/trunk/sources/Business/RiilBusinessTopology/src/";
     public static void main(String[] args) {
-        String flexProjectPath = "/Users/hanxirui/Documents/workspace/workshop_bmc/RIIL_Flex_Project/trunk/sources/Alarm/Alarm";
+        
         listFiles(new File(flexProjectPath), Arrays.asList(FILE_TYPES));
     }
 
@@ -57,7 +57,7 @@ public class Main {
      * @param flexFile
      */
     private static void listImagePath(File flexFile) {
-
+        
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new FileReader(flexFile));
@@ -66,11 +66,38 @@ public class Main {
             // 一次读入一行，直到读入null为文件结束
             while ((tempString = reader.readLine()) != null) {
                 // 显示行号
+                try {
+                    for (String imgType : IMAGE_TYPES) {
+                        if (tempString.indexOf(imgType) > 0) {
+                            int t_shuangyinhao_endindex = tempString.indexOf("\"", tempString.indexOf(imgType));
+                            int t_danyinhao_endindex = tempString.indexOf("\'", tempString.indexOf(imgType));
+                            int t_endIndex = 0;
+                            if (t_shuangyinhao_endindex > 0 && t_danyinhao_endindex > 0) {
+                                t_endIndex = t_shuangyinhao_endindex > t_danyinhao_endindex ? t_danyinhao_endindex
+                                        : t_shuangyinhao_endindex;
+                            } else {
+                                t_endIndex = t_shuangyinhao_endindex > t_danyinhao_endindex ? t_shuangyinhao_endindex
+                                        : t_danyinhao_endindex;
+                            }
 
-                for (String imgType : IMAGE_TYPES) {
-                    if (tempString.indexOf(imgType) > 0) {
-                        System.out.println("line " + line + ": " + tempString);
+                            String t_tempPath = tempString.substring(0, t_endIndex);
+
+                            int t_shuangyinhao_beginindex = t_tempPath.lastIndexOf("\"");
+                            int t_danyinhao_beginindex = t_tempPath.lastIndexOf("\'");
+                            int t_beginIndex = t_shuangyinhao_beginindex < t_danyinhao_beginindex ? t_danyinhao_beginindex
+                                    : t_shuangyinhao_beginindex;
+
+                            String t_imgPath = t_tempPath.substring(t_beginIndex+1);
+                            
+//                            System.out.println("Image Path -------------- " + t_imgPath);
+                            String t_srcImagePath = flexProjectPath+t_imgPath;
+                            String t_targetImagePath = IMAGE_TARGET_PATH+t_imgPath;
+                            copyImage(t_srcImagePath,t_targetImagePath);
+                        }
                     }
+                } catch (Exception e) {
+                    System.err.println("File ------------------ " + flexFile.getAbsolutePath());
+                    System.err.println("line " + line + ": " + tempString);
                 }
                 line++;
             }
@@ -88,7 +115,9 @@ public class Main {
     }
 
     private static void copyImage(String src, String target) {
+        
         try {
+            createFilePath(target.substring(0,target.lastIndexOf("/")));
             int bytesum = 0;
             int byteread = 0;
             File oldfile = new File(src);
@@ -110,4 +139,24 @@ public class Main {
 
         }
     }
+    
+    /** 
+     * 创建文件夹（根据路径级联创建，如果目录的上一级目录不存在则按路径创建） 
+     */  
+    private static boolean createFilePath(String path) {  
+        StringBuffer returnStr = new StringBuffer();
+        boolean bool = false;
+        // 根据符号"/"来分隔路径  
+        String[] paths = path.split("/");  
+        int length = paths.length;  
+        for (int i = 0; i < length; i++) {  
+            returnStr.append(paths[i]);  
+            File file = new File(returnStr.toString());  
+            if (!file.isDirectory()) {  
+                bool = file.mkdir();  
+            }  
+            returnStr.append("/");  
+        }  
+        return bool;  
+    }  
 }
