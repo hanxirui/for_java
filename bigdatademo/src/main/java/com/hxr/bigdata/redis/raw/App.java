@@ -15,20 +15,20 @@ public class App {
 
         // String
         // redisClient.set("a", "abc");
-         System.out.println(redisClient.get("a"));
+        System.out.println(redisClient.get("a"));
 
         // 不去重，一直累加
         // redisClient.lpush("message", "hello,my name is zhangsan");
         // redisClient.lpush("message", "my name is lisi");
         // System.out.println(redisClient.lrange("message", 0, -1));
         // System.out.println(redisClient.lpop("message"));
-         System.out.println(redisClient.lrange("message", 0, -1));
+        System.out.println(redisClient.lrange("message", 0, -1));
 
         // 去重
         // redisClient.sadd("myset", "first");
         // redisClient.sadd("myset", "second");
         // redisClient.sadd("myset", "third");
-         System.out.println(redisClient.smembers("myset"));
+        System.out.println(redisClient.smembers("myset"));
 
         // 去重
         // redisClient.zadd("hackers", 12, "12");
@@ -39,9 +39,9 @@ public class App {
         // redisClient.zadd("hackers", 14, "14");
         // System.out.println(redisClient.zrange("hackers", 0, -1));
         // redisClient.zadd("hackers", 12, "21");
-         System.out.println(redisClient.zrange("hackers", 0, -1));
+        System.out.println(redisClient.zrange("hackers", 0, -1));
 
-//        
+        //
         Map<String, String> pairs = new HashMap<String, String>();
         pairs.put("name", "Bkshi");
         pairs.put("age", "21");

@@ -8,7 +8,7 @@ import com.hxr.bigdata.redis.springdata.vo.UserVo;
 
 public class App {
     public static void main(final String[] args) {
-        ApplicationContext ac =  new ClassPathXmlApplicationContext("classpath:/applicationContext.xml");
+        ApplicationContext ac =  new ClassPathXmlApplicationContext(new String[] {"classpath:/applicationContext.xml", "classpath:/data-source.xml"});
         UserDao userDAO = (UserDao)ac.getBean("userDAO");
         UserVo user1 = new UserVo();
         user1.setId(1);

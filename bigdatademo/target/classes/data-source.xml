@@ -11,8 +11,7 @@
     <context:property-placeholder location="classpath:redis.properties" />  
     <context:component-scan base-package="com.hxr.bigdata.redis">
     </context:component-scan>
-        <context:component-scan base-package="com.hxr.bigdata.redis">
-    </context:component-scan>
+
     <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
         <property name="maxActive" value="50" />
         <property name="maxIdle" value="8" />
