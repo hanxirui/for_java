@@ -43,10 +43,10 @@ public class App {
 
         //
         Map<String, String> pairs = new HashMap<String, String>();
-        pairs.put("name", "Bkshi");
-        pairs.put("age", "21");
-        pairs.put("sex", "Male");
-        redisClient.hmset("kid", pairs);
+//        pairs.put("name", "Bkshi");
+//        pairs.put("age", "21");
+//        pairs.put("sex", "Male");
+//        redisClient.hmset("kid", pairs);
         List<String> values = redisClient.hmget("kid", new String[] { "name", "age", "sex" });
         System.out.println(values);
         Set<String> setValues = redisClient.hkeys("kid");
