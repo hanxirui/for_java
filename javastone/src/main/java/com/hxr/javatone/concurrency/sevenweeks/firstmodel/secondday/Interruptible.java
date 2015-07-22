@@ -2,6 +2,24 @@ package com.hxr.javatone.concurrency.sevenweeks.firstmodel.secondday;
 
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * {演示可重入锁的可打断机制}
+ * <br>
+ *  
+ * <p>
+ * Create on : 2015年7月21日<br>
+ * <p>
+ * </p>
+ * <br>
+ * @author hanxirui<br>
+ * @version javastone v1.0
+ * <p>
+ *<br>
+ * <strong>Modify History:</strong><br>
+ * user     modify_date    modify_content<br>
+ * -------------------------------------------<br>
+ * <br>
+ */
 public class Interruptible {
     public static void main(final String[] args) throws InterruptedException {
 
