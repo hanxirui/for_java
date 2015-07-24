@@ -15,3 +15,11 @@ bigdatademo/target/maven-archiver/pom.properties
 bigdatademo/target/maven-archiver/pom.properties
 
 bigdatademo/target/maven-archiver/pom.properties
+
+bigdatademo/target/*
+
+javastone/target/*
+
+*.class
+
+**/*.class
