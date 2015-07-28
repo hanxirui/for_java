@@ -1,5 +1,6 @@
 /**
  * {第二个模型：函数式编程；使用Clojure语言}
+ * java -cp /Users/hanxirui/Documents/workspace/library/clojure-1.7.0/clojure-1.7.0.jar clojure.main core.cj
  * <br>
  *  
  * <p>
