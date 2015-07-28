@@ -6,8 +6,9 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.Function2;
 
-public class WordCount {
+public class Introduce {
     public int wordCount() {
+        
         SparkConf conf = new SparkConf().setAppName("WordCount").setMaster("local");
         JavaSparkContext sc = new JavaSparkContext(conf);
 
