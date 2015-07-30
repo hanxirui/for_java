@@ -1,25 +1,18 @@
 /bin/
 
-bigdatademo/target/maven-archiver/pom.properties
+bigdatademo/target/
+
+bigdatademo/.classpath
+
+bigdatademo/.project
+
+bigdatademo/.settings/
+
+javastone/.settings/
+
+javastone/target/
 
 javastone/.classpath
 
 javastone/.project
 
-javastone/.settings/org.eclipse.m2e.core.prefs
-
-javastone/.settings/org.eclipse.jdt.core.prefs
-
-bigdatademo/target/maven-archiver/pom.properties
-
-bigdatademo/target/maven-archiver/pom.properties
-
-bigdatademo/target/maven-archiver/pom.properties
-
-bigdatademo/target/*
-
-javastone/target/*
-
-*.class
-
-**/*.class
