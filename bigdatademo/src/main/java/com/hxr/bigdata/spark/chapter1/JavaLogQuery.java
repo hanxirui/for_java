@@ -17,11 +17,9 @@
 
 package com.hxr.bigdata.spark.chapter1;
 
-import java.io.Serializable;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+import com.google.common.collect.Lists;
+import scala.Tuple2;
+import scala.Tuple3;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
@@ -29,10 +27,11 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function2;
 import org.apache.spark.api.java.function.PairFunction;
 
-import scala.Tuple2;
-import scala.Tuple3;
-
-import com.google.common.collect.Lists;
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Executes a roll up-style query against Apache logs.
@@ -64,21 +63,20 @@ public final class JavaLogQuery {
     private final int count;
     private final int numBytes;
 
-    public Stats(final int count, final int numBytes) {
+    public Stats(int count, int numBytes) {
       this.count = count;
       this.numBytes = numBytes;
     }
-    public Stats merge(final Stats other) {
+    public Stats merge(Stats other) {
       return new Stats(count + other.count, numBytes + other.numBytes);
     }
 
-    
     public String toString() {
       return String.format("bytes=%s\tn=%s", numBytes, count);
     }
   }
 
-  public static Tuple3<String, String, String> extractKey(final String line) {
+  public static Tuple3<String, String, String> extractKey(String line) {
     Matcher m = apacheLogRegex.matcher(line);
     if (m.find()) {
       String ip = m.group(1);
@@ -91,7 +89,7 @@ public final class JavaLogQuery {
     return new Tuple3<String, String, String>(null, null, null);
   }
 
-  public static Stats extractStats(final String line) {
+  public static Stats extractStats(String line) {
     Matcher m = apacheLogRegex.matcher(line);
     if (m.find()) {
       int bytes = Integer.parseInt(m.group(7));
@@ -101,7 +99,7 @@ public final class JavaLogQuery {
     }
   }
 
-  public static void main(final String[] args) {
+  public static void main(String[] args) {
 
     SparkConf sparkConf = new SparkConf().setAppName("JavaLogQuery");
     JavaSparkContext jsc = new JavaSparkContext(sparkConf);
@@ -110,14 +108,14 @@ public final class JavaLogQuery {
 
     JavaPairRDD<Tuple3<String, String, String>, Stats> extracted = dataSet.mapToPair(new PairFunction<String, Tuple3<String, String, String>, Stats>() {
       
-      public Tuple2<Tuple3<String, String, String>, Stats> call(final String s) {
+      public Tuple2<Tuple3<String, String, String>, Stats> call(String s) {
         return new Tuple2<Tuple3<String, String, String>, Stats>(extractKey(s), extractStats(s));
       }
     });
 
     JavaPairRDD<Tuple3<String, String, String>, Stats> counts = extracted.reduceByKey(new Function2<Stats, Stats, Stats>() {
       
-      public Stats call(final Stats stats, final Stats stats2) {
+      public Stats call(Stats stats, Stats stats2) {
         return stats.merge(stats2);
       }
     });

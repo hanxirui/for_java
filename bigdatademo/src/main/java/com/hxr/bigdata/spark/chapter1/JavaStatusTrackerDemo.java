@@ -17,9 +17,6 @@
 
 package com.hxr.bigdata.spark.chapter1;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.apache.spark.SparkConf;
 import org.apache.spark.SparkJobInfo;
 import org.apache.spark.SparkStageInfo;
@@ -27,6 +24,9 @@ import org.apache.spark.api.java.JavaFutureAction;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Example of using Spark's status APIs from Java.
@@ -37,13 +37,13 @@ public final class JavaStatusTrackerDemo {
 
   public static final class IdentityWithDelay<T> implements Function<T, T> {
     
-    public T call(final T x) throws Exception {
+    public T call(T x) throws Exception {
       Thread.sleep(2 * 1000);  // 2 seconds
       return x;
     }
   }
 
-  public static void main(final String[] args) throws Exception {
+  public static void main(String[] args) throws Exception {
     SparkConf sparkConf = new SparkConf().setAppName(APP_NAME);
     final JavaSparkContext sc = new JavaSparkContext(sparkConf);
 

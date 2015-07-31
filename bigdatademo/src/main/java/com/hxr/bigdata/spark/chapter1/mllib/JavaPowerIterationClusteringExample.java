@@ -17,19 +17,21 @@
 
 package com.hxr.bigdata.spark.chapter1.mllib;
 
-import org.apache.spark.SparkConf;
-import org.apache.spark.api.java.JavaRDD;
-import org.apache.spark.api.java.JavaSparkContext;
-
 import scala.Tuple3;
 
 import com.google.common.collect.Lists;
+
+import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaRDD;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.mllib.clustering.PowerIterationClustering;
+import org.apache.spark.mllib.clustering.PowerIterationClusteringModel;
 
 /**
  * Java example for graph clustering using power iteration clustering (PIC).
  */
 public class JavaPowerIterationClusteringExample {
-  public static void main(final String[] args) {
+  public static void main(String[] args) {
     SparkConf sparkConf = new SparkConf().setAppName("JavaPowerIterationClusteringExample");
     JavaSparkContext sc = new JavaSparkContext(sparkConf);
 

@@ -19,13 +19,13 @@ package com.hxr.bigdata.spark.chapter1.streaming;
 
 /** Java Bean class to be used with the example JavaSqlNetworkWordCount. */
 public class JavaRecord implements java.io.Serializable {
-    private String word;
+  private String word;
 
-    public String getWord() {
-        return word;
-    }
+  public String getWord() {
+    return word;
+  }
 
-    public void setWord(final String word) {
-        this.word = word;
-    }
+  public void setWord(String word) {
+    this.word = word;
+  }
 }

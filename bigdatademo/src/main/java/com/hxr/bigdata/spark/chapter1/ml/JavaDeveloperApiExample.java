@@ -19,16 +19,24 @@ package com.hxr.bigdata.spark.chapter1.ml;
 
 import java.util.List;
 
-import org.apache.hadoop.yarn.webapp.Params;
+import com.google.common.collect.Lists;
+
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.util.IntParam;
-
-import scala.concurrent.duration.DurationConversions.Classifier;
-import scala.tools.nsc.matching.ParallelMatching.MatchMatrix.Row;
-
-import com.google.common.collect.Lists;
+import org.apache.spark.ml.classification.Classifier;
+import org.apache.spark.ml.classification.ClassificationModel;
+import org.apache.spark.ml.param.IntParam;
+import org.apache.spark.ml.param.ParamMap;
+import org.apache.spark.ml.param.Params;
+import org.apache.spark.ml.param.Params$;
+import org.apache.spark.mllib.linalg.BLAS;
+import org.apache.spark.mllib.linalg.Vector;
+import org.apache.spark.mllib.linalg.Vectors;
+import org.apache.spark.mllib.regression.LabeledPoint;
+import org.apache.spark.sql.DataFrame;
+import org.apache.spark.sql.Row;
+import org.apache.spark.sql.SQLContext;
 
 
 /**
@@ -43,7 +51,7 @@ import com.google.common.collect.Lists;
  */
 public class JavaDeveloperApiExample {
 
-  public static void main(final String[] args) throws Exception {
+  public static void main(String[] args) throws Exception {
     SparkConf conf = new SparkConf().setAppName("JavaDeveloperApiExample");
     JavaSparkContext jsc = new JavaSparkContext(conf);
     SQLContext jsql = new SQLContext(jsc);
@@ -115,13 +123,13 @@ class MyJavaLogisticRegression
   }
 
   // The parameter setter is in this class since it should return type MyJavaLogisticRegression.
-  MyJavaLogisticRegression setMaxIter(final int value) {
+  MyJavaLogisticRegression setMaxIter(int value) {
     return (MyJavaLogisticRegression) set(maxIter, value);
   }
 
   // This method is used by fit().
   // In Java, we have to make it public since Java does not understand Scala's protected modifier.
-  public MyJavaLogisticRegressionModel train(final DataFrame dataset, final ParamMap paramMap) {
+  public MyJavaLogisticRegressionModel train(DataFrame dataset, ParamMap paramMap) {
     // Extract columns from data using helper method.
     JavaRDD<LabeledPoint> oldDataset = extractLabeledPoints(dataset, paramMap).toJavaRDD();
 
@@ -142,19 +150,19 @@ class MyJavaLogisticRegression
 class MyJavaLogisticRegressionModel
     extends ClassificationModel<Vector, MyJavaLogisticRegressionModel> implements Params {
 
-  private final MyJavaLogisticRegression parent_;
+  private MyJavaLogisticRegression parent_;
   public MyJavaLogisticRegression parent() { return parent_; }
 
-  private final ParamMap fittingParamMap_;
+  private ParamMap fittingParamMap_;
   public ParamMap fittingParamMap() { return fittingParamMap_; }
 
-  private final Vector weights_;
+  private Vector weights_;
   public Vector weights() { return weights_; }
 
   public MyJavaLogisticRegressionModel(
-      final MyJavaLogisticRegression parent_,
-      final ParamMap fittingParamMap_,
-      final Vector weights_) {
+      MyJavaLogisticRegression parent_,
+      ParamMap fittingParamMap_,
+      Vector weights_) {
     this.parent_ = parent_;
     this.fittingParamMap_ = fittingParamMap_;
     this.weights_ = weights_;
@@ -179,7 +187,7 @@ class MyJavaLogisticRegressionModel
    * In Java, we have to make this method public since Java does not understand Scala's protected
    * modifier.
    */
-  public Vector predictRaw(final Vector features) {
+  public Vector predictRaw(Vector features) {
     double margin = BLAS.dot(features, weights_);
     // There are 2 classes (binary classification), so we return a length-2 vector,
     // where index i corresponds to class i (i = 0, 1).

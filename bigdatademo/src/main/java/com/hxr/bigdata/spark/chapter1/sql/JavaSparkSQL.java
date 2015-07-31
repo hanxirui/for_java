@@ -26,7 +26,9 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 
-import scala.tools.nsc.matching.ParallelMatching.MatchMatrix.Row;
+import org.apache.spark.sql.DataFrame;
+import org.apache.spark.sql.Row;
+import org.apache.spark.sql.SQLContext;
 
 public class JavaSparkSQL {
   public static class Person implements Serializable {
@@ -37,7 +39,7 @@ public class JavaSparkSQL {
       return name;
     }
 
-    public void setName(final String name) {
+    public void setName(String name) {
       this.name = name;
     }
 
@@ -45,12 +47,12 @@ public class JavaSparkSQL {
       return age;
     }
 
-    public void setAge(final int age) {
+    public void setAge(int age) {
       this.age = age;
     }
   }
 
-  public static void main(final String[] args) throws Exception {
+  public static void main(String[] args) throws Exception {
     SparkConf sparkConf = new SparkConf().setAppName("JavaSparkSQL");
     JavaSparkContext ctx = new JavaSparkContext(sparkConf);
     SQLContext sqlContext = new SQLContext(ctx);
@@ -60,7 +62,7 @@ public class JavaSparkSQL {
     JavaRDD<Person> people = ctx.textFile("examples/src/main/resources/people.txt").map(
       new Function<String, Person>() {
         
-        public Person call(final String line) {
+        public Person call(String line) {
           String[] parts = line.split(",");
 
           Person person = new Person();
@@ -82,7 +84,7 @@ public class JavaSparkSQL {
     // The columns of a row in the result can be accessed by ordinal.
     List<String> teenagerNames = teenagers.toJavaRDD().map(new Function<Row, String>() {
       
-      public String call(final Row row) {
+      public String call(Row row) {
         return "Name: " + row.getString(0);
       }
     }).collect();
@@ -105,7 +107,7 @@ public class JavaSparkSQL {
       sqlContext.sql("SELECT name FROM parquetFile WHERE age >= 13 AND age <= 19");
     teenagerNames = teenagers2.toJavaRDD().map(new Function<Row, String>() {
       
-      public String call(final Row row) {
+      public String call(Row row) {
           return "Name: " + row.getString(0);
       }
     }).collect();
@@ -138,7 +140,7 @@ public class JavaSparkSQL {
     // The columns of a row in the result can be accessed by ordinal.
     teenagerNames = teenagers3.toJavaRDD().map(new Function<Row, String>() {
       
-      public String call(final Row row) { return "Name: " + row.getString(0); }
+      public String call(Row row) { return "Name: " + row.getString(0); }
     }).collect();
     for (String name: teenagerNames) {
       System.out.println(name);
@@ -165,7 +167,7 @@ public class JavaSparkSQL {
     DataFrame peopleWithCity = sqlContext.sql("SELECT name, address.city FROM people2");
     List<String> nameAndCity = peopleWithCity.toJavaRDD().map(new Function<Row, String>() {
       
-      public String call(final Row row) {
+      public String call(Row row) {
         return "Name: " + row.getString(0) + ", City: " + row.getString(1);
       }
     }).collect();

@@ -19,13 +19,15 @@ package com.hxr.bigdata.spark.chapter1.mllib;
 
 import java.util.ArrayList;
 
+import com.google.common.base.Joiner;
+import com.google.common.collect.Lists;
+
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
-
-import com.google.common.base.Joiner;
-import com.google.common.collect.Lists;
+import org.apache.spark.mllib.fpm.FPGrowth;
+import org.apache.spark.mllib.fpm.FPGrowthModel;
 
 /**
  * Java example for mining frequent itemsets using FP-growth.
@@ -33,7 +35,7 @@ import com.google.common.collect.Lists;
  */
 public class JavaFPGrowthExample {
 
-  public static void main(final String[] args) {
+  public static void main(String[] args) {
     String inputFile;
     double minSupport = 0.3;
     int numPartition = -1;
@@ -56,7 +58,7 @@ public class JavaFPGrowthExample {
     JavaRDD<ArrayList<String>> transactions = sc.textFile(inputFile).map(
       new Function<String, ArrayList<String>>() {
         
-        public ArrayList<String> call(final String s) {
+        public ArrayList<String> call(String s) {
           return Lists.newArrayList(s.split(" "));
         }
       }

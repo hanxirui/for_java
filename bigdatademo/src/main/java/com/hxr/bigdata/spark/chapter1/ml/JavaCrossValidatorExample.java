@@ -19,21 +19,31 @@ package com.hxr.bigdata.spark.chapter1.ml;
 
 import java.util.List;
 
+import com.google.common.collect.Lists;
+
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
-
-import redis.clients.jedis.Pipeline;
-import scala.tools.nsc.matching.ParallelMatching.MatchMatrix.Row;
-
-import com.google.common.collect.Lists;
+import org.apache.spark.ml.Pipeline;
+import org.apache.spark.ml.PipelineStage;
+import org.apache.spark.ml.classification.LogisticRegression;
+import org.apache.spark.ml.evaluation.BinaryClassificationEvaluator;
+import org.apache.spark.ml.feature.HashingTF;
+import org.apache.spark.ml.feature.Tokenizer;
+import org.apache.spark.ml.param.ParamMap;
+import org.apache.spark.ml.tuning.CrossValidator;
+import org.apache.spark.ml.tuning.CrossValidatorModel;
+import org.apache.spark.ml.tuning.ParamGridBuilder;
+import org.apache.spark.sql.DataFrame;
+import org.apache.spark.sql.Row;
+import org.apache.spark.sql.SQLContext;
 
 /**
  * A simple example demonstrating model selection using CrossValidator.
  * This example also demonstrates how Pipelines are Estimators.
  *
- * This example uses the Java bean classes {@link org.apache.spark.examples.ml.LabeledDocument} and
- * {@link org.apache.spark.examples.ml.Document} defined in the Scala example
- * {@link org.apache.spark.examples.ml.SimpleTextClassificationPipeline}.
+ * This example uses the Java bean classes {@link com.hxr.bigdata.spark.chapter1.ml.LabeledDocument} and
+ * {@link com.hxr.bigdata.spark.chapter1.ml.Document} defined in the Scala example
+ * {@link com.hxr.bigdata.spark.chapter1.ml.SimpleTextClassificationPipeline}.
  *
  * Run with
  * <pre>
@@ -42,7 +52,7 @@ import com.google.common.collect.Lists;
  */
 public class JavaCrossValidatorExample {
 
-  public static void main(final String[] args) {
+  public static void main(String[] args) {
     SparkConf conf = new SparkConf().setAppName("JavaCrossValidatorExample");
     JavaSparkContext jsc = new JavaSparkContext(conf);
     SQLContext jsql = new SQLContext(jsc);

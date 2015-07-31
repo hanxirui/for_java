@@ -17,16 +17,16 @@
 
 package com.hxr.bigdata.spark.chapter1;
 
-import java.io.Serializable;
-import java.util.Arrays;
-import java.util.Random;
-import java.util.regex.Pattern;
-
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.Function2;
+
+import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Random;
+import java.util.regex.Pattern;
 
 /**
  * Logistic regression based classification.
@@ -50,7 +50,7 @@ public final class JavaHdfsLR {
   }
 
   static class DataPoint implements Serializable {
-    DataPoint(final double[] x, final double y) {
+    DataPoint(double[] x, double y) {
       this.x = x;
       this.y = y;
     }
@@ -63,7 +63,7 @@ public final class JavaHdfsLR {
     private static final Pattern SPACE = Pattern.compile(" ");
 
     
-    public DataPoint call(final String line) {
+    public DataPoint call(String line) {
       String[] tok = SPACE.split(line);
       double y = Double.parseDouble(tok[0]);
       double[] x = new double[D];
@@ -76,7 +76,7 @@ public final class JavaHdfsLR {
 
   static class VectorSum implements Function2<double[], double[], double[]> {
     
-    public double[] call(final double[] a, final double[] b) {
+    public double[] call(double[] a, double[] b) {
       double[] result = new double[D];
       for (int j = 0; j < D; j++) {
         result[j] = a[j] + b[j];
@@ -88,12 +88,12 @@ public final class JavaHdfsLR {
   static class ComputeGradient implements Function<DataPoint, double[]> {
     private final double[] weights;
 
-    ComputeGradient(final double[] weights) {
+    ComputeGradient(double[] weights) {
       this.weights = weights;
     }
 
     
-    public double[] call(final DataPoint p) {
+    public double[] call(DataPoint p) {
       double[] gradient = new double[D];
       for (int i = 0; i < D; i++) {
         double dot = dot(weights, p.x);
@@ -103,7 +103,7 @@ public final class JavaHdfsLR {
     }
   }
 
-  public static double dot(final double[] a, final double[] b) {
+  public static double dot(double[] a, double[] b) {
     double x = 0;
     for (int i = 0; i < D; i++) {
       x += a[i] * b[i];
@@ -111,11 +111,11 @@ public final class JavaHdfsLR {
     return x;
   }
 
-  public static void printWeights(final double[] a) {
+  public static void printWeights(double[] a) {
     System.out.println(Arrays.toString(a));
   }
 
-  public static void main(final String[] args) {
+  public static void main(String[] args) {
 
     if (args.length < 2) {
       System.err.println("Usage: JavaHdfsLR <file> <iters>");

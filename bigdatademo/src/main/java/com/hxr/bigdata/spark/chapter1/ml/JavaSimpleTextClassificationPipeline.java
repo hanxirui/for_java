@@ -19,13 +19,19 @@ package com.hxr.bigdata.spark.chapter1.ml;
 
 import java.util.List;
 
+import com.google.common.collect.Lists;
+
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
-
-import redis.clients.jedis.Pipeline;
-import scala.tools.nsc.matching.ParallelMatching.MatchMatrix.Row;
-
-import com.google.common.collect.Lists;
+import org.apache.spark.ml.Pipeline;
+import org.apache.spark.ml.PipelineModel;
+import org.apache.spark.ml.PipelineStage;
+import org.apache.spark.ml.classification.LogisticRegression;
+import org.apache.spark.ml.feature.HashingTF;
+import org.apache.spark.ml.feature.Tokenizer;
+import org.apache.spark.sql.DataFrame;
+import org.apache.spark.sql.Row;
+import org.apache.spark.sql.SQLContext;
 
 /**
  * A simple text classification pipeline that recognizes "spark" from input text. It uses the Java
@@ -37,7 +43,7 @@ import com.google.common.collect.Lists;
  */
 public class JavaSimpleTextClassificationPipeline {
 
-  public static void main(final String[] args) {
+  public static void main(String[] args) {
     SparkConf conf = new SparkConf().setAppName("JavaSimpleTextClassificationPipeline");
     JavaSparkContext jsc = new JavaSparkContext(conf);
     SQLContext jsql = new SQLContext(jsc);

@@ -17,13 +17,17 @@
 
 package com.hxr.bigdata.spark.chapter1.mllib;
 
-import java.util.Arrays;
-import java.util.regex.Pattern;
-
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
+
+import org.apache.spark.mllib.recommendation.ALS;
+import org.apache.spark.mllib.recommendation.MatrixFactorizationModel;
+import org.apache.spark.mllib.recommendation.Rating;
+
+import java.util.Arrays;
+import java.util.regex.Pattern;
 
 import scala.Tuple2;
 
@@ -36,7 +40,7 @@ public final class JavaALS {
     private static final Pattern COMMA = Pattern.compile(",");
 
     
-    public Rating call(final String line) {
+    public Rating call(String line) {
       String[] tok = COMMA.split(line);
       int x = Integer.parseInt(tok[0]);
       int y = Integer.parseInt(tok[1]);
@@ -47,12 +51,12 @@ public final class JavaALS {
 
   static class FeaturesToString implements Function<Tuple2<Object, double[]>, String> {
     
-    public String call(final Tuple2<Object, double[]> element) {
+    public String call(Tuple2<Object, double[]> element) {
       return element._1() + "," + Arrays.toString(element._2());
     }
   }
 
-  public static void main(final String[] args) {
+  public static void main(String[] args) {
 
     if (args.length < 4) {
       System.err.println(

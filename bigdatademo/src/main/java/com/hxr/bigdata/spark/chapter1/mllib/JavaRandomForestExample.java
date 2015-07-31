@@ -17,6 +17,8 @@
 
 package com.hxr.bigdata.spark.chapter1.mllib;
 
+import scala.Tuple2;
+
 import java.util.HashMap;
 
 import org.apache.spark.SparkConf;
@@ -26,8 +28,10 @@ import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.Function2;
 import org.apache.spark.api.java.function.PairFunction;
-
-import scala.Tuple2;
+import org.apache.spark.mllib.regression.LabeledPoint;
+import org.apache.spark.mllib.tree.RandomForest;
+import org.apache.spark.mllib.tree.model.RandomForestModel;
+import org.apache.spark.mllib.util.MLUtils;
 
 public final class JavaRandomForestExample {
 
@@ -36,8 +40,8 @@ public final class JavaRandomForestExample {
    * For information on multiclass classification, please refer to the JavaDecisionTree.java
    * example.
    */
-  private static void testClassification(final JavaRDD<LabeledPoint> trainingData,
-                                         final JavaRDD<LabeledPoint> testData) {
+  private static void testClassification(JavaRDD<LabeledPoint> trainingData,
+                                         JavaRDD<LabeledPoint> testData) {
     // Train a RandomForest model.
     //  Empty categoricalFeaturesInfo indicates all features are continuous.
     Integer numClasses = 2;
@@ -57,14 +61,14 @@ public final class JavaRandomForestExample {
     JavaPairRDD<Double, Double> predictionAndLabel =
         testData.mapToPair(new PairFunction<LabeledPoint, Double, Double>() {
           
-          public Tuple2<Double, Double> call(final LabeledPoint p) {
+          public Tuple2<Double, Double> call(LabeledPoint p) {
             return new Tuple2<Double, Double>(model.predict(p.features()), p.label());
           }
         });
     Double testErr =
         1.0 * predictionAndLabel.filter(new Function<Tuple2<Double, Double>, Boolean>() {
           
-          public Boolean call(final Tuple2<Double, Double> pl) {
+          public Boolean call(Tuple2<Double, Double> pl) {
             return !pl._1().equals(pl._2());
           }
         }).count() / testData.count();
@@ -72,8 +76,8 @@ public final class JavaRandomForestExample {
     System.out.println("Learned classification forest model:\n" + model.toDebugString());
   }
 
-  private static void testRegression(final JavaRDD<LabeledPoint> trainingData,
-                                     final JavaRDD<LabeledPoint> testData) {
+  private static void testRegression(JavaRDD<LabeledPoint> trainingData,
+                                     JavaRDD<LabeledPoint> testData) {
     // Train a RandomForest model.
     //  Empty categoricalFeaturesInfo indicates all features are continuous.
     HashMap<Integer, Integer> categoricalFeaturesInfo = new HashMap<Integer, Integer>();
@@ -92,20 +96,20 @@ public final class JavaRandomForestExample {
     JavaPairRDD<Double, Double> predictionAndLabel =
         testData.mapToPair(new PairFunction<LabeledPoint, Double, Double>() {
           
-          public Tuple2<Double, Double> call(final LabeledPoint p) {
+          public Tuple2<Double, Double> call(LabeledPoint p) {
             return new Tuple2<Double, Double>(model.predict(p.features()), p.label());
           }
         });
     Double testMSE =
         predictionAndLabel.map(new Function<Tuple2<Double, Double>, Double>() {
           
-          public Double call(final Tuple2<Double, Double> pl) {
+          public Double call(Tuple2<Double, Double> pl) {
             Double diff = pl._1() - pl._2();
             return diff * diff;
           }
         }).reduce(new Function2<Double, Double, Double>() {
           
-          public Double call(final Double a, final Double b) {
+          public Double call(Double a, Double b) {
             return a + b;
           }
         }) / testData.count();
@@ -113,7 +117,7 @@ public final class JavaRandomForestExample {
     System.out.println("Learned regression forest model:\n" + model.toDebugString());
   }
 
-  public static void main(final String[] args) {
+  public static void main(String[] args) {
     SparkConf sparkConf = new SparkConf().setAppName("JavaRandomForestExample");
     JavaSparkContext sc = new JavaSparkContext(sparkConf);
 

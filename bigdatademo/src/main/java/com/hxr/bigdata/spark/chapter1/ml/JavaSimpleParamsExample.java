@@ -19,12 +19,18 @@ package com.hxr.bigdata.spark.chapter1.ml;
 
 import java.util.List;
 
+import com.google.common.collect.Lists;
+
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaSparkContext;
-
-import scala.tools.nsc.matching.ParallelMatching.MatchMatrix.Row;
-
-import com.google.common.collect.Lists;
+import org.apache.spark.ml.classification.LogisticRegressionModel;
+import org.apache.spark.ml.param.ParamMap;
+import org.apache.spark.ml.classification.LogisticRegression;
+import org.apache.spark.mllib.linalg.Vectors;
+import org.apache.spark.mllib.regression.LabeledPoint;
+import org.apache.spark.sql.DataFrame;
+import org.apache.spark.sql.Row;
+import org.apache.spark.sql.SQLContext;
 
 /**
  * A simple example demonstrating ways to specify parameters for Estimators and Transformers.
@@ -35,7 +41,7 @@ import com.google.common.collect.Lists;
  */
 public class JavaSimpleParamsExample {
 
-  public static void main(final String[] args) {
+  public static void main(String[] args) {
     SparkConf conf = new SparkConf().setAppName("JavaSimpleParamsExample");
     JavaSparkContext jsc = new JavaSparkContext(conf);
     SQLContext jsql = new SQLContext(jsc);

@@ -24,6 +24,11 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 
+import org.apache.spark.mllib.clustering.KMeans;
+import org.apache.spark.mllib.clustering.KMeansModel;
+import org.apache.spark.mllib.linalg.Vector;
+import org.apache.spark.mllib.linalg.Vectors;
+
 /**
  * Example using MLlib KMeans from Java.
  */
@@ -33,7 +38,7 @@ public final class JavaKMeans {
     private static final Pattern SPACE = Pattern.compile(" ");
 
     
-    public Vector call(final String line) {
+    public Vector call(String line) {
       String[] tok = SPACE.split(line);
       double[] point = new double[tok.length];
       for (int i = 0; i < tok.length; ++i) {
@@ -43,7 +48,7 @@ public final class JavaKMeans {
     }
   }
 
-  public static void main(final String[] args) {
+  public static void main(String[] args) {
     if (args.length < 3) {
       System.err.println(
         "Usage: JavaKMeans <input_file> <k> <max_iterations> [<runs>]");

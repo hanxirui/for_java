@@ -24,6 +24,11 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 
+import org.apache.spark.mllib.classification.LogisticRegressionWithSGD;
+import org.apache.spark.mllib.classification.LogisticRegressionModel;
+import org.apache.spark.mllib.linalg.Vectors;
+import org.apache.spark.mllib.regression.LabeledPoint;
+
 /**
  * Logistic regression based classification using ML Lib.
  */
@@ -34,7 +39,7 @@ public final class JavaLR {
     private static final Pattern SPACE = Pattern.compile(" ");
 
     
-    public LabeledPoint call(final String line) {
+    public LabeledPoint call(String line) {
       String[] parts = COMMA.split(line);
       double y = Double.parseDouble(parts[0]);
       String[] tok = SPACE.split(parts[1]);
@@ -46,7 +51,7 @@ public final class JavaLR {
     }
   }
 
-  public static void main(final String[] args) {
+  public static void main(String[] args) {
     if (args.length != 3) {
       System.err.println("Usage: JavaLR <input_dir> <step_size> <niters>");
       System.exit(1);
