@@ -23,16 +23,18 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-import scala.Tuple2;
-
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.PairFunction;
 
+import scala.Tuple2;
+
 /**
  * Transitive closure on a graph, implemented in Java.
  * Usage: JavaTC [slices]
+ * # For Scala and Java, use run-example:
+./bin/run-example SparkPi
  */
 public final class JavaTC {
 
@@ -58,13 +60,13 @@ public final class JavaTC {
     static final ProjectFn INSTANCE = new ProjectFn();
 
     
-    public Tuple2<Integer, Integer> call(Tuple2<Integer, Tuple2<Integer, Integer>> triple) {
+    public Tuple2<Integer, Integer> call(final Tuple2<Integer, Tuple2<Integer, Integer>> triple) {
       return new Tuple2<Integer, Integer>(triple._2()._2(), triple._2()._1());
     }
   }
 
-  public static void main(String[] args) {
-    SparkConf sparkConf = new SparkConf().setAppName("JavaHdfsLR");
+  public static void main(final String[] args) {
+    SparkConf sparkConf = new SparkConf().setAppName("JavaTC");
     JavaSparkContext sc = new JavaSparkContext(sparkConf);
     Integer slices = (args.length > 0) ? Integer.parseInt(args[0]): 2;
     JavaPairRDD<Integer, Integer> tc = sc.parallelizePairs(generateGraph(), slices).cache();
@@ -78,7 +80,7 @@ public final class JavaTC {
     JavaPairRDD<Integer, Integer> edges = tc.mapToPair(
       new PairFunction<Tuple2<Integer, Integer>, Integer, Integer>() {
         
-        public Tuple2<Integer, Integer> call(Tuple2<Integer, Integer> e) {
+        public Tuple2<Integer, Integer> call(final Tuple2<Integer, Integer> e) {
           return new Tuple2<Integer, Integer>(e._2(), e._1());
         }
     });

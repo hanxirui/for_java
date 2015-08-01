@@ -1,5 +1,12 @@
 /**
- * {class description}
+hanxiruideMacBook-Pro::hadoop-2.6.0 hanxirui $hadoop fs -copyFromLocal ../input/* /input
+
+hanxiruideMacBook-Pro::hadoop-2.6.0 hanxirui $hadoop jar ../share/hadoop/mapreduce/hadoop-mapreduce-examples-2.6.0.jar wordcount /input /output
+
+hanxiruideMacBook-Pro::hadoop-2.6.0 hanxirui $hadoop fs -cat /output/*
+
+hadoop jar bigdatademo.jar com.hxr.bigdata.hadoop.firststep.WordCount /input /output
+
  * <br>
  *  
  * <p>

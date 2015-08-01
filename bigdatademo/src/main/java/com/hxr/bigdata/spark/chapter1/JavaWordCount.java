@@ -14,6 +14,13 @@ import org.apache.spark.api.java.function.PairFunction;
 
 import scala.Tuple2;
 
+/**
+ # For Scala and Java, use run-example:
+*./bin/run-example SparkPi
+*
+*./bin/spark-submit --class com.hxr.bigdata.spark.chapter1.JavaWordCount --master local[1] bigdatademo.jar 
+ * <br>
+ */
 public class JavaWordCount {
     private static final Pattern SPACE = Pattern.compile(" ");
 
