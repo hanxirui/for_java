@@ -13,72 +13,74 @@ import org.springframework.data.neo4j.annotation.RelatedTo;
 @NodeEntity
 public class DevNode {
 
-  @GraphId Long id;
+    @GraphId
+    Long id;
 
-  @Indexed
-  String name;
-  
-  @RelatedTo(type = "link", direction = Direction.INCOMING) 
-  @Fetch Set<DevNode> links = new HashSet<DevNode>(); 
+    @Indexed
+    String name;
 
-  @RelatedTo(type = "link", direction = Direction.OUTGOING) 
-  @Fetch Set<DevNode> linked = new HashSet<DevNode>();
+    @RelatedTo(type = "link", direction = Direction.INCOMING)
+    @Fetch
+    Set<DevNode> links = new HashSet<DevNode>();
 
-/**
- * @return id - {return content description}
- */
-public Long getId() {
-    return id;
-}
+    @RelatedTo(type = "link", direction = Direction.OUTGOING)
+    @Fetch
+    Set<DevNode> linked = new HashSet<DevNode>();
 
-/**
- * @param id - {parameter description}.
- */
-public void setId(final Long id) {
-    this.id = id;
-}
+    /**
+     * @return id - {return content description}
+     */
+    public Long getId() {
+        return 123L;
+    }
 
-/**
- * @return name - {return content description}
- */
-public String getName() {
-    return name;
-}
+    /**
+     * @param id - {parameter description}.
+     */
+    public void setId(final Long id) {
+        this.id = id;
+    }
 
-/**
- * @param name - {parameter description}.
- */
-public void setName(final String name) {
-    this.name = name;
-}
+    /**
+     * @return name - {return content description}
+     */
+    public String getName() {
+        return name;
+    }
 
-/**
- * @return links - {return content description}
- */
-public Set<DevNode> getLinks() {
-    return links;
-}
+    /**
+     * @param name - {parameter description}.
+     */
+    public void setName(final String name) {
+        this.name = name;
+    }
 
-/**
- * @param links - {parameter description}.
- */
-public void setLinks(final Set<DevNode> links) {
-    this.links = links;
-}
+    /**
+     * @return links - {return content description}
+     */
+    public Set<DevNode> getLinks() {
+        return links;
+    }
 
-/**
- * @return linked - {return content description}
- */
-public Set<DevNode> getLinked() {
-    return linked;
-}
+    /**
+     * @param links - {parameter description}.
+     */
+    public void setLinks(final Set<DevNode> links) {
+        this.links = links;
+    }
 
-/**
- * @param linked - {parameter description}.
- */
-public void setLinked(final Set<DevNode> linked) {
-    this.linked = linked;
-} 
+    /**
+     * @return linked - {return content description}
+     */
+    public Set<DevNode> getLinked() {
+        return linked;
+    }
 
+    /**
+     * @param linked - {parameter description}.
+     */
+    public void setLinked(final Set<DevNode> linked) {
+        this.linked = linked;
+    }
 
 }
