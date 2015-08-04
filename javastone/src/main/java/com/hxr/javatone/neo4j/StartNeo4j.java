@@ -20,7 +20,7 @@ public class StartNeo4j {
 
     @SuppressWarnings("deprecation")
     public static void main(final String[] args) {
-        String DB_PATH = "neo4j-sayhello";
+        String DB_PATH = "/Users/hanxirui/Documents/workspace/library/neo4j-community-2.2.2/data/neo4jexample.db";
         graphDb = new GraphDatabaseFactory().newEmbeddedDatabase(DB_PATH);
         Transaction tx = graphDb.beginTx();
 
@@ -40,7 +40,7 @@ public class StartNeo4j {
             tx.success();
         } finally {
             registerShutdownHook(graphDb);
-            tx.finish();
+            tx.close();
         }
 
     }

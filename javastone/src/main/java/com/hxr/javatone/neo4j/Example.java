@@ -25,8 +25,7 @@ import org.neo4j.kernel.impl.util.StringLogger;
 
 public class Example {
 
-    // private static final String DB_PATH = "target/neo4jexample";
-    private static final String DB_PATH = "testgraph.db";
+    private static final String DB_PATH = "/Users/hanxirui/Documents/workspace/library/neo4j-community-2.2.2/data/neo4jexample.db";
     private static final String PRIMARY_KEY = "name";
     private GraphDatabaseService graphDB;
     private Index<Node> nodeIndex;
