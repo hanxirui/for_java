@@ -50,7 +50,7 @@ public class Example {
         Transaction tx = graphDB.beginTx();
 
         nodeIndex = graphDB.index().forNodes("nodes");
-        registerShutdownHook(graphDB);
+
         try {
             Node startNode = graphDB.createNode();
             startNodeId = startNode.getId();
@@ -65,28 +65,36 @@ public class Example {
             Node trinity = graphDB.createNode();
             trinity.setProperty("name", "Trinity");
             nodeIndex.add(trinity, PRIMARY_KEY, trinity.getProperty("name"));
+
             Relationship rel = thomas.createRelationshipTo(trinity, RelTypes.KNOWS);
             rel.setProperty("age", "3 days");
+
             Node morpheus = graphDB.createNode();
             morpheus.setProperty("name", "Morpheus");
             morpheus.setProperty("rank", "Captain");
             morpheus.setProperty("occupation", "Total badass");
             nodeIndex.add(morpheus, PRIMARY_KEY, morpheus.getProperty("name"));
+
             thomas.createRelationshipTo(morpheus, RelTypes.KNOWS);
+
             rel = morpheus.createRelationshipTo(trinity, RelTypes.KNOWS);
             rel.setProperty("age", "12 years");
+
             Node cypher = graphDB.createNode();
             cypher.setProperty("name", "Cypher");
             cypher.setProperty("last name", "Reagan");
             nodeIndex.add(cypher, PRIMARY_KEY, cypher.getProperty("name"));
+
             trinity.createRelationshipTo(cypher, RelTypes.KNOWS);
             rel = morpheus.createRelationshipTo(cypher, RelTypes.KNOWS);
             rel.setProperty("disclosure", "public");
+
             Node smith = graphDB.createNode();
             smith.setProperty("name", "Agent Smith");
             smith.setProperty("version", "1.0b");
             smith.setProperty("language", "C++");
             nodeIndex.add(smith, PRIMARY_KEY, smith.getProperty("name"));
+
             rel = cypher.createRelationshipTo(smith, RelTypes.KNOWS);
             rel.setProperty("disclosure", "secret");
             rel.setProperty("age", "6 months");
@@ -98,6 +106,7 @@ public class Example {
             tx.success();
         } finally {
             tx.close();
+            // registerShutdownHook(graphDB);
         }
     }
 
@@ -108,9 +117,8 @@ public class Example {
     }
 
     public void printNodeFriends(final Node node) {
-         Node neo = graphDB.getNodeById(startNodeId)
-         .getSingleRelationship(RelTypes.NEO_NODE, Direction.OUTGOING)
-         .getEndNode();
+        Node neo = graphDB.getNodeById(startNodeId).getSingleRelationship(RelTypes.NEO_NODE, Direction.OUTGOING)
+                .getEndNode();
         int friendsNumbers = 0;
         System.out.println(node.getProperty(PRIMARY_KEY) + "'s friends:");
         for (Path friendPath : getFriends(node)) {
@@ -122,13 +130,13 @@ public class Example {
     }
 
     public void printCypherFriends(final String name) {
-        graphDB = new GraphDatabaseFactory().newEmbeddedDatabase(DB_PATH);
-        ExecutionEngine engine = new ExecutionEngine(graphDB, StringLogger.logger(new File(DB_PATH)));
+        // graphDB = new GraphDatabaseFactory().newEmbeddedDatabase(DB_PATH);
+        ExecutionEngine engine = new ExecutionEngine(graphDB, StringLogger.logger(new File(DB_PATH+File.separator+"cypherexe.log")));
         // ExecutionResult result = engine.execute(
         // "start n=node:nodes(name=\"" + name + "\") "
         // + "match n-[:KNOWS*..]->f "
         // + "return distinct f, f.name");
-        ExecutionResult result = engine.execute("start n=node(500000) return n;");
+        ExecutionResult result = engine.execute("start n=node(1) return n;");
         System.out.println(result.dumpToString());
     }
 
@@ -147,18 +155,19 @@ public class Example {
         Node node1 = nodeIndex.get(PRIMARY_KEY, "Thomas Anderson").getSingle();
         Node node2 = nodeIndex.get(PRIMARY_KEY, "Agent Smith").getSingle();
         for (Path shortestPath : findShortestPath(node1, node2)) {
-            System.out.println(shortestPath.toString());
+            System.out.println();
+            System.out.println("shortestPath----" + shortestPath.toString());
         }
     }
 
-    private static void registerShutdownHook(final GraphDatabaseService graphDB) {
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                graphDB.shutdown();
-            }
-        });
-    }
+    // private static void registerShutdownHook(final GraphDatabaseService graphDB) {
+    // Runtime.getRuntime().addShutdownHook(new Thread() {
+    // @Override
+    // public void run() {
+    // graphDB.shutdown();
+    // }
+    // });
+    // }
 
     private void shutdown() {
         graphDB.shutdown();
@@ -174,14 +183,15 @@ public class Example {
         try {
             long t1 = System.currentTimeMillis();
             example.printThomasFriends();
-            // example.printCypherFriends("Thomas Anderson");
+            example.printCypherFriends("Thomas Anderson");
             long t2 = System.currentTimeMillis();
             System.out.print(t2 - t1);
             example.printShortestPaths();
-            example.shutdown();
+
             tx.success();
         } finally {
             tx.close();
+            example.shutdown();
         }
     }
 
