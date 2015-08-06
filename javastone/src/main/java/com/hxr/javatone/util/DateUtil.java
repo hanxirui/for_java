@@ -4,6 +4,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DateUtil {
+public static String yyyy_MM_dd_HH_mm_ss="yyyy-MM-dd HH:mm:ss";
+
 public static void main(final String[] args) {
 //    获得一天的开始和结束时间
     Calendar t_calendar = Calendar.getInstance();
