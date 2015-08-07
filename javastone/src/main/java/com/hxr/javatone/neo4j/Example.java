@@ -132,11 +132,11 @@ public class Example {
     public void printCypherFriends(final String name) {
         // graphDB = new GraphDatabaseFactory().newEmbeddedDatabase(DB_PATH);
         ExecutionEngine engine = new ExecutionEngine(graphDB, StringLogger.logger(new File(DB_PATH+File.separator+"cypherexe.log")));
-        // ExecutionResult result = engine.execute(
-        // "start n=node:nodes(name=\"" + name + "\") "
-        // + "match n-[:KNOWS*..]->f "
-        // + "return distinct f, f.name");
-        ExecutionResult result = engine.execute("start n=node(1) return n;");
+         ExecutionResult result = engine.execute(
+         "start n=node:nodes(name=\"" + name + "\") "
+         + "match n-[:KNOWS*..]->f "
+         + "return distinct f, f.name");
+//        ExecutionResult result = engine.execute("start n=node(1) return n;");
         System.out.println(result.dumpToString());
     }
 

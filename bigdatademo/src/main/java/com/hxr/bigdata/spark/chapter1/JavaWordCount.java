@@ -33,7 +33,7 @@ public class JavaWordCount {
         // }
         // 对于所有的 Spark 程序而言，要进行任何操作，首先要创建一个 Spark 的上下文，
         // 在创建上下文的过程中，程序会向集群申请资源以及构建相应的运行环境。
-        SparkConf sparkConf = new SparkConf().setAppName("JavaWordCount");
+        SparkConf sparkConf = new SparkConf().setAppName("JavaWordCount131");
         JavaSparkContext ctx = new JavaSparkContext(sparkConf);
 
         // 利用 textFile 接口从文件系统中读入指定的文件，返回一个 RDD 实例对象。
@@ -42,8 +42,8 @@ public class JavaWordCount {
         // 1.从文件生成RDD
         // JavaRDD<String> lines = ctx.textFile(args[0], 1);
 
-        // 2.从HDFS生成RDD
-        JavaRDD<String> lines = ctx.textFile("hdfs://localhost:9000/input/hdfs.txt", 1);
+        // 2.从HDFS生成RDD hdfs://127.0.0.1:9000
+        JavaRDD<String> lines = ctx.textFile("/input/hdfs.txt", 1);
 
         JavaRDD<String> words = lines.flatMap(new FlatMapFunction<String, String>() {
 

@@ -1,5 +1,5 @@
 /**
- * {练习使用，helloworld级别}
+ * {Spark1.3.1的样例；练习使用，helloworld级别}
  * <br>
  *  
  * <p>

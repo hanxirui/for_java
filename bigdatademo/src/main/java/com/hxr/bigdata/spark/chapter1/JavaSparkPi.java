@@ -17,14 +17,14 @@
 
 package com.hxr.bigdata.spark.chapter1;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
 import org.apache.spark.api.java.function.Function2;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /** 
  * Computes an approximation to pi
@@ -32,8 +32,8 @@ import java.util.List;
  */
 public final class JavaSparkPi {
 
-  public static void main(String[] args) throws Exception {
-    SparkConf sparkConf = new SparkConf().setAppName("JavaSparkPi");
+  public static void main(final String[] args) throws Exception {
+    SparkConf sparkConf = new SparkConf().setAppName("JavaSparkPi131");
     JavaSparkContext jsc = new JavaSparkContext(sparkConf);
 
     int slices = (args.length == 1) ? Integer.parseInt(args[0]) : 2;
@@ -47,14 +47,14 @@ public final class JavaSparkPi {
 
     int count = dataSet.map(new Function<Integer, Integer>() {
       
-      public Integer call(Integer integer) {
+      public Integer call(final Integer integer) {
         double x = Math.random() * 2 - 1;
         double y = Math.random() * 2 - 1;
         return (x * x + y * y < 1) ? 1 : 0;
       }
     }).reduce(new Function2<Integer, Integer, Integer>() {
       
-      public Integer call(Integer integer, Integer integer2) {
+      public Integer call(final Integer integer, final Integer integer2) {
         return integer + integer2;
       }
     });
