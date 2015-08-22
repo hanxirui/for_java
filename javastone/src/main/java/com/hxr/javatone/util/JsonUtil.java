@@ -23,9 +23,9 @@ import org.slf4j.LoggerFactory;
  * 封装不同的输出风格, 使用不同的builder函数创建实例.
  * 
  */
-public class JsonMapper {
+public class JsonUtil {
 
-  private static Logger logger = LoggerFactory.getLogger(JsonMapper.class);
+  private static Logger logger = LoggerFactory.getLogger(JsonUtil.class);
 
   private final ObjectMapper mapper;
   
@@ -38,18 +38,18 @@ public class JsonMapper {
       zhangsan.setAge(33);
       zhangsan.setName("zhangsan");
       //bean2json
-      String json = JsonMapper.toLogJson(zhangsan);
+      String json = JsonUtil.toLogJson(zhangsan);
       System.out.println("对象转换为json：" + json);
 
       //json2bean，需要注意：Student类和Teacher类必须有一个空的构造方法
 
       //JsonMapper提供了很多创建Mapper的方法，不是非要用buildNonDefaultMapper，你可以对比几种方法的转换时间，挑个最快的
-      UserVo student2 = JsonMapper.buildNonDefaultMapper().fromJson(json, UserVo.class);
+      UserVo student2 = JsonUtil.buildNonDefaultMapper().fromJson(json, UserVo.class);
       System.out.println("json转换成对象：" + student2);
 
 }
 
-  public JsonMapper(final Inclusion inclusion) {
+  public JsonUtil(final Inclusion inclusion) {
     mapper = new ObjectMapper();
     //设置输出时包含属性的风格
     mapper.setSerializationInclusion(inclusion);
@@ -62,29 +62,29 @@ public class JsonMapper {
   /**
    * 创建输出全部属性到Json字符串的Mapper.
    */
-  public static JsonMapper buildNormalMapper() {
-    return new JsonMapper(Inclusion.ALWAYS);
+  public static JsonUtil buildNormalMapper() {
+    return new JsonUtil(Inclusion.ALWAYS);
   }
 
   /**
    * 创建只输出非空属性到Json字符串的Mapper.
    */
-  public static JsonMapper buildNonNullMapper() {
-    return new JsonMapper(Inclusion.NON_NULL);
+  public static JsonUtil buildNonNullMapper() {
+    return new JsonUtil(Inclusion.NON_NULL);
   }
 
   /**
    * 创建只输出初始值被改变的属性到Json字符串的Mapper.
    */
-  public static JsonMapper buildNonDefaultMapper() {
-    return new JsonMapper(Inclusion.NON_DEFAULT);
+  public static JsonUtil buildNonDefaultMapper() {
+    return new JsonUtil(Inclusion.NON_DEFAULT);
   }
 
   /**
    * 创建只输出非Null且非Empty(如List.isEmpty)的属性到Json字符串的Mapper.
    */
-  public static JsonMapper buildNonEmptyMapper() {
-    return new JsonMapper(Inclusion.NON_EMPTY);
+  public static JsonUtil buildNonEmptyMapper() {
+    return new JsonUtil(Inclusion.NON_EMPTY);
   }
 
   /**
@@ -234,7 +234,7 @@ public class JsonMapper {
    * @return
    */
   public static String toNormalJson(final Object object){
-    return new JsonMapper(Inclusion.ALWAYS).toJson(object);
+    return new JsonUtil(Inclusion.ALWAYS).toJson(object);
   }
   
   /**
@@ -243,7 +243,7 @@ public class JsonMapper {
    * @return
    */
   public static String toNonNullJson(final Object object){
-    return new JsonMapper(Inclusion.NON_NULL).toJson(object);
+    return new JsonUtil(Inclusion.NON_NULL).toJson(object);
   }
   
   /**
@@ -252,7 +252,7 @@ public class JsonMapper {
    * @return
    */
   public static String toNonDefaultJson(final Object object){
-    return new JsonMapper(Inclusion.NON_DEFAULT).toJson(object);
+    return new JsonUtil(Inclusion.NON_DEFAULT).toJson(object);
   }
   
   /**
@@ -261,7 +261,7 @@ public class JsonMapper {
    * @return
    */
   public static String toNonEmptyJson(final Object object){
-    return new JsonMapper(Inclusion.NON_EMPTY).toJson(object);
+    return new JsonUtil(Inclusion.NON_EMPTY).toJson(object);
   }
   
   public void setDateFormat(final String dateFormat){
@@ -269,7 +269,7 @@ public class JsonMapper {
   }
   
   public static String toLogJson(final Object object){
-    JsonMapper jsonMapper = new JsonMapper(Inclusion.NON_EMPTY);
+    JsonUtil jsonMapper = new JsonUtil(Inclusion.NON_EMPTY);
     jsonMapper.setDateFormat(DateUtil.yyyy_MM_dd_HH_mm_ss);
     return jsonMapper.toJson(object);
   }

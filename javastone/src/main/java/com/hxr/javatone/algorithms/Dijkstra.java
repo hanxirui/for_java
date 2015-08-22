@@ -4,7 +4,16 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+//Dijkstra(迪杰斯特拉)算法是典型的最短路径路由算法，用于计算一个节点到其他所有节点的最短路径。主要特点是以起始点为中心向外层层扩展，直到扩展到终点为止。
 
+//Dijkstra一般的表述通常有两种方式，一种用永久和临时标号方式，一种是用OPEN, CLOSE表方式
+//用OPEN,CLOSE表的方式，其采用的是贪心法的算法策略，大概过程如下：
+//1.声明两个集合，open和close，open用于存储未遍历的节点，close用来存储已遍历的节点
+//2.初始阶段，将初始节点放入close，其他所有节点放入open
+//3.以初始节点为中心向外一层层遍历，获取离指定节点最近的子节点放入close并从新计算路径，直至close包含所有子节点
+//
+//代码实例如下：
+//Node对象用于封装节点信息，包括名字和子节点
 public class Dijkstra {
     Set<Node> open = new HashSet<Node>();
     Set<Node> close = new HashSet<Node>();
@@ -28,8 +37,50 @@ public class Dijkstra {
         path.put("H", Integer.MAX_VALUE);
         pathInfo.put("H", "A");
         // 将初始节点放入close,其他节点放入open
-        Node start = new MapBuilder().build(open, close);
+        Node start = buildMap(open, close);
         return start;
+    }
+
+    public Node buildMap(final Set<Node> open, final Set<Node> close) {
+        Node nodeA = new Node("A");
+        Node nodeB = new Node("B");
+        Node nodeC = new Node("C");
+        Node nodeD = new Node("D");
+        Node nodeE = new Node("E");
+        Node nodeF = new Node("F");
+        Node nodeG = new Node("G");
+        Node nodeH = new Node("H");
+        nodeA.getChild().put(nodeB, 1);
+        nodeA.getChild().put(nodeC, 1);
+        nodeA.getChild().put(nodeD, 4);
+        nodeA.getChild().put(nodeG, 5);
+        nodeA.getChild().put(nodeF, 2);
+        nodeB.getChild().put(nodeA, 1);
+        nodeB.getChild().put(nodeF, 2);
+        nodeB.getChild().put(nodeH, 4);
+        nodeC.getChild().put(nodeA, 1);
+        nodeC.getChild().put(nodeG, 3);
+        nodeD.getChild().put(nodeA, 4);
+        nodeD.getChild().put(nodeE, 1);
+        nodeE.getChild().put(nodeD, 1);
+        nodeE.getChild().put(nodeF, 1);
+        nodeF.getChild().put(nodeE, 1);
+        nodeF.getChild().put(nodeB, 2);
+        nodeF.getChild().put(nodeA, 2);
+        nodeG.getChild().put(nodeC, 3);
+        nodeG.getChild().put(nodeA, 5);
+        nodeG.getChild().put(nodeH, 1);
+        nodeH.getChild().put(nodeB, 4);
+        nodeH.getChild().put(nodeG, 1);
+        open.add(nodeB);
+        open.add(nodeC);
+        open.add(nodeD);
+        open.add(nodeE);
+        open.add(nodeF);
+        open.add(nodeG);
+        open.add(nodeH);
+        close.add(nodeA);
+        return nodeA;
     }
 
     public void computePath(final Node start) {
@@ -86,4 +137,29 @@ public class Dijkstra {
         test.printPathInfo();
     }
 
+}
+
+class Node {
+    private String name;
+    private Map<Node, Integer> child = new HashMap<Node, Integer>();
+
+    public Node(final String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(final String name) {
+        this.name = name;
+    }
+
+    public Map<Node, Integer> getChild() {
+        return child;
+    }
+
+    public void setChild(final Map<Node, Integer> child) {
+        this.child = child;
+    }
 }
