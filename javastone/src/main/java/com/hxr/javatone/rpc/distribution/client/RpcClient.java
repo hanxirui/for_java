@@ -1,4 +1,4 @@
-package com.hxr.javatone.rpc.client;
+package com.hxr.javatone.rpc.distribution.client;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
@@ -14,10 +14,10 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.hxr.javatone.rpc.server.RpcDecoder;
-import com.hxr.javatone.rpc.server.RpcEncoder;
-import com.hxr.javatone.rpc.server.RpcRequest;
-import com.hxr.javatone.rpc.server.RpcResponse;
+import com.hxr.javatone.rpc.distribution.server.RpcDecoder;
+import com.hxr.javatone.rpc.distribution.server.RpcEncoder;
+import com.hxr.javatone.rpc.distribution.server.RpcRequest;
+import com.hxr.javatone.rpc.distribution.server.RpcResponse;
 
 //使用 RpcClient 类实现 RPC 客户端，只需扩展 Netty 提供的 SimpleChannelInboundHandler 抽象类即可，代码如下：
 public class RpcClient extends SimpleChannelInboundHandler<RpcResponse> {

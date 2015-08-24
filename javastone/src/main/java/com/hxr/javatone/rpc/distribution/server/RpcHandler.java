@@ -1,4 +1,4 @@
-package com.hxr.javatone.rpc.server;
+package com.hxr.javatone.rpc.distribution.server;
 
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;

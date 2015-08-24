@@ -1,4 +1,4 @@
-package com.hxr.javatone.rpc.server;
+package com.hxr.javatone.rpc.distribution.server;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
@@ -20,10 +20,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-import com.hxr.javatone.rpc.registry.ServiceRegistry;
-//第六步：实现 RPC 服务器
-//
-//使用 Netty 可实现一个支持 NIO 的 RPC 服务器，需要使用 ServiceRegistry 注册服务地址， RpcServer 代码如下
+import com.hxr.javatone.rpc.distribution.registry.ServiceRegistry;
 
 public class RpcServer implements ApplicationContextAware, InitializingBean {
     private static final Logger LOGGER = LoggerFactory.getLogger(RpcServer.class);

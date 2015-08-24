@@ -1,4 +1,4 @@
-package com.hxr.javatone.rpc.registry;
+package com.hxr.javatone.rpc.distribution.registry;
 
 import io.netty.util.internal.ThreadLocalRandom;
 
@@ -14,7 +14,7 @@ import org.apache.zookeeper.ZooKeeper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.hxr.javatone.rpc.Constant;
+import com.hxr.javatone.rpc.distribution.Constant;
 
 //第八步：实现服务发现
 

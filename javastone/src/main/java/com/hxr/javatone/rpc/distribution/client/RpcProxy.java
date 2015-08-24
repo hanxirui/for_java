@@ -1,4 +1,4 @@
-package com.hxr.javatone.rpc.client;
+package com.hxr.javatone.rpc.distribution.client;
 
 import java.lang.reflect.Method;
 import java.util.UUID;
@@ -6,8 +6,8 @@ import java.util.UUID;
 import net.sf.cglib.proxy.InvocationHandler;
 import net.sf.cglib.proxy.Proxy;
 
-import com.hxr.javatone.rpc.server.RpcRequest;
-import com.hxr.javatone.rpc.server.RpcResponse;
+import com.hxr.javatone.rpc.distribution.server.RpcRequest;
+import com.hxr.javatone.rpc.distribution.server.RpcResponse;
 
 //第九步：实现 RPC 代理
 //

@@ -1,10 +1,10 @@
-package com.hxr.javatone.rpc;
+package com.hxr.javatone.rpc.distribution;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.hxr.javatone.rpc.client.RpcProxy;
-import com.hxr.javatone.rpc.server.HelloService;
+import com.hxr.javatone.rpc.distribution.client.RpcProxy;
+import com.hxr.javatone.rpc.distribution.server.HelloService;
 
 public class ClientMain {
 

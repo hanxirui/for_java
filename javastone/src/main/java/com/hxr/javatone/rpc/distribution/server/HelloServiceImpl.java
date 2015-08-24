@@ -1,4 +1,4 @@
-package com.hxr.javatone.rpc.server;
+package com.hxr.javatone.rpc.distribution.server;
 
 //第二步：编写服务接口的实现类
 @RpcService(HelloService.class) // 指定远程接口

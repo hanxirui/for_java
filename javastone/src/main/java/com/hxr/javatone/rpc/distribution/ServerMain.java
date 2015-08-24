@@ -1,4 +1,4 @@
-package com.hxr.javatone.rpc;
+package com.hxr.javatone.rpc.distribution;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

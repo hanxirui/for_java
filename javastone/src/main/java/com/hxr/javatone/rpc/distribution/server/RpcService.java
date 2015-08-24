@@ -1,4 +1,4 @@
-package com.hxr.javatone.rpc.server;
+package com.hxr.javatone.rpc.distribution.server;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

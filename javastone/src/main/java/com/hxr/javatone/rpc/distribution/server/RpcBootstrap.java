@@ -1,4 +1,4 @@
-package com.hxr.javatone.rpc.server;
+package com.hxr.javatone.rpc.distribution.server;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 //第四步：启动服务器并发布服务

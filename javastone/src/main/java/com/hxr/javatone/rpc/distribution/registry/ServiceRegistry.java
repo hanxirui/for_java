@@ -1,4 +1,4 @@
-package com.hxr.javatone.rpc.registry;
+package com.hxr.javatone.rpc.distribution.registry;
 
 import java.io.IOException;
 import java.util.concurrent.CountDownLatch;
@@ -12,7 +12,7 @@ import org.apache.zookeeper.ZooKeeper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.hxr.javatone.rpc.Constant;
+import com.hxr.javatone.rpc.distribution.Constant;
 
 //第五步：实现服务注册
 //

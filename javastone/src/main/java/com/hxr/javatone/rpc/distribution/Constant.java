@@ -1,4 +1,4 @@
-package com.hxr.javatone.rpc;
+package com.hxr.javatone.rpc.distribution;
 
 //通过 Constant 配置了所有的常量
 //注意：首先需要使用 ZooKeeper 客户端命令行创建 /registry 永久节点，用于存放所有的服务临时节点。
