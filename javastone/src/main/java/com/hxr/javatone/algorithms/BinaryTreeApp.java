@@ -38,11 +38,11 @@ class TreeNode {
     }
 }
 
-class Tree {
+class BinaryTree {
     private TreeNode root;
 
     // ------------------------------------------------------------------------
-    public Tree() {
+    public BinaryTree() {
         root = null;
     }
 
@@ -267,10 +267,10 @@ class Tree {
 }// end class Tree
 
 // //////////////////////////////////////////////////////
-public class BinaryTree {
+public class BinaryTreeApp {
     public static void main(final String[] args) throws IOException {
         int value;
-        Tree theTree = new Tree();
+        BinaryTree theTree = new BinaryTree();
 
         theTree.insert(50, 1.5);
         theTree.insert(25, 1.2);

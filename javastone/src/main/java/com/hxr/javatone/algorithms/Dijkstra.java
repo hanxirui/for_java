@@ -15,12 +15,12 @@ import java.util.Set;
 //代码实例如下：
 //Node对象用于封装节点信息，包括名字和子节点
 public class Dijkstra {
-    Set<Node> open = new HashSet<Node>();
-    Set<Node> close = new HashSet<Node>();
+    Set<DijkstraNode> open = new HashSet<DijkstraNode>();
+    Set<DijkstraNode> close = new HashSet<DijkstraNode>();
     Map<String, Integer> path = new HashMap<String, Integer>();// 封装路径距离
     Map<String, String> pathInfo = new HashMap<String, String>();// 封装路径信息
 
-    public Node init() {
+    public DijkstraNode init() {
         // 初始路径,因没有A->E这条路径,所以path(E)设置为Integer.MAX_VALUE
         path.put("B", 1);
         pathInfo.put("B", "A->B");
@@ -37,19 +37,19 @@ public class Dijkstra {
         path.put("H", Integer.MAX_VALUE);
         pathInfo.put("H", "A");
         // 将初始节点放入close,其他节点放入open
-        Node start = buildMap(open, close);
+        DijkstraNode start = buildMap(open, close);
         return start;
     }
 
-    public Node buildMap(final Set<Node> open, final Set<Node> close) {
-        Node nodeA = new Node("A");
-        Node nodeB = new Node("B");
-        Node nodeC = new Node("C");
-        Node nodeD = new Node("D");
-        Node nodeE = new Node("E");
-        Node nodeF = new Node("F");
-        Node nodeG = new Node("G");
-        Node nodeH = new Node("H");
+    public DijkstraNode buildMap(final Set<DijkstraNode> open, final Set<DijkstraNode> close) {
+        DijkstraNode nodeA = new DijkstraNode("A");
+        DijkstraNode nodeB = new DijkstraNode("B");
+        DijkstraNode nodeC = new DijkstraNode("C");
+        DijkstraNode nodeD = new DijkstraNode("D");
+        DijkstraNode nodeE = new DijkstraNode("E");
+        DijkstraNode nodeF = new DijkstraNode("F");
+        DijkstraNode nodeG = new DijkstraNode("G");
+        DijkstraNode nodeH = new DijkstraNode("H");
         nodeA.getChild().put(nodeB, 1);
         nodeA.getChild().put(nodeC, 1);
         nodeA.getChild().put(nodeD, 4);
@@ -83,15 +83,15 @@ public class Dijkstra {
         return nodeA;
     }
 
-    public void computePath(final Node start) {
-        Node nearest = getShortestPath(start);// 取距离start节点最近的子节点,放入close
+    public void computePath(final DijkstraNode start) {
+        DijkstraNode nearest = getShortestPath(start);// 取距离start节点最近的子节点,放入close
         if (nearest == null) {
             return;
         }
         close.add(nearest);
         open.remove(nearest);
-        Map<Node, Integer> childs = nearest.getChild();
-        for (Node child : childs.keySet()) {
+        Map<DijkstraNode, Integer> childs = nearest.getChild();
+        for (DijkstraNode child : childs.keySet()) {
             if (open.contains(child)) {// 如果子节点在open中
                 Integer newCompute = path.get(nearest.getName()) + childs.get(child);
                 if (path.get(child.getName()) > newCompute) {// 之前设置的距离大于新计算出来的距离
@@ -114,11 +114,11 @@ public class Dijkstra {
     /**
      * 获取与node最近的子节点
      */
-    private Node getShortestPath(final Node node) {
-        Node res = null;
+    private DijkstraNode getShortestPath(final DijkstraNode node) {
+        DijkstraNode res = null;
         int minDis = Integer.MAX_VALUE;
-        Map<Node, Integer> childs = node.getChild();
-        for (Node child : childs.keySet()) {
+        Map<DijkstraNode, Integer> childs = node.getChild();
+        for (DijkstraNode child : childs.keySet()) {
             if (open.contains(child)) {
                 int distance = childs.get(child);
                 if (distance < minDis) {
@@ -132,18 +132,18 @@ public class Dijkstra {
 
     public static void main(final String[] args) {
         Dijkstra test = new Dijkstra();
-        Node start = test.init();
+        DijkstraNode start = test.init();
         test.computePath(start);
         test.printPathInfo();
     }
 
 }
 
-class Node {
+class DijkstraNode {
     private String name;
-    private Map<Node, Integer> child = new HashMap<Node, Integer>();
+    private Map<DijkstraNode, Integer> child = new HashMap<DijkstraNode, Integer>();
 
-    public Node(final String name) {
+    public DijkstraNode(final String name) {
         this.name = name;
     }
 
@@ -155,11 +155,11 @@ class Node {
         this.name = name;
     }
 
-    public Map<Node, Integer> getChild() {
+    public Map<DijkstraNode, Integer> getChild() {
         return child;
     }
 
-    public void setChild(final Map<Node, Integer> child) {
+    public void setChild(final Map<DijkstraNode, Integer> child) {
         this.child = child;
     }
 }
