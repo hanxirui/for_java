@@ -30,7 +30,7 @@ public class RpcClient extends SimpleChannelInboundHandler<RpcResponse> {
       this.host = host;
       this.port = port;
     }
-    @Override
+//    @Override netty 3.0
     public void channelRead0(final ChannelHandlerContext ctx, final RpcResponse response) throws Exception {
       this.response = response;
       synchronized (obj) {
@@ -69,5 +69,15 @@ public class RpcClient extends SimpleChannelInboundHandler<RpcResponse> {
       } finally {
         group.shutdownGracefully();
       }
+    }
+    @Override
+    protected void messageReceived(final ChannelHandlerContext ctx, final RpcResponse response) throws Exception {
+
+        this.response = response;
+        synchronized (obj) {
+          obj.notifyAll(); // 收到响应，唤醒线程
+        }
+      
+        
     }
   }

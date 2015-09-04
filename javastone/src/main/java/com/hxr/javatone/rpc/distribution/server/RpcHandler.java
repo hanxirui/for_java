@@ -20,18 +20,8 @@ public class RpcHandler extends SimpleChannelInboundHandler<RpcRequest> {
     public RpcHandler(final Map<String, Object> handlerMap) {
       this.handlerMap = handlerMap;
     }
-    @Override
-    public void channelRead0(final ChannelHandlerContext ctx, final RpcRequest request) throws Exception {
-      RpcResponse response = new RpcResponse();
-      response.setRequestId(request.getRequestId());
-      try {
-        Object result = handle(request);
-        response.setResult(result);
-      } catch (Throwable t) {
-        response.setError(t);
-      }
-      ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
-    }
+//    @Override netty 3.0
+//    public void channelRead0(final ChannelHandlerContext ctx, final RpcRequest request) throws Exception {}
     private Object handle(final RpcRequest request) throws Throwable {
       String className = request.getClassName();
       Object serviceBean = handlerMap.get(className);
@@ -50,5 +40,20 @@ public class RpcHandler extends SimpleChannelInboundHandler<RpcRequest> {
     public void exceptionCaught(final ChannelHandlerContext ctx, final Throwable cause) {
       LOGGER.error("server caught exception", cause);
       ctx.close();
+    }
+    @Override
+    protected void messageReceived(final ChannelHandlerContext ctx, final RpcRequest request) throws Exception {
+
+        RpcResponse response = new RpcResponse();
+        response.setRequestId(request.getRequestId());
+        try {
+          Object result = handle(request);
+          response.setResult(result);
+        } catch (Throwable t) {
+          response.setError(t);
+        }
+        ctx.writeAndFlush(response).addListener(ChannelFutureListener.CLOSE);
+      
+        
     }
   }
