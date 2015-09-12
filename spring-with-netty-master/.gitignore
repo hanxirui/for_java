@@ -1,0 +1,5 @@
+.idea
+target
+Debug.log
+Server.log
+Server.log.*
