@@ -38,7 +38,7 @@ public class EchoClientHandler extends ChannelHandlerAdapter {
     /**
      * Creates a client-side handler.
      */
-    public EchoClientHandler(int firstMessageSize) {
+    public EchoClientHandler(final int firstMessageSize) {
         if (firstMessageSize <= 0) {
             throw new IllegalArgumentException("firstMessageSize: " + firstMessageSize);
         }
@@ -49,22 +49,23 @@ public class EchoClientHandler extends ChannelHandlerAdapter {
     }
 
     @Override
-    public void channelActive(ChannelHandlerContext ctx) {
+    public void channelActive(final ChannelHandlerContext ctx) {
         ctx.writeAndFlush(firstMessage);
     }
 
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+    public void channelRead(final ChannelHandlerContext ctx, final Object msg) throws Exception {
+        System.out.println(msg);
         ctx.write(msg);
     }
 
     @Override
-    public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
+    public void channelReadComplete(final ChannelHandlerContext ctx) throws Exception {
        ctx.flush();
     }
 
     @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+    public void exceptionCaught(final ChannelHandlerContext ctx, final Throwable cause) {
         // Close the connection when an exception is raised.
         logger.log(Level.WARNING, "Unexpected exception from downstream.", cause);
         ctx.close();

@@ -36,7 +36,7 @@ public class EchoClient {
     private final int port;
     private final int firstMessageSize;
 
-    public EchoClient(String host, int port, int firstMessageSize) {
+    public EchoClient(final String host, final int port, final int firstMessageSize) {
         this.host = host;
         this.port = port;
         this.firstMessageSize = firstMessageSize;
@@ -52,7 +52,7 @@ public class EchoClient {
              .option(ChannelOption.TCP_NODELAY, true)
              .handler(new ChannelInitializer<SocketChannel>() {
                  @Override
-                 public void initChannel(SocketChannel ch) throws Exception {
+                 public void initChannel(final SocketChannel ch) throws Exception {
                      ch.pipeline().addLast(
                              //new LoggingHandler(LogLevel.INFO),
                              new EchoClientHandler(firstMessageSize));
@@ -70,18 +70,20 @@ public class EchoClient {
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(final String[] args) throws Exception {
         // Print usage if no argument is specified.
-        if (args.length < 2 || args.length > 3) {
-            System.err.println(
-                    "Usage: " + EchoClient.class.getSimpleName() +
-                    " <host> <port> [<first message size>]");
-            return;
-        }
-
-        // Parse options.
-        final String host = args[0];
-        final int port = Integer.parseInt(args[1]);
+//        if (args.length < 2 || args.length > 3) {
+//            System.err.println(
+//                    "Usage: " + EchoClient.class.getSimpleName() +
+//                    " <host> <port> [<first message size>]");
+//            return;
+//        }
+//
+//        // Parse options.
+//        final String host = args[0];
+//        final int port = Integer.parseInt(args[1]);
+        final String host ="172.17.161.206";
+        final int port = 8080;
         final int firstMessageSize;
         if (args.length == 3) {
             firstMessageSize = Integer.parseInt(args[2]);
