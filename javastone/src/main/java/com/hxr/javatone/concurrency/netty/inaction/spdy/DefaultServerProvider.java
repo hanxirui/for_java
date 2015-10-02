@@ -3,6 +3,8 @@ package com.hxr.javatone.concurrency.netty.inaction.spdy;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import org.eclipse.jetty.npn.NextProtoNego.ServerProvider;
   
 public class DefaultServerProvider implements ServerProvider {  
   

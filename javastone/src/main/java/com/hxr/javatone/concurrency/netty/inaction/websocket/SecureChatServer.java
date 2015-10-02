@@ -9,6 +9,8 @@ import java.net.InetSocketAddress;
 
 import javax.net.ssl.SSLContext;
 
+import com.hxr.javatone.concurrency.netty.inaction.spdy.SecureChatSslContextFactory;
+
 public class SecureChatServer extends ChatServer {
     private final SSLContext context;
 
@@ -27,7 +29,8 @@ public class SecureChatServer extends ChatServer {
      * @return
      */
     private static SSLContext getSslContext() {
-        return null;
+//        return null;
+        return SecureChatSslContextFactory.getServerContext();  
     }
 
     public static void main(final String[] args) {

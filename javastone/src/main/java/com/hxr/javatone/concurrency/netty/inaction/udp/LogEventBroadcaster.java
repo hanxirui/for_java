@@ -60,7 +60,7 @@ public class LogEventBroadcaster {
 
     public static void main(final String[] args) throws Exception {
         int port = 4096;
-        String path = System.getProperty("user.dir") + "/log.txt";
+        String path = "/Users/hanxirui/Documents/workspace/github/for_java/javastone/src/main/java/com/hxr/javatone/concurrency/netty/inaction/udp/log.txt";
         LogEventBroadcaster broadcaster = new LogEventBroadcaster(new InetSocketAddress(
                 "255.255.255.255", port), new File(path));
         try {

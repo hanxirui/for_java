@@ -7,6 +7,8 @@ import io.netty.handler.ssl.SslHandler;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLEngine;
+
+import org.eclipse.jetty.npn.NextProtoNego;
   
 public class SpdyChannelInitializer extends ChannelInitializer<Channel> {  
     private final SSLContext context;  

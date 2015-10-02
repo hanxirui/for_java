@@ -1,8 +1,11 @@
 package com.hxr.javatone.concurrency.netty.inaction.spdy;
 
+import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.spdy.SpdyOrHttpChooser;
 
 import javax.net.ssl.SSLEngine;
+
+import org.eclipse.jetty.npn.NextProtoNego;
   
 public class DefaultSpdyOrHttpChooser extends SpdyOrHttpChooser {  
   
@@ -30,12 +33,12 @@ public class DefaultSpdyOrHttpChooser extends SpdyOrHttpChooser {
     }  
   
     @Override  
-    protected ChannelInboundHandler createHttpRequestHandlerForHttp() {  
+    protected SimpleChannelInboundHandler createHttpRequestHandlerForHttp() {  
         return new HttpRequestHandler();  
     }  
   
     @Override  
-    protected ChannelInboundHandler createHttpRequestHandlerForSpdy() {  
+    protected SimpleChannelInboundHandler createHttpRequestHandlerForSpdy() {  
         return new SpdyRequestHandler();  
     }  
       
