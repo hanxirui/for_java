@@ -10,6 +10,7 @@
 		}
 		if (window.WebSocket) {
 			socket = new WebSocket("ws://localhost:2048/ws");
+			//socket = new WebSocket("wss://localhost:2048/ws");
 			socket.onmessage = function(event) {
 				var ta = document.getElementById('responseText');
 				ta.value = ta.value + '\n' + event.data
