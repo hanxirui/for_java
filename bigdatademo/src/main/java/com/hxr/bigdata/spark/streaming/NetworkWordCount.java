@@ -98,6 +98,8 @@ public final class NetworkWordCount {
             }
         });
 
+//        UpdateStateByKey 原语用于记录历史记录。若不用 UpdateStateByKey 来更新状态，那么每次数据进来后分析完成，结果输出后将不再保存。
+        
         // map(func) 方法返回一个新 DStream，其中的每一个元素都是通过将原 DStream 的每个元素作用于函数 func 得到的。
         // flatMap(func) 方法与 map 相似，不同之处在于每一个元素通过函数 func 可以产生出 0 个或多个新元素。
         // reduceByKey(func,numTasks) 方法将 DStream[(K,V)] 中的值 V 按键 K 使用聚合函数 func 聚合。默认情况下，将采用 Spark 的默认任务并行的提交任务 (本地环境下是
