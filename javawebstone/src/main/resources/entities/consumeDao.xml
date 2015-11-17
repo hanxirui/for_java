@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxr.webstone.dao.TestDAO">
+
+	<resultMap id="consumeResultMap" type="com.hxr.webstone.pojo.TestPojo">
+	    <result property="id" column="C_ID" javaType="string" jdbcType="VARCHAR" />
+		<result property="name" column="C_NAME" javaType="string" jdbcType="VARCHAR" />
+   </resultMap>
+
+	<sql id="Query_Where_Clause">
+		<trim prefix="WHERE" prefixOverrides="AND |OR ">
+			<if test="id != null and id != ''">
+				AND C_ID = #{id}
+			</if>
+			<if test="name != null and name != ''">
+				AND C_NAME = #{name}
+			</if>
+		</trim>
+	</sql>
+
+	<sql id="Field_List">
+		C_ID, C_NAME
+	</sql>
+
+	<!-- Insert POJO object -->
+	<insert id="insert" parameterType="com.hxr.webstone.pojo.TestPojo">
+		INSERT INTO t_test (
+		<include refid="Field_List" />
+		)
+		VALUES( #{id}, #{name})
+	</insert>
+	<insert id="batchInsert" parameterType="list">
+		INSERT INTO t_test (
+		<include refid="Field_List" />
+		) VALUES 
+		<foreach collection="list" item="item" index="index"  
+            separator=",">  
+		( #{item.id}, #{item.name})
+		</foreach>
+	</insert>
+	<!-- Update POJO object by ID -->
+	<update id="update_by_id" parameterType="com.hxr.webstone.pojo.TestPojo">
+		UPDATE t_test
+		SET C_NAME = #{name}
+		WHERE C_ID = #{id}
+	</update>
+
+	<!-- Delete POJO object by ID -->
+	<delete id="delete_by_id" parameterType="string">
+		DELETE FROM t_test WHERE C_ID = #{id}
+	</delete>
+
+	<!-- Delete all POJO object -->
+	<delete id="delete_all">
+		DELETE FROM t_test
+	</delete>
+
+	<!-- Delete POJO object by query -->
+	<delete id="delete_by_query" parameterType="com.hxr.webstone.pojo.TestPojo">
+		DELETE FROM t_test
+		<include refid="Query_Where_Clause" />
+	</delete>
+
+	<!-- Select POJO object by ID -->
+	<select id="select_by_id" parameterType="string" resultMap="consumeResultMap">
+		SELECT
+		<include refid="Field_List" />
+		FROM t_test
+		WHERE C_ID = #{id}
+	</select>
+	
+    <select id="select_all_corpid" resultType="string">
+		select DISTINCT c_corp_id from t_test
+	</select>
+
+	<!-- Select POJO object by query -->
+	<select id="select_one_by_query" parameterType="com.hxr.webstone.pojo.TestPojo" resultMap="consumeResultMap">
+		SELECT
+		<include refid="Field_List" />
+		FROM t_test
+		<include refid="Query_Where_Clause" />
+	</select>
+
+	<!-- Select All POJO object -->
+	<select id="select_all" parameterType="com.hxr.webstone.pojo.TestPojo" resultMap="consumeResultMap">
+		SELECT
+		<include refid="Field_List" />
+		FROM t_test
+		<trim prefix="ORDER BY">
+			<if test="orderBy != null and orderBy != ''">
+				${orderBy}
+			</if>
+		</trim>
+	</select>
+
+	<!-- Select POJO object list by query -->
+	<select id="select_list_by_query" parameterType="com.hxr.webstone.pojo.TestPojo" resultMap="consumeResultMap">
+		SELECT
+		<include refid="Field_List" />
+		FROM t_test
+		<include refid="Query_Where_Clause" />
+		<trim prefix="ORDER BY">
+			<if test="orderBy != null and orderBy != ''">
+				${orderBy}
+			</if>
+		</trim>
+	</select>
+
+	<!-- Select POJO object collection for page by query -->
+	<select id="select_pagelist_by_query" parameterType="com.hxr.webstone.pojo.TestPojo" resultMap="consumeResultMap">
+		SELECT
+		<include refid="Field_List" />
+		FROM t_test
+		<include refid="Query_Where_Clause" />
+		<trim prefix="ORDER BY">
+			<if test="orderBy != null and orderBy != ''">
+				${orderBy}
+			</if>
+		</trim>
+		limit ${startIndex}, ${pageSize}
+	</select>
+	<!-- Select collection count for page by query -->
+	<select id="select_pagelist_count_by_query" parameterType="com.hxr.webstone.pojo.TestPojo" resultType="int">
+		SELECT count(C_ID)
+		FROM t_test
+		<include refid="Query_Where_Clause" />
+	</select>
+	<!-- Select count by query -->
+	<select id="select_count_by_query" parameterType="com.hxr.webstone.pojo.TestPojo" resultType="int">
+		SELECT count(C_ID)
+		FROM t_test
+		<include refid="Query_Where_Clause" />
+	</select>
+</mapper>

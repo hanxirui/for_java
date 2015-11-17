@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ez.framework.core.scheduler.SchedulerPersister">
+
+	<parameterMap type="com.ez.framework.core.scheduler.Scheduler" id="scheduler" />
+	
+	<resultMap id="schedulerResultMap" type="com.ez.framework.core.scheduler.Scheduler">
+		<result property="id" 				column="C_ID" 				/>
+		<result property="startTime" 		column="C_START_TIME" 		/>
+		<result property="endTime" 			column="C_END_TIME" 		/>
+		<result property="interval" 		column="C_INTERVAL" 		/>
+		<result property="intervalUnit" 	column="C_INTERVAL_UNIT" 	/>
+		<result property="jobClassName" 	column="C_JOB_CLASSNAME" 	/>
+		<result property="cycleType" 		column="C_CYCLE_TYPE" 		/>
+		<result property="second" 			column="C_SEC" 				/>
+		<result property="minute" 			column="C_MIN" 				/>
+		<result property="hour" 			column="C_HOUR" 			/>
+		<result property="dayOfMonth" 		column="C_DAY" 				/>
+		<result property="weekOpts" 		column="C_WEEK_OPTS" 		/>
+		<result property="monthOpts" 		column="C_MONTH_OPTS" 		/>
+		<result property="cronExpression" 	column="C_CRON_EXP" 		/>
+	</resultMap>
+
+	<insert id="insertScheduler" parameterMap="scheduler">
+		INSERT INTO
+		t_sys_scheduler (
+		C_ID,
+		C_START_TIME,
+		C_END_TIME,
+		C_INTERVAL,
+		C_INTERVAL_UNIT,
+		C_JOB_CLASSNAME,
+		C_CYCLE_TYPE,
+		C_SEC,
+		C_MIN,
+		C_HOUR,
+		C_DAY,
+		C_WEEK_OPTS,
+		C_MONTH_OPTS,
+		C_CRON_EXP
+		)
+		VALUES (
+		#{id},
+		#{startTime,jdbcType=TIMESTAMP},
+		#{endTime,jdbcType=TIMESTAMP},
+		#{interval, jdbcType=INTEGER},
+		#{intervalUnit, jdbcType=VARCHAR},
+		#{jobClassName, jdbcType=VARCHAR},
+		#{cycleType, jdbcType=VARCHAR},
+		#{second, jdbcType=INTEGER},
+		#{minute, jdbcType=INTEGER},
+		#{hour, jdbcType=INTEGER},
+		#{dayOfMonth, jdbcType=INTEGER},
+		#{weekOpts, jdbcType=INTEGER},
+		#{monthOpts, jdbcType=INTEGER},
+		#{cronExpression, jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<select id="getSchedulerList" resultMap="schedulerResultMap">
+		SELECT 
+			C_ID,
+			C_START_TIME,
+			C_END_TIME,
+			C_INTERVAL,
+			C_INTERVAL_UNIT,
+			C_JOB_CLASSNAME,
+			C_CYCLE_TYPE,
+			C_SEC,
+			C_MIN,
+			C_HOUR,
+			C_DAY,
+			C_WEEK_OPTS,
+			C_MONTH_OPTS,
+			C_CRON_EXP
+		FROM t_sys_scheduler
+	</select>
+	
+	<delete id="deleteSchedulerById" parameterType="string">
+		DELETE FROM t_sys_scheduler WHERE C_ID = #{id}
+	</delete>
+	
+	<insert id="insertSchedulerParams" parameterType="map">
+	   INSERT INTO t_sys_scheduler_params (c_schd_id, c_param_key, c_param_val)
+	   VALUES (#{SID, jdbcType=VARCHAR}, #{PKEY, jdbcType=VARCHAR}, #{PVAL, jdbcType=VARCHAR})
+	</insert>
+	
+	<select id="getSchedulerParams" resultType="map" parameterType="string">
+	   SELECT c_param_key AS PKEY, c_param_val AS PVAL FROM t_sys_scheduler_params WHERE c_schd_id = #{schdId}
+	</select>
+	
+	<delete id="deleteSchedulerParams" parameterType="string">
+	   DELETE FROM t_sys_scheduler_params WHERE c_schd_id = #{schdId}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,1 @@
+package com.ez.framework.core.dam;public enum DBType {	mysql, oracle, postgresql, db2, mssqlserver, h2}

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:security="http://www.springframework.org/schema/security" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/security 
+		http://www.springframework.org/schema/security/spring-security-3.2.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/data/jpa 
+		http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+		http://www.springframework.org/schema/cache 
+		http://www.springframework.org/schema/cache/spring-cache.xsd">
+	<!-- Activates annotation-based bean configuration -->
+	<context:annotation-config />
+	<!-- 指定spring IOC容器扫描的包 -->
+	<context:component-scan base-package="com.ez.*,com.hxr.webstone.*" />
+	<!-- 数据库配置文件位置 -->
+	<context:property-placeholder location="classpath:/jdbc-config.properties" />
+	<!-- 配置dbcp数据源 -->
+	<bean id="product.dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${product.jdbc.driverClassName}" />
+		<property name="url" value="${product.jdbc.url}" />
+		<property name="username" value="${product.jdbc.username}" />
+		<property name="password" value="${product.jdbc.password}" />
+		<property name="minIdle" value="${product.jdbc.minIdle}" />        <!-- 队列中的最小等待数 -->
+		<property name="maxIdle" value="${product.jdbc.maxIdle}" />        <!-- 队列中的最大等待数 -->
+		<property name="maxWait" value="${product.jdbc.maxWait}" />        <!-- 最长等待时间，单位毫秒 -->
+		<property name="maxActive" value="${product.jdbc.maxActive}" />    <!-- 最大活跃数 -->
+
+	</bean>
+
+	<!-- 使用JDBC事物 -->
+	<bean id="product.transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="product.dataSource" />
+	</bean>
+
+	<!-- 使用annotation注解方式配置事务 -->
+	<tx:annotation-driven transaction-manager="product.transactionManager" />
+
+	<bean id="product.sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="product.dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+	</bean>
+
+	<bean id="ibatisDAMFactory" class="com.ez.framework.core.dam.mybatis.DAMFactory"
+		init-method="initialize">
+		<property name="targetDataSources">
+			<map key-type="com.ez.framework.core.dam.DataSource">
+				<entry key="product" value-ref="product.sqlSessionFactory" />
+			</map>
+		</property>
+		<property name="dbType" value="${global.dbtype}" />
+		<property name="batchSize" value="1000" />
+	</bean>
+	
+	<cache:annotation-driven cache-manager="cacheManager"/>
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"
+		p:cache-manager-ref="ehcache" />
+
+	<!-- EhCache library setup -->
+	<bean id="ehcache"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
+		p:config-location="classpath:ehcache.xml" />
+</beans>
