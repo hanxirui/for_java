@@ -1,0 +1,43 @@
+.nodatablue { overflow-x: hidden; overflow-y: auto; background: url(../images/widget/grid/gridblue-body-bg-1.png) repeat scroll 0 0 transparent; }
+/*------------------------------home---------------------------*/
+.narrow_icobj { position: absolute; z-index: 99; top: 0; right: 0px; background: url(../images/comm/ico/icon_narrowbj.png) 0 0 no-repeat; width: 44px; height: 26px; text-align: right; }
+.narrow_icopadle { padding-left: 5px; }
+.narrow_icomart { margin-top: 5px; }
+/*------------------------------event---------------------------*/
+.mr05 { margin-right: 5px; }
+/*新建告警规 from admin for portal则*/
+ul.alarmRuleBaseForm li label { width: 80px; }
+ul.alarmRuleBaseForm li .input-text, ul.alarmRuleBaseForm li textarea, ul.alarmRuleBaseForm li select { width: 238px; }
+#alarmRuleGrid .grid_body { height: 250px }
+#AlarmRuleTabPanel_bodyWrap { height: 580px; }
+/*eventType*/
+#eventType.portlets_listsz_f { margin-top: 10px; margin-bottom: 5px; margin-left: 75px;}
+#eventLevel.portlets_listsz_f { margin-top: 10px; margin-bottom: 5px; margin-left: 75px; }
+#eventSourceType div.select_text{width:90px;}
+/*---------------------------------kpi---------------------------------*/
+.flex_kpi { overflow: hidden; margin-top: 10px; }
+.kpi_overflowh { overflow-x: hidden; overflow-y: auto; height: 500px; }
+.kpiadd_x { overflow: hidden; margin: 8px 0; }
+.kpiadd_x span { display: inline-block; }
+.kpiadd_x .kpiadd_spanr { margin-right: 10px; }
+.kpiadd_spanlabel label { margin-right: 10px; }
+/*Resource Details*/
+.maintain .p_mailbox { width: 100px; vertical-align: middle; -o-text-overflow: ellipsis; overflow: hidden; text-overflow: ellipsis; zoom: 1; display: inline-block; *display:inline;
+white-space: nowrap; }
+/*auto*/
+ul#metricList li input{float:left}
+ul#metricList li span{ display:block;width:140px; float:left; padding:2px 0px 5px;}
+#departmentChooseTree_selectBody {width:174px!important; height:180px!important; overflow:auto;}
+#departmentChooseTree_selectBody .tree-wrap{ width:150px}
+textarea[type="textarea"].border-red { border: #ff0000 1px solid; }
+/*居中*/
+.postion_middle_turn{width:490px; margin:auto;}
+/*已选资源补充*/
+.addlist_k_tree01 { border: 1px #5b778e solid; background: url(../images/comm/window/addlistbj.png) 0 0 repeat; }
+.addlist_k_tree01 h1 { background: url(../images/comm/window/addlist_btbj.png) 0 0 repeat; height: 21px; line-height: 21px; padding: 0 5px; font-size: 12px; color: #FFFFFF; font-weight: bold; }
+#moniTempId.select_body{margin-right:10px;}
+/*----发现插件页面-----*/
+/* #_conn_info_form_div .select_body{ width:200px;}
+#_conn_info_form_div .input-text{ width:200px;} */
+/*----日志监控-----*/
+#pluginViewForm .select_body{ width:250px;}

@@ -1,0 +1,926 @@
+/*--1 for treeview--*/
+.treeview span { vertical-align: middle; margin-right: 3px; }
+.recom_small{ width:19px; height:17px; display:inline-block; text-align:center;line-height:18px; overflow:hidden;color:#021e36; background:url(../images/widget/window/recom-bg_small.png) 0 0 no-repeat; vertical-align:middle; cursor:pointer;}
+.ico-file,
+.ico-file-leaf,
+.file-open-subset,
+.ico-arrow-down,
+.ico-arrow-up,
+.ico_user,
+.ico_user_edit,
+.ico-list_second,
+.ico-tool,
+.ico-allfile,
+.ico-tools-fold-down,
+.ico-vm-vm,
+.ico-vm-hostcomputer,
+.ico-vm-cluster,
+.ico-vm-vcenter,
+.ico-vm-datastor,
+.ico-vm-datacenter,
+.ico-vm-datastors,
+.ico-hv-vm,
+.ico-hv-hostcomputer,
+.ico-hv-cluster,
+.ico-hv-scvmm,
+.ico-hv-datastor,
+.ico-hv-datacenter,
+.ico-hv-datastors,
+.ico-hyperv,
+.ico-vmwave,
+.ico_citrix_hostcomputer,
+.ico_citrix_vm,
+.ico_citrix_cluster,
+.ico_citrix_datastor,
+.ico_citrix_host,
+.ico_citrix_datacenter,
+.ico_citrix,
+.ico_arrow01,
+.ico-wanew-file2,
+.ico_link01,.ico_re01,.ico_accept,.ico_attention,.ico_unattention,.ico_alarm,.ico_unalarm
+{ background: url(../images/comm/ico/riil_ico.png) no-repeat; height: 16px;width: 16px; display: inline-block;vertical-align: middle; overflow:hidden; margin:0px 2px; }
+.ico_accept{ background-position:-300px 0px;}
+.ico_attention{ background-position:-360px 0px;}
+.ico_unattention{ background-position:-360px -30px;}
+.ico_alarm{ background-position:-330px 0px;}
+.ico_unalarm{ background-position:-330px -30px;}
+.ico-file{ background-position:0px 0px;}
+.ico-file-leaf{ background-position:-30px 0px;}
+.file-open-subset{ background-position:-60px 0px;}
+.ico-arrow-up{ background-position:-90px 0px; 				height: 18px; width: 18px;cursor: pointer;}
+.ico-arrow-down{ background-position:-120px 0px; 			height: 18px; width: 18px;cursor: pointer;}
+.ico_user{ background-position:-150px 0px;}
+.ico_user_edit { background-position:-180px 0px;}
+.ico-tool{ background-position:-240px -60px; 				cursor: pointer;}
+.ico-list_second{ background-position:-480px 0px;			cursor: pointer; padding-left:16px; width:auto;}/*a*/
+.ico-allfile{ background-position:-180px -30px;}
+.ico-tools-fold-down{ background-position:-210px -30px;		height:10px; width:11px}
+.ico-vm-hostcomputer{ background-position:0px -420px;}
+.ico-vm-vm{ background-position:-30px -420px;}
+.ico-vm-cluster{ background-position:-60px -420px;}
+.ico-vm-datastor{ background-position:-90px -420px;}
+.ico-vm-vcenter{ background-position:-120px -420px;}
+.ico-vm-datacenter{ background-position:-150px -420px;}
+.ico-vm-datastors{ background-position:-180px -420px;}
+.ico-wanew-file2{ background-position:-240px -420px;}
+.ico-vmwave{ background-position:-210px -420px;}
+.ico_arrow01{ background-position:-240px -360px; height:30px; width:29px;}
+.ico_link01{ background-position:-270px -420px;}
+.ico_re01{ background-position:-270px -450px; height:20px; width:20px;}
+/*--citrix对应图标--*/
+.ico_citrix_hostcomputer{ background-position:0px -570px;}
+.ico_citrix_vm{ background-position:-29px -570px;}
+.ico_citrix_cluster{ background-position:-59px -570px;}
+.ico_citrix_datastor{ background-position:-88px -570px;}
+.ico_citrix_host{ background-position:-120px -570px;}
+.ico_citrix_datacenter{ background-position:-152px -570px;}
+.ico_citrix{ background-position:-184px -570px;}
+
+/*--HyperV对应图标--*/
+.ico-hv-hostcomputer{ background-position:0px -510px;}
+.ico-hv-vm{ background-position:-30px -510px;}
+.ico-hv-cluster{ background-position:-60px -510px;}
+.ico-hv-datastor{ background-position:-90px -510px;}
+.ico-hv-scvmm{ background-position:-120px -510px;}
+.ico-hv-datastors{ background-position:-180px -510px;}
+.ico-hyperv{ background-position:-210px -510px;}
+
+
+
+
+
+/*--2 图标默认悬停手型--*/
+.ico-info,
+.ico-query,
+.ico-turn-right,
+.ico-turn-left,
+.ico-down,
+.ico-up,
+.ico-right,
+.expand-node,
+.collapse-node,
+.btn_on,
+.btn_off,
+.ico-go-top,
+.ico-go-bottom,
+.ico-top,
+.ico-bottom,
+.ico-page-first,
+.ico-page-last,
+.ico-page-next,
+.ico-page-prev,
+.collapse,
+.expand,
+.turn_right,
+.turn_left
+{ background: url(../images/comm/ico/riil_ico.png) no-repeat; height: 16px;width: 16px; display: inline-block;vertical-align: middle; overflow:hidden;cursor: pointer;  margin:0px 2px;}
+.ico-info{background-position:0px -30px; 			margin-right: 3px;}
+.ico-query{background-position:-30px -30px;}
+.ico-turn-left{background-position:-60px -30px;		height: 20px;width: 20px;}
+.ico-turn-right{background-position:-90px -30px;	height: 20px;width: 20px;}
+.ico-down{background-position:-150px -30px; vertical-align:top;}
+.ico-up{background-position:-300px -30px;}
+.ico-right{background-position:-120px -30px;  margin:0px !important;}
+.btn_on{background-position:0px -60px;				height:19px; width:42px;}
+.btn_off{background-position:-60px -60px;			height:19px; width:42px;}
+.ico-go-top{background-position:-240px -30px;}
+.ico-go-bottom{background-position:-270px -30px;}
+.ico-top{background-position:-300px -60px;}
+.ico-bottom{background-position:-330px -60px;}
+.ico-page-first{background-position:-120px -60px;}
+.ico-page-last{background-position:-150px -60px;}
+.ico-page-next{background-position:-180px -60px;}
+.ico-page-prev{background-position:-210px -60px;}
+.collapse{background-position:-60px -270px;			height:12px; width:12px;}
+.expand{background-position:-90px -270px;			height:12px; width:12px;}
+.turn_right{ background-position:-30px -300px;		height:20px; width:20px;}
+.turn_left{ background-position:-60px -300px;		height:20px; width:20px;}
+.collapse-node { background-position:-210px -180px;	width: 12px; height: 12px;}
+.expand-node { background-position:-240px -180px; 	width: 12px; height: 12px;}
+
+/*--3 for btn_body--*/
+.ico{ display: inline-block; width: 16px; height: 16px; background: url(../images/comm/ico/btn-ico.png) 0 0 no-repeat; vertical-align: middle;  margin:0px 2px; }
+.ico_confirm { background-position: 0 0; }
+.ico_cancel { background-position: 0 -16px; }
+.ico_password { background-position: 0 -32px; }
+.ico_inmonitor { background-position: 0 -48px; }
+.ico_offmonitor { background-position: 0 -64px; }
+.ico_incmdb { background-position: 0 -80px; }
+.ico_find { background-position: 0 -96px; }
+.ico_delete { background-position: 0 -112px; }
+.ico_export { background-position: 0 -128px; }
+.ico_clear { background-position: 0 -144px; }
+.ico_default { background-position: 0 -160px; }
+.ico_add { background-position: 0 -176px; }
+.ico_search { background-position: 0 -192px; margin-top:3px; }
+.ico_import { background-position: 0 -208px; }
+.ico_addres { background-position: 0 -224px; }
+.ico_disabled { background-position: 0 -240px; }
+.ico_enable { background-position: 0 -256px; }
+.ico_territory { background-position: 0 -272px; }
+.ico_deploy { background-position: 0 -288px; }
+.ico_analysis { background-position: 0 -304px; }
+.ico_ballgreen { background-position: 0 -320px; }
+.ico_ballred { background-position: 0 -336px; }
+.ico_onsite { background-position: 0 -352px; }
+.ico_send { background-position: 0 -368px; }
+.ico_browse { background-position: 0 -384px; }
+.ico_edit { background-position: 0 -400px; }
+.ico_upload { background-position: 0 -416px; }
+.ico_submit { background-position: 0 -432px; }
+.ico_store { background-position: 0 -448px; }
+.ico_save { background-position: 0 -464px; }
+.ico_transform { background-position: 0 -480px; }
+.ico_benchmark { background-position: 0 -496px; }
+.ico_allbenchmark { background-position: 0 -512px; }
+.ico_start { background-position: 0 -528px; }
+.ico_stop { background-position: 0 -544px; }
+.ico_application { background-position: 0 -560px; }
+.ico_acceptance { background-position: 0 -576px; }
+.ico_download { background-position: 0 -592px; }
+.ico_defaultsetting { background-position: 0 -608px; }
+.ico_readonly { background-position: 0 -608px; }
+.ico_refresh { background-position: 0 -624px; }
+.ico_times { background-position: 0 -640px; }
+.ico_ping { background-position: 0 -656px; }
+.ico_execution { background-position: 0 -656px; }
+.ico_connect { background-position: 0 -672px; }
+.ico_test { background-position: 0 -688px; }
+.ico_next { background-position: 0 -704px; }
+.ico_onestep { background-position: 0 -720px; }
+.ico_success { background-position: 0 -736px; }
+.ico_testing { background-position: 0 -752px; }
+.ico_mean { background-position: 0 -768px; }
+.ico_transition { background-position: 0 -784px; }
+.ico_chart-pencil{background-position:0 -800px;}
+.ico_lightbulb_add{background-position:0 -816px;}
+.ico_lightbulb_del{background-position:0 -832px;}
+.ico_default_set{background-position:0 -848px;}
+.ico_dcsconversion{background-position:0 -864px;}
+.ico_alltask{background-position:0 -880px;}
+.ico_backup{background-position:0 -896px;}
+.ico_del{background-position:0 -912px;}
+.ico_allevent{ background-position:0 -928px;}
+.ico_rscount{background-position:0 -944px;}
+.ico_operate{background-position:0 -960px;}
+.ico_synchronous{background-position:0 -976px;}
+.ico_cdocument{background-position:0px -1008px;}
+.ico_cchange{background-position:0px -1024px;}
+.ico_rel {background-position: 0 -1040px;}
+.ico_forbid {background-position: 0 -1056px;}
+.ico_find_setting{background-position: 0 -1072px;}
+.ico_find_device{background-position: 0 -1088px;}
+.ico_add_device{background-position: 0 -1104px;}
+.ico_build_topo{background-position: 0 -1120px;}
+.ico_rbuild_topo{background-position: 0 -1136px;}
+.ico_cdocument_grace{background-position:0px -1152px;}
+.ico_addattention{ background-position:0px -1168px;}
+.ico_tplay{ background-position:0px -1184px;}
+
+.ico_scan{ background-image:url(../images/comm/ico/riil_ico.png); background-position: -180px -180px; }
+.ico_join { background-image:url(../images/comm/ico/riil_ico.png); background-position: -240px -150px; }
+.ico_alljoin{ background-image:url(../images/comm/ico/riil_ico.png); background-position: -270px -150px; }
+.ico_warn{background-image:url(../images/comm/ico/toast-ico.png); background-position: 0px -16px;}
+
+
+
+
+/*--4 icon--*/
+.icon { width: 16px; height: 16px; display: inline-block; background: url(../images/comm/ico/icon.png) 0 0 no-repeat; cursor: pointer;  margin:0px 2px; overflow: hidden; vertical-align: middle; }
+.icon_discursor { cursor: default;}
+.icon_disabled { background-position: 0 0; }
+.icon_enable { background-position: 0 -16px; }
+.icon_export { background-position: 0 -32px; }
+.icon_import { background-position: 0 -48px; }
+.icon_issue { background-position: 0 -64px; }
+.icon_help { background-position: 0 -80px; cursor:default}
+.icon_essential { background-position: 0 -96px;}
+.icon_infolist { background-position: 0 -112px;}
+.icon_add { background-position: 0 -128px; }
+.icon_delete { background-position: 0 -144px; }
+.icon_alert { background-position: 0 -160px; cursor: default; }
+.icon_info { background-position: 0 -176px; cursor: default; }
+.icon_disstart { background-position: 0 -192px; }
+.icon_enstart { background-position: 0 -208px; }
+.icon_search { background-position: 0 -224px; }
+.icon_enlarge { background-position: 0 -240px; }
+.icon_edit { background-position: 0 -256px; }
+.icon_maintain { background-position: 0 -272px; }
+.icon_lampgreen { background-position: 0 -288px; }
+.icon_lampred { background-position: 0 -304px; }
+.icon_refresh { background-position: 0 -320px; }
+.icon_customized { background-position: 0 -336px; }
+.icon_setup { background-position: 0 -352px; }
+.icon_stategreen { background-position: 0 -368px; }
+.icon_statered { background-position: 0 -384px; }
+.icon_correct { background-position: 0 -400px; }
+.icon_card { background-position: 0 -416px; }
+.icon_locate { background-position: 0 -432px; }
+.icon_date { background-position: 0 -448px; }
+.icon_more { background-position: 0 -464px; }
+.icon_user16 { background-position: 0 -480px; }
+.icon_ie { background-position: 0 -496px; }
+.icon_excel { background-position: 0 -512px; }
+.icon_word { background-position: 0 -528px; }
+.icon_ppt { background-position: 0 -544px; }
+.icon_rss { background-position: 0 -560px; }
+.icon_accept { background-position: 0 -576px; }
+.icon_file { background-position: 0 -592px; }
+.icon_print { background-position: 0 -608px; }
+.icon_trendup { background-position: 0 -624px; }
+.icon_trenddown { background-position: 0 -640px; }
+.icon_operationmore { background-position: 0 -656px; }
+.icon_download { background-position: 0 -672px; }
+.icon_mapping { background-position: 0 -688px; }
+.icon_healthindex { background-position: 0 -704px; }
+.icon_warningwater { background-position: 0 -720px; }
+.icon_newsteup { background-position: 0 -736px; }
+.icon_set { background-position: 0 -736px; }
+.icon_servers16 { background-position: 0 -752px; }
+.icon_networkethernet { background-position: 0 -768px; }
+.icon_server2 { background-position: 0 -784px; }
+.icon_close { background-position: 0 -815px; }
+.icon_close:hover { background-position: 0 -815px; }
+.icon_search2 { background-position: 0 -832px; }
+.icon_stateyellow { background-position: 0 -848px; }
+.icon_drive { background-position: 0 -866px; }
+.icon_success { background-position: 0 -880px; }
+.icon_fail { background-position: 0 -896px; }
+.icon_sortascending { background-position: 0 -912px; }
+.icon_descending { background-position: 0 -928px; }
+.icon_panelavailable { background-position: 0 -944px; }
+.icon_panelnotavailable { background-position: 0 -960px; }
+.icon_panelunknown { background-position: 0 -976px; }
+.icon_narrow { background-position: 0 -992px; }
+.icon_flowin { background-position: 0 -1008px; }
+.icon_flowout { background-position: 0 -1024px; }
+.icon_linechart { background-position: 0 -1040px; }
+.icon_retreat { background-position: 0 -1056px; }
+.icon_camera { background-position: 0 -1072px; }
+.icon_analysis { background-position: 0 -1088px; }
+.icon_reset { background-position: 0 -1104px; }
+.icon_sendin { background-position: 0 -1120px; }
+.icon_restoredefault { background-position: 0 -1136px; }
+.icon_clear { background-position: 0 -1152px; }
+.icon_executive { background-position: 0 -1168px; }
+.icon_upload { background-position: 0 -1184px; }
+.icon_stategray { background-position: 0 -1200px; }
+.icon_policy_select{ background-position:0 -1216px;}
+.icon_trendright { background-position: 0 -1216px; }
+.icon_submit { background-position: 0 -1232px; }
+.icon_kpi_gray { background-position: 0 -1665px; height: 10px; }
+.icon_kpi_green { background-position: 0 -1660px;  height: 10px; }
+.icon_kpi_red { background-position: 0 -1685px;  height: 10px; }
+.icon_kpi_orange { background-position: 0 -1695px;  height: 10px; }
+.icon_breaklink { background-position: 0 -1707px;  height: 15px; }
+.icon_img { background-position: 0 -1726px;  height: 15px; }
+.icon_list02 { background-position: 0 -1744px;  height: 15px; }
+
+.icon_configuration {background-position:0px -1296px;}
+.icon_configuration_easy {background-position:0px -1312px;}
+.icon_powerplay { background-position:0px -1328px; }
+.icon_poweroff { background-position:0px -1344px; }
+.icon_caladd { background-position:0px -1360px; }
+.icon_caldel { background-position:0px -1376px; }
+.icon_lightbulb_add{background-position:0px -1392px;}
+.icon_lightbulb_del{background-position:0px -1408px;}
+.icon_closewindow{background-position:0px -1424px;}
+.icon_addapply{background-position:0px -1440px;}
+.icon_deleteapply{background-position:0px -1456px;}
+.icon_fail{ background-position:0 -1472px;}
+.icon_control{background-position:0px -1488px;}
+.icon_resource_event2{background-position: 0px -1504px;}
+.icon_critical_alart{ background-position:0px -1520px;}
+.icon_unknown{ background-position:0px -1536px;}
+.icon_default_home{background-position:0px -1552px;}
+.icon_addattention{background-position:0px -1568px;}
+.icon_removeattention{ background-position: 0px -1584px;}
+.icon_rel {background-position: 0 -1600px;}
+.icon_forbid {background-position: 0 -1616px;}
+.icon_resource_accept{ background-position: 0px -1632px;}
+.icon_vm_alart{ background-position:0 -1648px;}
+.icon_ballgreen { background-image:url(../images/comm/ico/btn-ico.png); background-position: 0 -320px; }
+.icon_ballred { background-image:url(../images/comm/ico/btn-ico.png); background-position: 0 -336px; }
+.icon_chart-pencil{ background-image:url(../images/comm/ico/btn-ico.png); background-position: 0 -800px; }
+.icon_scan{ background-image:url(../images/comm/ico/riil_ico.png); background-position: -180px -180px; }
+.icon_clipboard-list{ background:url(../images/comm/ico/riil_ico.png); background-position:-150px -120px;}
+.icon_toolbox{ background:url(../images/comm/ico/riil_ico.png); background-position:-180px -120px;}
+.icon_policy_new{ background:url(../images/comm/ico/riil_ico.png); background-position:0px -390px;}
+.icon_room{ background:url(../images/comm/ico/riil_ico.png); background-position:-30px -390px;}
+.icon_room_new{ background:url(../images/comm/ico/riil_ico.png); background-position:-60px -390px;}
+.icon_room_update{ background:url(../images/comm/ico/riil_ico.png); background-position:-90px -390px;}
+.icon_status{ background:url(../images/comm/ico/riil_ico.png); background-position:-120px -390px;}
+.icon_status_busy{ background:url(../images/comm/ico/riil_ico.png); background-position:-150px -390px;}
+.icon_status_unknown{ background:url(../images/comm/ico/riil_ico.png); background-position:-180px -390px;}
+.icon_room_caution{ background:url(../images/comm/ico/riil_ico.png); background-position:-210px -390px;}
+.icon_room_position{ background:url(../images/comm/ico/riil_ico.png); background-position:-240px -390px;}
+.icon_ci{ background:url(../images/comm/ico/riil_ico.png); background-position:-240px -120px;}
+.icon_backplane{ background:url(../images/comm/ico/riil_ico.png); background-position:-270px -120px;}
+.icon_acceptance{background: url(../images/comm/ico/btn-ico.png); background-position: 0px -576px;}
+.icon_resource_event{background: url(../images/comm/ico/btn-ico.png); background-position: 0px -1508px;}
+.icon_cpencil{ background:url(../images/comm/ico/riil_ico.png); background-position:-150px -510px;}
+.icon_imgadd    { background:url(../images/comm/ico/riil_ico.png) -240px -510px}
+.icon_imgdel    { background:url(../images/comm/ico/riil_ico.png) -270px -510px}
+.icon_cancle{background:url(../images/comm/ico/riil_ico.png); background-position:-270px -480px;}
+.icon_backhistory{background :url(../images/comm/ico/riil_ico.png); background-position:0px -540px;}
+.icon_editbackplan{background :url(../images/comm/ico/riil_ico.png); background-position:-30px -540px;}
+.icon_restart{background :url(../images/comm/ico/riil_ico.png); background-position:-60px -540px;}
+.icon_gearplus{background :url(../images/comm/ico/riil_ico.png); background-position:-90px -540px;}
+.icon_slider{background :url(../images/comm/ico/riil_ico.png); background-position:-120px -540px;}
+.icon_copy{background :url(../images/comm/ico/riil_ico.png); background-position:-150px -540px;}
+.icon_down		{ background:url(../images/comm/ico/riil_ico.png) -180px -540px}
+.icon_up		{ background:url(../images/comm/ico/riil_ico.png) -210px -540px}
+.icon_tools		{ background:url(../images/comm/ico/riil_ico.png) -240px -540px}
+.icon_alerton	{ background:url(../images/comm/ico/riil_ico.png) -270px -540px}
+.icon_alertoff	{ background:url(../images/comm/ico/riil_ico.png) -300px -540px}
+.icon_fileatr	{ background:url(../images/comm/ico/riil_ico.png) -330px -540px}
+.icon_scan2		{ background:url(../images/comm/ico/riil_ico.png) -360px -540px}
+.icon_null		{ background:url(../images/comm/ico/riil_ico.png) no-repeat -390px -540px;}
+.icon_relation	{ background:url(../images/comm/ico/riil_ico.png) -420px -540px}
+.icon_loading	{ background:url(../images/comm/ico/loading.gif) no-repeat;}
+.icon_wordb		{ width:64px; height:64px; background:url(../images/comm/ico/wordb.png);}
+.icon_pdfb		{ width:64px; height:64px; background:url(../images/comm/ico/pdfb.png);}
+.icon_excelb	{ width:64px; height:64px; background:url(../images/comm/ico/excelb.png);}
+.icon_tplay		{ background-position:0px -1763px;}
+.icon_confirm	{ background-position:0px -1781px ;}
+.icon_wifilv1	{ background:url(../images/comm/ico/riil_ico.png) -300px -510px}
+.icon_wifilv2	{ background:url(../images/comm/ico/riil_ico.png) -330px -510px}
+.icon_wifilv3	{ background:url(../images/comm/ico/riil_ico.png) -360px -510px}
+.icon_wifilv4	{ background:url(../images/comm/ico/riil_ico.png) -390px -510px}
+.icon_wifilv5	{ background:url(../images/comm/ico/riil_ico.png) -420px -510px}
+
+.icon_exper		{ background:url(../images/comm/ico/riil_ico.png) -210px -570px}
+.icon_apdevice	{ background:url(../images/comm/ico/riil_ico.png) -240px -570px}
+.icon_star		{ background:url(../images/comm/ico/riil_ico.png) -270px -570px}
+
+.icon_iporange	{ background:url(../images/comm/ico/riil_ico.png) -300px -570px}
+.icon_ipgreen 	{ background:url(../images/comm/ico/riil_ico.png) -330px -570px}
+.icon_ipblue 	{ background:url(../images/comm/ico/riil_ico.png) -360px -570px}
+/*--eventlevel--*/
+.alertico { width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin:0px 2px; background: url(../images/comm/ico/eventlevel-ico.png) 0 0 no-repeat }
+.alerttext{ width: 60px; height: 16px; display: inline-block; line-height: 16px; text-align: center; color: #fff; overflow: hidden; background: url(../images/comm/ico/event-icobj.png) 0 0 repeat-x; }
+.deadly { background-position: 0 0; }
+.serious { background-position: 0 -16px; }
+.minor { background-position: 0 -32px; }
+.alarm { background-position: 0 -48px; }
+.unknown { background-position: 0 -64px; }
+.information { background-position: 0 -80px; }
+.compress_deadly { background-position: -16px 0; }
+.compress_serious { background-position: -16px -16px; }
+.compress_minor { background-position:  -16px -32px; }
+.compress_alarm { background-position:  -16px -48px; }
+.compress_unknown { background-position:  -16px -64px; }
+.compress_information { background-position:  -16px -80px; }
+.compress { background-position: 0 -96px; }
+.com_release { background-position: 0 -112px; }
+/*-- statuslevel*/
+.statusico { width: 17px; height: 16px; display: inline-block; vertical-align: middle;  margin:0px 2px; background: url(../images/comm/ico/flow-staus-ico.png) 0 0 no-repeat }
+.status_l1 { background-position: 0 0; }
+.status_l2 { background-position: 0 -17px; }
+.status_l3 { background-position: 0 -34px; }
+.status_l4 { background-position: 0 -51px; }
+.status_l5 { background-position: 0 -68px; }
+
+/*--6 左侧一级导航图标--*/
+.arrow, .arrowup, .arrowdown
+{ width: 16px; height: 16px; cursor: pointer; display: inline-block; float: right; background: url(../images/comm/ico/riil_ico.png) -120px 0 no-repeat; }
+.arrowup {background-position: -90px 0;}
+.open .arrow {background-position: -90px 0;}
+.h-subnav a {background: url(../images/comm/ico/subnav-ico.png) left -16px no-repeat; display: inline-block; padding-left: 25px; height: 16px; line-height: 16px;overflow: hidden; color: #fff; }
+.h-subnav a.resources { background-position: 0 -16px; }
+.h-subnav a.script { background-position: 0 -32px }
+.h-subnav a.log { background-position: 0 -48px }
+.h-subnav a.analysis { background-position: 0 -64px }
+.h-subnav a.trend { background-position: 0 -80px }
+.h-subnav a.topn { background-position: 0 -96px }
+.h-subnav a.bug { background-position: 0 -112px }
+.h-subnav a.compre { background-position: 0 -128px }
+.h-subnav a.subscribe { background-position: 0 -144px }
+.h-subnav a.onsitelist { background-position: 0 -160px }
+.h-subnav a.onsite { background-position: 0 -176px }
+.h-subnav a.configure { background-position: 0 -192px }
+.h-subnav a.configurereport { background-position: 0 -208px }
+.h-subnav a.klview { background-position: 0 -224px }
+.h-subnav a.store { background-position: 0 -240px }
+.h-subnav a.examine { background-position: 0 -256px }
+.h-subnav a.maintain { background-position: 0 -272px }
+.h-subnav a.statistics { background-position: 0 -288px }
+.h-subnav a.set { background-position: 0 -304px; position:relative; top: 0px; right:0px;}
+.h-subnav a.custom { background-position: 0 -320px }
+.h-subnav a.klanalysis { background-position: 0 -336px }
+.h-subnav a.status { background-position: 0 -352px }
+.h-subnav a.alert { background-position: 0 -368px }
+.h-subnav a.type { background-position: 0 -384px }
+.h-subnav a.resourcesgroup { background-position: 0 -400px }
+.h-subnav a.bell { background-position: 0 -416px }
+.h-subnav a.event { background-position: 0 -432px }
+.h-subnav a.background { background-position: 0 -448px }
+.h-subnav a.equipment { background-position: 0 -464px }
+.h-subnav a.application { background-position: 0 -480px }
+.h-subnav a.collector { background-position: 0 -496px }
+.h-subnav a.monitor { background-position: 0 -512px }
+.h-subnav a.element { background-position: 0 -528px }
+.h-subnav a.fatap { background-position: -0 -544px }
+.h-subnav a.ac { background-position: -0 -560px }
+.h-subnav a.fitap { background-position: -0 -576px }
+.h-subnav a.radio { background-position: -0 -592px }
+.h-subnav a.users { background-position: -0 -608px }
+.h-subnav a.wlan { background-position: -0 -624px }
+.h-subnav a.ap_port { background-position: -0 -640px }
+.h-subnav a.report { background-position: -0 -656px }
+.h-subnav a.ap_monitor { background-position: -0 -672px }
+.h-subnav a.ac_monitor { background-position: -0 -688px }
+.h-subnav a.task { background-position: -0 -704px }
+.h-subnav a.map { background-position: -0 -720px }
+.h-subnav a.marker { background-position: -0 -736px }
+.h-subnav a.pc { background-position: -0 -752px }
+.h-subnav a.dns { background-position: -0 -768px }
+.h-subnav a.netstatus { background-position: -0 -784px }
+.h-subnav a.networkdevice { background-position: -0 -800px }
+.h-subnav a.error { background-position: -0 -816px }
+.h-subnav a.buildings{ background-position: -0 -832px }
+.h-subnav a.cabinet{ background-position: -0 -848px }
+.h-subnav a.monitoring{ background-position: -0 -864px }
+.h-subnav a.strategy_setting{ background-position: -0 -880px }
+.h-subnav a.vpn{ background-position: -0 -896px }
+.h-subnav a.nta_blocking{ background-position: -0 -912px }
+.h-subnav a.nta_limitation{ background-position: -0 -928px }
+.h-subnav a.real_time{ background-position: -0 -944px }
+.h-subnav a.datum_table{ background-position: -0 -960px }
+.h-subnav a.his_cha{ background-position: -0 -976px }
+.h-subnav a.new_add_mac{ background-position: -0 -992px }
+.h-subnav a.access_log{ background-position: -0 -1008px }
+.h-subnav a.performance{ background-position: -0 -1024px }
+.h-subnav a.storageB{ background-position: -0 -1040px }
+.h-subnav a.vm{ background-position: -0 -1056px }
+.h-subnav a.res_analysis{ background-position: -0 -1072px }
+.h-subnav a.nic_flow{ background-position: -0 -1088px }
+.h-subnav a.fault_process{ background-position: -0 -1104px }
+.h-subnav a.fault_analysis{ background-position: -0 -1120px }
+.h-subnav a.link_flow{ background-position: -0 -1136px }
+.h-subnav a.resoure_find{ background-position: -0 -1152px }
+.h-subnav a.re_dsc{ background-position: -0 -1168px }
+.h-subnav a.re_report{ background-position: -0 -1184px }
+.h-subnav a.event_report{ background-position: -0 -1200px }
+.h-subnav a.flow_report{ background-position: -0 -1216px }
+.h-subnav a.itroom01{background: url(../images/comm/ico/subnav-over.png) 0 0 no-repeat; display: inline-block; padding-left: 25px; height: 16px; line-height: 16px;overflow: hidden; color: #fff;  background-position: 0px -1108px; }
+.h-subnav a.itroom02{background: url(../images/comm/ico/subnav-over.png) 0 0 no-repeat; display: inline-block; padding-left: 25px; height: 16px; line-height: 16px;overflow: hidden; color: #fff;  background-position: 0px -1133px; }
+
+/*-- 左侧二级导航图标--*/
+ul.subsetul a {background: url(../images/comm/ico/subnav-over.png) 15px 0 no-repeat; display: block; height: 24px; line-height: 24px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap; color: #fff; cursor: pointer; text-indent: 35px; }
+ul.subsetul a.secondfix{ background-position:35px 0;}
+ul.subsetul a.usable { background-position: 15px -24px; }
+ul.subsetul a.disabled { background-position: 15px -48px; }
+ul.subsetul a.fileall { background-position: 15px -72px; }
+ul.subsetul a.deadly { background-position: 15px -96px; }
+ul.subsetul a.serious { background-position: 15px -120px; }
+ul.subsetul a.minor { background-position: 15px -144px; }
+ul.subsetul a.alarm { background-position: 15px -168px; }
+ul.subsetul a.unknown { background-position: 15px -192px; }
+ul.subsetul a.information { background-position: 15px -216px; }
+ul.subsetul a.month { background-position: 15px -240px; }
+ul.subsetul a.uninfo { background-position: 15px -264px; }
+ul.subsetul a.other { background-position: 15px -288px; }
+ul.subsetul a.port,ul.subsetul a.network_ethernet { background-position: 15px -312px; }
+ul.subsetul a.host { background-position: 15px -336px; }
+ul.subsetul a.default_set { background-position: 15px -360px; }
+ul.subsetul a.category { background-position: 15px -384px; }
+ul.subsetul a.nostrategy{background-position: 15px -408px; }
+ul.subsetul a.file_close{background-position: 15px -432px; }
+ul.subsetul a.pc{background-position: 15px -456px; }
+ul.subsetul a.networks{background-position: 15px -480px; }
+ul.subsetul a.business{background-position: 15px -504px; }
+
+ul.subsetul a.wireless{background-position: 15px -528px; }
+ul.subsetul a.links{background-position: 15px -552px; }
+ul.subsetul a.choice{background-position: 15px -576px; }
+ul.subsetul a.resources {background-position: 15px -600px; }
+ul.subsetul a.analysis {background-position: 15px -624px }
+ul.subsetul a.trend {background-position: 15px -648px }
+ul.subsetul a.topn {background-position: 15px -672px }
+ul.subsetul a.bug {background-position: 15px -696px }
+ul.subsetul a.res_analysis{background-position: 15px -720px }
+ul.subsetul a.nic_flow{background-position: 15px -744px }
+
+ul.subsetul a.fault_process{background-position: 15px -768px }
+ul.subsetul a.fault_analysis{background-position: 15px -792px }
+ul.subsetul a.link_flow{background-position: 15px -816px }
+
+ul.subsetul a.user{background-position: 15px -840px }
+ul.subsetul a.wlan{background-position: 15px -864px }
+ul.subsetul a.fatap{background-position: 15px -888px }
+ul.subsetul a.fitap{background-position: 15px -912px }
+ul.subsetul a.subsc{background-position: 15px -936px }
+ul.subsetul a.resour{background-position: 15px -960px }
+
+ul.subsetul a.virtual01{background-position: 15px -984px }
+ul.subsetul a.virtual02{background-position: 15px -1008px }
+ul.subsetul a.virtual03{background-position: 15px -1032px }
+ul.subsetul a.virtual04{background-position: 15px -1056px }
+ul.subsetul a.virtual05{background-position: 15px -1080px }
+ul.subsetul a.itroom01{background-position: 15px -1104px }
+ul.subsetul a.itroom02{background-position: 15px -1128px }
+ul.subsetul a.virtual06{background-position: 15px -1152px }
+ul.subsetul a.storage01{background-position: 15px -1176px }
+ul.subsetul a.storage02{background-position: 15px -1200px }
+ul.subsetul a.virtual07{background-position: 15px -1224px }
+ul.subsetul a.virtual08{background-position: 15px -1248px }
+ul.subsetul a.virtual09{background-position: 15px -1272px }
+
+
+
+/* 7 portlet-ico*/
+.ctrl-ico,
+.portlet-ico, 	.portlet-ico-help, 	.portlet-ico-quit, 	.portlet-ico-add, 	.portlet-ico-delete, .portlet-ico-set,  .portlet-ico-update, .portlet-ico-enlarge, .portlet-ico-cutover, 
+.panel-ico, 	.panel-ico-help, 	.panel-ico-quit, 	.panel-ico-add, 	.panel-ico-delete, 	 .panel-ico-set, 	.panel-ico-update, 	 .panel-ico-enlarge,   .panel-ico-cutover,
+.pop-ico, 		.pop-ico-help, 		.pop-ico-quit,		.pop-ico-help-click,.pop-ico-quit-click,
+.portlet-ico-cross,	.portlet-title-arrow,
+.panel-ico-cross, 	.panel-title-arrow,
+.ico-help, .ico-help-click, .ico-quit, .ico-quit-click, .ico-add, .ico-delete, .ico-set, .ico-update, .ico-enlarge, .ico-narrow, .ico-cross, .title-arrow,
+.ico-table, .ico-chart, .ico-popup, .ico-pie, .ico-piepic, .ico-brand,.ico-timebox,.ico_essential,.ico_infor01,.ico_infor02,.ico_play01,.ico_play02, .ico-cutover, .ico-quota
+{background: url(../images/comm/ico/riil_ico.png) 0 0 no-repeat; width: 16px; height: 16px; display: inline-block; float: right; cursor: pointer;  margin:0px 2px; }
+.ctrl-ico{float:none}
+.portlet-ico-help, 		.panel-ico-help, 		.ico-help	 	{ 	background-position: -30px -240px; }
+.portlet-ico-quit, 		.panel-ico-quit, 		.ico-quit	 	{ 	background-position: -60px -240px; }
+.portlet-ico-add,  		.panel-ico-add,  		.ico-add	 	{ 	background-position: -90px -240px; }
+.portlet-ico-delete,	.panel-ico-delete,		.ico-delete		{ 	background-position: -120px -240px; }
+.portlet-ico-set,		.panel-ico-set, 		.ico-set		{ 	background-position: -150px -240px; }
+.portlet-ico-update, 	.panel-ico-update, 		.ico-update 	{ 	background-position: -180px -240px; }
+.portlet-ico-cutover,   .panel-ico-cutover,     .ico-cutover    {   background-position: -270px -240px;}
+.portlet-ico-quota,     .panel-ico-quota,       .ico-quota      {   background-position: -270px -390px;}
+.portlet-ico-enlarge,	.panel-ico-enlarge,		.ico-enlarge 	{ 	background-position: -210px -300px; }
+.portlet-ico-cross, 	.panel-ico-cross, 		.ico-cross 		{ 	background-position: -240px 0;		width: 20px; height: 20px; margin: -5px 0px 0px 0px;  }
+.portlet-title-arrow,	.panel-title-arrow,		.title-arrow 	{ 	background-position: -210px 0; 		width: 16px; height: 14px; margin: 0px; float:none; cursor:auto}
+.pop-ico-help, 				.pop-blue .ico-help 			{ background-position: 0 -330px;			width:20px; height:20px; margin-top:4px;}
+.pop-ico-help:hover, 		.pop-blue .ico-help:hover 		{ background-position: -30px -330px;}
+.pop-ico-help-click, 		.pop-blue .ico-help-click 		{ background-position: -60px -330px;		width:20px; height:20px; margin-top:4px;}
+.pop-ico-help-click:hover, 	.pop-blue .ico-help-click:hover { background-position: -60px -330px;}
+.pop-ico-quit,				.pop-blue .ico-quit 			{ background-position: -90px -330px;		width:20px; height:20px; margin-top:4px;}
+.pop-ico-quit:hover, 		.pop-blue .ico-quit:hover 		{ background-position: -120px -330px }
+.pop-ico-quit-click, 		.pop-blue .ico-quit-click 		{ background-position: -150px -330px;		width:20px; height:20px; margin-top:4px; }
+.pop-ico-quit-click:hover,	.pop-blue .ico-quit-click:hover { background-position: -150px -330px }
+.pop-img a.pop-ico-quit 	  { background-position: -180px -330px;			width:21px; height:21px; float:none; }
+.pop-img a.pop-ico-quit:hover { background-position: -210px -330px; 		width:21px; height:21px; float:none;}
+.ico-chart	{ background-position:-120px -300px;}
+.ico-table	{ background-position:-90px -300px;}
+.ico-popup	{ background-position:-150px -300px;}
+.ico-narrow	{ background: url(../images/comm/ico/icon.png) 0 -992px no-repeat;}
+.ico-pie    { background-position:-180px -300px;}
+.ico-piepic  { background-position:-210px -300px;}
+.ico-brand   { background-position:-240px -300px;}
+.ico-timebox   { background-position:-270px -300px;}
+.ico_essential { background-position:-299px -300px;}
+.ico_infor01 { background-position:-331px -300px;}
+.ico_infor02 { background-position:-363px -300px;}
+.ico_play01 { background-position:-391px -300px;}
+.ico_play02 { background-position:-422px -300px;}
+
+/* 8 other*/
+.controlico_able, .controlico_unable, .statusico_green, .statusico_yello, .statusico_red, .statusico_gray,
+.performance_green, .performance_yello, .performance_red, .performance_gray,
+.routericon, .addressicon, .porticon, .ARPicon, .VLANicon,
+.tool_mib, .tool_ping, .tool_remoteping, .tool_snmptest, .tool_telnet, .tool_snc, .tool_traceroute, .tool_web, 
+.mail_success, .mail_failure, .mail_in, .message_success, .message_failure, .message_in, .message_send
+{ width: 16px; height: 16px; display: inline-block;zoom: 1; background: url(../images/comm/ico/riil_ico.png) 0 0 no-repeat; margin:0px 2px; overflow: hidden; }
+.controlico_able { 			background-position: 0 -90px;}
+.controlico_unable { 		background-position: -30px -90px; }
+.statusico_green { 			background-position: -60px -90px; }
+.statusico_yello {		 	background-position: -90px -90px; }
+.statusico_red { 			background-position: -120px -90px; }
+.statusico_gray { 			background-position: -150px -90px; }
+.performance_green { 		background-position: -180px -90px; }
+.performance_yello { 		background-position: -210px -90px; }
+.performance_red { 			background-position: -240px -90px; }
+.performance_gray { 		background-position: -270px -90px; }
+.routericon { 				background-position: 0 -120px; 				margin:0px; margin-right:3px}
+.addressicon { 				background-position: -30px -120px; 			margin:0px; margin-right:3px}
+.porticon { 				background-position: -60px -120px; 			margin:0px; margin-right:3px}
+.ARPicon { 					background-position: -90px -120px; 			margin:0px; margin-right:3px}
+.VLANicon { 				background-position: -120px -120px; 		margin:0px; margin-right:3px}
+.tool_mib { 				background-position: 0 -150px; 				margin-left: -4px; margin-right: 2px;}
+.tool_ping { 				background-position: -30px -150px; 			margin-left: -4px; margin-right: 2px;}
+.tool_remoteping { 			background-position: -60px -150px; 			margin-left: -4px; margin-right: 2px;}
+.tool_snmptest { 			background-position: -90px -150px; 			margin-left: -4px; margin-right: 2px;}
+.tool_telnet { 				background-position: -120px -150px; 		margin-left: -4px; margin-right: 2px;}
+.tool_snc { 				background-position: -150px -150px; 		margin-left: -4px; margin-right: 2px;}
+.tool_traceroute { 			background-position: -180px -150px; 		margin-left: -4px; margin-right: 2px;}
+.tool_web { 				background-position: -210px -150px; 		margin-left: -4px; margin-right: 2px;}
+.mail_success { 			background-position: 0 -180px; 				margin-right: 4px;}
+.mail_failure { 			background-position: -30px -180px; 			margin-right: 4px;}
+.mail_in { 					background-position: -60px -180px; 			margin-right: 4px;}
+.message_success { 			background-position: -90px -180px; 		margin-right: 4px;}
+.message_failure { 			background-position: -120px -180px; 		margin-right: 4px;}
+.message_in { 				background-position: -150px -180px; 		margin-right: 4px;}
+.message_send { 				background-position: -270px -180px; 		margin-right: 4px;}
+/* 9 带有hover效果的a标签样式*/
+a.img-btn,a.export { height: 27px; width: 27px; display: inline-block; background: url(../images/comm/ico/riil_ico.png) 0 -210px no-repeat; }
+a.img-btn:hover {	background-position: -30px -210px; }
+a.export { 			background-position: -60px -210px; }
+a.export:hover { 	background-position: -90px -210px; }
+a.rank-pull, a.rank-pull-select, a.rank-up, a.rank-down, a.rank-down-grace
+{ background: url(../images/comm/ico/riil_ico.png) 0 0 no-repeat; width: 20px; height: 20px; display: inline-block; float: right; cursor:pointer}
+a.rank-pull{ background-position:0px -360px;							width:16px; height:16px; margin-top: 0px; }
+a.rank-pull:hover{ background-position:-30px -360px;}
+a.rank-pull-select{ background-position:-60px -360px;					width:16px; height:16px; margin-top: 0px;}
+a.rank-up{ 	background-position:-90px -360px;							width:10px; height:16px; margin-top: 0px; }
+a.rank-down{ background-position:-120px -360px;							width:10px; height:16px; margin-top: 0px;}
+a.rank-down-grace{ background-position:-210px -360px;					width:10px; height:16px; margin-top: 0px;}
+/*ico btn 可删除 */
+a.icoselect { display: inline-block; background-image: url(../images/widget/window/btnico-trigger.png); background-position: 0 0; width: 22px; height: 21px; cursor: pointer; vertical-align: middle; }
+a.icoselect:hover { background-position: 0 -21px; border-bottom-color: #7eadd9 }
+a.icoselect.click { background-position: 0 -42px; }
+a.icoselect.click:hover { background-position: 0 -42px;  }
+a.icotool { display: inline-block; background-image: url(../images/widget/window/btnico-trigger.png); width: 22px; height: 21px; cursor: pointer; background-position: -22px 0; }
+a.icotool:hover { background-position: -22px -21px; border-bottom-color: #7eadd9 }
+a.icotool.click { background-position: -22px -42px; }
+a.icotool.click:hover { background-position: -22px -42px;}
+a.btnico_cmdb { display: inline-block; background-image: url(../images/widget/window/btnico-cmdb.png); background-position: 0 0; width: 22px; height: 21px; cursor: pointer; }
+a.btnico_cmdb:hover { background-position: 0 -21px; }
+a.btnico_panel { display: inline-block; background-image: url(../images/widget/window/panel-icon.png); background-position: 0 0; width: 22px; height: 21px; cursor: pointer; }
+a.btnico_panel:hover { background-position: 0 -21px; }
+/*新菜单用按钮*/
+.newmenu {background: url("../images/comm/ico/ico-newmenu.png") no-repeat scroll 0 0 transparent;cursor: pointer;display: inline-block; float: right;height: 16px;margin-left: 3px;width: 16px;}
+.newmenu.newmenu-lock{background-position:0 0;}
+.newmenu.newmenu-unlock{background-position:0 -16px;}
+.newmenu.newmenu-close{background-position:0 -32px;}
+.newmenu.newmenu-open{background-position:0 -46px;}
+/*check&radio*/
+.checkbox_off,.checkbox_on,.radio_off,.radio_on,
+.icon_checked,.icon_checked_dis,.icon_uncheck,.icon_uncheck_dis,.icon_check_harf,
+.icon_radioed,.icon_radioed_dis,.icon_unradio,.icon_unradio_dis
+{ background: url(../images/comm/ico/riil_ico.png) no-repeat; height: 16px;width: 16px; display: inline-block;vertical-align: middle; overflow:hidden; margin:0px 2px; }
+.checkbox_off		{	background-position:-60px -480px;}
+.checkbox_on		{	background-position:0px -480px;}
+.radio_off			{	background-position:-60px -450px;}
+.radio_on			{	background-position:0px -450px;}
+.icon_checked		{	background-position:0px -480px;}
+.icon_checked.dis	{	background-position:-30px -480px;cursor: default}
+.icon_uncheck		{	background-position:-60px -480px;}
+.icon_uncheck.dis	{	background-position:-90px -480px;cursor: default}
+.icon_check_harf	{	background-position:-120px -480px;}
+.icon_checked:hover	{	background-position:-150px -480px;}
+.icon_checked.dis:hover	{	background-position:-30px -480px;cursor: default}
+.icon_uncheck:hover	{	background-position:-180px -480px;}
+.icon_uncheck.dis:hover	{	background-position:-90px -480px;cursor: default}
+.icon_checked:active{	background-position:-210px -480px;}
+.icon_uncheck:active{	background-position:-240px -480px;}
+.icon_radioed		{	background-position:0px -450px;}
+.icon_radioed.dis	{	background-position:-30px -450px;cursor: default}
+.icon_unradio		{	background-position:-60px -450px;}
+.icon_unradio.dis	{	background-position:-90px -450px;cursor: default}
+.icon_radioed:hover	{	background-position:-150px -450px;}
+.icon_radioed.dis:hover	{	background-position:-30px -450px;cursor: default}
+.icon_unradio:hover	{	background-position:-180px -450px;}
+.icon_unradio.dis:hover	{	background-position:-90px -450px;cursor: default}
+.icon_radioed:active{	background-position:-210px -450px;}
+.icon_unradio:active{	background-position:-240px -450px;}
+
+.toolsbox{ background:url(../images/comm/ico/tools.png) 0 0 no-repeat; height:20px; width:20px; display:block; display: inline-block; cursor:pointer; margin-right:5px;}
+.ico_tdup{ background:url(../images/comm/ico/t_icon.png) 0 0 no-repeat; height:16px; width:16px; display:block; display: inline-block; cursor:pointer; margin-right:5px;}
+.ico_tddel{ background:url(../images/comm/ico/t_icon.png) 0 -16px no-repeat; height:16px; width:16px; display:block; display: inline-block; cursor:pointer; margin-right:5px;}
+.blue_round_down_arrow {background:url(../images/storage/arrow_right_blue_round.png);}
+.nav_nmal{background: url(../images/comm/ico/subnav-over.png) 0 -5px no-repeat; height:16px; width:16px; display:block; display: inline-block; }
+.subnav01_edit,.subnav01_delete,.subnav01_add{ background:url(../images/comm/ico/subnav_ico.png) 0 0 no-repeat; height:16px; width:16px; display:block; display: inline-block;  margin:0px 2px;}
+.subnav01_edit{ background-position:0 0 ;}
+.subnav01_edit:hover{ background-position:-16px 0 ;}
+.subnav01_delete{ background-position:0 -16px ;}
+.subnav01_delete:hover{ background-position:-16px -16px ;}
+.subnav01_add{ background-position:0 -32px ;}
+.subnav01_add:hover{ background-position:-16px -32px ;}
+.subnav-subset li .subnav01_edit{ display:none;}
+.subnav-subset li .subnav01_delete{ display:none;}
+.subnav-subset li .subnav01_add{ display:none;}
+.subnav-subset li:hover .subnav01_edit{ display:inline-block;}
+.subnav-subset li:hover .subnav01_delete{ display:inline-block;}
+.subnav-subset li:hover .subnav01_add{ display:inline-block;}
+
+.ico01{ background:url(../images/comm/ico/n_ico.png) 0 0 no-repeat; height:16px; width:16px; display:block; display: inline-block; margin:0px 2px; }
+.ico01_alarm{ background-position:0 0;}
+.ico01_alarm_none{ background-position:-16px 0;}
+.ico01_att_add{ background-position:0 -16px;}
+.ico01_att_delete{ background-position:-16px -16px;}
+
+/*resource*/ 
+.icon_rhdware_t	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) 0px 0px; }
+.icon_rhdware_c	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -60px 0px; }
+.icon_rhdware_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -120px 0px; }
+.icon_rhba_t	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -180px 0px; }
+.icon_rhba_c	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -240px 0px; }
+.icon_rhba_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -300px 0px; }
+.icon_rhdcpu_t	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -360px 0px; }
+.icon_rhdcpu_c	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -420px 0px; }
+.icon_rhdcpu_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -480px 0px; }
+.icon_rhddisc_t	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -540px 0px; }
+.icon_rhddisc_c	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -600px 0px; }
+.icon_rhddisc_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -660px 0px; }
+.icon_vm_t		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -720px 0px; }
+.icon_vm_c		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -780px 0px; }
+.icon_vm_q		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -840px 0px; }
+
+.icon_rhdd_t	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -180px -60px; }
+.icon_rhdd_c	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -240px -60px; }
+.icon_rhdd_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -300px -60px; }
+.icon_rfan_t	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -360px -60px; }
+.icon_rfan_c	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -420px -60px; }
+.icon_rfan_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -480px -60px; }
+.icon_rvg_t		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -540px -60px; }
+.icon_rvg_c		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -600px -60px; }
+.icon_rvg_q		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -660px -60px; }
+.icon_ecxi_t    { width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -720px -60px; }
+.icon_ecxi_c    { width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -780px -60px; }
+.icon_ecxi_q    { width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -840px -60px; }
+
+.icon_rusers_t	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) 0px -120px; }
+.icon_rusers_c	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -60px -120px; }
+.icon_rusers_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -120px -120px; }
+.icon_rdbase_t	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -180px -120px; }
+.icon_rdbase_c	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -240px -120px; }
+.icon_rdbase_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -300px -120px; }
+.icon_rdocs_t	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -360px -120px; }
+.icon_rdocs_c	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -420px -120px; }
+.icon_rdocs_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -480px -120px; }
+.icon_rtspace_t	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -540px -120px; }
+.icon_rtspace_c	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -600px -120px; }
+.icon_rtspace_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -660px -120px; }
+.icon_citri_t    { width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -720px -120px;}
+.icon_citri_c    { width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -780px -120px;}
+.icon_citri_q    { width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -840px -120px;}
+
+.icon_rlogs_t	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) 0px -180px; }
+.icon_rlogs_c	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -60px -180px; }
+.icon_rlogs_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -120px -180px; }
+.icon_rprocess_t{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -180px -180px; }
+.icon_rprocess_c{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -240px -180px; }
+.icon_rprocess_q{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -300px -180px; }
+.icon_rservice_t{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -360px -180px; }
+.icon_rservice_c{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -420px -180px; }
+.icon_rservice_q{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -480px -180px; }
+
+.icon_rlogs		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) 0px -240px; }
+.icon_rslot		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -60px -240px; }
+.icon_rdbase	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -120px -240px; }
+.icon_rrouter	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -180px -240px; }
+.icon_rex2		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -240px -240px; }
+.icon_rex3		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -300px -240px; }
+.icon_rac		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -360px -240px; }
+
+.icon_rdisc		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) 0px -300px; 	line-height:60px; text-align:center; color:#F00; }
+.icon_rcpu		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -60px -300px; 	line-height:60px; text-align:center; color:#F00; }
+.icon_rpartition{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -120px -300px; 	line-height:60px; text-align:center; color:#F00; }
+.icon_rdb2space{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -180px -300px; 	line-height:60px; text-align:center; color:#F00; }
+.icon_rfolder	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -240px -300px; 	line-height:60px; text-align:center; color:#F00; }
+.icon_rlogic	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -300px -300px; 	line-height:60px; text-align:center; color:#F00; }
+.icon_rlog		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -360px -300px; 	line-height:60px; text-align:center; color:#F00; }
+.icon_rdspace	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -420px -300px; 	line-height:60px; text-align:center; color:#F00; }
+
+.icon_rdisc_q		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) 0px -360px; 		line-height:60px; text-align:center; color:#F00}
+.icon_rcpu_q		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -60px -360px; 	line-height:60px; text-align:center; color:#F00}
+.icon_rpartition_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -120px -360px;	line-height:60px; text-align:center; color:#F00}
+.icon_rdb2space_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -180px -360px; 	line-height:60px; text-align:center; color:#F00}
+.icon_rfolder_q		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -240px -360px; 	line-height:60px; text-align:center; color:#F00}
+.icon_rlogic_q		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -300px -360px; 	line-height:60px; text-align:center; color:#F00}
+.icon_rlog_q		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -360px -360px; 	line-height:60px; text-align:center; color:#F00}
+.icon_rdspace_q		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -420px -360px; 	line-height:60px; text-align:center; color:#F00}
+
+
+.icon_webstation_t{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) 0px -480px; }
+.icon_webstation_c{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -60px -480px; }
+.icon_webstation_q{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -120px -480px; }
+.icon_threadpool_t{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -180px -480px; }
+.icon_threadpool_c{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -240px -480px; }
+.icon_threadpool_q{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -300px -480px; }
+.icon_channel_t{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -360px -480px; }
+.icon_channel_c{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -420px -480px; }
+.icon_channel_q{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -480px -480px; }
+.icon_datadir_t{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -540px -480px; }
+.icon_datadir_c{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -600px -480px; }
+.icon_datadir_q{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -660px -480px; }
+
+.icon_datadpool_t	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) 0px -540px; }
+.icon_datadpool_c	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -60px -540px; }
+.icon_datadpool_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -120px -540px; }
+.icon_jms_t			{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -180px -540px; }
+.icon_jms_c			{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -240px -540px; }
+.icon_jms_q			{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -300px -540px; }
+.icon_appportlet_t	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -360px -540px; }
+.icon_appportlet_c	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -420px -540px; }
+.icon_appportlet_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -480px -540px; }
+.icon_oc4j_t		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -540px -540px; }
+.icon_oc4j_c		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -600px -540px; }
+.icon_oc4j_q		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -660px -540px; }
+
+.icon_connector_t	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) 0px -600px; }
+.icon_connector_c	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -60px -600px; }
+.icon_connector_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -120px -600px; }
+.icon_array_t		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -180px -600px; }
+.icon_array_c		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -240px -600px; }
+.icon_array_q		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -300px -600px; }
+.icon_nsf_t			{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -360px -600px; }
+.icon_nsf_c			{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -420px -600px; }
+.icon_nsf_q			{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -480px -600px; }
+.icon_ejb_t			{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -540px -600px; }
+.icon_ejb_c			{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -600px -600px; }
+.icon_ejb_q			{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -660px -600px; }
+
+.icon_httpchan_t{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) 0px -660px; }
+.icon_httpchan_c{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -60px -660px; }
+.icon_httpchan_q{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -120px -660px; }
+.icon_jdbcpool_t{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -180px -660px; }
+.icon_jdbcpool_c{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -240px -660px; }
+.icon_jdbcpool_q{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -300px -660px; }
+.icon_jdbcpool	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -360px -660px; }
+.icon_threadpool{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -420px -660px; }
+.icon_appportlet{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -480px -660px; }
+.icon_nsf		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -540px -660px; }
+.icon_datadir	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -600px -660px; }
+.icon_array		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -660px -660px; }
+.icon_rservice	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -720px -660px; }
+.icon_coonpool	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -780px -660px; }
+
+.icon_rhosts_t	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) 0px -720px; }
+.icon_rhosts_c	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -60px -720px; }
+.icon_rhosts_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -120px -720px; }
+.icon_rhosts	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -180px -720px; }
+.icon_rhost		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -240px -720px; }
+.icon_rgroup	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -300px -720px; }
+.icon_rport_t	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -360px -720px; }
+.icon_rport_c	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -420px -720px; }
+.icon_rport_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -480px -720px; }
+.icon_rport		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -540px -720px; }
+.icon_rport_n	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -600px -720px; cursor:default}
+
+.icon_rap		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) 0px -780px; }
+.icon_rap_t		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -60px -780px; }
+.icon_rap_c		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -120px -780px; }
+.icon_rap_q		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -180px -780px; }
+.icon_rap_a		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -240px -780px; }
+.icon_raps		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -300px -780px; }
+.icon_rwlan		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -360px -780px; }
+.icon_rwlan_t	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -420px -780px; }
+.icon_rwlan_c	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -480px -780px; }
+.icon_rwlan_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -540px -780px; }
+.icon_rradio	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -600px -780px; }
+.icon_rradio_t	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -660px -780px; }
+.icon_rradio_c	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -720px -780px; }
+.icon_rradio_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -780px -780px; }
+
+.icon_rpoe		{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) 0px -840px; }
+.icon_rpoe_t	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -60px -840px; }
+.icon_rpoe_c	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -120px -840px; }
+.icon_rpoe_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -180px -840px; }
+.icon_rpoe_a	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -240px -840px; }
+
+.icon_link_t	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -540px -180px; }
+.icon_link_c	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -600px -180px; }
+.icon_link_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -660px -180px; }
+
+.icon_rslot_t	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -420px -240px; }
+.icon_rslot_c	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -480px -240px; }
+.icon_rslot_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -538px -240px; }
+
+.icon_temp_t	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -600px -240px; }
+.icon_temp_c	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -660px -240px; }
+.icon_temp_q	{ width:60px; height:60px; background:url(../images/comm/ico/resource_icon.png) -720px -240px; }
+.ico_water_red{ background:url(../images/new/riil_new_ico.png) -30px -300px; height:16px; width:16px; display:block;}
+.ico_water_green{ background:url(../images/new/riil_new_ico.png) 0px -300px; height:16px; width:16px; display:block;}
+.ico_card_edit{ background:url(../images/new/riil_new_ico.png) -60px -300px; height:16px; width:16px; display:block;}

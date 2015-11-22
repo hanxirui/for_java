@@ -1,0 +1,129 @@
+@charset "utf-8";
+/**/
+.clear{clear: both;}
+a.on{color: #ff9f5f; text-decoration: underline;}
+.input1 {border-radius: 3px;background-color: rgb(86, 130, 178);width: 150px;height: 33px;line-height: 33px;color: #fff;padding: 0px 10px;border: 1px solid transparent;}
+.input2{line-height: 16px;padding: 6px 10px 6px 10px; border-radius: 3px; background-color: rgb(86, 130, 178); color: #fff; width: 120px;}
+.mb10{ margin-bottom: 10px;}
+
+/**/
+.container { overflow: hidden; height: 100%; width: 100%; }
+#content { overflow: hidden; padding-top: 6px }
+#footer {display:none;}
+/**/
+.logo { float: left; height: 80px; width: 160px; overflow: hidden;}
+.header { position: relative; height: 80px; background: url(../images/header/header-bg.png) repeat; z-index: 1; overflow: visible; box-shadow: 0px 3px 5px rgba(0,0,0,0.2);}
+.topbar { float: right;}
+.topbar ul li{ display: inline-block; height: 20px; line-height: 20px; padding: 4px}
+.topbar ul li a { color: #D6F0FF; }
+.topbar ul li a:hover { color: #FFFFFF; }
+/**/
+[class^="icon_"] {display: inline-block;width: 16px; height: 16px; line-height: 16px; background: url(../images/header/header-ico.png) no-repeat; margin-right: 5px; vertical-align: text-bottom;}
+.icon_user { background-position: 0px 0px;}
+.icon_gear { background-position: -30px 0px;}
+.icon_loca { background-position: -60px 0px;}
+.icon_add  { background-position: -90px 0px; width: 20px; height: 20px; margin-right: 0px}
+.icon_left { background-position: -120px 0px; width: 16px; height: 20px;margin-top: 12px;}
+.icon_right { background-position: -150px 0px; width: 16px; height: 20px;margin-top: 12px;}
+.icon_left:hover{ border: 1px solid #297597; border-radius:4px;}
+.icon_right:hover{ border: 1px solid #297597; border-radius:4px;}
+.icon_trash{background-position: -180px 0px; width: 20px; height: 20px; cursor: pointer;}
+.icon_down{ background-position: 0px -30px;}
+.icon_cross{ background-position: -30px -30px;}
+.icon_hide{ background-position: -60px -30px;}
+.icon_exit{ background-position: -90px -30px;}
+.icon_add2{ background-position: -120px -30px;}
+.icon_cross2{ background-position: -30px -60px;}
+/**/
+.add{ margin-top: 12px; margin-right: 10px;position:relative; float: right;}
+.nav {position: absolute; bottom: 0px; left: 160px; right: 0px; height: 40px;}
+.navlist1{height: 40px;line-height: 40px;white-space: nowrap;}
+.navlist1>li { display: inline-block; position: relative;}
+.navlist1>li>a { display: block; width: auto; max-width: 260px; line-height: 40px;padding: 0px 15px;white-space:nowrap;overflow: hidden;text-overflow: ellipsis;}
+.navlist1>li:hover>a { background-image: url(../images/header/nav.png); }
+.navlist1>li.over>a { background-image: url(../images/header/nav.png); }
+/**/
+.hsubnav{background: url(../images/header/navbg.png) bottom right; border-radius:0px 0px 8px 8px;box-shadow: 0px 3px 5px rgba(0,0,0,0.2); padding: 10px; position: absolute; top: 80px; z-index: 2}
+.hsubnav table td{ vertical-align: top; padding: 10px; white-space: nowrap;}
+.hsubnav table td.vline{background: url(../images/header/vline.png) right center no-repeat;}
+.hsubnav table tr.hline{background: url(../images/header/hline.png) center bottom no-repeat;}
+.hsubnav .title{ width: 100%; margin-bottom: 1px }
+.hsubnav .title span{display: inline-block; line-height: 16px; padding: 10px;color: #00ffd2;max-width: 120px;}
+.hsubnav .title input{ color:#00ffd2 }
+.listbox{ height: 115px; display: inline-block;vertical-align:top;}
+.listbox a{display: block;line-height: 16px; width: 120px; padding: 6px 10px; white-space: normal;}
+.listbox a:hover{ background:#ff7e00;border-radius:4px;}
+.listbox a.on{ text-decoration: none; background: none; cursor: text}
+/*tip*/
+.tip_wrap.left{background:url(../images/comm/tip-left.png) top left no-repeat;padding-top: 19px; position: absolute; top: 0px; z-index: 2}
+.tip_wrap.right{background:url(../images/comm/tip-right.png) top right no-repeat;padding-top: 19px; position: absolute;right: 0px; top: 0px; z-index: 2}
+.tip_wrap.left.min{background:url(../images/comm/tip-min.png) top left no-repeat;padding-top: 4px; position: absolute; top: 29px; z-index: 2}
+.tip_wrap.right.min{background:url(../images/comm/tip-min.png) top right no-repeat;padding-top: 4px; position: absolute;right: 0px; top: 29px; z-index: 2}
+.tip{ background-color: #2973a2; padding: 15px 0px; box-shadow: 2.5px 4.33px 5px 0px rgba(4, 26, 55, 0.19);-moz-border-radius: 6px;-webkit-border-radius:  6px;border-radius: 6px;}
+.tip>ul li { display: inline;}
+.tip>ul li a { display:block;line-height: 30px;font-size: 12px; color: #fff;padding: 0px 20px; }
+.tip>ul li a.on{ background-color: #3f81ab; color: #02ffa6; }
+.tip>ul li a:hover{ background-color: #3f81ab; color: #02ffa6; }
+
+/*弹出层*/
+.float{background: url(../images/header/navbg.png) no-repeat;border-radius: 8px; position: relative;}
+.float.bg1{ background-position: 50% top}
+.hclose{ display: block; width: 16px; height: 16px; background: url(../images/comm/cross.png) no-repeat; position: absolute; right: 8px ; top: 8px; z-index: 3}
+.float_nav{ width: 178px; height: 543px; background-color: rgba(18,54,101,.5);border-radius: 8px 0px 0px 8px; padding:0 10px; border-right: 1px solid rgba(2,110,123); float: left;}
+.float_nav .title{ font-size: 14px; color: #00ffd2; text-align: center;padding: 20px 10px 15px; width: auto}
+.float_nav ul {border-radius: 4px;background-color: rgb(49, 100, 143);width: 100%;min-height: 472px; padding-top: 10px}
+.float_nav li{ position: relative; padding:0 10px}
+.float_nav li a{ display: block;line-height: 16px;padding: 6px 20px 6px 10px; white-space: normal;}
+.float_nav li:hover{background-image: url(../images/header/nav.png);}
+.float_nav li.on{background-image: url(../images/header/nav.png);}
+.float_nav li.none{ background-image: none}
+.float_nav li.division{ width: 33px; height: 2px; overflow: hidden; background-color: #2b5a83; margin: 20px;}
+.float_nav li .icon_trash{ position: absolute; top: 50%; margin-top: -10px; right: 6px; display: none; z-index: 10000}
+.float_nav li:hover .icon_trash{ display: block;}
+.float_cont{float: right; width: 790px;  padding-top: 50px; height: 490px; padding-left: 19px; position: relative;}
+.editnav {border-width: 2px;border-color: #0f4068;border-style: dashed;border-radius: 8px;width: 186px;padding: 10px;margin:0px 20px 20px 0px; float: left; position: relative;min-height: 140px}
+.editnav>li{ position: relative;}
+.editnav>li.title{ margin-bottom: 1px}
+.editnav>li.title>a{display: inline-block; line-height: 16px; padding: 10px;color: #00ffd2; }
+.editnav>li.title .down{position: absolute; right:-5px; top: 10px;}
+.editnav>li>a{display:block; line-height: 16px; padding: 6px 10px;}
+.editnav>li .icon_cross{ position: absolute; right:-5px;top: 50%; margin-top: -8px; display: none;}
+.editnav>li>a:hover{ color: #ff9f5f}
+.editnav>li:hover .icon_cross{ display: block;}
+.mtips{ font-style: italic; color: rgba(255,255,255,.5); line-height: 16px; padding: 10px 0;}
+.addeditnav{display: block;border-radius: 50%;background-color: rgba(255, 255, 255, 0.2); width: 16px; padding: 25px; margin: 30px auto; }
+.addeditnav:hover{ background-color:#ff9f5f }
+/*弹出层*/
+.float>.title{ font-size: 14px; color: #00ffd2; text-align: center;padding: 20px 10px 15px; width: auto}
+.float_wrapper{ padding: 0px 30px 30px}
+.dashedbox_title{ padding: 20px 10px 10px 10px}
+.dashedbox{border-width: 2px;border-color: #0f4068;border-style: dashed;border-radius: 8px;padding: 10px; }
+ul.innerlist li { position: relative; padding: 5px 30px 5px 10px;line-height: 16px;}
+ul.innerlist li span{ display: inline-block; white-space: normal;}
+ul.innerlist li:hover{background:#ff7e00;border-radius:4px;}
+ul.innerlist li [class^="icon_"]{ display:none; position: absolute;top: 50%; right: 0px; margin-top: -8px}
+ul.innerlist li:hover [class^="icon_"] { display: inline-block;}
+/*弹出层*/
+.float .hsubnav{display: block; background:#3b6897;box-shadow: none; padding: 0px; border-radius:8px; position: relative; float: left; top: 0px;}
+.table1 td{ vertical-align: top; line-height: 33px}
+.tree_wrapper {border-radius: 4px;background-color: rgb(59, 104, 151);width: 365px;height: 222px; padding: 10px; overflow: scroll;}
+/*---------------------------select------------------------*/
+.select-wrapper{position:relative; display: inline-block;}
+.select {border-radius: 3px;background-color: rgb(86, 130, 178);border: 1px solid transparent;width: 150px;height: 33px; color: #aebece; text-indent: 10px;}
+.select {position:relative; display: inline-block; vertical-align: middle; white-space:nowrap;overflow: hidden;text-overflow: ellipsis;}
+.select .text{line-height:33px; padding:0px 3px; border:none; background:none; color:#fff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;display: block;-o-text-overflow: ellipsis;}
+.select input.text{ text-indent: 10px;}
+.select .icon_down{display: block; margin: 8px; float: right;}
+.selecttree{ margin-top:2px;border-radius: 3px;background-color: rgb(86, 130, 178);border: 1px solid transparent;width: 150px;color: #fff; text-indent: 10px;box-shadow: 1px 2px 5px 1px rgba(0, 0, 0, 0.35);}
+.selecttree{position: absolute; z-index: 9999; overflow-x: auto; overflow-y: auto; overflow: auto; display: none }
+.selecttree ul li a { line-height: 33px; padding: 0 5px; display: block; height: 33px; o-text-overflow: ellipsis; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.selecttree ul li a:hover{background: #ff7e00;}
+.selecttree ul li.on a { background: #ff7e00; }
+/*--------------------------- Styled scrollbars--------------------------- */
+.iScrollHorizontalScrollbar {position: absolute;z-index: 9999;height: 8px;left: 5px;right: 5px;bottom: 5px;overflow: hidden;}
+.iScrollHorizontalScrollbar.iScrollBothScrollbars {right: 18px;}
+.iScrollVerticalScrollbar {position: absolute;z-index: 9999;width: 8px;bottom: 5px;top: 5px;right: 5px;overflow: hidden;}
+.iScrollVerticalScrollbar.iScrollBothScrollbars {bottom: 18px;}
+.iScrollIndicator {position: absolute;background: #cc3f6e;border-width: 0px;border-style: solid;border-color: #EB97B4 #7C2845 #7C2845 #EB97B4;border-radius: 8px;}
+.iScrollHorizontalScrollbar .iScrollIndicator {height: 100%;background-color: rgba(0,0,0,.3);}
+.iScrollVerticalScrollbar .iScrollIndicator {width: 100%;background-color: rgba(0,0,0,.3);}
