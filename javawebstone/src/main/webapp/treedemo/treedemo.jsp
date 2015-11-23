@@ -51,5 +51,6 @@
 	</div>
 </body>
 </html>
+<%@ include file="/common/jsp/tail.jsp"%>
 <script type="text/javascript"
 	src='/webstone/treedemo/static/treedemo.js' namespace='TreeDemo'></script>

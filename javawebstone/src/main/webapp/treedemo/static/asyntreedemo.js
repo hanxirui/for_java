@@ -8,7 +8,7 @@ var AsynTreeDemo = {
 	loadTree:function(){
 		
 		   AsynTreeDemo.asynTree = new Tree({
-					id : "asyntreedemo",
+					id : "demotreeid",
 					url : "/webstone/asyntreedemo/getChildNode",
 					param : "nodeId=",
 					isExpand : true,

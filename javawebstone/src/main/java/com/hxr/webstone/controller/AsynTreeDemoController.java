@@ -45,7 +45,7 @@ public class AsynTreeDemoController extends BaseController {
 		t_treeview.setInput(geneTreeData(false, null));
 		t_treeview.setContentProvider(t_provider);
 		t_treeview.setLabelProvider(t_provider);
-		t_DemoTree = t_treeview.draw("treedemo");
+		t_DemoTree = t_treeview.draw("demotreeid");
 
 		t_view.getModelMap().put("asyntreedemo", t_DemoTree);
 		t_view.setViewName("/treedemo/asyntreedemo");
@@ -87,7 +87,7 @@ public class AsynTreeDemoController extends BaseController {
 		t_view.setContentProvider(t_provider);
 		t_view.setLabelProvider(t_provider);
 		String t_resInstSubTree = t_view.drawAsyNode();
-		response.setCharacterEncoding("UFT-8");
+		response.setCharacterEncoding("UTF-8");
 		response.getWriter().print(t_resInstSubTree);
 	}
 
