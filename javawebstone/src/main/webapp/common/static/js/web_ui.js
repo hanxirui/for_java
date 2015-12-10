@@ -1182,16 +1182,16 @@ window.pushCometdObj = {};
 		 * @returns {json} {width:,height}
 		 */
 		getViewport: function() {
-			if (document.compatMode == 'BackCompat') {　　　　
-				return {　　　　　　
+			if (document.compatMode == 'BackCompat') {    
+				return {      
 					width: document.body.clientWidth,
-					height: document.body.clientHeight　　　　　　
-				};　　
-			} else {　　　　
-				return {　　　　　　　
+					height: document.body.clientHeight      
+				};  
+			} else {    
+				return {       
 					width: document.documentElement.clientWidth,
-					height: document.documentElement.clientHeight　　　　
-				};　
+					height: document.documentElement.clientHeight    
+				}; 
 			}
 		},
 		dimensions: function() {
@@ -1225,16 +1225,16 @@ window.pushCometdObj = {};
 		 * 获得网页大小
 		 * @returns {json} {width:,height}
 		 */
-		getPageArea: function() {　　
-			if (document.compatMode == 'BackCompat') {　　　　
-				return {　　　　　　
+		getPageArea: function() {
+			if (document.compatMode == 'BackCompat') {
+				return {
 					width: Math.max(document.body.scrollWidth, document.body.clientWidth),
 					height: Math.max(document.body.scrollHeight, document.body.clientHeight)
 				};
-			} else {　　　　
-				return {　　　　　　
+			} else {
+				return {
 					width: Math.max(document.documentElement.scrollWidth, document.documentElement.clientWidth),
-					height: Math.max(document.documentElement.scrollHeight, document.documentElement.clientHeight)　　　　
+					height: Math.max(document.documentElement.scrollHeight, document.documentElement.clientHeight)
 				};
 			}
 		},
@@ -1357,34 +1357,34 @@ window.pushCometdObj = {};
 		getElementRelativePosition: function(element) {
 			if ($.isString(element)) {
 				element = document.getElementById(element);
-			}　　
-			var actualLeft = element.offsetLeft;　　　　
+			}  
+			var actualLeft = element.offsetLeft;    
 			var current = element.offsetParent;
 			var elementScrollLeft = 0;
 			var elementScrollTop = 0;
-			　　　　
-			while (current !== null) {　　　　　　
-				actualLeft += current.offsetLeft;　　　　　　
-				current = current.offsetParent;　　　　
-			}　　　　
-			if (document.compatMode == 'BackCompat') {　　　　　　
-				elementScrollLeft = document.body.scrollLeft;　　　　
-			} else {　　　　　　
-				elementScrollLeft = document.documentElement.scrollLeft;　　　　
-			}　　　　
-			var actualTop = element.offsetTop;　　　　
-			current = element.offsetParent;　　　　
-			while (current !== null) {　　　　　　
-				actualTop += current.offsetTop;　　　　　　
-				current = current.offsetParent;　　　　
-			}　　　　
-			if (document.compatMode == 'BackCompat') {　　　　　　
-				elementScrollTop = document.body.scrollTop;　　　　
-			} else {　　　　　　
-				elementScrollTop = document.documentElement.scrollTop;　　　　
+			    
+			while (current !== null) {      
+				actualLeft += current.offsetLeft;      
+				current = current.offsetParent;    
+			}    
+			if (document.compatMode == 'BackCompat') {      
+				elementScrollLeft = document.body.scrollLeft;    
+			} else {      
+				elementScrollLeft = document.documentElement.scrollLeft;    
+			}    
+			var actualTop = element.offsetTop;    
+			current = element.offsetParent;    
+			while (current !== null) {      
+				actualTop += current.offsetTop;      
+				current = current.offsetParent;    
+			}    
+			if (document.compatMode == 'BackCompat') {      
+				elementScrollTop = document.body.scrollTop;    
+			} else {      
+				elementScrollTop = document.documentElement.scrollTop;    
 			}
 
-			　　　　
+			    
 			return {
 				x: actualLeft - elementScrollLeft,
 				y: actualTop - elementScrollTop
@@ -6363,7 +6363,7 @@ var Debug = function(){
 				if(usedWidth > 100){
 					conf.usedWidth = "100%";
 				}else{
-					conf.usedWidth = usedWidth +　"%";
+					conf.usedWidth = usedWidth + "%";
 				}
 				
 
@@ -9143,7 +9143,7 @@ var Menu = {
 		Layer.close(event.data.id);
 		$("*").unbind("scroll", Menu.bindScroll);
 	},
-	bindScroll :　function(event){
+	bindScroll : function(event){
 
 		if(document.getElementById(event.data.id)){
 			Layer.close(event.data.id);	
