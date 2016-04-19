@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinal.emp.dao.CustomerDao">
+    <resultMap id="queryResultMap" type="com.chinal.emp.entity.Customer">
+                <result column="id" property="id" jdbcType="INTEGER" />
+                <result column="name" property="name" jdbcType="VARCHAR" />
+                <result column="phone" property="phone" jdbcType="VARCHAR" />
+                <result column="address" property="address" jdbcType="VARCHAR" />
+                <result column="type" property="type" jdbcType="INTEGER" />
+                <result column="fuzeren" property="fuzeren" jdbcType="INTEGER" />
+                <result column="tuijianren" property="tuijianren" jdbcType="INTEGER" />
+                <result column="fuzerenName" property="fuzerenName" jdbcType="VARCHAR" />
+            </resultMap>
+
+    <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT 
+                         t.id
+                , t.name
+                , t.phone
+                , t.address
+                , t.type
+                , t.fuzeren
+                , t.tuijianren
+                , t2.name as fuzerenName
+        		FROM customer t
+		<include refid="expressionBlock.where" />
+		<choose>
+			<when test="sortname == null">
+				ORDER BY t.id desc
+			</when>
+			<otherwise>
+				ORDER BY ${order}
+			</otherwise>
+		</choose>
+		<if test="!isQueryAll">
+			LIMIT
+			#{start,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+		</if>
+	</select>
+
+
+    <select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM customer t
+		<include refid="expressionBlock.where" />
+    </select>
+
+    <insert id="save" parameterType="com.chinal.emp.entity.Customer"
+    keyProperty="id" keyColumn="id" useGeneratedKeys="true"
+    >
+	INSERT INTO customer
+         (
+                                                  `name`
+                                        , `phone`
+                                        , `address`
+                                        , `type`
+                                        , `fuzeren`
+                                        , `tuijianren`
+                              )
+	VALUES (
+                                                  #{name,jdbcType=VARCHAR}
+                                        , #{phone,jdbcType=VARCHAR}
+                                        , #{address,jdbcType=VARCHAR}
+                                        , #{type,jdbcType=INTEGER}
+                                        , #{fuzeren,jdbcType=INTEGER}
+                                        , #{tuijianren,jdbcType=INTEGER}
+                     
+        )
+	</insert>
+
+
+    <update id="update" parameterType="com.chinal.emp.entity.Customer">
+    UPDATE customer
+    SET 
+                                                 name=#{name,jdbcType=VARCHAR}
+                                     , phone=#{phone,jdbcType=VARCHAR}
+                                     , address=#{address,jdbcType=VARCHAR}
+                                     , type=#{type,jdbcType=INTEGER}
+                                     , fuzeren=#{fuzeren,jdbcType=INTEGER}
+                                     , tuijianren=#{tuijianren,jdbcType=INTEGER}
+                     WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="get" resultMap="queryResultMap" parameterType="com.chinal.emp.entity.Customer">
+		SELECT 
+                         id
+                , name
+                , phone
+                , address
+                , type
+                , fuzeren
+                , tuijianren
+        		FROM customer t
+		WHERE id = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<delete id="del" parameterType="com.chinal.emp.entity.Customer">
+		DELETE FROM customer
+		WHERE id = #{id,jdbcType=INTEGER}
+	</delete>
+
+</mapper>

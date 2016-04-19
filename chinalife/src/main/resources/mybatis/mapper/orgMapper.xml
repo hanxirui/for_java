@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinal.emp.dao.OrgDao">
+    <resultMap id="queryResultMap" type="com.chinal.emp.entity.Org">
+                <result column="id" property="id" jdbcType="INTEGER" />
+                <result column="name" property="name" jdbcType="VARCHAR" />
+                <result column="type" property="type" jdbcType="VARCHAR" />
+            </resultMap>
+
+    <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT 
+                         id
+                , name
+                , type
+        		FROM org t
+		<include refid="expressionBlock.where" />
+		<choose>
+			<when test="sortname == null">
+				ORDER BY t.id desc
+			</when>
+			<otherwise>
+				ORDER BY ${order}
+			</otherwise>
+		</choose>
+		<if test="!isQueryAll">
+			LIMIT
+			#{start,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+		</if>
+	</select>
+
+
+    <select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM org t
+		<include refid="expressionBlock.where" />
+    </select>
+
+    <insert id="save" parameterType="com.chinal.emp.entity.Org"
+    keyProperty="id" keyColumn="id" useGeneratedKeys="true"
+    >
+	INSERT INTO org
+         (
+                                                  `name`
+                                        , `type`
+                              )
+	VALUES (
+                                                  #{name,jdbcType=VARCHAR}
+                                        , #{type,jdbcType=VARCHAR}
+                     
+        )
+	</insert>
+
+
+    <update id="update" parameterType="com.chinal.emp.entity.Org">
+    UPDATE org
+    SET 
+                                                 name=#{name,jdbcType=VARCHAR}
+                                     , type=#{type,jdbcType=VARCHAR}
+                     WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="get" resultMap="queryResultMap" parameterType="com.chinal.emp.entity.Org">
+		SELECT 
+                         id
+                , name
+                , type
+        		FROM org t
+		WHERE id = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<delete id="del" parameterType="com.chinal.emp.entity.Org">
+		DELETE FROM org
+		WHERE id = #{id,jdbcType=INTEGER}
+	</delete>
+
+</mapper>

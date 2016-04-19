@@ -1,0 +1,7 @@
+.datagrid-cell a {
+	color: #428bca;
+	text-decoration: none;
+	cursor: pointer;
+	padding: 0 5px;
+}
+.search-panel{margin-bottom: 10px;}

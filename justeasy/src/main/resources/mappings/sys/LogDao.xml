@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.riil.lightning.sys.dao.LogDao">
+    
+	<insert id="insert">
+		INSERT INTO sys_log(
+			id, 
+			type, 
+			title,
+			create_by, 
+			create_date, 
+			remote_addr, 
+			user_agent, 
+			request_uri, 
+			method, 
+			params, 
+			exception
+		) VALUES (
+			#{id}, 
+			#{type}, 
+			#{title}, 
+			#{createBy}, 
+			#{createDate}, 
+			#{remoteAddr}, 
+			#{userAgent}, 
+			#{requestUri}, 
+			#{method}, 
+			#{params}, 
+			#{exception}
+		)
+	</insert>
+	
+</mapper>
