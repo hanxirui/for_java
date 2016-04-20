@@ -35,8 +35,8 @@ public class CustomerController extends BsgridController<Customer, CustomerServi
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/customer.do", method = RequestMethod.GET)
-	public String getCommonPage() {
+	@RequestMapping(value = "/openCustomer.do", method = RequestMethod.GET)
+	public String openCustomer() {
 		logger.debug("Received request to show common page");
 
 		SecurityContextImpl securityContextImpl = (SecurityContextImpl) request.getSession()
@@ -63,6 +63,7 @@ public class CustomerController extends BsgridController<Customer, CustomerServi
 
 	@RequestMapping("/addCustomer.do")
 	public ModelAndView addCustomer(Customer entity) {
+
 		return this.add(entity);
 	}
 

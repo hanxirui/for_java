@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="app.dao.OrderInfoDao">
+	<resultMap id="queryResultMap" type="app.entity.OrderInfo">
+		<result column="order_id" property="orderId" jdbcType="INTEGER" />
+		<result column="city_name" property="cityName" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT
+		order_id
+		, city_name
+		, mobile
+		, address
+		, create_date
+		FROM order_info t
+		<include refid="expressionBlock.where" />
+		<choose>
+			<when test="sortname == null">
+				ORDER BY t.order_id desc
+			</when>
+			<otherwise>
+				ORDER BY ${order}
+			</otherwise>
+		</choose>
+		<if test="!isQueryAll">
+			LIMIT
+			#{start,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+		</if>
+	</select>
+
+
+	<select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM order_info t
+		<include refid="expressionBlock.where" />
+	</select>
+
+	<insert id="save" parameterType="app.entity.OrderInfo"
+		keyProperty="orderId" keyColumn="order_id" useGeneratedKeys="true">
+		INSERT INTO order_info
+		(
+		`city_name`
+		, `mobile`
+		, `address`
+		, `create_date`
+		)
+		VALUES (
+		#{cityName,jdbcType=VARCHAR}
+		, #{mobile,jdbcType=VARCHAR}
+		, #{address,jdbcType=VARCHAR}
+		, #{createDate,jdbcType=TIMESTAMP}
+
+		)
+	</insert>
+
+
+	<update id="update" parameterType="app.entity.OrderInfo">
+		UPDATE order_info
+		SET
+		city_name=#{cityName,jdbcType=VARCHAR}
+		, mobile=#{mobile,jdbcType=VARCHAR}
+		, address=#{address,jdbcType=VARCHAR}
+		, create_date=#{createDate,jdbcType=TIMESTAMP}
+		WHERE order_id = #{orderId,jdbcType=INTEGER}
+	</update>
+
+	<select id="get" resultMap="queryResultMap" parameterType="app.entity.OrderInfo">
+		SELECT
+		order_id
+		, city_name
+		, mobile
+		, address
+		, create_date
+		FROM order_info t
+		WHERE order_id = #{orderId,jdbcType=INTEGER}
+	</select>
+
+	<delete id="del" parameterType="app.entity.OrderInfo">
+		DELETE FROM order_info
+		WHERE
+		order_id = #{orderId,jdbcType=INTEGER}
+	</delete>
+
+</mapper>

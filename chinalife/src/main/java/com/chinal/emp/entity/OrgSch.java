@@ -9,7 +9,7 @@ public class OrgSch extends BsgridSearch {
 
     private Integer id;
     private String name;
-    private String type;
+    private String code;
 
     public void setId (Integer id){
         this.id = id;
@@ -29,13 +29,13 @@ public class OrgSch extends BsgridSearch {
         return this.name;
     }
 
-    public void setType (String type){
-        this.type = type;
+    public void setCode (String code){
+        this.code = code;
     }
     
-    @ValueField(column = "type")
-    public String getType(){
-        return this.type;
+    @ValueField(column = "code")
+    public String getCode(){
+        return this.code;
     }
 
 

@@ -6,6 +6,14 @@
                 <result column="name" property="name" jdbcType="VARCHAR" />
                 <result column="role" property="role" jdbcType="INTEGER" />
                 <result column="password" property="password" jdbcType="VARCHAR" />
+                <result column="account" property="account" jdbcType="VARCHAR" />
+                <result column="code" property="code" jdbcType="VARCHAR" />
+                <result column="pid" property="pid" jdbcType="VARCHAR" />
+                <result column="orgname" property="orgname" jdbcType="VARCHAR" />
+                <result column="orgcode" property="orgcode" jdbcType="VARCHAR" />
+                <result column="sex" property="sex" jdbcType="VARCHAR" />
+                <result column="phone" property="phone" jdbcType="VARCHAR" />
+                <result column="jointime" property="jointime" jdbcType="TIMESTAMP" />
             </resultMap>
 
     <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
@@ -15,6 +23,14 @@
                 , name
                 , role
                 , password
+                , account
+                , code
+                , pid
+                , orgname
+                , orgcode
+                , sex
+                , phone
+                , jointime
         		FROM employee t
 		<include refid="expressionBlock.where" />
 		<choose>
@@ -46,11 +62,27 @@
                                                   `name`
                                         , `role`
                                         , `password`
+                                        , `account`
+                                        , `code`
+                                        , `pid`
+                                        , `orgname`
+                                        , `orgcode`
+                                        , `sex`
+                                        , `phone`
+                                        , `jointime`
                               )
 	VALUES (
                                                   #{name,jdbcType=VARCHAR}
                                         , #{role,jdbcType=INTEGER}
                                         , #{password,jdbcType=VARCHAR}
+                                        , #{account,jdbcType=VARCHAR}
+                                        , #{code,jdbcType=VARCHAR}
+                                        , #{pid,jdbcType=VARCHAR}
+                                        , #{orgname,jdbcType=VARCHAR}
+                                        , #{orgcode,jdbcType=VARCHAR}
+                                        , #{sex,jdbcType=VARCHAR}
+                                        , #{phone,jdbcType=VARCHAR}
+                                        , #{jointime,jdbcType=TIMESTAMP}
                      
         )
 	</insert>
@@ -62,6 +94,14 @@
                                                  name=#{name,jdbcType=VARCHAR}
                                      , role=#{role,jdbcType=INTEGER}
                                      , password=#{password,jdbcType=VARCHAR}
+                                     , account=#{account,jdbcType=VARCHAR}
+                                     , code=#{code,jdbcType=VARCHAR}
+                                     , pid=#{pid,jdbcType=VARCHAR}
+                                     , orgname=#{orgname,jdbcType=VARCHAR}
+                                     , orgcode=#{orgcode,jdbcType=VARCHAR}
+                                     , sex=#{sex,jdbcType=VARCHAR}
+                                     , phone=#{phone,jdbcType=VARCHAR}
+                                     , jointime=#{jointime,jdbcType=TIMESTAMP}
                      WHERE id = #{id,jdbcType=INTEGER}
     </update>
 
@@ -71,6 +111,14 @@
                 , name
                 , role
                 , password
+                , account
+                , code
+                , pid
+                , orgname
+                , orgcode
+                , sex
+                , phone
+                , jointime
         		FROM employee t
 		WHERE id = #{id,jdbcType=INTEGER}
 	</select>

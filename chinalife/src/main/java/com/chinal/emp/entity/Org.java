@@ -10,8 +10,8 @@ public class Org {
 	private int id;
 	// 名称
 	private String name;
-	// 类型
-	private String type;
+	// 机构号
+	private String code;
 
 	public void setId(int id){
 		this.id = id;
@@ -29,12 +29,12 @@ public class Org {
 		return this.name;
 	}
 
-	public void setType(String type){
-		this.type = type;
+	public void setCode(String code){
+		this.code = code;
 	}
 
-	public String getType(){
-		return this.type;
+	public String getCode(){
+		return this.code;
 	}
 
 }

@@ -4,7 +4,7 @@
     <resultMap id="queryResultMap" type="com.chinal.emp.entity.Org">
                 <result column="id" property="id" jdbcType="INTEGER" />
                 <result column="name" property="name" jdbcType="VARCHAR" />
-                <result column="type" property="type" jdbcType="VARCHAR" />
+                <result column="code" property="code" jdbcType="VARCHAR" />
             </resultMap>
 
     <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
@@ -12,7 +12,7 @@
 		SELECT 
                          id
                 , name
-                , type
+                , code
         		FROM org t
 		<include refid="expressionBlock.where" />
 		<choose>
@@ -42,11 +42,11 @@
 	INSERT INTO org
          (
                                                   `name`
-                                        , `type`
+                                        , `code`
                               )
 	VALUES (
                                                   #{name,jdbcType=VARCHAR}
-                                        , #{type,jdbcType=VARCHAR}
+                                        , #{code,jdbcType=VARCHAR}
                      
         )
 	</insert>
@@ -56,7 +56,7 @@
     UPDATE org
     SET 
                                                  name=#{name,jdbcType=VARCHAR}
-                                     , type=#{type,jdbcType=VARCHAR}
+                                     , code=#{code,jdbcType=VARCHAR}
                      WHERE id = #{id,jdbcType=INTEGER}
     </update>
 
@@ -64,7 +64,7 @@
 		SELECT 
                          id
                 , name
-                , type
+                , code
         		FROM org t
 		WHERE id = #{id,jdbcType=INTEGER}
 	</select>

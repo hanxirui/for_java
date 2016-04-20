@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="app.dao.StudentDao">
+
+	<resultMap id="queryResultMap" type="app.entity.Student">
+		<result column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="politicsStatus" property="politicsStatus"
+			jdbcType="INTEGER" />
+		<result column="nationality" property="nationality" jdbcType="VARCHAR" />
+		<result column="stuNo" property="stuNo" jdbcType="VARCHAR" />
+		<result column="gender" property="gender" jdbcType="TINYINT" />
+		<result column="department" property="department" jdbcType="INTEGER" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="registDate" property="registDate" jdbcType="TIMESTAMP" />
+		<result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+
+	<select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT
+		t.ID AS id
+		,t.NAME AS name
+		,t.POLITICS_STATUS AS politicsStatus
+		,t.NATIONALITY AS nationality
+		,t.STU_NO AS stuNo
+		,t.GENDER AS gender
+		,t.DEPARTMENT AS department
+		,t.ADDRESS AS address
+		,t.MOBILE AS mobile
+		,t.REGIST_DATE AS registDate
+		,t.BIRTHDAY AS birthday
+
+		FROM student t
+		<include refid="expressionBlock.where" />
+		<if test="paramMap.mobile != null">
+			AND t.mobile = #{paramMap.mobile,jdbcType=VARCHAR}
+		</if>
+		<choose>
+			<when test="sortname == null">
+				ORDER BY ID desc
+			</when>
+			<otherwise>
+				ORDER BY ${order}
+			</otherwise>
+		</choose>
+		<if test="!isQueryAll">
+			LIMIT
+			#{firstResult,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+		</if>
+	</select>
+
+	<select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM student t
+		<include refid="expressionBlock.where" />
+	</select>
+	
+	<insert id="save" parameterType="app.entity.Student" keyProperty="id" keyColumn="id" useGeneratedKeys="true">
+		INSERT INTO student
+		(NAME,POLITICS_STATUS,NATIONALITY,STU_NO,GENDER,DEPARTMENT,ADDRESS,MOBILE,REGIST_DATE,BIRTHDAY)
+		VALUES(
+		#{name,jdbcType=VARCHAR}
+		,#{politicsStatus,jdbcType=INTEGER}
+		,#{nationality,jdbcType=VARCHAR}
+		,#{stuNo,jdbcType=VARCHAR}
+		,#{gender,jdbcType=TINYINT}
+		,#{department,jdbcType=INTEGER}
+		,#{address,jdbcType=VARCHAR}
+		,#{mobile,jdbcType=VARCHAR}
+		,#{registDate,jdbcType=TIMESTAMP}
+		,#{birthday,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	
+	<update id="update" parameterType="app.entity.Student">
+		UPDATE student SET
+		NAME = #{name,jdbcType=VARCHAR}
+		,POLITICS_STATUS = #{politicsStatus,jdbcType=INTEGER}
+		,NATIONALITY = #{nationality,jdbcType=VARCHAR}
+		,STU_NO = #{stuNo,jdbcType=VARCHAR}
+		,GENDER = #{gender,jdbcType=TINYINT}
+		,DEPARTMENT = #{department,jdbcType=INTEGER}
+		,ADDRESS = #{address,jdbcType=VARCHAR}
+		,MOBILE = #{mobile,jdbcType=VARCHAR}
+		,REGIST_DATE = #{registDate,jdbcType=TIMESTAMP}
+		,BIRTHDAY = #{birthday,jdbcType=TIMESTAMP}
+
+		WHERE ID = #{id,jdbcType=INTEGER}
+	</update>
+	
+	
+	<select id="get" resultMap="queryResultMap" parameterType="java.io.Serializable">
+		SELECT t.ID AS id
+		,t.NAME AS name
+		,t.POLITICS_STATUS AS politicsStatus
+		,t.NATIONALITY AS nationality
+		,t.STU_NO AS stuNo
+		,t.GENDER AS gender
+		,t.DEPARTMENT AS department
+		,t.ADDRESS AS address
+		,t.MOBILE AS mobile
+		,t.REGIST_DATE AS registDate
+		,t.BIRTHDAY AS birthday
+
+		FROM student t
+		WHERE ID = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<delete id="del" parameterType="app.entity.Student">
+		DELETE FROM student
+		WHERE ID = #{id,jdbcType=INTEGER}
+	</delete>
+	
+</mapper>

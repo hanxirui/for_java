@@ -12,6 +12,11 @@ import com.chinal.emp.service.OrgService;
 @Controller
 public class OrgController extends BsgridController<Org, OrgService> {
 
+	@RequestMapping("/openOrg.do")
+	public String openEmployee() {
+		return "org";
+	}
+
 	@RequestMapping("/addOrg.do")
 	public ModelAndView addOrg(Org entity) {
 		return this.add(entity);

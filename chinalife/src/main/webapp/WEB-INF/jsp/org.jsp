@@ -118,7 +118,7 @@
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
 										 										                       名称:<input name="name" type="text" class="form-control">      
-					 										                       类型:<input name="type" type="text" class="form-control">      
+					 										                       机构号:<input name="code" type="text" class="form-control">      
 					 					                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
 				</form>
@@ -138,7 +138,7 @@
 					<table id="searchTable">
 						<tr>           
 																							<th w_index="name">名称</th>
-																			<th w_index="type">类型</th>
+																			<th w_index="code">机构号</th>
 													<th w_render="operate" width="10%;">操作</th>
 						</tr>
 					</table>
@@ -154,9 +154,9 @@
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">类型</label>
+	                      <label class="col-sm-3 control-label">机构号</label>
 	                      <div class="col-sm-7">
-	                        <input name="type" type="text" class="form-control" required="true">
+	                        <input name="code" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										</form>
