@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinal.emp.dao.ServiceRecordDao">
+    <resultMap id="queryResultMap" type="com.chinal.emp.entity.ServiceRecord">
+                <result column="id" property="id" jdbcType="INTEGER" />
+                <result column="idcardnum" property="idcardnum" jdbcType="VARCHAR" />
+                <result column="servicetime" property="servicetime" jdbcType="VARCHAR" />
+                <result column="content" property="content" jdbcType="VARCHAR" />
+                <result column="account" property="account" jdbcType="VARCHAR" />
+            </resultMap>
+
+    <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT 
+                         id
+                , idcardnum
+                , servicetime
+                , content
+                , account
+        		FROM service_record t
+		<include refid="expressionBlock.where" />
+		<choose>
+			<when test="sortname == null">
+				ORDER BY t.id desc
+			</when>
+			<otherwise>
+				ORDER BY ${order}
+			</otherwise>
+		</choose>
+		<if test="!isQueryAll">
+			LIMIT
+			#{start,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+		</if>
+	</select>
+
+
+    <select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM service_record t
+		<include refid="expressionBlock.where" />
+    </select>
+
+    <insert id="save" parameterType="com.chinal.emp.entity.ServiceRecord"
+    keyProperty="id" keyColumn="id" useGeneratedKeys="true"
+    >
+	INSERT INTO service_record
+         (
+                                                  `idcardnum`
+                                        , `servicetime`
+                                        , `content`
+                                        , `account`
+                              )
+	VALUES (
+                                                  #{idcardnum,jdbcType=VARCHAR}
+                                        , #{servicetime,jdbcType=VARCHAR}
+                                        , #{content,jdbcType=VARCHAR}
+                                        , #{account,jdbcType=VARCHAR}
+                     
+        )
+	</insert>
+
+
+    <update id="update" parameterType="com.chinal.emp.entity.ServiceRecord">
+    UPDATE service_record
+    SET 
+                                                             <if test="idcardnum!=null and idcardnum!=''">
+        idcardnum=#{idcardnum,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="servicetime!=null and servicetime!=''">
+        servicetime=#{servicetime,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="content!=null and content!=''">
+        content=#{content,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="account!=null and account!=''">
+        account=#{account,jdbcType=VARCHAR}
+        </if>
+                      WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="get" resultMap="queryResultMap" parameterType="com.chinal.emp.entity.ServiceRecord">
+		SELECT 
+                         id
+                , idcardnum
+                , servicetime
+                , content
+                , account
+        		FROM service_record t
+		WHERE id = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<delete id="del" parameterType="com.chinal.emp.entity.ServiceRecord">
+		DELETE FROM service_record
+		WHERE id = #{id,jdbcType=INTEGER}
+	</delete>
+
+</mapper>

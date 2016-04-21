@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinal.emp.dao.InsuranceRecordDao">
+    <resultMap id="queryResultMap" type="com.chinal.emp.entity.InsuranceRecord">
+                <result column="id" property="id" jdbcType="INTEGER" />
+                <result column="org_code" property="orgCode" jdbcType="VARCHAR" />
+                <result column="insurance_num" property="insuranceNum" jdbcType="VARCHAR" />
+                <result column="tou_insurance_num" property="touInsuranceNum" jdbcType="VARCHAR" />
+                <result column="type_code" property="typeCode" jdbcType="VARCHAR" />
+                <result column="qudao" property="qudao" jdbcType="VARCHAR" />
+                <result column="insurance_fei" property="insuranceFei" jdbcType="VARCHAR" />
+                <result column="total_insurance_fei" property="totalInsuranceFei" jdbcType="VARCHAR" />
+                <result column="manqi_date" property="manqiDate" jdbcType="VARCHAR" />
+                <result column="fei_type" property="feiType" jdbcType="VARCHAR" />
+                <result column="fei_qijian" property="feiQijian" jdbcType="VARCHAR" />
+                <result column="insurance_qijian" property="insuranceQijian" jdbcType="VARCHAR" />
+                <result column="state" property="state" jdbcType="VARCHAR" />
+                <result column="customer_idcardnum" property="customerIdcardnum" jdbcType="VARCHAR" />
+                <result column="customer_addr" property="customerAddr" jdbcType="VARCHAR" />
+                <result column="customer_phone" property="customerPhone" jdbcType="VARCHAR" />
+                <result column="customer_mobile" property="customerMobile" jdbcType="VARCHAR" />
+                <result column="account" property="account" jdbcType="VARCHAR" />
+                <result column="account_code" property="accountCode" jdbcType="VARCHAR" />
+                <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+                <result column="bank_card_num" property="bankCardNum" jdbcType="VARCHAR" />
+                <result column="beibaoxianren" property="beibaoxianren" jdbcType="VARCHAR" />
+                <result column="shouyiren" property="shouyiren" jdbcType="VARCHAR" />
+            </resultMap>
+
+    <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT 
+                         id
+                , org_code
+                , insurance_num
+                , tou_insurance_num
+                , type_code
+                , qudao
+                , insurance_fei
+                , total_insurance_fei
+                , manqi_date
+                , fei_type
+                , fei_qijian
+                , insurance_qijian
+                , state
+                , customer_idcardnum
+                , customer_addr
+                , customer_phone
+                , customer_mobile
+                , account
+                , account_code
+                , bank_name
+                , bank_card_num
+                , beibaoxianren
+                , shouyiren
+        		FROM insurance_record t
+		<include refid="expressionBlock.where" />
+		<choose>
+			<when test="sortname == null">
+				ORDER BY t.id desc
+			</when>
+			<otherwise>
+				ORDER BY ${order}
+			</otherwise>
+		</choose>
+		<if test="!isQueryAll">
+			LIMIT
+			#{start,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+		</if>
+	</select>
+
+
+    <select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM insurance_record t
+		<include refid="expressionBlock.where" />
+    </select>
+
+    <insert id="save" parameterType="com.chinal.emp.entity.InsuranceRecord"
+    keyProperty="id" keyColumn="id" useGeneratedKeys="true"
+    >
+	INSERT INTO insurance_record
+         (
+                                                  `org_code`
+                                        , `insurance_num`
+                                        , `tou_insurance_num`
+                                        , `type_code`
+                                        , `qudao`
+                                        , `insurance_fei`
+                                        , `total_insurance_fei`
+                                        , `manqi_date`
+                                        , `fei_type`
+                                        , `fei_qijian`
+                                        , `insurance_qijian`
+                                        , `state`
+                                        , `customer_idcardnum`
+                                        , `customer_addr`
+                                        , `customer_phone`
+                                        , `customer_mobile`
+                                        , `account`
+                                        , `account_code`
+                                        , `bank_name`
+                                        , `bank_card_num`
+                                        , `beibaoxianren`
+                                        , `shouyiren`
+                              )
+	VALUES (
+                                                  #{orgCode,jdbcType=VARCHAR}
+                                        , #{insuranceNum,jdbcType=VARCHAR}
+                                        , #{touInsuranceNum,jdbcType=VARCHAR}
+                                        , #{typeCode,jdbcType=VARCHAR}
+                                        , #{qudao,jdbcType=VARCHAR}
+                                        , #{insuranceFei,jdbcType=VARCHAR}
+                                        , #{totalInsuranceFei,jdbcType=VARCHAR}
+                                        , #{manqiDate,jdbcType=VARCHAR}
+                                        , #{feiType,jdbcType=VARCHAR}
+                                        , #{feiQijian,jdbcType=VARCHAR}
+                                        , #{insuranceQijian,jdbcType=VARCHAR}
+                                        , #{state,jdbcType=VARCHAR}
+                                        , #{customerIdcardnum,jdbcType=VARCHAR}
+                                        , #{customerAddr,jdbcType=VARCHAR}
+                                        , #{customerPhone,jdbcType=VARCHAR}
+                                        , #{customerMobile,jdbcType=VARCHAR}
+                                        , #{account,jdbcType=VARCHAR}
+                                        , #{accountCode,jdbcType=VARCHAR}
+                                        , #{bankName,jdbcType=VARCHAR}
+                                        , #{bankCardNum,jdbcType=VARCHAR}
+                                        , #{beibaoxianren,jdbcType=VARCHAR}
+                                        , #{shouyiren,jdbcType=VARCHAR}
+                     
+        )
+	</insert>
+
+
+    <update id="update" parameterType="com.chinal.emp.entity.InsuranceRecord">
+    UPDATE insurance_record
+    SET 
+                                                             <if test="org_code!=null and org_code!=''">
+        org_code=#{orgCode,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="insurance_num!=null and insurance_num!=''">
+        insurance_num=#{insuranceNum,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="tou_insurance_num!=null and tou_insurance_num!=''">
+        tou_insurance_num=#{touInsuranceNum,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="type_code!=null and type_code!=''">
+        type_code=#{typeCode,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="qudao!=null and qudao!=''">
+        qudao=#{qudao,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="insurance_fei!=null and insurance_fei!=''">
+        insurance_fei=#{insuranceFei,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="total_insurance_fei!=null and total_insurance_fei!=''">
+        total_insurance_fei=#{totalInsuranceFei,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="manqi_date!=null and manqi_date!=''">
+        manqi_date=#{manqiDate,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="fei_type!=null and fei_type!=''">
+        fei_type=#{feiType,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="fei_qijian!=null and fei_qijian!=''">
+        fei_qijian=#{feiQijian,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="insurance_qijian!=null and insurance_qijian!=''">
+        insurance_qijian=#{insuranceQijian,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="state!=null and state!=''">
+        state=#{state,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="customer_idcardnum!=null and customer_idcardnum!=''">
+        customer_idcardnum=#{customerIdcardnum,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="customer_addr!=null and customer_addr!=''">
+        customer_addr=#{customerAddr,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="customer_phone!=null and customer_phone!=''">
+        customer_phone=#{customerPhone,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="customer_mobile!=null and customer_mobile!=''">
+        customer_mobile=#{customerMobile,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="account!=null and account!=''">
+        account=#{account,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="account_code!=null and account_code!=''">
+        account_code=#{accountCode,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="bank_name!=null and bank_name!=''">
+        bank_name=#{bankName,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="bank_card_num!=null and bank_card_num!=''">
+        bank_card_num=#{bankCardNum,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="beibaoxianren!=null and beibaoxianren!=''">
+        beibaoxianren=#{beibaoxianren,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="shouyiren!=null and shouyiren!=''">
+        shouyiren=#{shouyiren,jdbcType=VARCHAR}
+        </if>
+                      WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="get" resultMap="queryResultMap" parameterType="com.chinal.emp.entity.InsuranceRecord">
+		SELECT 
+                         id
+                , org_code
+                , insurance_num
+                , tou_insurance_num
+                , type_code
+                , qudao
+                , insurance_fei
+                , total_insurance_fei
+                , manqi_date
+                , fei_type
+                , fei_qijian
+                , insurance_qijian
+                , state
+                , customer_idcardnum
+                , customer_addr
+                , customer_phone
+                , customer_mobile
+                , account
+                , account_code
+                , bank_name
+                , bank_card_num
+                , beibaoxianren
+                , shouyiren
+        		FROM insurance_record t
+		WHERE id = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<delete id="del" parameterType="com.chinal.emp.entity.InsuranceRecord">
+		DELETE FROM insurance_record
+		WHERE id = #{id,jdbcType=INTEGER}
+	</delete>
+
+</mapper>

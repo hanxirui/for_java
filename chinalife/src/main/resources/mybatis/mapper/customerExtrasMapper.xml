@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinal.emp.dao.CustomerExtrasDao">
+    <resultMap id="queryResultMap" type="com.chinal.emp.entity.CustomerExtras">
+                <result column="id" property="id" jdbcType="INTEGER" />
+                <result column="idcardnum" property="idcardnum" jdbcType="VARCHAR" />
+                <result column="phone" property="phone" jdbcType="VARCHAR" />
+                <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+                <result column="birthday" property="birthday" jdbcType="VARCHAR" />
+                <result column="car_band" property="carBand" jdbcType="VARCHAR" />
+                <result column="car_num" property="carNum" jdbcType="VARCHAR" />
+                <result column="wedding_day" property="weddingDay" jdbcType="VARCHAR" />
+                <result column="note" property="note" jdbcType="VARCHAR" />
+                <result column="account" property="account" jdbcType="VARCHAR" />
+                <result column="insert_date" property="insertDate" jdbcType="VARCHAR" />
+            </resultMap>
+
+    <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT 
+                         id
+                , idcardnum
+                , phone
+                , mobile
+                , birthday
+                , car_band
+                , car_num
+                , wedding_day
+                , note
+                , account
+                , insert_date
+        		FROM customer_extras t
+		<include refid="expressionBlock.where" />
+		<choose>
+			<when test="sortname == null">
+				ORDER BY t.id desc
+			</when>
+			<otherwise>
+				ORDER BY ${order}
+			</otherwise>
+		</choose>
+		<if test="!isQueryAll">
+			LIMIT
+			#{start,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+		</if>
+	</select>
+
+
+    <select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM customer_extras t
+		<include refid="expressionBlock.where" />
+    </select>
+
+    <insert id="save" parameterType="com.chinal.emp.entity.CustomerExtras"
+    >
+	INSERT INTO customer_extras
+         (
+                              `id`
+                                        , `idcardnum`
+                                        , `phone`
+                                        , `mobile`
+                                        , `birthday`
+                                        , `car_band`
+                                        , `car_num`
+                                        , `wedding_day`
+                                        , `note`
+                                        , `account`
+                                        , `insert_date`
+                              )
+	VALUES (
+                              #{id,jdbcType=INTEGER}
+                                        , #{idcardnum,jdbcType=VARCHAR}
+                                        , #{phone,jdbcType=VARCHAR}
+                                        , #{mobile,jdbcType=VARCHAR}
+                                        , #{birthday,jdbcType=VARCHAR}
+                                        , #{carBand,jdbcType=VARCHAR}
+                                        , #{carNum,jdbcType=VARCHAR}
+                                        , #{weddingDay,jdbcType=VARCHAR}
+                                        , #{note,jdbcType=VARCHAR}
+                                        , #{account,jdbcType=VARCHAR}
+                                        , #{insertDate,jdbcType=VARCHAR}
+                     
+        )
+	</insert>
+
+
+    <update id="update" parameterType="com.chinal.emp.entity.CustomerExtras">
+    UPDATE customer_extras
+    SET 
+                                                             <if test="idcardnum!=null and idcardnum!=''">
+        idcardnum=#{idcardnum,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="phone!=null and phone!=''">
+        phone=#{phone,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="mobile!=null and mobile!=''">
+        mobile=#{mobile,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="birthday!=null and birthday!=''">
+        birthday=#{birthday,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="car_band!=null and car_band!=''">
+        car_band=#{carBand,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="car_num!=null and car_num!=''">
+        car_num=#{carNum,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="wedding_day!=null and wedding_day!=''">
+        wedding_day=#{weddingDay,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="note!=null and note!=''">
+        note=#{note,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="account!=null and account!=''">
+        account=#{account,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="insert_date!=null and insert_date!=''">
+        insert_date=#{insertDate,jdbcType=VARCHAR}
+        </if>
+                      WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="get" resultMap="queryResultMap" parameterType="com.chinal.emp.entity.CustomerExtras">
+		SELECT 
+                         id
+                , idcardnum
+                , phone
+                , mobile
+                , birthday
+                , car_band
+                , car_num
+                , wedding_day
+                , note
+                , account
+                , insert_date
+        		FROM customer_extras t
+		WHERE id = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<delete id="del" parameterType="com.chinal.emp.entity.CustomerExtras">
+		DELETE FROM customer_extras
+		WHERE id = #{id,jdbcType=INTEGER}
+	</delete>
+
+</mapper>

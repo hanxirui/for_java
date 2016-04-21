@@ -15,7 +15,7 @@
                 , account
                 , ip
                 , date
-        		FROM loginrecord t
+        		FROM login_record t
 		<include refid="expressionBlock.where" />
 		<choose>
 			<when test="sortname == null">
@@ -34,13 +34,13 @@
 
     <select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
 		resultType="java.lang.Integer">
-		SELECT count(*) FROM loginrecord t
+		SELECT count(*) FROM login_record t
 		<include refid="expressionBlock.where" />
     </select>
 
     <insert id="save" parameterType="com.chinal.emp.entity.Loginrecord"
     >
-	INSERT INTO loginrecord
+	INSERT INTO login_record
          (
                               `id`
                                         , `account`
@@ -58,7 +58,7 @@
 
 
     <update id="update" parameterType="com.chinal.emp.entity.Loginrecord">
-    UPDATE loginrecord
+    UPDATE login_record
     SET 
                                                  account=#{account,jdbcType=VARCHAR}
                                      , ip=#{ip,jdbcType=VARCHAR}
@@ -72,12 +72,12 @@
                 , account
                 , ip
                 , date
-        		FROM loginrecord t
+        		FROM login_record t
 		WHERE id = #{id,jdbcType=INTEGER}
 	</select>
 	
 	<delete id="del" parameterType="com.chinal.emp.entity.Loginrecord">
-		DELETE FROM loginrecord
+		DELETE FROM login_record
 		WHERE id = #{id,jdbcType=INTEGER}
 	</delete>
 

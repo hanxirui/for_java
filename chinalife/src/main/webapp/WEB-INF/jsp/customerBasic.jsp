@@ -1,16 +1,13 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
-<%@ include file="../taglib.jsp" %>
-<jsp:include page="../menu.jsp" >
-    <jsp:param name="activeMenu" value="role"/>
-</jsp:include>  
+CustomerBasic
+
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <!-- <section class="content-header">
-          <h1>订单管理 -->
-<!--           	<small>管理您的订单</small> -->
-        <!--   </h1>
-        </section> -->
+      <!--   <section class="content-header">
+          <h1>订单管理
+          	<small>管理您的订单</small> 
+          </h1>
+        </section>-->
 
         <!-- Main content -->
         <section class="content">
@@ -20,9 +17,10 @@
                <div class="box-body">
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
-				   级别:<input name="level" type="text" class="form-control">      
-                      职务:<input name="name" type="text" class="form-control">      
-                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
+										 										                       姓名:<input name="name" type="text" class="form-control">      
+					 										                       身份证号:<input name="idcardnum" type="text" class="form-control">      
+					 										                       类型  1-原始；2-自营新拓；3-渠道新拓:<input name="type" type="text" class="form-control">      
+					 					                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
 				</form>
                </div><!-- /.box-body -->
@@ -32,7 +30,7 @@
 				<div class="box-header">
 					 <div class="btn-group">
 			         	<a id="addBtn" class="btn btn-primary">
-			            	<i class="fa fa-plus"></i> 录入
+			            	<i class="fa fa-plus"></i> 录入 
 			         	</a>
 			          </div>
 				</div><!-- /.box-header -->
@@ -40,8 +38,9 @@
 				<div class="box-body">	 
 					<table id="searchTable">
 						<tr>           
-																							<th w_index="level">级别</th>
-																			<th w_index="name">职务</th>
+																							<th w_index="name">姓名</th>
+																			<th w_index="idcardnum">身份证号</th>
+																			<th w_index="type">类型  1-原始；2-自营新拓；3-渠道新拓</th>
 													<th w_render="operate" width="10%;">操作</th>
 						</tr>
 					</table>
@@ -51,15 +50,21 @@
 		    <div id="crudWin">
 			    	<form id="crudFrm" class="form-horizontal">
 											   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">级别</label>
+	                      <label class="col-sm-3 control-label">姓名</label>
 	                      <div class="col-sm-7">
-	                        <input name="level" type="text" class="form-control" required="true">
+	                        <input name="name" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">职务</label>
+	                      <label class="col-sm-3 control-label">身份证号</label>
 	                      <div class="col-sm-7">
-	                        <input name="name" type="text" class="form-control" required="true">
+	                        <input name="idcardnum" type="text" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   										   						<div class="form-group">
+	                      <label class="col-sm-3 control-label">类型  1-原始；2-自营新拓；3-渠道新拓</label>
+	                      <div class="col-sm-7">
+	                        <input name="type" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										</form>
@@ -69,10 +74,10 @@
 var that = this;
 
 var pk = 'id'; // java类中的主键字段
-var listUrl = ctx + 'listRole.do'; // 查询
-var addUrl = ctx + 'addRole.do'; // 添加
-var updateUrl = ctx + 'updateRole.do'; // 修改
-var delUrl = ctx + 'delRole.do'; // 删除
+var listUrl = ctx + 'listCustomerBasic.do'; // 查询
+var addUrl = ctx + 'addCustomerBasic.do'; // 添加
+var updateUrl = ctx + 'updateCustomerBasic.do'; // 修改
+var delUrl = ctx + 'delCustomerBasic.do'; // 删除
 var submitUrl = ''; // 提交URL
 
 var gridObj; // 表格

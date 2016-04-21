@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinal.emp.dao.ClaimRecordDao">
+    <resultMap id="queryResultMap" type="com.chinal.emp.entity.ClaimRecord">
+                <result column="id" property="id" jdbcType="INTEGER" />
+                <result column="idcardnum" property="idcardnum" jdbcType="VARCHAR" />
+                <result column="reason" property="reason" jdbcType="VARCHAR" />
+                <result column="insuranceid" property="insuranceid" jdbcType="VARCHAR" />
+                <result column="firstaccount" property="firstaccount" jdbcType="VARCHAR" />
+                <result column="firstcontent" property="firstcontent" jdbcType="VARCHAR" />
+                <result column="firstclaim" property="firstclaim" jdbcType="VARCHAR" />
+                <result column="firsttime" property="firsttime" jdbcType="VARCHAR" />
+                <result column="secondaccount" property="secondaccount" jdbcType="VARCHAR" />
+                <result column="secondcontent" property="secondcontent" jdbcType="VARCHAR" />
+                <result column="secondtime" property="secondtime" jdbcType="VARCHAR" />
+                <result column="secondclaim" property="secondclaim" jdbcType="VARCHAR" />
+                <result column="thirdaccount" property="thirdaccount" jdbcType="VARCHAR" />
+                <result column="thirdcontent" property="thirdcontent" jdbcType="VARCHAR" />
+                <result column="thirdclaim" property="thirdclaim" jdbcType="VARCHAR" />
+                <result column="thirdtime" property="thirdtime" jdbcType="VARCHAR" />
+                <result column="fourthaccount" property="fourthaccount" jdbcType="VARCHAR" />
+                <result column="fourthcontent" property="fourthcontent" jdbcType="VARCHAR" />
+                <result column="fourthclaim" property="fourthclaim" jdbcType="VARCHAR" />
+                <result column="fourthtime" property="fourthtime" jdbcType="VARCHAR" />
+                <result column="claimtime" property="claimtime" jdbcType="VARCHAR" />
+            </resultMap>
+
+    <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT 
+                         id
+                , idcardnum
+                , reason
+                , insuranceid
+                , firstaccount
+                , firstcontent
+                , firstclaim
+                , firsttime
+                , secondaccount
+                , secondcontent
+                , secondtime
+                , secondclaim
+                , thirdaccount
+                , thirdcontent
+                , thirdclaim
+                , thirdtime
+                , fourthaccount
+                , fourthcontent
+                , fourthclaim
+                , fourthtime
+                , claimtime
+        		FROM claim_record t
+		<include refid="expressionBlock.where" />
+		<choose>
+			<when test="sortname == null">
+				ORDER BY t.id desc
+			</when>
+			<otherwise>
+				ORDER BY ${order}
+			</otherwise>
+		</choose>
+		<if test="!isQueryAll">
+			LIMIT
+			#{start,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+		</if>
+	</select>
+
+
+    <select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM claim_record t
+		<include refid="expressionBlock.where" />
+    </select>
+
+    <insert id="save" parameterType="com.chinal.emp.entity.ClaimRecord"
+    keyProperty="id" keyColumn="id" useGeneratedKeys="true"
+    >
+	INSERT INTO claim_record
+         (
+                                                  `idcardnum`
+                                        , `reason`
+                                        , `insuranceid`
+                                        , `firstaccount`
+                                        , `firstcontent`
+                                        , `firstclaim`
+                                        , `firsttime`
+                                        , `secondaccount`
+                                        , `secondcontent`
+                                        , `secondtime`
+                                        , `secondclaim`
+                                        , `thirdaccount`
+                                        , `thirdcontent`
+                                        , `thirdclaim`
+                                        , `thirdtime`
+                                        , `fourthaccount`
+                                        , `fourthcontent`
+                                        , `fourthclaim`
+                                        , `fourthtime`
+                                        , `claimtime`
+                              )
+	VALUES (
+                                                  #{idcardnum,jdbcType=VARCHAR}
+                                        , #{reason,jdbcType=VARCHAR}
+                                        , #{insuranceid,jdbcType=VARCHAR}
+                                        , #{firstaccount,jdbcType=VARCHAR}
+                                        , #{firstcontent,jdbcType=VARCHAR}
+                                        , #{firstclaim,jdbcType=VARCHAR}
+                                        , #{firsttime,jdbcType=VARCHAR}
+                                        , #{secondaccount,jdbcType=VARCHAR}
+                                        , #{secondcontent,jdbcType=VARCHAR}
+                                        , #{secondtime,jdbcType=VARCHAR}
+                                        , #{secondclaim,jdbcType=VARCHAR}
+                                        , #{thirdaccount,jdbcType=VARCHAR}
+                                        , #{thirdcontent,jdbcType=VARCHAR}
+                                        , #{thirdclaim,jdbcType=VARCHAR}
+                                        , #{thirdtime,jdbcType=VARCHAR}
+                                        , #{fourthaccount,jdbcType=VARCHAR}
+                                        , #{fourthcontent,jdbcType=VARCHAR}
+                                        , #{fourthclaim,jdbcType=VARCHAR}
+                                        , #{fourthtime,jdbcType=VARCHAR}
+                                        , #{claimtime,jdbcType=VARCHAR}
+                     
+        )
+	</insert>
+
+
+    <update id="update" parameterType="com.chinal.emp.entity.ClaimRecord">
+    UPDATE claim_record
+    SET 
+                                                             <if test="idcardnum!=null and idcardnum!=''">
+        idcardnum=#{idcardnum,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="reason!=null and reason!=''">
+        reason=#{reason,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="insuranceid!=null and insuranceid!=''">
+        insuranceid=#{insuranceid,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="firstaccount!=null and firstaccount!=''">
+        firstaccount=#{firstaccount,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="firstcontent!=null and firstcontent!=''">
+        firstcontent=#{firstcontent,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="firstclaim!=null and firstclaim!=''">
+        firstclaim=#{firstclaim,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="firsttime!=null and firsttime!=''">
+        firsttime=#{firsttime,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="secondaccount!=null and secondaccount!=''">
+        secondaccount=#{secondaccount,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="secondcontent!=null and secondcontent!=''">
+        secondcontent=#{secondcontent,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="secondtime!=null and secondtime!=''">
+        secondtime=#{secondtime,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="secondclaim!=null and secondclaim!=''">
+        secondclaim=#{secondclaim,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="thirdaccount!=null and thirdaccount!=''">
+        thirdaccount=#{thirdaccount,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="thirdcontent!=null and thirdcontent!=''">
+        thirdcontent=#{thirdcontent,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="thirdclaim!=null and thirdclaim!=''">
+        thirdclaim=#{thirdclaim,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="thirdtime!=null and thirdtime!=''">
+        thirdtime=#{thirdtime,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="fourthaccount!=null and fourthaccount!=''">
+        fourthaccount=#{fourthaccount,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="fourthcontent!=null and fourthcontent!=''">
+        fourthcontent=#{fourthcontent,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="fourthclaim!=null and fourthclaim!=''">
+        fourthclaim=#{fourthclaim,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="fourthtime!=null and fourthtime!=''">
+        fourthtime=#{fourthtime,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="claimtime!=null and claimtime!=''">
+        claimtime=#{claimtime,jdbcType=VARCHAR}
+        </if>
+                      WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="get" resultMap="queryResultMap" parameterType="com.chinal.emp.entity.ClaimRecord">
+		SELECT 
+                         id
+                , idcardnum
+                , reason
+                , insuranceid
+                , firstaccount
+                , firstcontent
+                , firstclaim
+                , firsttime
+                , secondaccount
+                , secondcontent
+                , secondtime
+                , secondclaim
+                , thirdaccount
+                , thirdcontent
+                , thirdclaim
+                , thirdtime
+                , fourthaccount
+                , fourthcontent
+                , fourthclaim
+                , fourthtime
+                , claimtime
+        		FROM claim_record t
+		WHERE id = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<delete id="del" parameterType="com.chinal.emp.entity.ClaimRecord">
+		DELETE FROM claim_record
+		WHERE id = #{id,jdbcType=INTEGER}
+	</delete>
+
+</mapper>

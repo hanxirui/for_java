@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinal.emp.dao.SitRecordDao">
+    <resultMap id="queryResultMap" type="com.chinal.emp.entity.SitRecord">
+                <result column="id" property="id" jdbcType="INTEGER" />
+                <result column="account" property="account" jdbcType="VARCHAR" />
+                <result column="visitTime" property="visittime" jdbcType="VARCHAR" />
+                <result column="idcardnum" property="idcardnum" jdbcType="VARCHAR" />
+                <result column="content" property="content" jdbcType="VARCHAR" />
+            </resultMap>
+
+    <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT 
+                         id
+                , account
+                , visitTime
+                , idcardnum
+                , content
+        		FROM visit_record t
+		<include refid="expressionBlock.where" />
+		<choose>
+			<when test="sortname == null">
+				ORDER BY t.id desc
+			</when>
+			<otherwise>
+				ORDER BY ${order}
+			</otherwise>
+		</choose>
+		<if test="!isQueryAll">
+			LIMIT
+			#{start,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+		</if>
+	</select>
+
+
+    <select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM visit_record t
+		<include refid="expressionBlock.where" />
+    </select>
+
+    <insert id="save" parameterType="com.chinal.emp.entity.SitRecord"
+    keyProperty="id" keyColumn="id" useGeneratedKeys="true"
+    >
+	INSERT INTO visit_record
+         (
+                                                  `account`
+                                        , `visitTime`
+                                        , `idcardnum`
+                                        , `content`
+                              )
+	VALUES (
+                                                  #{account,jdbcType=VARCHAR}
+                                        , #{visittime,jdbcType=VARCHAR}
+                                        , #{idcardnum,jdbcType=VARCHAR}
+                                        , #{content,jdbcType=VARCHAR}
+                     
+        )
+	</insert>
+
+
+    <update id="update" parameterType="com.chinal.emp.entity.SitRecord">
+    UPDATE visit_record
+    SET 
+                                                             <if test="account!=null and account!=''">
+        account=#{account,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="visitTime!=null and visitTime!=''">
+        visitTime=#{visittime,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="idcardnum!=null and idcardnum!=''">
+        idcardnum=#{idcardnum,jdbcType=VARCHAR}
+        </if>
+                                      ,
+                <if test="content!=null and content!=''">
+        content=#{content,jdbcType=VARCHAR}
+        </if>
+                      WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="get" resultMap="queryResultMap" parameterType="com.chinal.emp.entity.SitRecord">
+		SELECT 
+                         id
+                , account
+                , visitTime
+                , idcardnum
+                , content
+        		FROM visit_record t
+		WHERE id = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<delete id="del" parameterType="com.chinal.emp.entity.SitRecord">
+		DELETE FROM visit_record
+		WHERE id = #{id,jdbcType=INTEGER}
+	</delete>
+
+</mapper>

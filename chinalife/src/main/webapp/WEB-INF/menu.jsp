@@ -16,7 +16,7 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"></span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg">后台管理</span>
+          <!-- <span class="logo-lg">银保业务经营分析系统</span> -->
         </a>
 
         <!-- Header Navbar -->
@@ -51,6 +51,12 @@
           <ul class="sidebar-menu">
             <!-- Optionally, you can add icons to the links -->
             <li <%="customer".equals(am)?"class='active'":""%> ><a href="${ctx}openCustomer.do"><i class="fa fa-dashboard"></i> <span>客户管理</span></a></li>
+            <li <%="employee".equals(am)?"class='active'":""%>><a href="${ctx}openEmployee.do"><i class="fa fa-diamond"></i> <span>保单管理</span> </a></li>
+            <li <%="employee".equals(am)?"class='active'":""%>><a href="${ctx}openEmployee.do"><i class="fa fa-diamond"></i> <span>业务平台</span> </a></li>
+            <li <%="employee".equals(am)?"class='active'":""%>><a href="${ctx}openEmployee.do"><i class="fa fa-diamond"></i> <span>投诉及突发事件管理</span> </a></li>
+            <li <%="employee".equals(am)?"class='active'":""%>><a href="${ctx}openEmployee.do"><i class="fa fa-diamond"></i> <span>拜访管理</span> </a></li>
+            <li <%="employee".equals(am)?"class='active'":""%>><a href="${ctx}openEmployee.do"><i class="fa fa-diamond"></i> <span>服务管理</span> </a></li>
+             
             <li <%="employee".equals(am)?"class='active'":""%>><a href="${ctx}openEmployee.do"><i class="fa fa-diamond"></i> <span>人员管理</span> </a></li>
             <li <%="org".equals(am)?"class='active'":""%>><a href="${ctx}openOrg.do"><i class="fa fa-bank"></i> 机构管理</a></li>
             <li <%="role".equals(am)?"class='active'":""%>><a href="${ctx}openRole.do"><i class="fa fa-child"></i>职务管理</a></li>
@@ -58,3 +64,5 @@
         </section>
         <!-- /.sidebar -->
       </aside>
+      
+      

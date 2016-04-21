@@ -1,113 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="taglib.jsp" %>
-<c:set var="AdminLTE" value="${res}AdminLTE/"/>
-<c:set var="bsgrid" value="${res}bsgrid/"/>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>后台管理</title>
-    <script type="text/javascript">var ctx = '${ctx}';</script>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="${AdminLTE}bootstrap/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="${AdminLTE}plugins/font-awesome/css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="${AdminLTE}plugins/ionicons/css/ionicons.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="${AdminLTE}dist/css/AdminLTE.min.css">
-    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-          page. However, you can choose any other skin. Make sure you
-          apply the skin class to the body tag so the changes take effect.
-    -->
-    <link rel="stylesheet" href="${AdminLTE}dist/css/skins/skin-blue-light.min.css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="${AdminLTE}plugins/html5shiv.js"></script>
-        <script src="${AdminLTE}plugins/respond.min.js"></script>
-    <![endif]-->
-    <script src="${AdminLTE}plugins/jQuery/jquery.min.js"></script>
-    
-    <script src="${res}js/common.js" type="text/javascript"></script>
-    <!-- datepicker -->
-    <script src="${res}My97DatePicker/WdatePicker.js" type="text/javascript"></script>
-    <!-- validate -->
-	<script src="${res}jqueryValidate/jquery.validate.min.js" type="text/javascript"></script>
-	<script src="${res}jqueryValidate/localization/messages_zh.min.js" type="text/javascript"></script>
-    <!-- dialog -->
-	<link rel="stylesheet" href="${res}artDialog/css/ui-dialog.css">
-	<script src="${res}artDialog/dist/dialog-plus-min.js"></script>
-	<!-- bsgrid -->
-	<link rel="stylesheet" href="${bsgrid}merged/bsgrid.all.min.css"/>
-	<link rel="stylesheet" href="${bsgrid}css/skins/grid_bootstrap.min.css"/>
-    <script type="text/javascript" src="${bsgrid}js/lang/grid.zh-CN.min.js"></script>
-    <script type="text/javascript" src="${bsgrid}merged/bsgrid.all.min.js"></script>
-  
-  </head>
-  <body class="hold-transition skin-blue-light sidebar-mini">
-    <div class="wrapper">
-
-      <!-- Main Header -->
-      <header class="main-header">
-
-        <!-- Logo -->
-        <a href="#" class="logo">
-          <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"></span>
-          <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg">后台管理</span>
-        </a>
-
-        <!-- Header Navbar -->
-        <nav class="navbar navbar-static-top" role="navigation">
-          <!-- Sidebar toggle button-->
-          <a href="#" class="sidebar-toggle" data-toggle="offcanvas">
-            <span class="sr-only">Toggle navigation</span>
-          </a>
-          <!-- Navbar Right Menu -->
-          <div class="navbar-custom-menu">
-            <ul class="nav navbar-nav">
-              <li>
-                <a href="#"><i class="fa fa-share"></i>退出</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </header>
-      <!-- Left side column. contains the logo and sidebar -->
-      <aside class="main-sidebar">
-
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-          <!-- Sidebar user panel -->
-          <div class="user-panel">
-              <div>你好,<span>admin</span></div>
-          </div>
-          <!-- Sidebar Menu -->
-          <ul class="sidebar-menu">
-            <!-- Optionally, you can add icons to the links -->
-            <li><a href="#"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>基础管理</span> </a></li>
-            <li class="active"><a href="#"><i class="fa fa-circle-o"></i> 订单管理</a></li>
-          </ul><!-- /.sidebar-menu -->
-        </section>
-        <!-- /.sidebar -->
-      </aside>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ include file="../taglib.jsp" %>
+<jsp:include page="../menu.jsp" >
+    <jsp:param name="activeMenu" value="org"/>
+</jsp:include>  
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section class="content-header">
-          <h1>订单管理
+      <!--   <section class="content-header">
+          <h1>订单管理 -->
 <!--           	<small>管理您的订单</small> -->
-          </h1>
-        </section>
+       <!--    </h1>
+        </section> -->
 
         <!-- Main content -->
         <section class="content">
@@ -129,7 +33,7 @@
 				<div class="box-header">
 					 <div class="btn-group">
 			         	<a id="addBtn" class="btn btn-primary">
-			            	<i class="fa fa-plus"></i> 新增订单 
+			            	<i class="fa fa-plus"></i> 录入
 			         	</a>
 			          </div>
 				</div><!-- /.box-header -->

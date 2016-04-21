@@ -291,7 +291,7 @@ var sexRender = function(record, rowIndex, colIndex, options){
 var roleRender = function(record, rowIndex, colIndex, options){
 	var roleName;
 	$.each(roleList, function (i, item) {
-	       if(item.level==record.role){
+	       if(item.id==record.role){
 	    	   roleName = item.name;
 	       }
 	});

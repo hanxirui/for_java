@@ -1,16 +1,13 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
-<%@ include file="../taglib.jsp" %>
-<jsp:include page="../menu.jsp" >
-    <jsp:param name="activeMenu" value="role"/>
-</jsp:include>  
+SitRecord
+
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <!-- <section class="content-header">
-          <h1>订单管理 -->
-<!--           	<small>管理您的订单</small> -->
-        <!--   </h1>
-        </section> -->
+      <!--   <section class="content-header">
+          <h1>订单管理
+          	<small>管理您的订单</small> 
+          </h1>
+        </section>-->
 
         <!-- Main content -->
         <section class="content">
@@ -20,9 +17,11 @@
                <div class="box-body">
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
-				   级别:<input name="level" type="text" class="form-control">      
-                      职务:<input name="name" type="text" class="form-control">      
-                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
+										 										                       客户经理:<input name="account" type="text" class="form-control">      
+					 										                       拜访时间:<input name="visittime" type="text" class="form-control">      
+					 										                       客户:<input name="idcardnum" type="text" class="form-control">      
+					 										                       拜访内容:<input name="content" type="text" class="form-control">      
+					 					                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
 				</form>
                </div><!-- /.box-body -->
@@ -32,7 +31,7 @@
 				<div class="box-header">
 					 <div class="btn-group">
 			         	<a id="addBtn" class="btn btn-primary">
-			            	<i class="fa fa-plus"></i> 录入
+			            	<i class="fa fa-plus"></i> 录入 
 			         	</a>
 			          </div>
 				</div><!-- /.box-header -->
@@ -40,8 +39,10 @@
 				<div class="box-body">	 
 					<table id="searchTable">
 						<tr>           
-																							<th w_index="level">级别</th>
-																			<th w_index="name">职务</th>
+																							<th w_index="account">客户经理</th>
+																			<th w_index="visittime">拜访时间</th>
+																			<th w_index="idcardnum">客户</th>
+																			<th w_index="content">拜访内容</th>
 													<th w_render="operate" width="10%;">操作</th>
 						</tr>
 					</table>
@@ -51,15 +52,27 @@
 		    <div id="crudWin">
 			    	<form id="crudFrm" class="form-horizontal">
 											   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">级别</label>
+	                      <label class="col-sm-3 control-label">客户经理</label>
 	                      <div class="col-sm-7">
-	                        <input name="level" type="text" class="form-control" required="true">
+	                        <input name="account" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">职务</label>
+	                      <label class="col-sm-3 control-label">拜访时间</label>
 	                      <div class="col-sm-7">
-	                        <input name="name" type="text" class="form-control" required="true">
+	                        <input name="visittime" type="text" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   										   						<div class="form-group">
+	                      <label class="col-sm-3 control-label">客户</label>
+	                      <div class="col-sm-7">
+	                        <input name="idcardnum" type="text" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   										   						<div class="form-group">
+	                      <label class="col-sm-3 control-label">拜访内容</label>
+	                      <div class="col-sm-7">
+	                        <input name="content" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										</form>
@@ -69,10 +82,10 @@
 var that = this;
 
 var pk = 'id'; // java类中的主键字段
-var listUrl = ctx + 'listRole.do'; // 查询
-var addUrl = ctx + 'addRole.do'; // 添加
-var updateUrl = ctx + 'updateRole.do'; // 修改
-var delUrl = ctx + 'delRole.do'; // 删除
+var listUrl = ctx + 'listSitRecord.do'; // 查询
+var addUrl = ctx + 'addSitRecord.do'; // 添加
+var updateUrl = ctx + 'updateSitRecord.do'; // 修改
+var delUrl = ctx + 'delSitRecord.do'; // 删除
 var submitUrl = ''; // 提交URL
 
 var gridObj; // 表格

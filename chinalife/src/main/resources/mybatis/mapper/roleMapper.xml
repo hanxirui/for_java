@@ -17,7 +17,7 @@
 		<include refid="expressionBlock.where" />
 		<choose>
 			<when test="sortname == null">
-				ORDER BY t.id desc
+				ORDER BY t.level desc
 			</when>
 			<otherwise>
 				ORDER BY ${order}

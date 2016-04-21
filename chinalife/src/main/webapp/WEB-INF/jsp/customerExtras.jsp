@@ -1,17 +1,13 @@
-<%@ page language="java" pageEncoding="UTF-8"%>
-<%@ include file="../taglib.jsp" %>
-<jsp:include page="../menu.jsp" >
-    <jsp:param name="activeMenu" value="customer"/>
-</jsp:include>  
+CustomerExtras
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
       <!--   <section class="content-header">
-          <h1>客户管理 -->
-<!--           	<small>管理您的订单</small> -->
-        <!--   </h1>
-        </section> -->
+          <h1>订单管理
+          	<small>管理您的订单</small> 
+          </h1>
+        </section>-->
 
         <!-- Main content -->
         <section class="content">
@@ -21,13 +17,18 @@
                <div class="box-body">
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
-				     姓名:<input name="name" type="text" class="form-control">      
-                     手机:<input name="phone" type="text" class="form-control">      
-                     地址:<input name="address" type="text" class="form-control">      
-                     购买保险类型:<input name="type" type="text" class="form-control">      
-                     负责人编码:<input name="fuzeren" type="text" class="form-control"> 
-                     负责人:<input name="fuzerenName" type="text" class="form-control">       
-                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
+										                       :<input name="id" type="text" class="form-control">      
+					 										                       身份证号:<input name="idcardnum" type="text" class="form-control">      
+					 										                       电话:<input name="phone" type="text" class="form-control">      
+					 										                       手机:<input name="mobile" type="text" class="form-control">      
+					 										                       生日:<input name="birthday" type="text" class="form-control">      
+					 										                       车品牌:<input name="carBand" type="text" class="form-control">      
+					 										                       车牌号:<input name="carNum" type="text" class="form-control">      
+					 										                       结婚纪念日:<input name="weddingDay" type="text" class="form-control">      
+					 										                       特点及爱好:<input name="note" type="text" class="form-control">      
+					 										                       维护人:<input name="account" type="text" class="form-control">      
+					 										                       维护日期:<input name="insertDate" type="text" class="form-control">      
+					 					                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
 				</form>
                </div><!-- /.box-body -->
@@ -37,7 +38,7 @@
 				<div class="box-header">
 					 <div class="btn-group">
 			         	<a id="addBtn" class="btn btn-primary">
-			            	<i class="fa fa-plus"> 录入 </i>
+			            	<i class="fa fa-plus"></i> 录入 
 			         	</a>
 			          </div>
 				</div><!-- /.box-header -->
@@ -45,12 +46,18 @@
 				<div class="box-body">	 
 					<table id="searchTable">
 						<tr>           
-							<th w_index="name">姓名</th>
-							<th w_index="phone">手机</th>
-							<th w_index="address">地址</th>
-							<th w_index="type">购买保险类型</th>
-							<th w_index="fuzerenName">负责人</th>
-							<th w_render="operate" width="10%;">操作</th>
+														<th w_index="id"></th>
+																			<th w_index="idcardnum">身份证号</th>
+																			<th w_index="phone">电话</th>
+																			<th w_index="mobile">手机</th>
+																			<th w_index="birthday">生日</th>
+																			<th w_index="carBand">车品牌</th>
+																			<th w_index="carNum">车牌号</th>
+																			<th w_index="weddingDay">结婚纪念日</th>
+																			<th w_index="note">特点及爱好</th>
+																			<th w_index="account">维护人</th>
+																			<th w_index="insertDate">维护日期</th>
+													<th w_render="operate" width="10%;">操作</th>
 						</tr>
 					</table>
 				</div><!-- /.box-body -->
@@ -58,34 +65,70 @@
 		    
 		    <div id="crudWin">
 			    	<form id="crudFrm" class="form-horizontal">
-											   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">姓名</label>
+											   						<div class="form-group">
+	                      <label class="col-sm-3 control-label"></label>
 	                      <div class="col-sm-7">
-	                        <input name="name" type="text" class="form-control" required="true">
+	                        <input name="id" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">手机</label>
+	                      <label class="col-sm-3 control-label">身份证号</label>
+	                      <div class="col-sm-7">
+	                        <input name="idcardnum" type="text" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   										   						<div class="form-group">
+	                      <label class="col-sm-3 control-label">电话</label>
 	                      <div class="col-sm-7">
 	                        <input name="phone" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">地址</label>
+	                      <label class="col-sm-3 control-label">手机</label>
 	                      <div class="col-sm-7">
-	                        <input name="address" type="text" class="form-control" required="true">
+	                        <input name="mobile" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">购买保险类型</label>
+	                      <label class="col-sm-3 control-label">生日</label>
 	                      <div class="col-sm-7">
-	                        <input name="type" type="text" class="form-control" required="true">
+	                        <input name="birthday" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">负责人:</label>
+	                      <label class="col-sm-3 control-label">车品牌</label>
 	                      <div class="col-sm-7">
-	                        <input name="fuzeren" type="text" class="form-control" required="true">
+	                        <input name="carBand" type="text" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   										   						<div class="form-group">
+	                      <label class="col-sm-3 control-label">车牌号</label>
+	                      <div class="col-sm-7">
+	                        <input name="carNum" type="text" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   										   						<div class="form-group">
+	                      <label class="col-sm-3 control-label">结婚纪念日</label>
+	                      <div class="col-sm-7">
+	                        <input name="weddingDay" type="text" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   										   						<div class="form-group">
+	                      <label class="col-sm-3 control-label">特点及爱好</label>
+	                      <div class="col-sm-7">
+	                        <input name="note" type="text" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   										   						<div class="form-group">
+	                      <label class="col-sm-3 control-label">维护人</label>
+	                      <div class="col-sm-7">
+	                        <input name="account" type="text" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   										   						<div class="form-group">
+	                      <label class="col-sm-3 control-label">维护日期</label>
+	                      <div class="col-sm-7">
+	                        <input name="insertDate" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										</form>
@@ -95,10 +138,10 @@
 var that = this;
 
 var pk = 'id'; // java类中的主键字段
-var listUrl = ctx + 'listCustomer.do'; // 查询
-var addUrl = ctx + 'addCustomer.do'; // 添加
-var updateUrl = ctx + 'updateCustomer.do'; // 修改
-var delUrl = ctx + 'delCustomer.do'; // 删除
+var listUrl = ctx + 'listCustomerExtras.do'; // 查询
+var addUrl = ctx + 'addCustomerExtras.do'; // 添加
+var updateUrl = ctx + 'updateCustomerExtras.do'; // 修改
+var delUrl = ctx + 'delCustomerExtras.do'; // 删除
 var submitUrl = ''; // 提交URL
 
 var gridObj; // 表格
@@ -158,13 +201,6 @@ crudWin = dialog({
 function search(){
     var schData = getFormData($schFrm);
     gridObj.search(schData);
-    
-    Action.post(listUrl, schData, function(result) {
-		Action.execResult(result, function(result) {
-			gridObj.refreshPage();
-			crudWin.close();
-		});
-	});
 }
 
 function operate(row, rowIndex, colIndex, options) {
