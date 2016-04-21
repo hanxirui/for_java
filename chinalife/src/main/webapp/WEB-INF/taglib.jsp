@@ -52,5 +52,6 @@
 	<link rel="stylesheet" href="${bsgrid}css/skins/grid_bootstrap.min.css"/>
     <script type="text/javascript" src="${bsgrid}js/lang/grid.zh-CN.min.js"></script>
     <script type="text/javascript" src="${bsgrid}merged/bsgrid.all.min.js"></script>
+    <script src="${res}easyui/plugins/jquery.messager.js"></script>
   
   </head>

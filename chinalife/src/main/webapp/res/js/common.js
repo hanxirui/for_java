@@ -256,15 +256,19 @@ function getFormData($schForm){
 			obj[field.name] = addValue;
 		}
 	});
-	
+
 	return obj;
 }
 
 function loadFormData($frm,data) {
 	for(var name in data) {
 		var val = data[name];
-		$('[name='+name+']').val(val);
+		if(name!="sex"){
+		  $('[name='+name+']').val(val);
+		}
 	}
+//	性别单选框
+	$("#sex"+data['sex']).attr("checked","true");
 }
 	
 var HtmlUtil = (function(){

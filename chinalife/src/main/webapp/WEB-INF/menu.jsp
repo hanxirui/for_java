@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%> 
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<c:set var="ctx" value='<%=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/" %>'/>
+
 <%
 	String am = request.getParameter("activeMenu");
 %>
@@ -30,7 +32,7 @@
                 <a href="#"><i class="fa fa-share"></i>修改密码</a>
               </li>
               <li>
-                <a href="${ctx}/logout.do"><i class="fa fa-share"></i>退出</a>
+                <a href="${ctx}logout.do"><i class="fa fa-share"></i>退出</a>
               </li>
             </ul>
           </div>

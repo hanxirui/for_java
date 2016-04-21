@@ -41,7 +41,7 @@
 				<div class="box-header">
 					 <div class="btn-group">
 			         	<a id="addBtn" class="btn btn-primary">
-			            	<i class="fa fa-plus"></i> 新增订单 
+			            	<i class="fa fa-plus"></i> 添加 
 			         	</a>
 			          </div>
 				</div><!-- /.box-header -->
@@ -50,14 +50,14 @@
 					<table id="searchTable">
 						<tr>           
 							<th w_index="name">姓名</th>
-							<th w_index="role">职务</th>
+							<th w_index="role" w_render="roleRender">职务</th>
 							<!-- <th w_index="password">密码</th> -->
 							<th w_index="account">账号</th>
 							<th w_index="code">工号</th>
 							<th w_index="pid">身份证号</th>
 							<th w_index="orgname">所属公司</th>
 							<th w_index="orgcode">公司代码</th>
-							<th w_index="sex">性别</th>
+							<th w_index="sex" w_render="sexRender">性别</th>
 							<th w_index="phone">电话</th>
 							<th w_index="jointime">入司时间</th>
 							<th w_render="operate" width="10%;">操作</th>
@@ -68,73 +68,75 @@
 		    
 		    <div id="crudWin">
 			    	<form id="crudFrm" class="form-horizontal">
-											   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">姓名</label>
-	                      <div class="col-sm-7">
+						 <div class="form-group">
+	                      <label class="col-sm-2 control-label">姓名</label>
+	                      <div class="col-sm-3">
 	                        <input name="name" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">职务</label>
-	                      <div class="col-sm-7">
-	                        <input name="role" type="text" class="form-control" required="true">
+	                    
+	                      <label class="col-sm-2 control-label">职务</label>
+	                      <div class="col-sm-3">
+	                        <!-- <input name="role" type="text" class="form-control" required="true"> -->
+	                        <select id="role" name="role"  class="form-control" required="true">
+	                        </select>
 	                      </div>
 	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">密码</label>
-	                      <div class="col-sm-7">
+                        <div class="form-group">
+	                      <!-- <label class="col-sm-2 control-label">密码</label>
+	                      <div class="col-sm-3">
 	                        <input name="password" type="text" class="form-control" required="true">
+	                      </div> -->
+	                      <label class="col-sm-2 control-label">性别</label>
+	                      <div class="col-sm-3">
+								  <label class="radio-inline">
+								    <input type="radio" name="sex" id="sex0" value="0">女
+								  </label>
+								  <label class="radio-inline">
+								    <input type="radio" name="sex" id="sex1" value="1">男
+								  </label>
+								  <!-- <input type="hidden" name="sex" id="sex"> -->
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">账号</label>
-	                      <div class="col-sm-7">
+	                      <label class="col-sm-2 control-label">账号</label>
+	                      <div class="col-sm-3">
 	                        <input name="account" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">工号</label>
-	                      <div class="col-sm-7">
+                         <div class="form-group">
+	                      <label class="col-sm-2 control-label">工号</label>
+	                      <div class="col-sm-3">
 	                        <input name="code" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">身份证号</label>
-	                      <div class="col-sm-7">
+	                    
+	                      <label class="col-sm-2 control-label">身份证号</label>
+	                      <div class="col-sm-3">
 	                        <input name="pid" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">所属公司</label>
-	                      <div class="col-sm-7">
+                         <div class="form-group">
+	                      <label class="col-sm-2 control-label">所属公司</label>
+	                      <div class="col-sm-3">
 	                        <input name="orgname" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">公司代码</label>
-	                      <div class="col-sm-7">
+	                   
+	                      <label class="col-sm-2 control-label">公司代码</label>
+	                      <div class="col-sm-3">
 	                        <input name="orgcode" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">性别</label>
-	                      <div class="col-sm-7">
-	                        <input name="sex" type="text" class="form-control" required="true">
-	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">电话</label>
-	                      <div class="col-sm-7">
+                      
+	                    
+                          <div class="form-group">
+	                      <label class="col-sm-2 control-label">电话</label>
+	                      <div class="col-sm-3">
 	                        <input name="phone" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">入司时间</label>
-	                      <div class="col-sm-7">
+	                   
+	                      <label class="col-sm-2 control-label">入司时间</label>
+	                      <div class="col-sm-3">
 	                        <input name="jointime" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
-					   										</form>
+					  </form>
 			    </div>
 		    
 <script type="text/javascript">     
@@ -168,6 +170,7 @@ $addBtn.click(function() {
 	submitUrl = addUrl;
 	reset();
 	crudWin.title('添加');
+	getRole();
 	crudWin.showModal();	
 });
 
@@ -177,17 +180,19 @@ $schBtn.click(function() {
 
 gridObj = $.fn.bsgrid.init('searchTable', {
 	url: listUrl
-    ,pageSizeSelect: true
+    ,pageSizeSelect: false //是否显示分页大小选择下拉框, 配合参数pageSizeForGrid, 默认值false
     ,rowHoverColor: true // 移动行变色
     ,rowSelectedColor: false // 选择行不高亮
     ,isProcessLockScreen:false // 加载数据不显示遮罩层
 	,displayBlankRows: false
+	,stripeRows:false// 隔行变色, 默认值false, 对应样式是: grid.css -> .bsgrid tr.even_index_row td
+	,pagingLittleToolbar:false// 是否显示精简的图标按钮分页工具条, 默认值false
     ,pageSize: 10
 });
 
 crudWin = dialog({
 	title: '编辑',
-	width:400,
+	width:600,
 	content: document.getElementById('crudWin'),
 	okValue: '保存',
 	ok: function () {
@@ -236,8 +241,10 @@ this.edit = function(row) {
 		submitUrl = updateUrl + '?' + pk + '=' + row[pk];
 		reset();
 		crudWin.title('修改');
+		getRole();
 		loadFormData($crudFrm,row);		
 		crudWin.showModal();
+	
 	}
 }
 
@@ -264,6 +271,48 @@ this.del = function(row) {
 }
 
 validator = $crudFrm.validate();
+
+//获得职务列表
+this.getRole = function(){
+	 $.each(roleList, function (i, item) {
+	       $("<option></option>").val(item.level).text(item.name).appendTo($("#role"));
+	    });
+}
+
+var sexRender = function(record, rowIndex, colIndex, options){
+	if(record.sex==0){
+		return "女";
+	}else{
+		return "男";
+	}
+	
+}
+
+var roleRender = function(record, rowIndex, colIndex, options){
+	var roleName;
+	$.each(roleList, function (i, item) {
+	       if(item.level==record.role){
+	    	   roleName = item.name;
+	       }
+	});
+	return roleName;
+}
+
+var roleList;
+$.getJSON("${ctx}listRole.do", null, function (result) {
+	roleList = result.data;
+});
+
+/* $("input:radio").on("click", function() {
+	$(this).attr("checked","true");
+}); */
+
+$('input:radio:checked').each(function(i,val){
+	alert(i+"-"+val);
+	/* if(val.name != "dialCheckResult" ){
+	  $("input:radio[name='"+val.name+"']:checked").attr('checked',false);
+	} */
+});
 </script>
 
         </section><!-- /.content -->

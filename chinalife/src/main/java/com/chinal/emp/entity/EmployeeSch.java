@@ -1,7 +1,5 @@
 package com.chinal.emp.entity;
 
-import java.util.Date;
-
 import org.durcframework.core.expression.annotation.ValueField;
 import org.durcframework.core.support.BsgridSearch;
 
@@ -18,7 +16,7 @@ public class EmployeeSch extends BsgridSearch {
 	private String orgcode;
 	private String sex;
 	private String phone;
-	private Date jointime;
+	private String jointime;
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -119,12 +117,12 @@ public class EmployeeSch extends BsgridSearch {
 		return this.phone;
 	}
 
-	public void setJointime(Date jointime) {
+	public void setJointime(String jointime) {
 		this.jointime = jointime;
 	}
 
 	@ValueField(column = "jointime")
-	public Date getJointime() {
+	public String getJointime() {
 		return this.jointime;
 	}
 

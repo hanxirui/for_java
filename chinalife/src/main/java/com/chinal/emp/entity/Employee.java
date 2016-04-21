@@ -1,12 +1,10 @@
 package com.chinal.emp.entity;
 
-import java.util.Date;
-
 /**
   
 */
 public class Employee {
-	// 
+	//
 	private int id;
 	// 姓名
 	private String name;
@@ -29,101 +27,101 @@ public class Employee {
 	// 电话
 	private String phone;
 	// 入司时间
-	private Date jointime;
+	private String jointime;
 
-	public void setId(int id){
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public int getId(){
+	public int getId() {
 		return this.id;
 	}
 
-	public void setName(String name){
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	public String getName(){
+	public String getName() {
 		return this.name;
 	}
 
-	public void setRole(int role){
+	public void setRole(int role) {
 		this.role = role;
 	}
 
-	public int getRole(){
+	public int getRole() {
 		return this.role;
 	}
 
-	public void setPassword(String password){
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
-	public String getPassword(){
+	public String getPassword() {
 		return this.password;
 	}
 
-	public void setAccount(String account){
+	public void setAccount(String account) {
 		this.account = account;
 	}
 
-	public String getAccount(){
+	public String getAccount() {
 		return this.account;
 	}
 
-	public void setCode(String code){
+	public void setCode(String code) {
 		this.code = code;
 	}
 
-	public String getCode(){
+	public String getCode() {
 		return this.code;
 	}
 
-	public void setPid(String pid){
+	public void setPid(String pid) {
 		this.pid = pid;
 	}
 
-	public String getPid(){
+	public String getPid() {
 		return this.pid;
 	}
 
-	public void setOrgname(String orgname){
+	public void setOrgname(String orgname) {
 		this.orgname = orgname;
 	}
 
-	public String getOrgname(){
+	public String getOrgname() {
 		return this.orgname;
 	}
 
-	public void setOrgcode(String orgcode){
+	public void setOrgcode(String orgcode) {
 		this.orgcode = orgcode;
 	}
 
-	public String getOrgcode(){
+	public String getOrgcode() {
 		return this.orgcode;
 	}
 
-	public void setSex(String sex){
+	public void setSex(String sex) {
 		this.sex = sex;
 	}
 
-	public String getSex(){
+	public String getSex() {
 		return this.sex;
 	}
 
-	public void setPhone(String phone){
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-	public String getPhone(){
+	public String getPhone() {
 		return this.phone;
 	}
 
-	public void setJointime(Date jointime){
+	public void setJointime(String jointime) {
 		this.jointime = jointime;
 	}
 
-	public Date getJointime(){
+	public String getJointime() {
 		return this.jointime;
 	}
 
