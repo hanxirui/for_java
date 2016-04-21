@@ -29,7 +29,7 @@
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
              <li>
-                <a href="#"><i class="fa fa-share"></i>修改密码</a>
+                <a href="#"><i class="fa fa-key"></i>修改密码</a>
               </li>
               <li>
                 <a href="${ctx}logout.do"><i class="fa fa-share"></i>退出</a>
@@ -51,9 +51,9 @@
           <ul class="sidebar-menu">
             <!-- Optionally, you can add icons to the links -->
             <li <%="customer".equals(am)?"class='active'":""%> ><a href="${ctx}openCustomer.do"><i class="fa fa-dashboard"></i> <span>客户管理</span></a></li>
-            <li <%="employee".equals(am)?"class='active'":""%>><a href="${ctx}openEmployee.do"><i class="fa fa-link"></i> <span>人员管理</span> </a></li>
-            <li <%="org".equals(am)?"class='active'":""%>><a href="${ctx}openOrg.do"><i class="fa fa-circle-o"></i> 机构管理</a></li>
-            <li <%="role".equals(am)?"class='active'":""%>><a href="${ctx}openRole.do"><i class="fa fa-circle-o"></i>职务管理</a></li>
+            <li <%="employee".equals(am)?"class='active'":""%>><a href="${ctx}openEmployee.do"><i class="fa fa-diamond"></i> <span>人员管理</span> </a></li>
+            <li <%="org".equals(am)?"class='active'":""%>><a href="${ctx}openOrg.do"><i class="fa fa-bank"></i> 机构管理</a></li>
+            <li <%="role".equals(am)?"class='active'":""%>><a href="${ctx}openRole.do"><i class="fa fa-child"></i>职务管理</a></li>
           </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->
