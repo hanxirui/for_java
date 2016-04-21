@@ -20,6 +20,12 @@ CustomerBasic
 										 										                       姓名:<input name="name" type="text" class="form-control">      
 					 										                       身份证号:<input name="idcardnum" type="text" class="form-control">      
 					 										                       类型  1-原始；2-自营新拓；3-渠道新拓:<input name="type" type="text" class="form-control">      
+					 										                       生日:<input name="birthday" type="text" class="form-control">      
+					 										                       结婚纪念日:<input name="weddingDay" type="text" class="form-control">      
+					 										                       客户经理:<input name="account" type="text" class="form-control">      
+					 										                       性别:<input name="sex" type="text" class="form-control">      
+					 										                       初始来源:<input name="from" type="text" class="form-control">      
+					 										                       爱好及特点:<input name="note" type="text" class="form-control">      
 					 					                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
 				</form>
@@ -41,6 +47,12 @@ CustomerBasic
 																							<th w_index="name">姓名</th>
 																			<th w_index="idcardnum">身份证号</th>
 																			<th w_index="type">类型  1-原始；2-自营新拓；3-渠道新拓</th>
+																			<th w_index="birthday">生日</th>
+																			<th w_index="weddingDay">结婚纪念日</th>
+																			<th w_index="account">客户经理</th>
+																			<th w_index="sex">性别</th>
+																			<th w_index="from">初始来源</th>
+																			<th w_index="note">爱好及特点</th>
 													<th w_render="operate" width="10%;">操作</th>
 						</tr>
 					</table>
@@ -65,6 +77,42 @@ CustomerBasic
 	                      <label class="col-sm-3 control-label">类型  1-原始；2-自营新拓；3-渠道新拓</label>
 	                      <div class="col-sm-7">
 	                        <input name="type" type="text" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   										   						<div class="form-group">
+	                      <label class="col-sm-3 control-label">生日</label>
+	                      <div class="col-sm-7">
+	                        <input name="birthday" type="text" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   										   						<div class="form-group">
+	                      <label class="col-sm-3 control-label">结婚纪念日</label>
+	                      <div class="col-sm-7">
+	                        <input name="weddingDay" type="text" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   										   						<div class="form-group">
+	                      <label class="col-sm-3 control-label">客户经理</label>
+	                      <div class="col-sm-7">
+	                        <input name="account" type="text" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   										   						<div class="form-group">
+	                      <label class="col-sm-3 control-label">性别</label>
+	                      <div class="col-sm-7">
+	                        <input name="sex" type="text" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   										   						<div class="form-group">
+	                      <label class="col-sm-3 control-label">初始来源</label>
+	                      <div class="col-sm-7">
+	                        <input name="from" type="text" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   										   						<div class="form-group">
+	                      <label class="col-sm-3 control-label">爱好及特点</label>
+	                      <div class="col-sm-7">
+	                        <input name="note" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										</form>

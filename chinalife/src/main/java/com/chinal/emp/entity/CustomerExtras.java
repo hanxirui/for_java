@@ -14,16 +14,12 @@ public class CustomerExtras {
 	private String phone;
 	// 手机
 	private String mobile;
-	// 生日
-	private String birthday;
 	// 车品牌
 	private String carBand;
 	// 车牌号
 	private String carNum;
-	// 结婚纪念日
-	private String weddingDay;
-	// 特点及爱好
-	private String note;
+	// 住址
+	private String addr;
 	// 维护人
 	private String account;
 	// 维护日期
@@ -61,14 +57,6 @@ public class CustomerExtras {
 		return this.mobile;
 	}
 
-	public void setBirthday(String birthday){
-		this.birthday = birthday;
-	}
-
-	public String getBirthday(){
-		return this.birthday;
-	}
-
 	public void setCarBand(String carBand){
 		this.carBand = carBand;
 	}
@@ -85,20 +73,12 @@ public class CustomerExtras {
 		return this.carNum;
 	}
 
-	public void setWeddingDay(String weddingDay){
-		this.weddingDay = weddingDay;
+	public void setAddr(String addr){
+		this.addr = addr;
 	}
 
-	public String getWeddingDay(){
-		return this.weddingDay;
-	}
-
-	public void setNote(String note){
-		this.note = note;
-	}
-
-	public String getNote(){
-		return this.note;
+	public String getAddr(){
+		return this.addr;
 	}
 
 	public void setAccount(String account){

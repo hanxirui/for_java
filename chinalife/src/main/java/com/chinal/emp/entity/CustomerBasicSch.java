@@ -11,6 +11,12 @@ public class CustomerBasicSch extends BsgridSearch {
     private String name;
     private String idcardnum;
     private Integer type;
+    private String birthday;
+    private String weddingDay;
+    private String account;
+    private String sex;
+    private String from;
+    private String note;
 
     public void setId (Integer id){
         this.id = id;
@@ -46,6 +52,60 @@ public class CustomerBasicSch extends BsgridSearch {
     @ValueField(column = "type")
     public Integer getType(){
         return this.type;
+    }
+
+    public void setBirthday (String birthday){
+        this.birthday = birthday;
+    }
+    
+    @ValueField(column = "birthday")
+    public String getBirthday(){
+        return this.birthday;
+    }
+
+    public void setWeddingDay (String weddingDay){
+        this.weddingDay = weddingDay;
+    }
+    
+    @ValueField(column = "wedding_day")
+    public String getWeddingDay(){
+        return this.weddingDay;
+    }
+
+    public void setAccount (String account){
+        this.account = account;
+    }
+    
+    @ValueField(column = "account")
+    public String getAccount(){
+        return this.account;
+    }
+
+    public void setSex (String sex){
+        this.sex = sex;
+    }
+    
+    @ValueField(column = "sex")
+    public String getSex(){
+        return this.sex;
+    }
+
+    public void setFrom (String from){
+        this.from = from;
+    }
+    
+    @ValueField(column = "from")
+    public String getFrom(){
+        return this.from;
+    }
+
+    public void setNote (String note){
+        this.note = note;
+    }
+    
+    @ValueField(column = "note")
+    public String getNote(){
+        return this.note;
     }
 
 

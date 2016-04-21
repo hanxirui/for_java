@@ -21,11 +21,9 @@ CustomerExtras
 					 										                       身份证号:<input name="idcardnum" type="text" class="form-control">      
 					 										                       电话:<input name="phone" type="text" class="form-control">      
 					 										                       手机:<input name="mobile" type="text" class="form-control">      
-					 										                       生日:<input name="birthday" type="text" class="form-control">      
 					 										                       车品牌:<input name="carBand" type="text" class="form-control">      
 					 										                       车牌号:<input name="carNum" type="text" class="form-control">      
-					 										                       结婚纪念日:<input name="weddingDay" type="text" class="form-control">      
-					 										                       特点及爱好:<input name="note" type="text" class="form-control">      
+					 										                       住址:<input name="addr" type="text" class="form-control">      
 					 										                       维护人:<input name="account" type="text" class="form-control">      
 					 										                       维护日期:<input name="insertDate" type="text" class="form-control">      
 					 					                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
@@ -50,11 +48,9 @@ CustomerExtras
 																			<th w_index="idcardnum">身份证号</th>
 																			<th w_index="phone">电话</th>
 																			<th w_index="mobile">手机</th>
-																			<th w_index="birthday">生日</th>
 																			<th w_index="carBand">车品牌</th>
 																			<th w_index="carNum">车牌号</th>
-																			<th w_index="weddingDay">结婚纪念日</th>
-																			<th w_index="note">特点及爱好</th>
+																			<th w_index="addr">住址</th>
 																			<th w_index="account">维护人</th>
 																			<th w_index="insertDate">维护日期</th>
 													<th w_render="operate" width="10%;">操作</th>
@@ -90,12 +86,6 @@ CustomerExtras
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">生日</label>
-	                      <div class="col-sm-7">
-	                        <input name="birthday" type="text" class="form-control" required="true">
-	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">车品牌</label>
 	                      <div class="col-sm-7">
 	                        <input name="carBand" type="text" class="form-control" required="true">
@@ -108,15 +98,9 @@ CustomerExtras
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">结婚纪念日</label>
+	                      <label class="col-sm-3 control-label">住址</label>
 	                      <div class="col-sm-7">
-	                        <input name="weddingDay" type="text" class="form-control" required="true">
-	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">特点及爱好</label>
-	                      <div class="col-sm-7">
-	                        <input name="note" type="text" class="form-control" required="true">
+	                        <input name="addr" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">

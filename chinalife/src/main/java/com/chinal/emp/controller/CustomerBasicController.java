@@ -9,14 +9,16 @@ import com.chinal.emp.entity.CustomerBasic;
 import com.chinal.emp.entity.CustomerBasicSch;
 import com.chinal.emp.service.CustomerBasicService;
 
-@Controller
-public class CustomerBasicController extends BsgridController<CustomerBasic, CustomerBasicService> {
 
-	@RequestMapping("/openCustomerBasic.do")
+@Controller
+public class CustomerBasicController extends
+		BsgridController<CustomerBasic, CustomerBasicService> {
+        
+    @RequestMapping("/openCustomerBasic.do")
 	public String openCustomerBasic() {
 		return "customerBasic";
 	}
-
+    
 	@RequestMapping("/addCustomerBasic.do")
 	public ModelAndView addCustomerBasic(CustomerBasic entity) {
 		return this.add(entity);
@@ -36,5 +38,5 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 	public ModelAndView delCustomerBasic(CustomerBasic entity) {
 		return this.remove(entity);
 	}
-
+	
 }
