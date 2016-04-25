@@ -1,9 +1,12 @@
 <%@ page contentType="text/html; charset=utf-8"%> 
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@page import="com.chinal.emp.security.AuthUser"  %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder"%>
 <c:set var="ctx" value='<%=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/" %>'/>
 
 <%
 	String am = request.getParameter("activeMenu");
+    AuthUser userDetails = (AuthUser) SecurityContextHolder.getContext().getAuthentication() .getPrincipal();
 %>
 <body class="hold-transition skin-blue-light sidebar-mini">
     <div class="wrapper">
@@ -29,7 +32,7 @@
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
              <li>
-                <a href="#"><i class="fa fa-key"></i>修改密码</a>
+                <a href="#" id="changepassword"><i class="fa fa-key"></i>修改密码</a>
               </li>
               <li>
                 <a href="${ctx}logout.do"><i class="fa fa-share"></i>退出</a>
@@ -50,13 +53,12 @@
           <!-- Sidebar Menu -->
           <ul class="sidebar-menu">
             <!-- Optionally, you can add icons to the links -->
-            <li <%="customer".equals(am)?"class='active'":""%> ><a href="${ctx}openCustomer.do"><i class="fa fa-dashboard"></i> <span>客户管理</span></a></li>
-            <li <%="employee".equals(am)?"class='active'":""%>><a href="${ctx}openEmployee.do"><i class="fa fa-diamond"></i> <span>保单管理</span> </a></li>
-            <li <%="employee".equals(am)?"class='active'":""%>><a href="${ctx}openEmployee.do"><i class="fa fa-diamond"></i> <span>业务平台</span> </a></li>
-            <li <%="employee".equals(am)?"class='active'":""%>><a href="${ctx}openEmployee.do"><i class="fa fa-diamond"></i> <span>投诉及突发事件管理</span> </a></li>
-            <li <%="employee".equals(am)?"class='active'":""%>><a href="${ctx}openEmployee.do"><i class="fa fa-diamond"></i> <span>拜访管理</span> </a></li>
-            <li <%="employee".equals(am)?"class='active'":""%>><a href="${ctx}openEmployee.do"><i class="fa fa-diamond"></i> <span>服务管理</span> </a></li>
-             
+            <li <%="customer".equals(am)?"class='active'":""%> ><a href="${ctx}openCustomerBasic.do"><i class="fa fa-dashboard"></i> <span>客户管理</span></a></li>
+            <li <%="insurance".equals(am)?"class='active'":""%>><a href="${ctx}openInsuranceRecord.do"><i class="fa fa-diamond"></i> <span>保单管理</span> </a></li>
+            <li <%="bzplat".equals(am)?"class='active'":""%>><a href="${ctx}openEmployee.do"><i class="fa fa-diamond"></i> <span>业务平台</span> </a></li>
+            <li <%="claim".equals(am)?"class='active'":""%>><a href="${ctx}openClaimRecord.do"><i class="fa fa-diamond"></i> <span>投诉及突发事件管理</span> </a></li>
+            <li <%="visit".equals(am)?"class='active'":""%>><a href="${ctx}openSitRecord.do"><i class="fa fa-diamond"></i> <span>拜访管理</span> </a></li>
+            <li <%="service".equals(am)?"class='active'":""%>><a href="${ctx}openServiceRecord.do"><i class="fa fa-diamond"></i> <span>服务管理</span> </a></li>
             <li <%="employee".equals(am)?"class='active'":""%>><a href="${ctx}openEmployee.do"><i class="fa fa-diamond"></i> <span>人员管理</span> </a></li>
             <li <%="org".equals(am)?"class='active'":""%>><a href="${ctx}openOrg.do"><i class="fa fa-bank"></i> 机构管理</a></li>
             <li <%="role".equals(am)?"class='active'":""%>><a href="${ctx}openRole.do"><i class="fa fa-child"></i>职务管理</a></li>
@@ -65,4 +67,92 @@
         <!-- /.sidebar -->
       </aside>
       
-      
+  
+		    <div id="pwdWin">
+			    	<form id="pwdFrm" class="form-horizontal">
+						<div class="form-group">
+	                      <label class="col-sm-3 control-label">原始密码</label>
+	                      <div class="col-sm-7">
+	                        <input name="oldpassword" type="password" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   	<div class="form-group">
+	                      <label class="col-sm-3 control-label">新密码</label>
+	                      <div class="col-sm-7">
+	                        <input name="password" id="password" type="password" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   	<div class="form-group">
+	                      <label class="col-sm-3 control-label">请确认</label>
+	                      <div class="col-sm-7">
+	                        <input name="confirmpassword" type="password" class="form-control" required="true"  equalTo:"#password">
+	                      </div>
+	                    </div>
+	                    <input name="id" type="hidden"  value="<%=userDetails.getId() %>">
+					   	<input name="account" type="hidden" value="<%=userDetails.getAccount() %>">
+					   	
+					   										</form>
+			    </div>
+		    
+<script type="text/javascript">     
+var that = this;
+
+var pk = 'id'; // java类中的主键字段
+var updateAdminUser = ctx + 'updatePassword.do'; // 修改
+var submitAdminUser = ''; // 提交URL
+
+var pwdWin; // 窗口
+var $pwdFrm = $('#pwdFrm'); // 编辑表单
+
+
+var $pwdBtn = $('#changepassword'); 
+
+var validator = $pwdFrm.validate();; // 验证器
+
+function reset() {
+	$pwdFrm.get(0).reset();
+	validator.resetForm();
+}
+
+pwdWin = dialog({
+	title: '编辑',
+	width:400,
+	content: document.getElementById('pwdWin'),
+	okValue: '保存',
+	ok: function () {
+		savePwd();
+		return false;
+	},
+	cancelValue: '取消',
+	cancel: function () {
+		this.close();
+		return false;
+	}
+});
+
+//初始化事件
+$pwdBtn.click(function() {
+	submitAdminUser = updateAdminUser;
+	reset();
+	pwdWin.title('修改密码');
+	pwdWin.showModal();	
+});
+
+
+// 保存
+savePwd = function() {
+	var self = this;
+	var data = getFormData($pwdFrm);
+	var validateVal = validator.form();
+	if(validateVal) {
+		Action.post(submitAdminUser, data, function(result) {
+			Action.execResult(result, function(result) {
+				gridObj.refreshPage();
+				pwdWin.close();
+			});
+		});
+	}
+}
+
+
+</script>      

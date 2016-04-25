@@ -17,16 +17,16 @@
     <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
 		resultMap="queryResultMap">
 		SELECT 
-                         id
-                , name
-                , idcardnum
-                , type
-                , birthday
-                , wedding_day
-                , account
-                , sex
-                , from
-                , note
+                  t.id
+                , t.name
+                , t.idcardnum
+                , t.type
+                , t.birthday
+                , t.wedding_day
+                , t.account
+                , t.sex
+                , t.from
+                , t.note
         		FROM customer_basic t
 		<include refid="expressionBlock.where" />
 		<choose>
@@ -55,7 +55,7 @@
     >
 	INSERT INTO customer_basic
          (
-                                                  `name`
+                                          `name`
                                         , `idcardnum`
                                         , `type`
                                         , `birthday`
@@ -83,40 +83,33 @@
     <update id="update" parameterType="com.chinal.emp.entity.CustomerBasic">
     UPDATE customer_basic
     SET 
-                                                             <if test="name!=null and name!=''">
+        <if test="name!=null and name!=''">
         name=#{name,jdbcType=VARCHAR}
         </if>
-                                      ,
+                                      
                 <if test="idcardnum!=null and idcardnum!=''">
-        idcardnum=#{idcardnum,jdbcType=VARCHAR}
+        ,idcardnum=#{idcardnum,jdbcType=VARCHAR}
         </if>
-                                      ,
                 <if test="type!=null and type!=''">
-        type=#{type,jdbcType=INTEGER}
+        ,type=#{type,jdbcType=INTEGER}
         </if>
-                                      ,
                 <if test="birthday!=null and birthday!=''">
-        birthday=#{birthday,jdbcType=VARCHAR}
+        ,birthday=#{birthday,jdbcType=VARCHAR}
         </if>
-                                      ,
                 <if test="wedding_day!=null and wedding_day!=''">
-        wedding_day=#{weddingDay,jdbcType=VARCHAR}
+        ,wedding_day=#{weddingDay,jdbcType=VARCHAR}
         </if>
-                                      ,
                 <if test="account!=null and account!=''">
-        account=#{account,jdbcType=VARCHAR}
+        ,account=#{account,jdbcType=VARCHAR}
         </if>
-                                      ,
                 <if test="sex!=null and sex!=''">
-        sex=#{sex,jdbcType=VARCHAR}
+        ,sex=#{sex,jdbcType=VARCHAR}
         </if>
-                                      ,
                 <if test="from!=null and from!=''">
-        from=#{from,jdbcType=VARCHAR}
+        ,from=#{from,jdbcType=VARCHAR}
         </if>
-                                      ,
                 <if test="note!=null and note!=''">
-        note=#{note,jdbcType=VARCHAR}
+        ,note=#{note,jdbcType=VARCHAR}
         </if>
                       WHERE id = #{id,jdbcType=INTEGER}
     </update>

@@ -20,13 +20,13 @@
 			access="hasRole('ROLE_5')" />
 		<security:intercept-url pattern="/openRole.do"
 			access="hasRole('ROLE_5')" />
-		<security:intercept-url pattern="/openCustomer.do"
+		<security:intercept-url pattern="/openCustomerBasic.do"
 			access="hasRole('ROLE_1')" />
 		<security:intercept-url pattern="/**"
 			access="hasRole('ROLE_1')" />
 
 		<security:form-login login-page="/login.do"
-			authentication-failure-url="/login.do?error=true" default-target-url="/customer.do"
+			authentication-failure-url="/login.do?error=true" default-target-url="/openCustomerBasic.do"
 			authentication-success-handler-ref="authenticationSuccessHandler" />
 
 		<security:logout invalidate-session="true"
@@ -44,7 +44,7 @@
 </security:authentication-manager>
 
 	<bean id="authenticationSuccessHandler" class="com.chinal.emp.security.SimpleLoginSuccessHandler">
-		    <property name="defaultTargetUrl" value="/openCustomer.do"></property> 
+		    <property name="defaultTargetUrl" value="/openCustomerBasic.do"></property> 
 			<property name="forwardToDestination" value="false"></property>
 	</bean>
 

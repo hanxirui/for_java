@@ -1,4 +1,8 @@
-InsuranceRecord
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ include file="../taglib.jsp" %>
+<jsp:include page="../menu.jsp" >
+    <jsp:param name="activeMenu" value="insurance"/>
+</jsp:include>  
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -17,29 +21,29 @@ InsuranceRecord
                <div class="box-body">
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
-										 										                       机构:<input name="orgCode" type="text" class="form-control">      
-					 										                       保险单号:<input name="insuranceNum" type="text" class="form-control">      
-					 										                       投保单号:<input name="touInsuranceNum" type="text" class="form-control">      
-					 										                       险种代码:<input name="typeCode" type="text" class="form-control">      
-					 										                       渠道:<input name="qudao" type="text" class="form-control">      
-					 										                       保费:<input name="insuranceFei" type="text" class="form-control">      
-					 										                       满期金额:<input name="totalInsuranceFei" type="text" class="form-control">      
-					 										                       满期日期:<input name="manqiDate" type="text" class="form-control">      
-					 										                       缴费方式:<input name="feiType" type="text" class="form-control">      
-					 										                       缴费期间:<input name="feiQijian" type="text" class="form-control">      
-					 										                       保险期间:<input name="insuranceQijian" type="text" class="form-control">      
-					 										                       保单状态:<input name="state" type="text" class="form-control">      
-					 										                       投保人:<input name="customerIdcardnum" type="text" class="form-control">      
-					 										                       地址:<input name="customerAddr" type="text" class="form-control">      
-					 										                       电话:<input name="customerPhone" type="text" class="form-control">      
-					 										                       手机:<input name="customerMobile" type="text" class="form-control">      
-					 										                       业务员姓名:<input name="account" type="text" class="form-control">      
-					 										                       工号:<input name="accountCode" type="text" class="form-control">      
-					 										                       银行:<input name="bankName" type="text" class="form-control">      
-					 										                       银行账号:<input name="bankCardNum" type="text" class="form-control">      
-					 										                       被保险人:<input name="beibaoxianren" type="text" class="form-control">      
-					 										                       受益人:<input name="shouyiren" type="text" class="form-control">      
-					 					                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
+					   <!-- 机构:<input name="orgCode" type="text" class="form-control">   -->    
+                       保险单号:<input name="insuranceNum" type="text" class="form-control">      
+                       <!-- 投保单号:<input name="touInsuranceNum" type="text" class="form-control">  -->     
+                       险种代码:<input name="typeCode" type="text" class="form-control">      
+                       渠道:<input name="qudao" type="text" class="form-control">      
+                      <!--  保费:<input name="insuranceFei" type="text" class="form-control">      
+                       满期金额:<input name="totalInsuranceFei" type="text" class="form-control">      
+                       满期日期:<input name="manqiDate" type="text" class="form-control">      
+                       缴费方式:<input name="feiType" type="text" class="form-control">      
+                       缴费期间:<input name="feiQijian" type="text" class="form-control">      
+                       保险期间:<input name="insuranceQijian" type="text" class="form-control">      
+                       保单状态:<input name="state" type="text" class="form-control">    -->   
+                       投保人:<input name="customerIdcardnum" type="text" class="form-control">      
+                      <!--  地址:<input name="customerAddr" type="text" class="form-control">      
+                       电话:<input name="customerPhone" type="text" class="form-control">      
+                       手机:<input name="customerMobile" type="text" class="form-control">      
+                       业务员姓名:<input name="account" type="text" class="form-control">      
+                       工号:<input name="accountCode" type="text" class="form-control">      
+                       银行:<input name="bankName" type="text" class="form-control">      
+                       银行账号:<input name="bankCardNum" type="text" class="form-control">      
+                       被保险人:<input name="beibaoxianren" type="text" class="form-control">      
+                       受益人:<input name="shouyiren" type="text" class="form-control">   -->    
+	                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
 				</form>
                </div><!-- /.box-body -->

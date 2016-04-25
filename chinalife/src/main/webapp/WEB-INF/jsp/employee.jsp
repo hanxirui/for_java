@@ -41,7 +41,7 @@
 				<div class="box-header">
 					 <div class="btn-group">
 			         	<a id="addBtn" class="btn btn-primary">
-			            	<i class="fa fa-plus"></i> 添加 
+			            	<i class="fa fa-plus"></i> 录入 
 			         	</a>
 			          </div>
 				</div><!-- /.box-header -->
@@ -54,12 +54,13 @@
 							<!-- <th w_index="password">密码</th> -->
 							<th w_index="account">账号</th>
 							<th w_index="code">工号</th>
-							<th w_index="pid">身份证号</th>
+							<th w_index="idcardnum">身份证号</th>
 							<th w_index="orgname">所属公司</th>
 							<th w_index="orgcode">公司代码</th>
 							<th w_index="sex" w_render="sexRender">性别</th>
 							<th w_index="phone">电话</th>
 							<th w_index="jointime">入司时间</th>
+                            <th w_index="managerName">直接上级</th>
 							<th w_render="operate" width="10%;">操作</th>
 						</tr>
 					</table>
@@ -109,7 +110,7 @@
 	                    
 	                      <label class="col-sm-2 control-label">身份证号</label>
 	                      <div class="col-sm-3">
-	                        <input name="pid" type="text" class="form-control" required="true">
+	                        <input name="idcardnum" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
                          <div class="form-group">
@@ -136,6 +137,12 @@
 	                        <input name="jointime" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
+	                    <div class="form-group">
+			    		 <label class="col-sm-2 control-label">直接上级</label>
+	                      <div class="col-sm-3">
+	                        <input name="managercode" type="text" class="form-control" required="true">
+	                      </div>
+	                     </div>
 					  </form>
 			    </div>
 		    
@@ -275,7 +282,7 @@ validator = $crudFrm.validate();
 //获得职务列表
 this.getRole = function(){
 	 $.each(roleList, function (i, item) {
-	       $("<option></option>").val(item.level).text(item.name).appendTo($("#role"));
+	       $("<option></option>").val(item.id).text(item.name).appendTo($("#role"));
 	    });
 }
 
@@ -303,16 +310,7 @@ $.getJSON("${ctx}listRole.do", null, function (result) {
 	roleList = result.data;
 });
 
-/* $("input:radio").on("click", function() {
-	$(this).attr("checked","true");
-}); */
 
-$('input:radio:checked').each(function(i,val){
-	alert(i+"-"+val);
-	/* if(val.name != "dialCheckResult" ){
-	  $("input:radio[name='"+val.name+"']:checked").attr('checked',false);
-	} */
-});
 </script>
 
         </section><!-- /.content -->

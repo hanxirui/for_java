@@ -1,4 +1,8 @@
-CustomerExtras
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ include file="../taglib.jsp" %>
+<jsp:include page="../menu.jsp" >
+    <jsp:param name="activeMenu" value="cse"/>
+</jsp:include>  
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -17,16 +21,16 @@ CustomerExtras
                <div class="box-body">
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
-										                       :<input name="id" type="text" class="form-control">      
-					 										                       身份证号:<input name="idcardnum" type="text" class="form-control">      
-					 										                       电话:<input name="phone" type="text" class="form-control">      
-					 										                       手机:<input name="mobile" type="text" class="form-control">      
-					 										                       车品牌:<input name="carBand" type="text" class="form-control">      
-					 										                       车牌号:<input name="carNum" type="text" class="form-control">      
-					 										                       住址:<input name="addr" type="text" class="form-control">      
-					 										                       维护人:<input name="account" type="text" class="form-control">      
-					 										                       维护日期:<input name="insertDate" type="text" class="form-control">      
-					 					                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
+                       :<input name="id" type="text" class="form-control">      
+                       身份证号:<input name="idcardnum" type="text" class="form-control">      
+                       电话:<input name="phone" type="text" class="form-control">      
+                       手机:<input name="mobile" type="text" class="form-control">      
+                       车品牌:<input name="carBand" type="text" class="form-control">      
+                       车牌号:<input name="carNum" type="text" class="form-control">      
+                       住址:<input name="addr" type="text" class="form-control">      
+                       维护人:<input name="account" type="text" class="form-control">      
+                       维护日期:<input name="insertDate" type="text" class="form-control">      
+	                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
 				</form>
                </div><!-- /.box-body -->

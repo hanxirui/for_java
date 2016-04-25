@@ -17,7 +17,7 @@ public class Employee {
 	// 工号
 	private String code;
 	// 身份证号
-	private String pid;
+	private String idcardnum;
 	// 所属公司
 	private String orgname;
 	// 公司代码
@@ -28,6 +28,16 @@ public class Employee {
 	private String phone;
 	// 入司时间
 	private String jointime;
+	// 直接上级
+	private int managercode;
+	// 管理层级
+	private String managerpath;
+
+	private int roleLevel;
+
+	private String roleName;
+
+	private String managerName;
 
 	public void setId(int id) {
 		this.id = id;
@@ -77,12 +87,12 @@ public class Employee {
 		return this.code;
 	}
 
-	public void setPid(String pid) {
-		this.pid = pid;
+	public void setIdcardnum(String idcardnum) {
+		this.idcardnum = idcardnum;
 	}
 
-	public String getPid() {
-		return this.pid;
+	public String getIdcardnum() {
+		return this.idcardnum;
 	}
 
 	public void setOrgname(String orgname) {
@@ -123,6 +133,46 @@ public class Employee {
 
 	public String getJointime() {
 		return this.jointime;
+	}
+
+	public void setManagercode(int managercode) {
+		this.managercode = managercode;
+	}
+
+	public int getManagercode() {
+		return this.managercode;
+	}
+
+	public void setManagerpath(String managerpath) {
+		this.managerpath = managerpath;
+	}
+
+	public String getManagerpath() {
+		return this.managerpath;
+	}
+
+	public int getRoleLevel() {
+		return roleLevel;
+	}
+
+	public void setRoleLevel(int roleLevel) {
+		this.roleLevel = roleLevel;
+	}
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+	public String getManagerName() {
+		return managerName;
+	}
+
+	public void setManagerName(String managerName) {
+		this.managerName = managerName;
 	}
 
 }

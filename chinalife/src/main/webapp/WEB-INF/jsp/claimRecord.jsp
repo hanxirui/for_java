@@ -1,4 +1,8 @@
-ClaimRecord
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ include file="../taglib.jsp" %>
+<jsp:include page="../menu.jsp" >
+    <jsp:param name="activeMenu" value="claim"/>
+</jsp:include>  
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -17,27 +21,27 @@ ClaimRecord
                <div class="box-body">
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
-										 										                       客户身份证号:<input name="idcardnum" type="text" class="form-control">      
-					 										                       投诉原因:<input name="reason" type="text" class="form-control">      
-					 										                       涉及保单:<input name="insuranceid" type="text" class="form-control">      
-					 										                       客户经理:<input name="firstaccount" type="text" class="form-control">      
-					 										                       处理内容:<input name="firstcontent" type="text" class="form-control">      
-					 										                       赔偿金额:<input name="firstclaim" type="text" class="form-control">      
-					 										                       处理时间:<input name="firsttime" type="text" class="form-control">      
-					 										                       区域经理:<input name="secondaccount" type="text" class="form-control">      
-					 										                       处理内容:<input name="secondcontent" type="text" class="form-control">      
-					 										                       处理时间:<input name="secondtime" type="text" class="form-control">      
-					 										                       赔偿金额:<input name="secondclaim" type="text" class="form-control">      
-					 										                       部门经理:<input name="thirdaccount" type="text" class="form-control">      
-					 										                       处理内容:<input name="thirdcontent" type="text" class="form-control">      
-					 										                       赔偿金额:<input name="thirdclaim" type="text" class="form-control">      
-					 										                       处理时间:<input name="thirdtime" type="text" class="form-control">      
-					 										                       经理室:<input name="fourthaccount" type="text" class="form-control">      
-					 										                       处理内容:<input name="fourthcontent" type="text" class="form-control">      
-					 										                       赔偿金额:<input name="fourthclaim" type="text" class="form-control">      
-					 										                       赔偿时间:<input name="fourthtime" type="text" class="form-control">      
-					 										                       投诉时间:<input name="claimtime" type="text" class="form-control">      
-					 					                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
+				      客户身份证号:<input name="idcardnum" type="text" class="form-control">      
+                      <!-- 投诉原因:<input name="reason" type="text" class="form-control">    -->   
+                      涉及保单:<input name="insuranceid" type="text" class="form-control">      
+                      客户经理:<input name="firstaccount" type="text" class="form-control">      
+                     <!--  处理内容:<input name="firstcontent" type="text" class="form-control">      
+                      赔偿金额:<input name="firstclaim" type="text" class="form-control">      
+                      处理时间:<input name="firsttime" type="text" class="form-control">      
+                      区域经理:<input name="secondaccount" type="text" class="form-control">      
+                      处理内容:<input name="secondcontent" type="text" class="form-control">      
+                      处理时间:<input name="secondtime" type="text" class="form-control">      
+                      赔偿金额:<input name="secondclaim" type="text" class="form-control">      
+                      部门经理:<input name="thirdaccount" type="text" class="form-control">      
+                      处理内容:<input name="thirdcontent" type="text" class="form-control">      
+                      赔偿金额:<input name="thirdclaim" type="text" class="form-control">      
+                      处理时间:<input name="thirdtime" type="text" class="form-control">      
+                      经理室:<input name="fourthaccount" type="text" class="form-control">      
+                      处理内容:<input name="fourthcontent" type="text" class="form-control">      
+                      赔偿金额:<input name="fourthclaim" type="text" class="form-control">      
+                      赔偿时间:<input name="fourthtime" type="text" class="form-control">      
+                      投诉时间:<input name="claimtime" type="text" class="form-control">   -->    
+	                <button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
 				</form>
                </div><!-- /.box-body -->
@@ -55,14 +59,15 @@ ClaimRecord
 				<div class="box-body">	 
 					<table id="searchTable">
 						<tr>           
-																							<th w_index="idcardnum">客户身份证号</th>
+																			<th w_index="idcardnum">客户身份证号</th>
 																			<th w_index="reason">投诉原因</th>
+																			<th w_index="claimtime">投诉时间</th>
 																			<th w_index="insuranceid">涉及保单</th>
 																			<th w_index="firstaccount">客户经理</th>
 																			<th w_index="firstcontent">处理内容</th>
 																			<th w_index="firstclaim">赔偿金额</th>
 																			<th w_index="firsttime">处理时间</th>
-																			<th w_index="secondaccount">区域经理</th>
+																			<!-- <th w_index="secondaccount">区域经理</th>
 																			<th w_index="secondcontent">处理内容</th>
 																			<th w_index="secondtime">处理时间</th>
 																			<th w_index="secondclaim">赔偿金额</th>
@@ -73,8 +78,8 @@ ClaimRecord
 																			<th w_index="fourthaccount">经理室</th>
 																			<th w_index="fourthcontent">处理内容</th>
 																			<th w_index="fourthclaim">赔偿金额</th>
-																			<th w_index="fourthtime">赔偿时间</th>
-																			<th w_index="claimtime">投诉时间</th>
+																			<th w_index="fourthtime">赔偿时间</th> -->
+																			
 													<th w_render="operate" width="10%;">操作</th>
 						</tr>
 					</table>

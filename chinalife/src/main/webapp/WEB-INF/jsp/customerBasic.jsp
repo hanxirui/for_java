@@ -1,4 +1,8 @@
-CustomerBasic
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ include file="../taglib.jsp" %>
+<jsp:include page="../menu.jsp" >
+    <jsp:param name="activeMenu" value="customer"/>
+</jsp:include>  
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -17,16 +21,16 @@ CustomerBasic
                <div class="box-body">
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
-										 										                       姓名:<input name="name" type="text" class="form-control">      
-					 										                       身份证号:<input name="idcardnum" type="text" class="form-control">      
-					 										                       类型  1-原始；2-自营新拓；3-渠道新拓:<input name="type" type="text" class="form-control">      
-					 										                       生日:<input name="birthday" type="text" class="form-control">      
-					 										                       结婚纪念日:<input name="weddingDay" type="text" class="form-control">      
-					 										                       客户经理:<input name="account" type="text" class="form-control">      
-					 										                       性别:<input name="sex" type="text" class="form-control">      
-					 										                       初始来源:<input name="from" type="text" class="form-control">      
-					 										                       爱好及特点:<input name="note" type="text" class="form-control">      
-					 					                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
+				      姓名:<input name="name" type="text" class="form-control">      
+                      <!-- 身份证号:<input name="idcardnum" type="text" class="form-control">      
+                      类型  1-原始；2-自营新拓；3-渠道新拓:<input name="type" type="text" class="form-control">    -->   
+                      生日:<input name="birthday" type="text" class="form-control">      
+                     <!--  结婚纪念日:<input name="weddingDay" type="text" class="form-control">   -->    
+                      客户经理:<input name="account" type="text" class="form-control">      
+                     <!--  性别:<input name="sex" type="text" class="form-control">      
+                      初始来源:<input name="from" type="text" class="form-control">  -->     
+                      爱好:<input name="note" type="text" class="form-control">      
+                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
 				</form>
                </div><!-- /.box-body -->
@@ -44,16 +48,18 @@ CustomerBasic
 				<div class="box-body">	 
 					<table id="searchTable">
 						<tr>           
-																							<th w_index="name">姓名</th>
-																			<th w_index="idcardnum">身份证号</th>
-																			<th w_index="type">类型  1-原始；2-自营新拓；3-渠道新拓</th>
-																			<th w_index="birthday">生日</th>
-																			<th w_index="weddingDay">结婚纪念日</th>
-																			<th w_index="account">客户经理</th>
-																			<th w_index="sex">性别</th>
-																			<th w_index="from">初始来源</th>
-																			<th w_index="note">爱好及特点</th>
-													<th w_render="operate" width="10%;">操作</th>
+							<th w_index="name">客户姓名</th>
+							<th w_index="sex"  w_render="sexRender">性别</th>
+							<th w_index="idcardnum">身份证号</th>
+							<th w_index="addr">地址</th>
+							<!-- <th w_index="type">类型  1-原始；2-自营新拓；3-渠道新拓</th> -->
+							<!-- <th w_index="birthday">生日</th> -->
+							<!-- <th w_index="weddingDay">结婚纪念日</th> -->
+							<!-- <th w_index="account">客户经理</th> -->
+							
+							<th w_index="from"  w_render="fromRender">初始来源</th>
+							<!-- <th w_index="note">爱好及特点</th> -->
+							<th w_render="operate" width="10%;">操作</th>
 						</tr>
 					</table>
 				</div><!-- /.box-body -->
@@ -74,7 +80,7 @@ CustomerBasic
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">类型  1-原始；2-自营新拓；3-渠道新拓</label>
+	                      <label class="col-sm-3 control-label">类型</label>
 	                      <div class="col-sm-7">
 	                        <input name="type" type="text" class="form-control" required="true">
 	                      </div>
@@ -126,6 +132,7 @@ var listUrl = ctx + 'listCustomerBasic.do'; // 查询
 var addUrl = ctx + 'addCustomerBasic.do'; // 添加
 var updateUrl = ctx + 'updateCustomerBasic.do'; // 修改
 var delUrl = ctx + 'delCustomerBasic.do'; // 删除
+var detailUrl = ctx + 'openCustomerDetail.do'; // 修改
 var submitUrl = ''; // 提交URL
 
 var gridObj; // 表格
@@ -194,7 +201,9 @@ function operate(row, rowIndex, colIndex, options) {
 		+ '&nbsp;&nbsp;'
 		+ '<a href="#" onclick="'
 		+ FunUtil.createFun(that, 'del', row)
-		+ ' return false;">删除</a>';
+		+ ' return false;">删除</a>'
+		+ '&nbsp;&nbsp;'
+		+ '<a href="'+detailUrl + '?' + pk + '=' + row[pk]+'">详情</a>';
 }
 
 // 保存
@@ -221,6 +230,16 @@ this.edit = function(row) {
 		crudWin.showModal();
 	}
 }
+ 
+/* this.detail = function(row) {
+	if (row) {
+		submitUrl = detailUrl + '?' + pk + '=' + row[pk];
+		reset();
+		crudWin.title('详情');
+		loadFormData($crudFrm,row);		
+		crudWin.showModal();
+	}
+} */
 
 // 删除
 this.del = function(row) {
@@ -241,6 +260,25 @@ this.del = function(row) {
 			cancel: function () {}
 		});
 		d.showModal();
+	}
+}
+
+var sexRender = function(record, rowIndex, colIndex, options){
+	if(record.sex==0){
+		return "女";
+	}else{
+		return "男";
+	}
+	
+}
+
+var fromRender = function(record, rowIndex, colIndex, options){
+	if(record.from==1){
+		return "原始";
+	}else if(record.from==2){
+		return "自营新拓";
+	}else{
+		return "渠道新拓";
 	}
 }
 

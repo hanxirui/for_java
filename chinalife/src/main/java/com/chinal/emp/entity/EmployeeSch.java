@@ -1,22 +1,25 @@
 package com.chinal.emp.entity;
 
+import org.durcframework.core.SearchEntity;
 import org.durcframework.core.expression.annotation.ValueField;
 import org.durcframework.core.support.BsgridSearch;
 
 public class EmployeeSch extends BsgridSearch {
 
-	private Integer id;
-	private String name;
-	private Integer role;
-	private String password;
-	private String account;
-	private String code;
-	private String pid;
-	private String orgname;
-	private String orgcode;
-	private String sex;
-	private String phone;
-	private String jointime;
+    private Integer id;
+    private String name;
+    private Integer role;
+    private String password;
+    private String account;
+    private String code;
+    private String idcardnum;
+    private String orgname;
+    private String orgcode;
+    private String sex;
+    private String phone;
+    private String jointime;
+    private Integer managercode;
+    private String managerpath;
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -72,14 +75,14 @@ public class EmployeeSch extends BsgridSearch {
 		return this.code;
 	}
 
-	public void setPid(String pid) {
-		this.pid = pid;
-	}
-
-	@ValueField(column = "pid")
-	public String getPid() {
-		return this.pid;
-	}
+    public void setIdcardnum (String idcardnum){
+        this.idcardnum = idcardnum;
+    }
+    
+    @ValueField(column = "idcardnum")
+    public String getIdcardnum(){
+        return this.idcardnum;
+    }
 
 	public void setOrgname(String orgname) {
 		this.orgname = orgname;
@@ -125,5 +128,24 @@ public class EmployeeSch extends BsgridSearch {
 	public String getJointime() {
 		return this.jointime;
 	}
+
+    public void setManagercode (Integer managercode){
+        this.managercode = managercode;
+    }
+    
+    @ValueField(column = "managercode")
+    public Integer getManagercode(){
+        return this.managercode;
+    }
+
+    public void setManagerpath (String managerpath){
+        this.managerpath = managerpath;
+    }
+    
+    @ValueField(column = "managerpath")
+    public String getManagerpath(){
+        return this.managerpath;
+    }
+
 
 }

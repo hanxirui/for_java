@@ -1,4 +1,8 @@
-ServiceRecord
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ include file="../taglib.jsp" %>
+<jsp:include page="../menu.jsp" >
+    <jsp:param name="activeMenu" value="org"/>
+</jsp:include>  
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -17,9 +21,9 @@ ServiceRecord
                <div class="box-body">
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
-										 										                       客户:<input name="idcardnum" type="text" class="form-control">      
+										 										   客户:<input name="idcardnum" type="text" class="form-control">      
 					 										                       服务时间:<input name="servicetime" type="text" class="form-control">      
-					 										                       服务时间:<input name="content" type="text" class="form-control">      
+					 										                       服务内容:<input name="content" type="text" class="form-control">      
 					 										                       客户经理:<input name="account" type="text" class="form-control">      
 					 					                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
@@ -39,11 +43,11 @@ ServiceRecord
 				<div class="box-body">	 
 					<table id="searchTable">
 						<tr>           
-																							<th w_index="idcardnum">客户</th>
-																			<th w_index="servicetime">服务时间</th>
-																			<th w_index="content">服务时间</th>
-																			<th w_index="account">客户经理</th>
-													<th w_render="operate" width="10%;">操作</th>
+							<th w_index="idcardnum">客户</th>
+							<th w_index="servicetime">服务时间</th>
+							<th w_index="content">服务内容</th>
+							<th w_index="account">客户经理</th>
+							<th w_render="operate" width="10%;">操作</th>
 						</tr>
 					</table>
 				</div><!-- /.box-body -->
@@ -64,7 +68,7 @@ ServiceRecord
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">服务时间</label>
+	                      <label class="col-sm-3 control-label">服务内容</label>
 	                      <div class="col-sm-7">
 	                        <input name="content" type="text" class="form-control" required="true">
 	                      </div>

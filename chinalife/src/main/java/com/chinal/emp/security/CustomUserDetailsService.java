@@ -12,13 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.chinal.emp.dao.EmployeeDao;
 import com.chinal.emp.entity.Employee;
+import com.chinal.emp.expression.LeftJoinExpression;
 
 /**
  * 一个自定义的service用来和数据库进行操作. 即以后我们要通过数据库保存权限.则需要我们继承UserDetailsService
@@ -35,14 +35,16 @@ public class CustomUserDetailsService extends CrudService<Employee, EmployeeDao>
 
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
 
-		UserDetails user = null;
+		AuthUser user = null;
 
 		try {
 			System.out.println(passwordEncoder.encodePassword("123456", "admin"));
 			// 搜索数据库以匹配用户登录名.
 			// 我们可以通过dao使用JDBC来访问数据库
 			ExpressionQuery query = new ExpressionQuery();
-			query.add(new ValueExpression("account", username));
+			query.addJoinExpression(new LeftJoinExpression("role", "t2", "role", "id"));
+			query.addJoinExpression(new LeftJoinExpression("employee", "t3", "managercode", "code"));
+			query.add(new ValueExpression("t.account", username));
 
 			List<Employee> emps = this.find(query);
 			if (emps.size() == 1) {
@@ -52,8 +54,10 @@ public class CustomUserDetailsService extends CrudService<Employee, EmployeeDao>
 				// getAuthorities() will translate the access level to the
 				// correct
 				// role type
-				user = new User(dbUser.getName(), dbUser.getPassword().toLowerCase(), true, true, true, true,
-						getAuthorities(dbUser.getRole()));
+				user = new AuthUser(dbUser.getName(), dbUser.getPassword().toLowerCase(), true, true, true, true,
+						getAuthorities(dbUser.getRoleLevel()));
+				user.setAccount(dbUser.getAccount());
+				user.setId(dbUser.getId());
 			}
 
 		} catch (Exception e) {
