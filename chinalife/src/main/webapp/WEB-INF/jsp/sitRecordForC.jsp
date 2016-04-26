@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ include file="../taglib.jsp" %>
 <jsp:include page="../menu.jsp" >
-    <jsp:param name="activeMenu" value="org"/>
+    <jsp:param name="activeMenu" value="cse"/>
 </jsp:include>  
 
       <!-- Content Wrapper. Contains page content -->
@@ -12,7 +12,12 @@
           	<small>管理您的订单</small> 
           </h1>
         </section>-->
-
+        <ul class="nav nav-pills">
+		  <li role="presentation"><a href="${ctx}openCustomerForC.do">详情</a></li>
+		  <li role="presentation"><a href="${ctx}openInsuranceForC.do">保单记录</a></li>
+		  <li role="presentation"><a href="${ctx}openServiceRecordForC.do">服务记录</a></li>
+		  <li role="presentation"  class="active"><a href="${ctx}openSitRecordForC.do">拜访记录</a></li>
+		</ul>
         <!-- Main content -->
         <section class="content">
 

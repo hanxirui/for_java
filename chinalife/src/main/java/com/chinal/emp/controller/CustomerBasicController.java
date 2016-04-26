@@ -58,11 +58,6 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 		return this.add(entity);
 	}
 
-	@RequestMapping("/openCustomerDetail.do")
-	public String openCustomerDetail(String pk) {
-		return "customerDetail";
-	}
-
 	@RequestMapping("/listCustomerBasic.do")
 	public ModelAndView listCustomerBasic(CustomerBasicSch searchEntity) {
 		ExpressionQuery query = new ExpressionQuery();

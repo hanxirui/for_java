@@ -54,10 +54,11 @@ public class CustomUserDetailsService extends CrudService<Employee, EmployeeDao>
 				// getAuthorities() will translate the access level to the
 				// correct
 				// role type
-				user = new AuthUser(dbUser.getName(), dbUser.getPassword().toLowerCase(), true, true, true, true,
+				user = new AuthUser(dbUser.getAccount(), dbUser.getPassword().toLowerCase(), true, true, true, true,
 						getAuthorities(dbUser.getRoleLevel()));
 				user.setAccount(dbUser.getAccount());
 				user.setId(dbUser.getId());
+				user.setcName(dbUser.getName());
 			}
 
 		} catch (Exception e) {

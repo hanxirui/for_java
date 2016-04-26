@@ -28,7 +28,7 @@
                      <!--  结婚纪念日:<input name="weddingDay" type="text" class="form-control">   -->    
                       客户经理:<input name="account" type="text" class="form-control">      
                      <!--  性别:<input name="sex" type="text" class="form-control">      
-                      初始来源:<input name="from" type="text" class="form-control">  -->     
+                      初始来源:<input name="laiyuan" type="text" class="form-control">  -->     
                       爱好:<input name="note" type="text" class="form-control">      
                    	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
@@ -57,7 +57,7 @@
 							<!-- <th w_index="weddingDay">结婚纪念日</th> -->
 							<!-- <th w_index="account">客户经理</th> -->
 							
-							<th w_index="from"  w_render="fromRender">初始来源</th>
+							<th w_index="laiyuan"  w_render="fromRender">初始来源</th>
 							<!-- <th w_index="note">爱好及特点</th> -->
 							<th w_render="operate" width="10%;">操作</th>
 						</tr>
@@ -73,28 +73,40 @@
 	                        <input name="name" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
-					   										   						<div class="form-group">
+					   	
+					   	<div class="form-group">
 	                      <label class="col-sm-3 control-label">身份证号</label>
 	                      <div class="col-sm-7">
 	                        <input name="idcardnum" type="text" class="form-control" required="true">
+	                      </div>
+	                       </div>
+	                       
+	                      <div class="form-group">
+	                      <label class="col-sm-3 control-label">地址</label>
+	                      <div class="col-sm-7">
+	                        <input name="addr" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">类型</label>
 	                      <div class="col-sm-7">
-	                        <input name="type" type="text" class="form-control" required="true">
+	                        <select id="type" name="type"  class="form-control" required="true">
+	                          <option value="1">原始</option>
+	                          <option value="2">自营新拓</option>
+	                          <option value="3">渠道新拓</option>
+	                        </select>
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">生日</label>
 	                      <div class="col-sm-7">
-	                        <input name="birthday" type="text" class="form-control" required="true">
+	                        <input name="birthday" type="text" class="form-control" required="true"  onfocus="WdatePicker({skin:'default'})">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">结婚纪念日</label>
 	                      <div class="col-sm-7">
-	                        <input name="weddingDay" type="text" class="form-control" required="true">
+	                        <input name="weddingDay" type="text" class="form-control" required="true" onfocus="WdatePicker({skin:'default'})">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
@@ -106,13 +118,22 @@
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">性别</label>
 	                      <div class="col-sm-7">
-	                        <input name="sex" type="text" class="form-control" required="true">
+	                             <label class="radio-inline">
+								    <input type="radio" name="sex" id="sex0" value="0">女
+								  </label>
+								  <label class="radio-inline">
+								    <input type="radio" name="sex" id="sex1" value="1">男
+								  </label>
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">初始来源</label>
 	                      <div class="col-sm-7">
-	                        <input name="from" type="text" class="form-control" required="true">
+	                        <select id="laiyuan" name="type"  class="form-control" required="true">
+	                          <option value="1">原始</option>
+	                          <option value="2">自营新拓</option>
+	                          <option value="3">渠道新拓</option>
+	                        </select>
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
@@ -132,7 +153,7 @@ var listUrl = ctx + 'listCustomerBasic.do'; // 查询
 var addUrl = ctx + 'addCustomerBasic.do'; // 添加
 var updateUrl = ctx + 'updateCustomerBasic.do'; // 修改
 var delUrl = ctx + 'delCustomerBasic.do'; // 删除
-var detailUrl = ctx + 'openCustomerDetail.do'; // 修改
+var detailUrl = ctx + 'openCustomerForC.do'; // 修改
 var submitUrl = ''; // 提交URL
 
 var gridObj; // 表格
@@ -199,10 +220,10 @@ function operate(row, rowIndex, colIndex, options) {
 		+ FunUtil.createFun(that, 'edit', row)
 		+ ' return false;">修改</a>'
 		+ '&nbsp;&nbsp;'
-		+ '<a href="#" onclick="'
+		/* + '<a href="#" onclick="'
 		+ FunUtil.createFun(that, 'del', row)
 		+ ' return false;">删除</a>'
-		+ '&nbsp;&nbsp;'
+		+ '&nbsp;&nbsp;' */
 		+ '<a href="'+detailUrl + '?' + pk + '=' + row[pk]+'">详情</a>';
 }
 
@@ -273,9 +294,9 @@ var sexRender = function(record, rowIndex, colIndex, options){
 }
 
 var fromRender = function(record, rowIndex, colIndex, options){
-	if(record.from==1){
+	if(record.laiyuan==1){
 		return "原始";
-	}else if(record.from==2){
+	}else if(record.laiyuan==2){
 		return "自营新拓";
 	}else{
 		return "渠道新拓";

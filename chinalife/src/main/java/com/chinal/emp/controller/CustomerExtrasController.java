@@ -9,16 +9,19 @@ import com.chinal.emp.entity.CustomerExtras;
 import com.chinal.emp.entity.CustomerExtrasSch;
 import com.chinal.emp.service.CustomerExtrasService;
 
-
 @Controller
-public class CustomerExtrasController extends
-		BsgridController<CustomerExtras, CustomerExtrasService> {
-        
-    @RequestMapping("/openCustomerExtras.do")
+public class CustomerExtrasController extends BsgridController<CustomerExtras, CustomerExtrasService> {
+
+	@RequestMapping("/openCustomerForC.do")
+	public String openCustomerForC() {
+		return "customerExtrasForC";
+	}
+
+	@RequestMapping("/openCustomerExtras.do")
 	public String openCustomerExtras() {
 		return "customerExtras";
 	}
-    
+
 	@RequestMapping("/addCustomerExtras.do")
 	public ModelAndView addCustomerExtras(CustomerExtras entity) {
 		return this.add(entity);
@@ -38,5 +41,5 @@ public class CustomerExtrasController extends
 	public ModelAndView delCustomerExtras(CustomerExtras entity) {
 		return this.remove(entity);
 	}
-	
+
 }

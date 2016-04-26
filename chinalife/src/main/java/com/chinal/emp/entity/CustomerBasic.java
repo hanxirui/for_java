@@ -1,18 +1,16 @@
 package com.chinal.emp.entity;
 
-import java.util.Date;
-
 /**
   
 */
 public class CustomerBasic {
-	// 
+	//
 	private int id;
 	// 姓名
 	private String name;
 	// 身份证号
 	private String idcardnum;
-	// 类型  1-原始；2-自营新拓；3-渠道新拓
+	// 类型 1-原始；2-自营新拓；3-渠道新拓
 	private int type;
 	// 生日
 	private String birthday;
@@ -23,88 +21,98 @@ public class CustomerBasic {
 	// 性别
 	private String sex;
 	// 初始来源
-	private String from;
+	private String laiyuan;
 	// 爱好及特点
 	private String note;
 
-	public void setId(int id){
+	private String addr;
+
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public int getId(){
+	public int getId() {
 		return this.id;
 	}
 
-	public void setName(String name){
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	public String getName(){
+	public String getName() {
 		return this.name;
 	}
 
-	public void setIdcardnum(String idcardnum){
+	public void setIdcardnum(String idcardnum) {
 		this.idcardnum = idcardnum;
 	}
 
-	public String getIdcardnum(){
+	public String getIdcardnum() {
 		return this.idcardnum;
 	}
 
-	public void setType(int type){
+	public void setType(int type) {
 		this.type = type;
 	}
 
-	public int getType(){
+	public int getType() {
 		return this.type;
 	}
 
-	public void setBirthday(String birthday){
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 
-	public String getBirthday(){
+	public String getBirthday() {
 		return this.birthday;
 	}
 
-	public void setWeddingDay(String weddingDay){
+	public void setWeddingDay(String weddingDay) {
 		this.weddingDay = weddingDay;
 	}
 
-	public String getWeddingDay(){
+	public String getWeddingDay() {
 		return this.weddingDay;
 	}
 
-	public void setAccount(String account){
+	public void setAccount(String account) {
 		this.account = account;
 	}
 
-	public String getAccount(){
+	public String getAccount() {
 		return this.account;
 	}
 
-	public void setSex(String sex){
+	public void setSex(String sex) {
 		this.sex = sex;
 	}
 
-	public String getSex(){
+	public String getSex() {
 		return this.sex;
 	}
 
-	public void setFrom(String from){
-		this.from = from;
-	}
-
-	public String getFrom(){
-		return this.from;
-	}
-
-	public void setNote(String note){
+	public void setNote(String note) {
 		this.note = note;
 	}
 
-	public String getNote(){
+	public String getNote() {
 		return this.note;
+	}
+
+	public String getLaiyuan() {
+		return laiyuan;
+	}
+
+	public void setLaiyuan(String laiyuan) {
+		this.laiyuan = laiyuan;
+	}
+
+	public String getAddr() {
+		return addr;
+	}
+
+	public void setAddr(String addr) {
+		this.addr = addr;
 	}
 
 }

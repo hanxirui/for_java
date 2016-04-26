@@ -19,6 +19,7 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"></span>
           <!-- logo for regular state and mobile devices -->
+          <span class="logo-lg">LBS管理</span>
           <!-- <span class="logo-lg">银保业务经营分析系统</span> -->
         </a>
 
@@ -73,23 +74,23 @@
 						<div class="form-group">
 	                      <label class="col-sm-3 control-label">原始密码</label>
 	                      <div class="col-sm-7">
-	                        <input name="oldpassword" type="password" class="form-control" required="true">
+	                        <input name="oldpassword" id="oldpassword" type="password" class="form-control">
 	                      </div>
 	                    </div>
 					   	<div class="form-group">
 	                      <label class="col-sm-3 control-label">新密码</label>
 	                      <div class="col-sm-7">
-	                        <input name="password" id="password" type="password" class="form-control" required="true">
+	                        <input name="password" id="password" type="password" class="form-control">
 	                      </div>
 	                    </div>
 					   	<div class="form-group">
 	                      <label class="col-sm-3 control-label">请确认</label>
 	                      <div class="col-sm-7">
-	                        <input name="confirmpassword" type="password" class="form-control" required="true"  equalTo:"#password">
+	                        <input name="repassword" id="repassword" type="password" class="form-control">
 	                      </div>
 	                    </div>
-	                    <input name="id" type="hidden"  value="<%=userDetails.getId() %>">
-					   	<input name="account" type="hidden" value="<%=userDetails.getAccount() %>">
+	                    <input name="id" id="id" type="hidden"  value="<%=userDetails.getId() %>">
+		            <input name="account" id="account" type="hidden" value="<%=userDetails.getAccount() %>">
 					   	
 					   										</form>
 			    </div>
@@ -107,11 +108,11 @@ var $pwdFrm = $('#pwdFrm'); // 编辑表单
 
 var $pwdBtn = $('#changepassword'); 
 
-var validator = $pwdFrm.validate();; // 验证器
+var pwdValidator; // 验证器
 
 function reset() {
 	$pwdFrm.get(0).reset();
-	validator.resetForm();
+	pwdValidator.resetForm();
 }
 
 pwdWin = dialog({
@@ -143,8 +144,11 @@ $pwdBtn.click(function() {
 savePwd = function() {
 	var self = this;
 	var data = getFormData($pwdFrm);
-	var validateVal = validator.form();
-	if(validateVal) {
+
+	
+    var formState=pwdvalidator.form();    
+    
+	if(formState) {
 		Action.post(submitAdminUser, data, function(result) {
 			Action.execResult(result, function(result) {
 				gridObj.refreshPage();
@@ -154,5 +158,26 @@ savePwd = function() {
 	}
 }
 
-
+pwdvalidator = $pwdFrm.validate({
+	  rules:{
+		    oldpassword: {required:true,
+		        remote:{
+		               type:"POST",
+		               url:"${ctx}checkPassword.do",             
+		               data:{
+		            	   oldpassword:function(){return $("#oldpassword").val();},
+		            	   id:function(){return $("#id").val();}
+		               } 
+		        } 
+		     },
+		     password: {required:true,minlength:6},
+		     repassword: {required:true,equalTo:"#password"}
+		 
+	   },
+      messages:{
+	     password: {required:"密码不能为空！",minlength:"密码位数必须大于等于6个字符！"},
+	     repassword: {required:"确认密码不能为空！",equalTo:"确认密码和密码不一致！"},
+	     oldpassword:  {required:"请输入原密码",remote:"原密码错误"}
+     }
+});
 </script>      

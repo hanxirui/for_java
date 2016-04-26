@@ -12,7 +12,12 @@
           	<small>管理您的订单</small> 
           </h1>
         </section>-->
-
+        <ul class="nav nav-pills">
+		   <li role="presentation"><a href="${ctx}openCustomerForC.do">详情</a></li>
+		  <li role="presentation"><a href="${ctx}openInsuranceForC.do">保单记录</a></li>
+		  <li role="presentation"  class="active"><a href="${ctx}openServiceRecordForC.do">服务记录</a></li>
+		  <li role="presentation"><a href="${ctx}openSitRecordForC.do">拜访记录</a></li>
+		</ul>
         <!-- Main content -->
         <section class="content">
 
@@ -21,11 +26,11 @@
                <div class="box-body">
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
-	              客户经理:<input name="account" type="text" class="form-control">      
-                   拜访时间:<input name="visittime" type="text" class="form-control">      
-                   客户:<input name="idcardnum" type="text" class="form-control">      
-                  <!--  拜访内容:<input name="content" type="text" class="form-control">  -->     
-                	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
+										 										   客户:<input name="idcardnum" type="text" class="form-control">      
+					 										                       服务时间:<input name="servicetime" type="text" class="form-control">      
+					 										                       服务内容:<input name="content" type="text" class="form-control">      
+					 										                       客户经理:<input name="account" type="text" class="form-control">      
+					 					                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
 				</form>
                </div><!-- /.box-body -->
@@ -43,10 +48,10 @@
 				<div class="box-body">	 
 					<table id="searchTable">
 						<tr>           
-							<th w_index="account">客户经理</th>
-							<th w_index="visittime">拜访时间</th>
 							<th w_index="idcardnum">客户</th>
-							<th w_index="content">拜访内容</th>
+							<th w_index="servicetime">服务时间</th>
+							<th w_index="content">服务内容</th>
+							<th w_index="account">客户经理</th>
 							<th w_render="operate" width="10%;">操作</th>
 						</tr>
 					</table>
@@ -56,27 +61,27 @@
 		    <div id="crudWin">
 			    	<form id="crudFrm" class="form-horizontal">
 											   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">客户经理</label>
-	                      <div class="col-sm-7">
-	                        <input name="account" type="text" class="form-control" required="true">
-	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">拜访时间</label>
-	                      <div class="col-sm-7">
-	                        <input name="visittime" type="text" class="form-control" required="true" onfocus="WdatePicker({skin:'default'})">
-	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">客户</label>
 	                      <div class="col-sm-7">
 	                        <input name="idcardnum" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">拜访内容</label>
+	                      <label class="col-sm-3 control-label">服务时间</label>
 	                      <div class="col-sm-7">
-	                        <input name="content" type="textarea" class="form-control" required="true">
+	                        <input name="servicetime" type="text" class="form-control" required="true" onfocus="WdatePicker({skin:'default'})">
+	                      </div>
+	                    </div>
+					   										   						<div class="form-group">
+	                      <label class="col-sm-3 control-label">服务内容</label>
+	                      <div class="col-sm-7">
+	                        <input name="content" type="text" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   										   						<div class="form-group">
+	                      <label class="col-sm-3 control-label">客户经理</label>
+	                      <div class="col-sm-7">
+	                        <input name="account" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										</form>
@@ -86,10 +91,10 @@
 var that = this;
 
 var pk = 'id'; // java类中的主键字段
-var listUrl = ctx + 'listSitRecord.do'; // 查询
-var addUrl = ctx + 'addSitRecord.do'; // 添加
-var updateUrl = ctx + 'updateSitRecord.do'; // 修改
-var delUrl = ctx + 'delSitRecord.do'; // 删除
+var listUrl = ctx + 'listServiceRecord.do'; // 查询
+var addUrl = ctx + 'addServiceRecord.do'; // 添加
+var updateUrl = ctx + 'updateServiceRecord.do'; // 修改
+var delUrl = ctx + 'delServiceRecord.do'; // 删除
 var submitUrl = ''; // 提交URL
 
 var gridObj; // 表格

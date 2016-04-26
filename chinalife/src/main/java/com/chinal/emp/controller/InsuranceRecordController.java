@@ -12,6 +12,11 @@ import com.chinal.emp.service.InsuranceRecordService;
 @Controller
 public class InsuranceRecordController extends BsgridController<InsuranceRecord, InsuranceRecordService> {
 
+	@RequestMapping("/openInsuranceForC.do")
+	public String openInsuranceForC() {
+		return "insuranceRecordForC";
+	}
+
 	@RequestMapping("/openInsuranceRecord.do")
 	public String openInsuranceRecord() {
 		return "insuranceRecord";

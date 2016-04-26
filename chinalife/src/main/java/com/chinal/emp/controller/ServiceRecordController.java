@@ -12,6 +12,11 @@ import com.chinal.emp.service.ServiceRecordService;
 @Controller
 public class ServiceRecordController extends BsgridController<ServiceRecord, ServiceRecordService> {
 
+	@RequestMapping("/openServiceRecordForC.do")
+	public String openServiceRecordForC() {
+		return "serviceRecordForC";
+	}
+
 	@RequestMapping("/openServiceRecord.do")
 	public String openServiceRecord() {
 		return "serviceRecord";

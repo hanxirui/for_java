@@ -10,8 +10,9 @@
                 <result column="wedding_day" property="weddingDay" jdbcType="VARCHAR" />
                 <result column="account" property="account" jdbcType="VARCHAR" />
                 <result column="sex" property="sex" jdbcType="VARCHAR" />
-                <result column="from" property="from" jdbcType="VARCHAR" />
+                <result column="laiyuan" property="laiyuan" jdbcType="VARCHAR" />
                 <result column="note" property="note" jdbcType="VARCHAR" />
+                <result column="addr" property="addr" jdbcType="VARCHAR" />
             </resultMap>
 
     <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
@@ -25,8 +26,9 @@
                 , t.wedding_day
                 , t.account
                 , t.sex
-                , t.from
+                , t.laiyuan
                 , t.note
+                , t.addr
         		FROM customer_basic t
 		<include refid="expressionBlock.where" />
 		<choose>
@@ -62,8 +64,9 @@
                                         , `wedding_day`
                                         , `account`
                                         , `sex`
-                                        , `from`
+                                        , `laiyuan`
                                         , `note`
+                                        , `addr`
                               )
 	VALUES (
                                                   #{name,jdbcType=VARCHAR}
@@ -73,8 +76,9 @@
                                         , #{weddingDay,jdbcType=VARCHAR}
                                         , #{account,jdbcType=VARCHAR}
                                         , #{sex,jdbcType=VARCHAR}
-                                        , #{from,jdbcType=VARCHAR}
+                                        , #{laiyuan,jdbcType=VARCHAR}
                                         , #{note,jdbcType=VARCHAR}
+                                        , #{addr,jdbcType=VARCHAR}
                      
         )
 	</insert>
@@ -96,7 +100,7 @@
                 <if test="birthday!=null and birthday!=''">
         ,birthday=#{birthday,jdbcType=VARCHAR}
         </if>
-                <if test="wedding_day!=null and wedding_day!=''">
+                <if test="weddingDay!=null and weddingDay!=''">
         ,wedding_day=#{weddingDay,jdbcType=VARCHAR}
         </if>
                 <if test="account!=null and account!=''">
@@ -105,11 +109,14 @@
                 <if test="sex!=null and sex!=''">
         ,sex=#{sex,jdbcType=VARCHAR}
         </if>
-                <if test="from!=null and from!=''">
-        ,from=#{from,jdbcType=VARCHAR}
+                <if test="laiyuan!=null and laiyuan!=''">
+        ,laiyuan=#{laiyuan,jdbcType=VARCHAR}
         </if>
                 <if test="note!=null and note!=''">
         ,note=#{note,jdbcType=VARCHAR}
+        </if>
+        <if test="addr!=null and addr!=''">
+        ,addr=#{addr,jdbcType=VARCHAR}
         </if>
                       WHERE id = #{id,jdbcType=INTEGER}
     </update>
@@ -124,8 +131,9 @@
                 , wedding_day
                 , account
                 , sex
-                , from
+                , laiyuan
                 , note
+                , addr
         		FROM customer_basic t
 		WHERE id = #{id,jdbcType=INTEGER}
 	</select>

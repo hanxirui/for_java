@@ -16,7 +16,7 @@
     <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
 		resultMap="queryResultMap">
 		SELECT 
-                         id
+                  id
                 , idcardnum
                 , phone
                 , mobile
@@ -92,11 +92,11 @@
         mobile=#{mobile,jdbcType=VARCHAR}
         </if>
                                       ,
-                <if test="car_band!=null and car_band!=''">
+                <if test="carBand!=null and carBand!=''">
         car_band=#{carBand,jdbcType=VARCHAR}
         </if>
                                       ,
-                <if test="car_num!=null and car_num!=''">
+                <if test="carNum!=null and carNum!=''">
         car_num=#{carNum,jdbcType=VARCHAR}
         </if>
                                       ,
@@ -108,7 +108,7 @@
         account=#{account,jdbcType=VARCHAR}
         </if>
                                       ,
-                <if test="insert_date!=null and insert_date!=''">
+                <if test="insertDate!=null and insertDate!=''">
         insert_date=#{insertDate,jdbcType=VARCHAR}
         </if>
                       WHERE id = #{id,jdbcType=INTEGER}

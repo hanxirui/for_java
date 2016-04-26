@@ -1,10 +1,17 @@
 package com.chinal.emp.controller;
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.durcframework.core.expression.ExpressionQuery;
 import org.durcframework.core.expression.subexpression.LikeRightExpression;
 import org.durcframework.core.support.BsgridController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,8 +33,22 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 	}
 
 	@RequestMapping("checkPassword.do")
-	public String checkPassword(Employee entity) {
-		return "false";
+	public void checkPassword(final HttpServletRequest request, final HttpServletResponse response) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String oldPwd = request.getParameter("oldpassword").trim();
+		String id = request.getParameter("id").trim();
+		String pwd = passwordEncoder.encodePassword(oldPwd, userDetails.getUsername());
+		response.setContentType("text/html;charset=UTF-8");
+		Employee user = this.get(Integer.parseInt(id));
+		try {
+			if (pwd.equals(user.getPassword())) {
+				response.getWriter().print(true);
+			} else {
+				response.getWriter().print(false);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@RequestMapping("updatePassword.do")

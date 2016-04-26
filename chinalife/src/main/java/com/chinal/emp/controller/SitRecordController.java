@@ -12,6 +12,11 @@ import com.chinal.emp.service.SitRecordService;
 @Controller
 public class SitRecordController extends BsgridController<SitRecord, SitRecordService> {
 
+	@RequestMapping("/openSitRecordForC.do")
+	public String openSitRecordForC() {
+		return "sitRecordForC";
+	}
+
 	@RequestMapping("/openSitRecord.do")
 	public String openSitRecord() {
 		return "sitRecord";

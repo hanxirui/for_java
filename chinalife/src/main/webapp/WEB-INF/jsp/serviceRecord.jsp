@@ -64,7 +64,7 @@
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">服务时间</label>
 	                      <div class="col-sm-7">
-	                        <input name="servicetime" type="text" class="form-control" required="true">
+	                        <input name="servicetime" type="text" class="form-control" required="true"  onfocus="WdatePicker({skin:'default'})">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
