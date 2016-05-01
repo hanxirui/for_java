@@ -18,14 +18,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.chinal.emp.entity.Employee;
 import com.chinal.emp.entity.EmployeeSch;
+import com.chinal.emp.entity.Role;
 import com.chinal.emp.expression.LeftJoinExpression;
 import com.chinal.emp.service.EmployeeService;
+import com.chinal.emp.service.RoleService;
 
 @Controller
 public class EmployeeController extends BsgridController<Employee, EmployeeService> {
 
 	@Autowired
 	Md5PasswordEncoder passwordEncoder;
+
+	@Autowired
+	RoleService roleService;
 
 	@RequestMapping("/openEmployee.do")
 	public String openEmployee() {
@@ -61,14 +66,35 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 
 	@RequestMapping("/addEmployee.do")
 	public ModelAndView addEmployee(Employee entity) {
-		if (entity.getPassword() != null && !"".equals(entity.getPassword())) {
-			entity.setPassword(passwordEncoder.encodePassword(entity.getPassword(), entity.getAccount()));
-		}
+
+		entity.setPassword(passwordEncoder.encodePassword("123456", entity.getAccount()));
+
 		return this.add(entity);
 	}
 
 	@RequestMapping("/listEmployee.do")
 	public ModelAndView listEmployee(EmployeeSch searchEntity) {
+
+		ExpressionQuery query = new ExpressionQuery();
+
+		query.addJoinExpression(new LeftJoinExpression("role", "t2", "role", "id"));
+		query.addJoinExpression(new LeftJoinExpression("employee", "t3", "managercode", "code"));
+
+		if (searchEntity.getName() != null) {
+			query.add(new LikeRightExpression("t.name", searchEntity.getName()));
+		}
+
+		// 返回查询结果
+
+		return this.list(query);
+
+	}
+
+	@RequestMapping("/getAllManagers.do")
+	public ModelAndView getAllManagers(EmployeeSch searchEntity) {
+
+		Role role = roleService.get(searchEntity.getRole());
+
 		ExpressionQuery query = new ExpressionQuery();
 		/*
 		 * 关联DEPARTMENT表 department:第二张表的名字 t2:department表的别名 DEPARTMENT:主表的字段
@@ -78,23 +104,16 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 		 */
 		query.addJoinExpression(new LeftJoinExpression("role", "t2", "role", "id"));
 		query.addJoinExpression(new LeftJoinExpression("employee", "t3", "managercode", "code"));
-		// 查询外语系的学生
-		// query.add(new ValueExpression("t2.department_name", "外语系"));
-		if (searchEntity.getName() != null) {
-			query.add(new LikeRightExpression("t.name", searchEntity.getName()));
-		}
-		// if (searchEntity.getFuzerenName() != null) {
-		// query.add(new LikeRightExpression("t2.name",
-		// searchEntity.getFuzerenName()));
-		// }
 
-		// 返回查询结果
+		// query.addValueExpression(new ValueExpression("t2.level", ">=",
+		// role.getLevel()));
 
-		return this.list(query);
+		return this.listAll(query);
 	}
 
 	@RequestMapping("/updateEmployee.do")
 	public ModelAndView updateEmployee(Employee entity) {
+
 		if (entity.getPassword() != null && !"".equals(entity.getPassword())) {
 			entity.setPassword(passwordEncoder.encodePassword(entity.getPassword(), entity.getAccount()));
 		}
@@ -106,4 +125,8 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 		return this.remove(entity);
 	}
 
+	public static void main(String[] args) {
+		Md5PasswordEncoder md5 = new Md5PasswordEncoder();
+		System.out.println(md5.encodePassword("123456", "zqs"));
+	}
 }

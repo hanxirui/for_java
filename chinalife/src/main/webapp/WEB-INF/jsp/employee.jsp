@@ -116,13 +116,19 @@
                          <div class="form-group">
 	                      <label class="col-sm-2 control-label">所属公司</label>
 	                      <div class="col-sm-3">
-	                        <input name="orgname" type="text" class="form-control" required="true">
+	                        <!-- <input name="orgname" type="text" class="form-control" required="true"> -->
+	                        <select id="orgname" name="orgname"  class="form-control" required="true">
+	                        </select>
+	                        
 	                      </div>
 	                   
+	                     
 	                      <label class="col-sm-2 control-label">公司代码</label>
 	                      <div class="col-sm-3">
-	                        <input name="orgcode" type="text" class="form-control" required="true">
+	                       <select id="orgcode" name="orgcode"  class="form-control" required="true" readonly>
+	                        </select>
 	                      </div>
+	                        
 	                    </div>
                       
 	                    
@@ -134,13 +140,15 @@
 	                   
 	                      <label class="col-sm-2 control-label">入司时间</label>
 	                      <div class="col-sm-3">
-	                        <input name="jointime" type="text" class="form-control" required="true">
+	                        <input name="jointime" type="text" class="form-control" required="true"  onfocus="WdatePicker({skin:'default'})">
 	                      </div>
 	                    </div>
 	                    <div class="form-group">
-			    		 <label class="col-sm-2 control-label">直接上级</label>
+			    		  <label class="col-sm-2 control-label">直接上级</label>
 	                      <div class="col-sm-3">
-	                        <input name="managercode" type="text" class="form-control" required="true">
+	                       <!--  <input name="managercode" type="text" class="form-control" required="true"> -->
+	                        <select id="managercode" name="managercode"  class="form-control" required="true">
+	                        </select>
 	                      </div>
 	                     </div>
 					  </form>
@@ -166,6 +174,7 @@ var $addBtn = $('#addBtn'); // 添加按钮
 
 var validator; // 验证器
 
+
 function reset() {
 	$crudFrm.get(0).reset();
 	validator.resetForm();
@@ -177,13 +186,17 @@ $addBtn.click(function() {
 	submitUrl = addUrl;
 	reset();
 	crudWin.title('添加');
+	getManagerList();
 	getRole();
+	getOrgList();
 	crudWin.showModal();	
 });
 
 $schBtn.click(function() {
 	search();
 });
+
+
 
 gridObj = $.fn.bsgrid.init('searchTable', {
 	url: listUrl
@@ -249,9 +262,13 @@ this.edit = function(row) {
 		reset();
 		crudWin.title('修改');
 		getRole();
-		loadFormData($crudFrm,row);		
+		getManagerList();
+		getOrgList();
+		loadFormData($crudFrm,row);	
+		
 		crudWin.showModal();
-	
+		/* $("#managercode").val(row.managercode);
+		$("#orgcode").val(row.orgcode); */
 	}
 }
 
@@ -279,12 +296,7 @@ this.del = function(row) {
 
 validator = $crudFrm.validate();
 
-//获得职务列表
-this.getRole = function(){
-	 $.each(roleList, function (i, item) {
-	       $("<option></option>").val(item.id).text(item.name).appendTo($("#role"));
-	    });
-}
+
 
 var sexRender = function(record, rowIndex, colIndex, options){
 	if(record.sex==0){
@@ -306,9 +318,59 @@ var roleRender = function(record, rowIndex, colIndex, options){
 }
 
 var roleList;
-$.getJSON("${ctx}listRole.do", null, function (result) {
+$.getJSON("${ctx}listAllRole.do", null, function (result) {
 	roleList = result.data;
 });
+//获得职务列表
+this.getRole = function(){
+	 $("#role").empty();
+	 $.each(roleList, function (i, item) {
+	       $("<option></option>").val(item.id).text(item.name).appendTo($("#role"));
+	    });
+}
+
+var empList;
+$.getJSON("${ctx}getAllManagers.do", null, function (result) {
+	empList = result.data;
+});
+//$("#role").change(getManagerList);
+
+this.getManagerList = function (){
+	  $("#managercode").empty();
+	   $.each(empList, function (i, item) {
+			   $("<option></option>").val(item.code).text(item.name).appendTo($("#managercode"));
+	    });
+}
+
+var orgList;
+$.getJSON("${ctx}listOrg.do", null, function (result) {
+	orgList = result.data;
+});
+this.getOrgList = function (){
+	  $("#orgname").empty();
+	   $.each(orgList, function (i, item) {
+			   $("<option></option>").val(item.name).text(item.name).appendTo($("#orgname"));
+	    });
+	   
+	   $("#orgcode").empty();
+	   $.each(orgList, function (i, item) {
+		   $("<option></option>").val(item.code).text(item.code).appendTo($("#orgcode"));
+    });
+}
+
+$("#orgname").on("change",setOrgCode);
+
+function setOrgCode(){
+	var orgname = $("#orgname").val();
+	$.each(orgList, function (i, item) {
+		   if(item.name==orgname){
+			   $("#orgcode").val(item.code);
+		   }
+		  
+   });
+	
+}
+
 
 
 </script>

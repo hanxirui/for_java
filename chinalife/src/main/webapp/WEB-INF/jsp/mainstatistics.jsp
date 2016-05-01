@@ -1,100 +1,56 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ include file="../taglib.jsp" %>
 <jsp:include page="../menu.jsp" >
-    <jsp:param name="activeMenu" value="cse"/>
+    <jsp:param name="activeMenu" value="main"/>
 </jsp:include>  
-
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-      <!--   <section class="content-header">
-          <h1>订单管理
-          	<small>管理您的订单</small> 
-          </h1>
-        </section>-->
-        <ul class="nav nav-pills">
-		   <li role="presentation"><a href="${ctx}openCustomerForC.do">详情</a></li>
-		  <li role="presentation"><a href="${ctx}openInsuranceForC.do">保单记录</a></li>
-		  <li role="presentation"  class="active"><a href="${ctx}openServiceRecordForC.do">服务记录</a></li>
-		  <li role="presentation"><a href="${ctx}openSitRecordForC.do">拜访记录</a></li>
-		</ul>
+        <!-- <section class="content-header">
+          <h1>订单管理 -->
+<!--           	<small>管理您的订单</small> -->
+        <!--   </h1>
+        </section> -->
+
         <!-- Main content -->
         <section class="content">
 
           <!-- Your Page Content Here -->
           <div class="box box-default">
                <div class="box-body">
-                 <!-- form start -->
-                 <form id="schFrm" class="form-inline" onsubmit="return false;">
-										 										   客户:<input name="idcardnum" type="text" class="form-control">      
-					 										                       服务时间:<input name="servicetime" type="text" class="form-control">      
-					 										                       服务内容:<input name="content" type="text" class="form-control">      
-					 										                       客户经理:<input name="account" type="text" class="form-control">      
-					 					                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
-					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
-				</form>
+                客户总量：${cusNum}
                </div><!-- /.box-body -->
            </div>
            
           <div class="box">
 				<div class="box-header">
-					 <div class="btn-group">
-			         	<a id="addBtn" class="btn btn-primary">
-			            	<i class="fa fa-plus"></i> 录入 
-			         	</a>
-			          </div>
+					 近六个月客户拜访覆盖率：60%
 				</div><!-- /.box-header -->
 			
 				<div class="box-body">	 
-					<table id="searchTable">
-						<tr>           
-							<th w_index="idcardnum">客户</th>
-							<th w_index="servicetime">服务时间</th>
-							<th w_index="content">服务内容</th>
-							<th w_index="account">客户经理</th>
-							<th w_render="operate" width="10%;">操作</th>
-						</tr>
-					</table>
+					客户开单率：90%
+				</div><!-- /.box-body -->
+			</div>
+			 <div class="box">
+				<div class="box-header">
+					 重要事项提醒
+				</div><!-- /.box-header -->
+			
+				<div class="box-body">	 
+					xxx客户生日服务未录<br>
+					xxx客户制式服务未录<br>
 				</div><!-- /.box-body -->
 			</div>
 		    
-		    <div id="crudWin">
-			    	<form id="crudFrm" class="form-horizontal">
-											   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">客户</label>
-	                      <div class="col-sm-7">
-	                        <input name="idcardnum" type="text" class="form-control" required="true">
-	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">服务时间</label>
-	                      <div class="col-sm-7">
-	                        <input name="servicetime" type="text" class="form-control" required="true" onfocus="WdatePicker({skin:'default'})">
-	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">服务内容</label>
-	                      <div class="col-sm-7">
-	                        <input name="content" type="text" class="form-control" required="true">
-	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">客户经理</label>
-	                      <div class="col-sm-7">
-	                        <input name="account" type="text" class="form-control" required="true">
-	                      </div>
-	                    </div>
-					   										</form>
-			    </div>
 		    
 <script type="text/javascript">     
 var that = this;
 
 var pk = 'id'; // java类中的主键字段
-var listUrl = ctx + 'listServiceRecord.do'; // 查询
-var addUrl = ctx + 'addServiceRecord.do'; // 添加
-var updateUrl = ctx + 'updateServiceRecord.do'; // 修改
-var delUrl = ctx + 'delServiceRecord.do'; // 删除
+var listUrl = ctx + 'listRole.do'; // 查询
+var addUrl = ctx + 'addRole.do'; // 添加
+var updateUrl = ctx + 'updateRole.do'; // 修改
+var delUrl = ctx + 'delRole.do'; // 删除
 var submitUrl = ''; // 提交URL
 
 var gridObj; // 表格

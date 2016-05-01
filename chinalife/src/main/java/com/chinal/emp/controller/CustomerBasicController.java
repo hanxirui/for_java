@@ -7,9 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.durcframework.core.expression.ExpressionQuery;
 import org.durcframework.core.expression.subexpression.LikeRightExpression;
+import org.durcframework.core.expression.subexpression.ValueExpression;
 import org.durcframework.core.support.BsgridController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.chinal.emp.entity.CustomerBasic;
 import com.chinal.emp.entity.CustomerBasicSch;
 import com.chinal.emp.expression.LeftJoinExpression;
+import com.chinal.emp.security.AuthUser;
 import com.chinal.emp.service.CustomerBasicService;
 
 @Controller
@@ -80,6 +83,19 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 
 		// 返回查询结果
 
+		return this.list(query);
+	}
+
+	@RequestMapping("/listCustomerForEmp.do")
+	public ModelAndView listCustomerForEmp() {
+
+		AuthUser authUser = (AuthUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		ExpressionQuery query = new ExpressionQuery();
+
+		query.add(new ValueExpression("t.account", authUser.getAccount()));
+
+		// 返回查询结果
 		return this.list(query);
 	}
 

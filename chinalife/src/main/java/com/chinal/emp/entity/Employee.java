@@ -29,9 +29,7 @@ public class Employee {
 	// 入司时间
 	private String jointime;
 	// 直接上级
-	private int managercode;
-	// 管理层级
-	private String managerpath;
+	private String managercode;
 
 	private int roleLevel;
 
@@ -135,20 +133,12 @@ public class Employee {
 		return this.jointime;
 	}
 
-	public void setManagercode(int managercode) {
+	public void setManagercode(String managercode) {
 		this.managercode = managercode;
 	}
 
-	public int getManagercode() {
+	public String getManagercode() {
 		return this.managercode;
-	}
-
-	public void setManagerpath(String managerpath) {
-		this.managerpath = managerpath;
-	}
-
-	public String getManagerpath() {
-		return this.managerpath;
 	}
 
 	public int getRoleLevel() {

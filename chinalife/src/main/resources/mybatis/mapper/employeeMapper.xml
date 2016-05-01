@@ -14,8 +14,7 @@
                 <result column="sex" property="sex" jdbcType="VARCHAR" />
                 <result column="phone" property="phone" jdbcType="VARCHAR" />
                 <result column="jointime" property="jointime" jdbcType="VARCHAR" />
-                <result column="managercode" property="managercode" jdbcType="INTEGER" />
-                <result column="managerpath" property="managerpath" jdbcType="VARCHAR" />
+                <result column="managercode" property="managercode" jdbcType="VARCHAR" />
                 <result column="roleLevel" property="roleLevel" jdbcType="INTEGER" />
                 <result column="roleName" property="roleName" jdbcType="VARCHAR" />
                 <result column="managerName" property="managerName" jdbcType="VARCHAR" />
@@ -38,10 +37,73 @@
                 , t.phone
                 , t.jointime
 				, t.managercode
-                , t.managerpath
                 , t2.level as roleLevel
                 , t2.name as roleName
                 , t3.name as managerName
+        		FROM employee t
+		<include refid="expressionBlock.where" />
+		<choose>
+			<when test="sortname == null">
+				ORDER BY t.id desc
+			</when>
+			<otherwise>
+				ORDER BY ${order}
+			</otherwise>
+		</choose>
+		<if test="!isQueryAll">
+			LIMIT
+			#{start,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+		</if>
+	</select>
+	
+	<select id="findSimple" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT 
+                  t.id
+                , t.name
+                , t.role
+                , t.password
+                , t.account
+                , t.code
+                , t.idcardnum
+                , t.orgname
+                , t.orgcode
+                , t.sex
+                , t.phone
+                , t.jointime
+				, t.managercode
+        		FROM employee t
+		<include refid="expressionBlock.where" />
+		<choose>
+			<when test="sortname == null">
+				ORDER BY t.id desc
+			</when>
+			<otherwise>
+				ORDER BY ${order}
+			</otherwise>
+		</choose>
+		<if test="!isQueryAll">
+			LIMIT
+			#{start,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+		</if>
+	</select>
+	
+	<select id="findTree" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT 
+                  t.id
+                , t.name
+                , t.role
+                , t.password
+                , t.account
+                , t.code
+                , t.idcardnum
+                , t.orgname
+                , t.orgcode
+                , t.sex
+                , t.phone
+                , t.jointime
+				, t.managercode
         		FROM employee t
 		<include refid="expressionBlock.where" />
 		<choose>
@@ -82,7 +144,6 @@
                                         , `phone`
                                         , `jointime`
                                         , `managercode`
-                                        , `managerpath`
                               )
 	VALUES (
                                                   #{name,jdbcType=VARCHAR}
@@ -96,8 +157,7 @@
                                         , #{sex,jdbcType=VARCHAR}
                                         , #{phone,jdbcType=VARCHAR}
                                         , #{jointime,jdbcType=VARCHAR}
-                                        , #{managercode,jdbcType=INTEGER}
-                                        , #{managerpath,jdbcType=VARCHAR}
+                                        , #{managercode,jdbcType=VARCHAR}
                      
         )
 	</insert>
@@ -140,12 +200,10 @@
                                      , jointime=#{jointime,jdbcType=VARCHAR}
                                       </if>
 				      <if test="managercode!=null and managercode!=''">
-				        ,managercode=#{managercode,jdbcType=INTEGER}
+				        ,managercode=#{managercode,jdbcType=VARCHAR}
 				      </if>
                                       
-		                	<if test="managerpath!=null and managerpath!=''">
-		        		 ,managerpath=#{managerpath,jdbcType=VARCHAR}
-		       			 </if>		
+		               
                      WHERE id = #{id,jdbcType=INTEGER}
     </update>
 
@@ -164,7 +222,6 @@
                 , phone
                 , jointime
                 , managercode
-                , managerpath
         		FROM employee t
 		WHERE id = #{id,jdbcType=INTEGER}
 	</select>

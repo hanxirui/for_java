@@ -38,7 +38,6 @@ public class CustomUserDetailsService extends CrudService<Employee, EmployeeDao>
 		AuthUser user = null;
 
 		try {
-			System.out.println(passwordEncoder.encodePassword("123456", "admin"));
 			// 搜索数据库以匹配用户登录名.
 			// 我们可以通过dao使用JDBC来访问数据库
 			ExpressionQuery query = new ExpressionQuery();
@@ -59,6 +58,8 @@ public class CustomUserDetailsService extends CrudService<Employee, EmployeeDao>
 				user.setAccount(dbUser.getAccount());
 				user.setId(dbUser.getId());
 				user.setcName(dbUser.getName());
+				user.setLevel(dbUser.getRoleLevel());
+				user.setEmployee(dbUser);
 			}
 
 		} catch (Exception e) {

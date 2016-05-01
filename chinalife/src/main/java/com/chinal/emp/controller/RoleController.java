@@ -22,6 +22,11 @@ public class RoleController extends BsgridController<Role, RoleService> {
 		return this.add(entity);
 	}
 
+	@RequestMapping("/listAllRole.do")
+	public ModelAndView listAllRole(RoleSch searchEntity) {
+		return this.listAll(searchEntity);
+	}
+
 	@RequestMapping("/listRole.do")
 	public ModelAndView listRole(RoleSch searchEntity) {
 		return this.list(searchEntity);

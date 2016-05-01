@@ -70,7 +70,7 @@
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">客户</label>
 	                      <div class="col-sm-7">
-	                        <input name="idcardnum" type="text" class="form-control" required="true">
+	                        <input id="idcardnum" name="idcardnum" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
@@ -79,8 +79,24 @@
 	                        <input name="content" type="textarea" class="form-control" required="true">
 	                      </div>
 	                    </div>
-					   										</form>
+					  </form>
 			    </div>
+			    
+			    <div class="box-body" id="cusWin">	 
+					<table id="cusTable">
+						<tr>           
+							<th w_index="name">客户姓名</th>
+							<th w_index="sex"  w_render="sexRender">性别</th>
+							<th w_index="idcardnum">身份证号</th>
+							<th w_index="addr">地址</th>
+							<!-- <th w_index="type">类型  1-原始；2-自营新拓；3-渠道新拓</th> -->
+							<!-- <th w_index="birthday">生日</th> -->
+							<!-- <th w_index="weddingDay">结婚纪念日</th> -->
+							<!-- <th w_index="account">客户经理</th> -->
+							
+						</tr>
+					</table>
+				</div>
 		    
 <script type="text/javascript">     
 var that = this;
@@ -120,6 +136,10 @@ $schBtn.click(function() {
 	search();
 });
 
+$("#idcardnum").click(function() {
+	cusWin.showModal();
+});
+
 gridObj = $.fn.bsgrid.init('searchTable', {
 	url: listUrl
     ,pageSizeSelect: true
@@ -134,6 +154,32 @@ crudWin = dialog({
 	title: '编辑',
 	width:400,
 	content: document.getElementById('crudWin'),
+	okValue: '保存',
+	ok: function () {
+		that.save();
+		return false;
+	},
+	cancelValue: '取消',
+	cancel: function () {
+		this.close();
+		return false;
+	}
+});
+
+var cusGridObj = $.fn.bsgrid.init('cusTable', {
+	url: ctx + 'listCustomerForEmp.do'
+    ,pageSizeSelect: true
+    ,rowHoverColor: true // 移动行变色
+    ,rowSelectedColor: false // 选择行不高亮
+    ,isProcessLockScreen:false // 加载数据不显示遮罩层
+	,displayBlankRows: false
+    ,pageSize: 10
+});
+
+var cusWin = dialog({
+	title: '选择客户',
+	width:700,
+	content: document.getElementById('cusWin'),
 	okValue: '保存',
 	ok: function () {
 		that.save();
