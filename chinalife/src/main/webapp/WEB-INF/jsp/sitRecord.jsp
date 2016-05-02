@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ include file="../taglib.jsp" %>
 <jsp:include page="../menu.jsp" >
-    <jsp:param name="activeMenu" value="org"/>
+    <jsp:param name="activeMenu" value="visit"/>
 </jsp:include>  
 
       <!-- Content Wrapper. Contains page content -->
@@ -23,7 +23,7 @@
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
 	              客户经理:<input name="account" type="text" class="form-control">      
                    拜访时间:<input name="visittime" type="text" class="form-control">      
-                   客户:<input name="idcardnum" type="text" class="form-control">      
+                   客户:<input name="name" type="text" class="form-control">      
                   <!--  拜访内容:<input name="content" type="text" class="form-control">  -->     
                 	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
@@ -45,7 +45,7 @@
 						<tr>           
 							<th w_index="account">客户经理</th>
 							<th w_index="visittime">拜访时间</th>
-							<th w_index="idcardnum">客户</th>
+							<th w_index="name">客户</th>
 							<th w_index="content">拜访内容</th>
 							<th w_render="operate" width="10%;">操作</th>
 						</tr>
@@ -70,7 +70,8 @@
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">客户</label>
 	                      <div class="col-sm-7">
-	                        <input id="idcardnum" name="idcardnum" type="text" class="form-control" required="true">
+	                        <input id="idcardnum" name="idcardnum" type="hidden" class="form-control" required="true">
+	                        <input id="name" name="name" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
@@ -84,16 +85,12 @@
 			    
 			    <div class="box-body" id="cusWin">	 
 					<table id="cusTable">
-						<tr>           
+						<tr>          
+						    <th w_check="true" w_index="idcardnum" width="3%;"></th> 
 							<th w_index="name">客户姓名</th>
 							<th w_index="sex"  w_render="sexRender">性别</th>
 							<th w_index="idcardnum">身份证号</th>
 							<th w_index="addr">地址</th>
-							<!-- <th w_index="type">类型  1-原始；2-自营新拓；3-渠道新拓</th> -->
-							<!-- <th w_index="birthday">生日</th> -->
-							<!-- <th w_index="weddingDay">结婚纪念日</th> -->
-							<!-- <th w_index="account">客户经理</th> -->
-							
 						</tr>
 					</table>
 				</div>
@@ -136,8 +133,10 @@ $schBtn.click(function() {
 	search();
 });
 
-$("#idcardnum").click(function() {
+$("#name").click(function() {
 	cusWin.showModal();
+	
+	
 });
 
 gridObj = $.fn.bsgrid.init('searchTable', {
@@ -173,23 +172,35 @@ var cusGridObj = $.fn.bsgrid.init('cusTable', {
     ,rowSelectedColor: false // 选择行不高亮
     ,isProcessLockScreen:false // 加载数据不显示遮罩层
 	,displayBlankRows: false
+	,pagingLittleToolbar: true
     ,pageSize: 10
 });
 
 var cusWin = dialog({
 	title: '选择客户',
-	width:700,
+	width:800,
 	content: document.getElementById('cusWin'),
 	okValue: '保存',
 	ok: function () {
-		that.save();
+		/* alert(cusGridObj.getCheckedValues('name'));
+		alert(cusGridObj.getCheckedValues('idcardnum')); */
+		var name = cusGridObj.getCheckedValues('name');
+		if(name.length!=1){
+			alert("请选择一个客户.");
+			return false;
+		}
+		$('#name').val(cusGridObj.getCheckedValues('name'));
+		$('#idcardnum').val(cusGridObj.getCheckedValues('idcardnum'));
 		return false;
 	},
 	cancelValue: '取消',
 	cancel: function () {
 		this.close();
 		return false;
-	}
+	},
+	onshow: function () {
+		$("#cusTable_pt_outTab").width($("#cusTable").width());
+    }
 });
 
 function search(){
@@ -252,6 +263,15 @@ this.del = function(row) {
 		});
 		d.showModal();
 	}
+}
+
+var sexRender = function(record, rowIndex, colIndex, options){
+	if(record.sex==0){
+		return "女";
+	}else{
+		return "男";
+	}
+	
 }
 
 validator = $crudFrm.validate();

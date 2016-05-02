@@ -28,6 +28,7 @@ public class ClaimRecordSch extends BsgridSearch {
     private String fourthclaim;
     private String fourthtime;
     private String claimtime;
+    private String name;
 
     public void setId (Integer id){
         this.id = id;
@@ -216,6 +217,15 @@ public class ClaimRecordSch extends BsgridSearch {
     @ValueField(column = "claimtime")
     public String getClaimtime(){
         return this.claimtime;
+    }
+
+    public void setName (String name){
+        this.name = name;
+    }
+    
+    @ValueField(column = "name")
+    public String getName(){
+        return this.name;
     }
 
 

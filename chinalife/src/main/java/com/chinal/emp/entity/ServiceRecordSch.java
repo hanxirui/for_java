@@ -12,6 +12,7 @@ public class ServiceRecordSch extends BsgridSearch {
     private String servicetime;
     private String content;
     private String account;
+    private String name;
 
     public void setId (Integer id){
         this.id = id;
@@ -56,6 +57,15 @@ public class ServiceRecordSch extends BsgridSearch {
     @ValueField(column = "account")
     public String getAccount(){
         return this.account;
+    }
+
+    public void setName (String name){
+        this.name = name;
+    }
+    
+    @ValueField(column = "name")
+    public String getName(){
+        return this.name;
     }
 
 

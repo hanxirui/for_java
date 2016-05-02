@@ -12,10 +12,12 @@ public class ServiceRecord {
 	private String idcardnum;
 	// 服务时间
 	private String servicetime;
-	// 服务时间
+	// 服务内容
 	private String content;
 	// 客户经理
 	private String account;
+	// 客户名称
+	private String name;
 
 	public void setId(int id){
 		this.id = id;
@@ -55,6 +57,14 @@ public class ServiceRecord {
 
 	public String getAccount(){
 		return this.account;
+	}
+
+	public void setName(String name){
+		this.name = name;
+	}
+
+	public String getName(){
+		return this.name;
 	}
 
 }

@@ -48,6 +48,8 @@ public class ClaimRecord {
 	private String fourthtime;
 	// 投诉时间
 	private String claimtime;
+	// 客户名称
+	private String name;
 
 	public void setId(int id){
 		this.id = id;
@@ -215,6 +217,14 @@ public class ClaimRecord {
 
 	public String getClaimtime(){
 		return this.claimtime;
+	}
+
+	public void setName(String name){
+		this.name = name;
+	}
+
+	public String getName(){
+		return this.name;
 	}
 
 }

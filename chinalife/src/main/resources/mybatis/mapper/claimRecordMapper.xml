@@ -23,32 +23,34 @@
                 <result column="fourthclaim" property="fourthclaim" jdbcType="VARCHAR" />
                 <result column="fourthtime" property="fourthtime" jdbcType="VARCHAR" />
                 <result column="claimtime" property="claimtime" jdbcType="VARCHAR" />
+                <result column="name" property="name" jdbcType="VARCHAR" />
             </resultMap>
 
     <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
 		resultMap="queryResultMap">
 		SELECT 
-                         id
-                , idcardnum
-                , reason
-                , insuranceid
-                , firstaccount
-                , firstcontent
-                , firstclaim
-                , firsttime
-                , secondaccount
-                , secondcontent
-                , secondtime
-                , secondclaim
-                , thirdaccount
-                , thirdcontent
-                , thirdclaim
-                , thirdtime
-                , fourthaccount
-                , fourthcontent
-                , fourthclaim
-                , fourthtime
-                , claimtime
+                         t.id
+                , t.idcardnum
+                , t.reason
+                , t.insuranceid
+                , t.firstaccount
+                , t.firstcontent
+                , t.firstclaim
+                , t.firsttime
+                , t.secondaccount
+                , t.secondcontent
+                , t.secondtime
+                , t.secondclaim
+                , t.thirdaccount
+                , t.thirdcontent
+                , t.thirdclaim
+                , t.thirdtime
+                , t.fourthaccount
+                , t.fourthcontent
+                , t.fourthclaim
+                , t.fourthtime
+                , t.claimtime
+                , t.name
         		FROM claim_record t
 		<include refid="expressionBlock.where" />
 		<choose>
@@ -97,6 +99,7 @@
                                         , `fourthclaim`
                                         , `fourthtime`
                                         , `claimtime`
+                                        , `name`
                               )
 	VALUES (
                                                   #{idcardnum,jdbcType=VARCHAR}
@@ -119,6 +122,7 @@
                                         , #{fourthclaim,jdbcType=VARCHAR}
                                         , #{fourthtime,jdbcType=VARCHAR}
                                         , #{claimtime,jdbcType=VARCHAR}
+                                        , #{name,jdbcType=VARCHAR}
                      
         )
 	</insert>
@@ -127,84 +131,109 @@
     <update id="update" parameterType="com.chinal.emp.entity.ClaimRecord">
     UPDATE claim_record
     SET 
-                                                             <if test="idcardnum!=null and idcardnum!=''">
-        idcardnum=#{idcardnum,jdbcType=VARCHAR}
+                                                     
+        <if test="idcardnum!=null and idcardnum!=''">
+         idcardnum=#{idcardnum,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="reason!=null and reason!=''">
-        reason=#{reason,jdbcType=VARCHAR}
+                                      
+        <if test="reason!=null and reason!=''">
+        ,
+         reason=#{reason,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="insuranceid!=null and insuranceid!=''">
-        insuranceid=#{insuranceid,jdbcType=VARCHAR}
+                                      
+        <if test="insuranceid!=null and insuranceid!=''">
+        ,
+         insuranceid=#{insuranceid,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="firstaccount!=null and firstaccount!=''">
-        firstaccount=#{firstaccount,jdbcType=VARCHAR}
+                                      
+        <if test="firstaccount!=null and firstaccount!=''">
+        ,
+         firstaccount=#{firstaccount,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="firstcontent!=null and firstcontent!=''">
-        firstcontent=#{firstcontent,jdbcType=VARCHAR}
+                                      
+        <if test="firstcontent!=null and firstcontent!=''">
+        ,
+         firstcontent=#{firstcontent,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="firstclaim!=null and firstclaim!=''">
-        firstclaim=#{firstclaim,jdbcType=VARCHAR}
+                                      
+        <if test="firstclaim!=null and firstclaim!=''">
+        ,
+         firstclaim=#{firstclaim,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="firsttime!=null and firsttime!=''">
-        firsttime=#{firsttime,jdbcType=VARCHAR}
+                                      
+        <if test="firsttime!=null and firsttime!=''">
+        ,
+         firsttime=#{firsttime,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="secondaccount!=null and secondaccount!=''">
-        secondaccount=#{secondaccount,jdbcType=VARCHAR}
+                                      
+        <if test="secondaccount!=null and secondaccount!=''">
+        ,
+         secondaccount=#{secondaccount,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="secondcontent!=null and secondcontent!=''">
-        secondcontent=#{secondcontent,jdbcType=VARCHAR}
+                                      
+        <if test="secondcontent!=null and secondcontent!=''">
+        ,
+         secondcontent=#{secondcontent,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="secondtime!=null and secondtime!=''">
-        secondtime=#{secondtime,jdbcType=VARCHAR}
+                                      
+        <if test="secondtime!=null and secondtime!=''">
+        ,
+         secondtime=#{secondtime,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="secondclaim!=null and secondclaim!=''">
-        secondclaim=#{secondclaim,jdbcType=VARCHAR}
+                                      
+        <if test="secondclaim!=null and secondclaim!=''">
+        ,
+         secondclaim=#{secondclaim,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="thirdaccount!=null and thirdaccount!=''">
-        thirdaccount=#{thirdaccount,jdbcType=VARCHAR}
+                                      
+        <if test="thirdaccount!=null and thirdaccount!=''">
+        ,
+         thirdaccount=#{thirdaccount,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="thirdcontent!=null and thirdcontent!=''">
-        thirdcontent=#{thirdcontent,jdbcType=VARCHAR}
+                                      
+        <if test="thirdcontent!=null and thirdcontent!=''">
+        ,
+         thirdcontent=#{thirdcontent,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="thirdclaim!=null and thirdclaim!=''">
-        thirdclaim=#{thirdclaim,jdbcType=VARCHAR}
+                                      
+        <if test="thirdclaim!=null and thirdclaim!=''">
+        ,
+         thirdclaim=#{thirdclaim,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="thirdtime!=null and thirdtime!=''">
-        thirdtime=#{thirdtime,jdbcType=VARCHAR}
+                                      
+        <if test="thirdtime!=null and thirdtime!=''">
+        ,
+         thirdtime=#{thirdtime,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="fourthaccount!=null and fourthaccount!=''">
-        fourthaccount=#{fourthaccount,jdbcType=VARCHAR}
+                                      
+        <if test="fourthaccount!=null and fourthaccount!=''">
+        ,
+         fourthaccount=#{fourthaccount,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="fourthcontent!=null and fourthcontent!=''">
-        fourthcontent=#{fourthcontent,jdbcType=VARCHAR}
+                                      
+        <if test="fourthcontent!=null and fourthcontent!=''">
+        ,
+         fourthcontent=#{fourthcontent,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="fourthclaim!=null and fourthclaim!=''">
-        fourthclaim=#{fourthclaim,jdbcType=VARCHAR}
+                                      
+        <if test="fourthclaim!=null and fourthclaim!=''">
+        ,
+         fourthclaim=#{fourthclaim,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="fourthtime!=null and fourthtime!=''">
-        fourthtime=#{fourthtime,jdbcType=VARCHAR}
+                                      
+        <if test="fourthtime!=null and fourthtime!=''">
+        ,
+         fourthtime=#{fourthtime,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="claimtime!=null and claimtime!=''">
-        claimtime=#{claimtime,jdbcType=VARCHAR}
+                                      
+        <if test="claimtime!=null and claimtime!=''">
+        ,
+         claimtime=#{claimtime,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="name!=null and name!=''">
+        ,
+         name=#{name,jdbcType=VARCHAR}
         </if>
                       WHERE id = #{id,jdbcType=INTEGER}
     </update>
@@ -232,6 +261,7 @@
                 , fourthclaim
                 , fourthtime
                 , claimtime
+                , name
         		FROM claim_record t
 		WHERE id = #{id,jdbcType=INTEGER}
 	</select>

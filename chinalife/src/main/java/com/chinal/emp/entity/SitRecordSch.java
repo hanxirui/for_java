@@ -12,6 +12,7 @@ public class SitRecordSch extends BsgridSearch {
     private String visittime;
     private String idcardnum;
     private String content;
+    private String name;
 
     public void setId (Integer id){
         this.id = id;
@@ -56,6 +57,15 @@ public class SitRecordSch extends BsgridSearch {
     @ValueField(column = "content")
     public String getContent(){
         return this.content;
+    }
+
+    public void setName (String name){
+        this.name = name;
+    }
+    
+    @ValueField(column = "name")
+    public String getName(){
+        return this.name;
     }
 
 

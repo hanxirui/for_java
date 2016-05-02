@@ -7,16 +7,18 @@
                 <result column="servicetime" property="servicetime" jdbcType="VARCHAR" />
                 <result column="content" property="content" jdbcType="VARCHAR" />
                 <result column="account" property="account" jdbcType="VARCHAR" />
+                <result column="name" property="name" jdbcType="VARCHAR" />
             </resultMap>
 
     <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
 		resultMap="queryResultMap">
 		SELECT 
-                         id
-                , idcardnum
-                , servicetime
-                , content
-                , account
+                         t.id
+                , t.idcardnum
+                , t.servicetime
+                , t.content
+                , t.account
+                , t.name
         		FROM service_record t
 		<include refid="expressionBlock.where" />
 		<choose>
@@ -49,12 +51,14 @@
                                         , `servicetime`
                                         , `content`
                                         , `account`
+                                        , `name`
                               )
 	VALUES (
                                                   #{idcardnum,jdbcType=VARCHAR}
                                         , #{servicetime,jdbcType=VARCHAR}
                                         , #{content,jdbcType=VARCHAR}
                                         , #{account,jdbcType=VARCHAR}
+                                        , #{name,jdbcType=VARCHAR}
                      
         )
 	</insert>
@@ -63,20 +67,29 @@
     <update id="update" parameterType="com.chinal.emp.entity.ServiceRecord">
     UPDATE service_record
     SET 
-                                                             <if test="idcardnum!=null and idcardnum!=''">
-        idcardnum=#{idcardnum,jdbcType=VARCHAR}
+                                                     
+        <if test="idcardnum!=null and idcardnum!=''">
+         idcardnum=#{idcardnum,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="servicetime!=null and servicetime!=''">
-        servicetime=#{servicetime,jdbcType=VARCHAR}
+                                      
+        <if test="servicetime!=null and servicetime!=''">
+        ,
+         servicetime=#{servicetime,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="content!=null and content!=''">
-        content=#{content,jdbcType=VARCHAR}
+                                      
+        <if test="content!=null and content!=''">
+        ,
+         content=#{content,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="account!=null and account!=''">
-        account=#{account,jdbcType=VARCHAR}
+                                      
+        <if test="account!=null and account!=''">
+        ,
+         account=#{account,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="name!=null and name!=''">
+        ,
+         name=#{name,jdbcType=VARCHAR}
         </if>
                       WHERE id = #{id,jdbcType=INTEGER}
     </update>
@@ -88,6 +101,7 @@
                 , servicetime
                 , content
                 , account
+                , name
         		FROM service_record t
 		WHERE id = #{id,jdbcType=INTEGER}
 	</select>

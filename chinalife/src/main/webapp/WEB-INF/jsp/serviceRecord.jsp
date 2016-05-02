@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ include file="../taglib.jsp" %>
 <jsp:include page="../menu.jsp" >
-    <jsp:param name="activeMenu" value="org"/>
+    <jsp:param name="activeMenu" value="service"/>
 </jsp:include>  
 
       <!-- Content Wrapper. Contains page content -->
@@ -21,11 +21,11 @@
                <div class="box-body">
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
-										 										   客户:<input name="idcardnum" type="text" class="form-control">      
-					 										                       服务时间:<input name="servicetime" type="text" class="form-control">      
-					 										                       服务内容:<input name="content" type="text" class="form-control">      
-					 										                       客户经理:<input name="account" type="text" class="form-control">      
-					 					                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
+			         客户:<input name="idcardnum" type="text" class="form-control">      
+                     服务时间:<input name="servicetime" type="text" class="form-control">      
+                     服务内容:<input name="content" type="text" class="form-control">      
+                     客户经理:<input name="account" type="text" class="form-control">      
+                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
 				</form>
                </div><!-- /.box-body -->

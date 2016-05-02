@@ -16,6 +16,8 @@ public class SitRecord {
 	private String idcardnum;
 	// 拜访内容
 	private String content;
+	// 客户名称
+	private String name;
 
 	public void setId(int id){
 		this.id = id;
@@ -55,6 +57,14 @@ public class SitRecord {
 
 	public String getContent(){
 		return this.content;
+	}
+
+	public void setName(String name){
+		this.name = name;
+	}
+
+	public String getName(){
+		return this.name;
 	}
 
 }
