@@ -24,11 +24,11 @@
            
           <div class="box">
 				<div class="box-header">
-					 近六个月客户拜访覆盖率：60%
+					 近六个月客户拜访覆盖率：${visitPercent}%
 				</div><!-- /.box-header -->
 			
 				<div class="box-body">	 
-					客户开单率：90%
+					客户开单率：${insurancePercent}%
 				</div><!-- /.box-body -->
 			</div>
 			 <div class="box">
@@ -37,7 +37,7 @@
 				</div><!-- /.box-header -->
 			
 				<div class="box-body">	 
-					xxx客户生日服务未录<br>
+					近期有<a href="openCustomerForService.do">${birthCount}</a>个客户生日服务未录<br>
 					xxx客户制式服务未录<br>
 				</div><!-- /.box-body -->
 			</div>

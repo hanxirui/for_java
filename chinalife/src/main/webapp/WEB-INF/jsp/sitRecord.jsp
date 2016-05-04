@@ -191,6 +191,7 @@ var cusWin = dialog({
 		}
 		$('#name').val(cusGridObj.getCheckedValues('name'));
 		$('#idcardnum').val(cusGridObj.getCheckedValues('idcardnum'));
+		this.close();
 		return false;
 	},
 	cancelValue: '取消',

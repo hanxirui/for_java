@@ -22,18 +22,6 @@
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
 				      姓名:<input name="name" type="text" class="form-control">      
-                      <!-- 身份证号:<input name="idcardnum" type="text" class="form-control">      
-                      类型  1-原始；2-自营新拓；3-渠道新拓:<input name="type" type="text" class="form-control">    -->   
-                      生日:<input name="birthday" type="text" class="form-control">      
-                     <!--  结婚纪念日:<input name="weddingDay" type="text" class="form-control">   -->    
-                      客户经理:<input name="account" type="text" class="form-control">      
-                     <!--  性别:<input name="sex" type="text" class="form-control">      
-                      初始来源:<input name="laiyuan" type="text" class="form-control">  -->     
-                      爱好:<input name="note" type="text" class="form-control">     
-                      投保日期:<input name="note" type="text" class="form-control"> ---    <input name="note" type="text" class="form-control">
-                      投保银行:<input name="note" type="text" class="form-control">     
-                      保单金额:<input name="note" type="text" class="form-control">     
-                      爱好:<input name="note" type="text" class="form-control">      
                    	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
 				</form>
@@ -44,25 +32,16 @@
 				<div class="box-header">
 					 <div class="btn-group">
 			         	<a id="addBtn" class="btn btn-primary">
-			            	<i class="fa"></i> 录入 
+			            	<i class="fa"></i> 批量维护服务记录 
 			         	</a>
 			          </div>
-			          <div class="btn-group"><!-- 按钮需要权限控制，3级及以上 -->
-			         	<a id="fenpeiBtn" class="btn btn-primary">
-			            	<i class="fa"></i> 分配 
-			         	</a>
-			          </div>
-			          <div class="btn-group"><!-- 按钮需要权限控制，普通业务员查询自己的-->
-			         	<a id="fenpeiBtn" class="btn btn-primary">
-			            	<i class="fa"></i> KPI统计查询 
-			         	</a>
-			          </div>
+			          
 				</div><!-- /.box-header -->
 			
 				<div class="box-body">	 
 					<table id="searchTable">
-						<tr>     
-						    <th w_check="true" w_index="idcardnum" width="3%;"></th>      
+						<tr>           
+						    <th w_check="true" w_index="idcardnum" width="3%;"></th> 
 							<th w_index="name">客户姓名</th>
 							<th w_index="sex"  w_render="sexRender">性别</th>
 							<th w_index="idcardnum">身份证号</th>
@@ -165,10 +144,10 @@
 var that = this;
 
 var pk = 'id'; // java类中的主键字段
-var listUrl = ctx + 'listCustomerBasic.do'; // 查询
-var addUrl = ctx + 'addCustomerBasic.do'; // 添加
-var updateUrl = ctx + 'updateCustomerBasic.do'; // 修改
-var delUrl = ctx + 'delCustomerBasic.do'; // 删除
+var listUrl = ctx + 'listCustomerForService.do'; // 查询
+var addUrl = ctx + 'addCustomerForService.do'; // 添加
+var updateUrl = ctx + 'updateCustomerForService.do'; // 修改
+var delUrl = ctx + 'delCustomerForService.do'; // 删除
 var detailUrl = ctx + 'openCustomerForC.do'; // 修改
 var submitUrl = ''; // 提交URL
 

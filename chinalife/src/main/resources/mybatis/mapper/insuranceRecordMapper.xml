@@ -19,8 +19,8 @@
                 <result column="customer_addr" property="customerAddr" jdbcType="VARCHAR" />
                 <result column="customer_phone" property="customerPhone" jdbcType="VARCHAR" />
                 <result column="customer_mobile" property="customerMobile" jdbcType="VARCHAR" />
-                <result column="account" property="account" jdbcType="VARCHAR" />
-                <result column="account_code" property="accountCode" jdbcType="VARCHAR" />
+                <result column="yewuyuan_name" property="yewuyuan_name" jdbcType="VARCHAR" />
+                <result column="yewuyuan_code" property="accountCode" jdbcType="VARCHAR" />
                 <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
                 <result column="bank_card_num" property="bankCardNum" jdbcType="VARCHAR" />
                 <result column="beibaoxianren" property="beibaoxianren" jdbcType="VARCHAR" />
@@ -30,7 +30,7 @@
     <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
 		resultMap="queryResultMap">
 		SELECT 
-                         id
+                  id
                 , org_code
                 , insurance_num
                 , tou_insurance_num
@@ -47,8 +47,8 @@
                 , customer_addr
                 , customer_phone
                 , customer_mobile
-                , account
-                , account_code
+                , yewuyuan_name
+                , yewuyuan_code
                 , bank_name
                 , bank_card_num
                 , beibaoxianren
@@ -75,6 +75,12 @@
 		SELECT count(*) FROM insurance_record t
 		<include refid="expressionBlock.where" />
     </select>
+    
+     <select id="findInsuranceCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(distinct t.customer_idcardnum) FROM insurance_record t
+		<include refid="expressionBlock.where" />
+    </select>
 
     <insert id="save" parameterType="com.chinal.emp.entity.InsuranceRecord"
     keyProperty="id" keyColumn="id" useGeneratedKeys="true"
@@ -97,8 +103,8 @@
                                         , `customer_addr`
                                         , `customer_phone`
                                         , `customer_mobile`
-                                        , `account`
-                                        , `account_code`
+                                        , `yewuyuan_name`
+                                        , `yewuyuan_code`
                                         , `bank_name`
                                         , `bank_card_num`
                                         , `beibaoxianren`
@@ -121,7 +127,7 @@
                                         , #{customerAddr,jdbcType=VARCHAR}
                                         , #{customerPhone,jdbcType=VARCHAR}
                                         , #{customerMobile,jdbcType=VARCHAR}
-                                        , #{account,jdbcType=VARCHAR}
+                                        , #{yewuyuan_name,jdbcType=VARCHAR}
                                         , #{accountCode,jdbcType=VARCHAR}
                                         , #{bankName,jdbcType=VARCHAR}
                                         , #{bankCardNum,jdbcType=VARCHAR}
@@ -199,12 +205,12 @@
         customer_mobile=#{customerMobile,jdbcType=VARCHAR}
         </if>
                                       ,
-                <if test="account!=null and account!=''">
-        account=#{account,jdbcType=VARCHAR}
+                <if test="yewuyuan_name!=null and yewuyuan_name!=''">
+        yewuyuan_name=#{yewuyuan_name,jdbcType=VARCHAR}
         </if>
                                       ,
-                <if test="account_code!=null and account_code!=''">
-        account_code=#{accountCode,jdbcType=VARCHAR}
+                <if test="yewuyuan_code!=null and yewuyuan_code!=''">
+        yewuyuan_code=#{accountCode,jdbcType=VARCHAR}
         </if>
                                       ,
                 <if test="bank_name!=null and bank_name!=''">
@@ -244,8 +250,8 @@
                 , customer_addr
                 , customer_phone
                 , customer_mobile
-                , account
-                , account_code
+                , yewuyuan_name
+                , yewuyuan_code
                 , bank_name
                 , bank_card_num
                 , beibaoxianren

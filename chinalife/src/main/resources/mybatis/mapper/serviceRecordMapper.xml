@@ -41,6 +41,12 @@
 		SELECT count(*) FROM service_record t
 		<include refid="expressionBlock.where" />
     </select>
+    
+    <select id="findServiceCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(distinct t.idcardnum) FROM service_record t
+		<include refid="expressionBlock.where" />
+    </select>
 
     <insert id="save" parameterType="com.chinal.emp.entity.ServiceRecord"
     keyProperty="id" keyColumn="id" useGeneratedKeys="true"

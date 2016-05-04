@@ -89,10 +89,10 @@
 				<artifactId>maven-jetty-plugin</artifactId>
 				<version>6.1.26</version>
 				<configuration>
-					<contextPath>/emptyProject</contextPath>
+					<contextPath>/lbs</contextPath>
 					<connectors>
 						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-							<port>8088</port>
+							<port>9999</port>
 						</connector>
 					</connectors>
 					<reload>automatic</reload>

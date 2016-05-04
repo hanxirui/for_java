@@ -41,6 +41,12 @@
 		SELECT count(*) FROM visit_record t
 		<include refid="expressionBlock.where" />
     </select>
+    
+    <select id="findVisitCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(distinct t.idcardnum) FROM visit_record t
+		<include refid="expressionBlock.where" />
+    </select>
 
     <insert id="save" parameterType="com.chinal.emp.entity.SitRecord"
     keyProperty="id" keyColumn="id" useGeneratedKeys="true"

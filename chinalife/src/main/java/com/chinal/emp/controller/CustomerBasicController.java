@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.durcframework.core.expression.ExpressionQuery;
 import org.durcframework.core.expression.subexpression.LikeRightExpression;
+import org.durcframework.core.expression.subexpression.SqlExpression;
 import org.durcframework.core.expression.subexpression.ValueExpression;
 import org.durcframework.core.support.BsgridController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,24 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 			System.out.println("Authority:" + grantedAuthority.getAuthority());
 		}
 		return "customerBasic";
+	}
+
+	@RequestMapping("/openCustomerForService.do")
+	public String openCustomerForService() {
+		return "customerForService";
+	}
+
+	@RequestMapping("/listCustomerForService.do")
+	public ModelAndView listCustomerForService(CustomerBasicSch searchEntity) {
+		ExpressionQuery query = new ExpressionQuery();
+		SecurityContextImpl securityContextImpl = (SecurityContextImpl) getRequest().getSession()
+				.getAttribute("SPRING_SECURITY_CONTEXT");
+		AuthUser onlineUser = (AuthUser) securityContextImpl.getAuthentication().getPrincipal();
+		query.addSqlExpression(new SqlExpression(
+				"DAYOFYEAR(t.birthday)  >= DAYOFYEAR(NOW())  and DAYOFYEAR(t.birthday)  <= (DAYOFYEAR(NOW())+7)"));
+		query.addSqlExpression(new SqlExpression("t.account='" + onlineUser.getAccount() + "'"));
+		// 返回查询结果
+		return this.list(query);
 	}
 
 	@RequestMapping("/addCustomerBasic.do")

@@ -1,5 +1,6 @@
 package com.chinal.emp.controller;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import org.durcframework.core.controller.BaseController;
@@ -16,6 +17,8 @@ import com.chinal.emp.entity.Employee;
 import com.chinal.emp.security.AuthUser;
 import com.chinal.emp.service.CustomerBasicService;
 import com.chinal.emp.service.EmployeeService;
+import com.chinal.emp.service.InsuranceRecordService;
+import com.chinal.emp.service.SitRecordService;
 
 @Controller
 public class MainStatisticsController extends BaseController {
@@ -25,6 +28,12 @@ public class MainStatisticsController extends BaseController {
 
 	@Autowired
 	private EmployeeService employeeService;
+
+	@Autowired
+	private SitRecordService visitRecordService;
+
+	@Autowired
+	private InsuranceRecordService insuranceRecordService;
 
 	@RequestMapping("/openMainStatistics.do")
 	public ModelAndView openEmployee() {
@@ -61,14 +70,45 @@ public class MainStatisticsController extends BaseController {
 
 		// 一级查询自己负责的
 		if (onlineUser.getLevel() == 1) {
-			empquery.add(new ValueExpression("t.account", onlineUser.getAccount()));
+			cusquery.add(new ValueExpression("t.account", onlineUser.getAccount()));
 		}
 
 		// 返回查询结果
-
 		int count = customerBasicService.findTotalCount(cusquery);
+		String visitPercent = "0.00";
+		String insurancePercent = "0.00";
+		Integer birthCount = 0;
+		if (count > 0) {
+			// 获得最近六个月的访问客户数
+			ExpressionQuery visitquery = new ExpressionQuery();
+			visitquery.addSqlExpression(
+					new SqlExpression("t.visitTime  >= DATE_SUB(NOW(), INTERVAL 6 MONTH) and t.account='"
+							+ onlineUser.getAccount() + "'"));
+			Integer visitCount = visitRecordService.findVisitCount(visitquery);
+			DecimalFormat format = new DecimalFormat("0.00");
+			visitPercent = format.format(Double.parseDouble(visitCount + "") / Double.parseDouble(count + ""));
+
+			// 获得所有开单的客户数
+			ExpressionQuery insurancequery = new ExpressionQuery();
+			insurancequery
+					.addValueExpression(new ValueExpression("t.yewuyuan_code", onlineUser.getEmployee().getCode()));
+			Integer insuranceCount = insuranceRecordService.findInsuranceCount(insurancequery);
+			insurancePercent = format.format(insuranceCount / count);
+
+			// 获得最近过生日的用户数
+			cusquery = new ExpressionQuery();
+			cusquery.addSqlExpression(new SqlExpression(
+					"DAYOFYEAR(t.birthday)  >= DAYOFYEAR(NOW())  and DAYOFYEAR(t.birthday)  <= (DAYOFYEAR(NOW())+7)"));
+			cusquery.addSqlExpression(new SqlExpression("t.account='" + onlineUser.getAccount() + "'"));
+			birthCount = customerBasicService.findTotalCount(cusquery);
+
+			// TODO 制式服务未录
+		}
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("cusNum", count);
+		mv.addObject("visitPercent", Double.parseDouble(visitPercent) * 100);
+		mv.addObject("birthCount", birthCount);
+		mv.addObject("insurancePercent", Double.parseDouble(insurancePercent) * 100);
 		mv.setViewName("mainstatistics");
 		return mv;
 	}
