@@ -64,6 +64,12 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 		return this.modify(entity);
 	}
 
+	@RequestMapping("resetPassword.do")
+	public ModelAndView resetPassword(Employee entity) {
+		entity.setPassword(passwordEncoder.encodePassword("123456", entity.getAccount()));
+		return this.modify(entity);
+	}
+
 	@RequestMapping("/addEmployee.do")
 	public ModelAndView addEmployee(Employee entity) {
 

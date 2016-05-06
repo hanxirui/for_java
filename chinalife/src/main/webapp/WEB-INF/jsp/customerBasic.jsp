@@ -26,7 +26,7 @@
                       类型  1-原始；2-自营新拓；3-渠道新拓:<input name="type" type="text" class="form-control">    -->   
                       生日:<input name="birthday" type="text" class="form-control">      
                      <!--  结婚纪念日:<input name="weddingDay" type="text" class="form-control">   -->    
-                      客户经理:<input name="account" type="text" class="form-control">      
+                      客户经理:<input name="kehujingli" type="text" class="form-control">      
                      <!--  性别:<input name="sex" type="text" class="form-control">      
                       初始来源:<input name="laiyuan" type="text" class="form-control">  -->     
                       爱好:<input name="note" type="text" class="form-control">     
@@ -57,6 +57,11 @@
 			            	<i class="fa"></i> KPI统计查询 
 			         	</a>
 			          </div>
+			           <div class="btn-group">
+			         	<a id="importBtn" class="btn btn-danger">
+                           <i class="fa"></i>  导入用户
+                        </a>
+			          </div>
 				</div><!-- /.box-header -->
 			
 				<div class="box-body">	 
@@ -70,7 +75,7 @@
 							<!-- <th w_index="type">类型  1-原始；2-自营新拓；3-渠道新拓</th> -->
 							<!-- <th w_index="birthday">生日</th> -->
 							<!-- <th w_index="weddingDay">结婚纪念日</th> -->
-							<!-- <th w_index="account">客户经理</th> -->
+							<!-- <th w_index="kehujingli">客户经理</th> -->
 							
 							<th w_index="type"  w_render="fromRender">性质</th>
 							<!-- <th w_index="note">爱好及特点</th> -->
@@ -79,6 +84,8 @@
 					</table>
 				</div><!-- /.box-body -->
 			</div>
+			
+			
 		    
 		    <div id="crudWin">
 			    	<form id="crudFrm" class="form-horizontal">
@@ -136,7 +143,7 @@
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">客户经理</label>
 	                      <div class="col-sm-7">
-	                        <input name="account" type="text" class="form-control" required="true">
+	                        <input name="kehujingli" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
@@ -160,7 +167,18 @@
 	                    </div>
 					   										</form>
 			    </div>
-		    
+			    
+		    <div id="importWin">
+                    <form id="importFrm"  method="post"   enctype="multipart/form-data"  class="form-horizontal" action="${ctx}importCustomer.do">                   
+                       <div class="form-group">
+                          <label class="col-sm-3 control-label">选择文件</label>
+                          <div class="col-sm-7">
+                           <input class="btn btn-default" id="filename" type="file" name="filename"  accept="xls"/>
+                          </div>
+                        </div>
+                    </form>
+               </div>
+               
 <script type="text/javascript">     
 var that = this;
 
@@ -319,12 +337,47 @@ var fromRender = function(record, rowIndex, colIndex, options){
 	}
 }
 
+var $importBtn= $('#importBtn'); // 导入按钮
+$importBtn.click(function() {   
+	    importWin.showModal();    
+});
+
+var importWin = dialog({
+	title: '导入',
+	width:400,
+	content: document.getElementById('importWin'),
+	okValue: '导入',
+    ok: function () {
+           $.ajaxFileUpload({
+               url:ctx+"importCustomer.do",
+               fileElementId:"filename",
+               dataType: 'json',
+               success: function (data, status){
+                 if("success"==data.status){
+                     gridObj.refreshPage();
+                     importWin.close();
+                 }else if("error"==data.status){
+                     alert("上传失败!");
+                    return false; 
+                 }
+               }
+               });
+        return false;
+    },
+	cancelValue: '取消',
+	cancel: function () {
+		this.close();
+		return false;
+	}
+});
+
 validator = $crudFrm.validate();
 </script>
 
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
-
+      
+               
       <!-- Main Footer -->
       <footer class="main-footer">
         <!-- Default to the left -->
@@ -333,6 +386,8 @@ validator = $crudFrm.validate();
 
     </div><!-- ./wrapper -->
 
+
+          
     <!-- REQUIRED JS SCRIPTS -->
     <!-- Bootstrap 3.3.5 -->
     <script src="${AdminLTE}bootstrap/js/bootstrap.min.js"></script>
@@ -345,3 +400,4 @@ validator = $crudFrm.validate();
          fixed layout. -->
   </body>
 </html>
+

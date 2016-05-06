@@ -59,18 +59,18 @@ public class MainStatisticsController extends BaseController {
 			empquery.addSqlExpression(new SqlExpression(sql));
 			List<Employee> emps = employeeService.findTree(empquery);
 			if (emps.size() > 0) {
-				StringBuffer empAccounts = new StringBuffer();
+				StringBuffer empCodes = new StringBuffer();
 				for (Employee t_employee : emps) {
-					empAccounts.append(",").append(t_employee.getAccount());
+					empCodes.append(",").append(t_employee.getCode());
 				}
-				String cussql = "FIND_IN_SET(t.account, getChildList('" + empAccounts.toString().substring(1) + "'))";
+				String cussql = "FIND_IN_SET(t.kehujingli, getChildList('" + empCodes.toString().substring(1) + "'))";
 				cusquery.addSqlExpression(new SqlExpression(cussql));
 			}
 		}
 
 		// 一级查询自己负责的
 		if (onlineUser.getLevel() == 1) {
-			cusquery.add(new ValueExpression("t.account", onlineUser.getAccount()));
+			cusquery.add(new ValueExpression("t.kehujingli", onlineUser.getEmployee().getCode()));
 		}
 
 		// 返回查询结果
@@ -99,7 +99,7 @@ public class MainStatisticsController extends BaseController {
 			cusquery = new ExpressionQuery();
 			cusquery.addSqlExpression(new SqlExpression(
 					"DAYOFYEAR(t.birthday)  >= DAYOFYEAR(NOW())  and DAYOFYEAR(t.birthday)  <= (DAYOFYEAR(NOW())+7)"));
-			cusquery.addSqlExpression(new SqlExpression("t.account='" + onlineUser.getAccount() + "'"));
+			cusquery.addSqlExpression(new SqlExpression("t.kehujingli='" + onlineUser.getEmployee().getCode() + "'"));
 			birthCount = customerBasicService.findTotalCount(cusquery);
 
 			// TODO 制式服务未录

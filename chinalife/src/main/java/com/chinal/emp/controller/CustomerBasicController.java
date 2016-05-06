@@ -1,9 +1,17 @@
 package com.chinal.emp.controller;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.durcframework.core.expression.ExpressionQuery;
 import org.durcframework.core.expression.subexpression.LikeRightExpression;
@@ -17,20 +25,36 @@ import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.xml.sax.SAXException;
 
+import com.alibaba.fastjson.JSONObject;
 import com.chinal.emp.entity.CustomerBasic;
 import com.chinal.emp.entity.CustomerBasicSch;
+import com.chinal.emp.entity.Employee;
 import com.chinal.emp.expression.LeftJoinExpression;
 import com.chinal.emp.security.AuthUser;
 import com.chinal.emp.service.CustomerBasicService;
+import com.chinal.emp.service.EmployeeService;
+
+import net.sf.jxls.reader.ReaderBuilder;
+import net.sf.jxls.reader.XLSReadStatus;
+import net.sf.jxls.reader.XLSReader;
 
 @Controller
 public class CustomerBasicController extends BsgridController<CustomerBasic, CustomerBasicService> {
+
+	private final static String xmlConfig = "userTrack.xml";
+
 	protected static Logger logger = Logger.getLogger("controller");
 
 	@Autowired
 	HttpServletRequest request;
+
+	@Autowired
+	private EmployeeService employeeService;
 
 	@RequestMapping("/openCustomerBasic.do")
 	public String openCustomerBasic() {
@@ -70,7 +94,7 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 		AuthUser onlineUser = (AuthUser) securityContextImpl.getAuthentication().getPrincipal();
 		query.addSqlExpression(new SqlExpression(
 				"DAYOFYEAR(t.birthday)  >= DAYOFYEAR(NOW())  and DAYOFYEAR(t.birthday)  <= (DAYOFYEAR(NOW())+7)"));
-		query.addSqlExpression(new SqlExpression("t.account='" + onlineUser.getAccount() + "'"));
+		query.addSqlExpression(new SqlExpression("t.kehujingli='" + onlineUser.getEmployee().getCode() + "'"));
 		// 返回查询结果
 		return this.list(query);
 	}
@@ -82,27 +106,47 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 
 	@RequestMapping("/listCustomerBasic.do")
 	public ModelAndView listCustomerBasic(CustomerBasicSch searchEntity) {
-		ExpressionQuery query = new ExpressionQuery();
-		/*
-		 * 关联DEPARTMENT表 department:第二张表的名字 t2:department表的别名 DEPARTMENT:主表的字段
-		 * ID:第二张表的字段
-		 * 
-		 * 这样就会拼接成:inner join department t2 on t.DEPARTMENT = t2.ID
-		 */
-		query.addJoinExpression(new LeftJoinExpression("customer_extras", "t2", "idcardnum", "idcardnum"));
-		// 查询外语系的学生
-		// query.add(new ValueExpression("t2.department_name", "外语系"));
-		if (searchEntity.getName() != null) {
-			query.add(new LikeRightExpression("t.name", searchEntity.getName()));
+		SecurityContextImpl securityContextImpl = (SecurityContextImpl) getRequest().getSession()
+				.getAttribute("SPRING_SECURITY_CONTEXT");
+
+		AuthUser onlineUser = (AuthUser) securityContextImpl.getAuthentication().getPrincipal();
+
+		ExpressionQuery empquery = new ExpressionQuery();
+		ExpressionQuery cusquery = new ExpressionQuery();
+		// 不同的级别，查询的用户数量不一样
+
+		// 四级，五级查询全部
+		if (onlineUser.getLevel() == 5 || onlineUser.getLevel() == 4) {
+
 		}
-		// if (searchEntity.getFuzerenName() != null) {
-		// query.add(new LikeRightExpression("t2.name",
-		// searchEntity.getFuzerenName()));
-		// }
+
+		// 二级，三级查询自己及下属的
+		if (onlineUser.getLevel() == 2 || onlineUser.getLevel() == 3) {
+			String sql = "FIND_IN_SET(code, getChildList('" + onlineUser.getEmployee().getCode() + "'))";
+
+			empquery.addSqlExpression(new SqlExpression(sql));
+			List<Employee> emps = employeeService.findTree(empquery);
+			if (emps.size() > 0) {
+				StringBuffer empCodes = new StringBuffer();
+				for (Employee t_employee : emps) {
+					empCodes.append(",").append(t_employee.getCode());
+				}
+				String cussql = "FIND_IN_SET(t.kehujingli, getChildList('" + empCodes.toString().substring(1) + "'))";
+				cusquery.addSqlExpression(new SqlExpression(cussql));
+			}
+		}
+
+		// 一级查询自己负责的
+		if (onlineUser.getLevel() == 1) {
+			cusquery.add(new ValueExpression("t.kehujingli", onlineUser.getEmployee().getCode()));
+		}
+		cusquery.addJoinExpression(new LeftJoinExpression("customer_extras", "t2", "idcardnum", "idcardnum"));
+		if (searchEntity.getName() != null) {
+			cusquery.add(new LikeRightExpression("t.name", searchEntity.getName()));
+		}
 
 		// 返回查询结果
-
-		return this.list(query);
+		return this.list(cusquery);
 	}
 
 	@RequestMapping("/listCustomerForEmp.do")
@@ -128,4 +172,49 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 		return this.remove(entity);
 	}
 
+	@RequestMapping("/importCustomer.do")
+	public void importCustomer(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Map<String, Object> result = new HashMap<String, Object>();
+		try {
+			MultipartHttpServletRequest mulRequest = (MultipartHttpServletRequest) request;
+			MultipartFile file = mulRequest.getFile("filename");
+			List<CustomerBasic> list = new ArrayList<CustomerBasic>();
+			list = read(file);
+			if (CollectionUtils.isNotEmpty(list)) {
+				for (CustomerBasic user : list) {
+					this.add(user);
+				}
+			}
+			result.put("status", "success");
+		} catch (Exception e) {
+			result.put("status", "error");
+			e.printStackTrace();
+		}
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().print(JSONObject.toJSON(result).toString());
+	}
+
+	public List<CustomerBasic> read(final MultipartFile file) {
+		InputStream inputXML = new BufferedInputStream(this.getClass().getClassLoader().getResourceAsStream(xmlConfig));
+		XLSReader mainReader;
+		try {
+			mainReader = ReaderBuilder.buildFromXML(inputXML);
+			InputStream inputXLS = new BufferedInputStream(file.getInputStream());// new
+																					// FileInputStream(file)
+			CustomerBasic stu = new CustomerBasic();
+			List users = new ArrayList();
+			Map beans = new HashMap();
+			beans.put("user", stu);
+			beans.put("users", users);
+			XLSReadStatus readStatus = mainReader.read(inputXLS, beans);
+			return users;
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

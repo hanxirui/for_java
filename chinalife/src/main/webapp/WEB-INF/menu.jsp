@@ -19,7 +19,7 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"></span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg">LBS管理</span>
+          <span class="logo-lg">LBS管理</span> 
           <!-- <span class="logo-lg">银保业务经营分析系统</span> -->
         </a>
 
@@ -57,7 +57,7 @@
             <li <%="main".equals(am)?"class='active'":""%> ><a href="${ctx}openMainStatistics.do"><i class="fa fa-dashboard"></i> <span>统计分析</span></a></li>
             <li <%="customer".equals(am)?"class='active'":""%> ><a href="${ctx}openCustomerBasic.do"><i class="fa fa-dashboard"></i> <span>客户管理</span></a></li>
             <li <%="insurance".equals(am)?"class='active'":""%>><a href="${ctx}openInsuranceRecord.do"><i class="fa fa-diamond"></i> <span>保单管理</span> </a></li>
-            <li <%="bzplat".equals(am)?"class='active'":""%>><a href="${ctx}openEmployee.do"><i class="fa fa-diamond"></i> <span>业务平台</span> </a></li>
+            <li <%="bizplat".equals(am)?"class='active'":""%>><a href="${ctx}openBizplatform.do"><i class="fa fa-diamond"></i> <span>业务平台</span> </a></li>
             <li <%="claim".equals(am)?"class='active'":""%>><a href="${ctx}openClaimRecord.do"><i class="fa fa-diamond"></i> <span>投诉及突发事件管理</span> </a></li>
             <li <%="visit".equals(am)?"class='active'":""%>><a href="${ctx}openSitRecord.do"><i class="fa fa-diamond"></i> <span>拜访管理</span> </a></li>
             <li <%="service".equals(am)?"class='active'":""%>><a href="${ctx}openServiceRecord.do"><i class="fa fa-diamond"></i> <span>服务管理</span> </a></li>

@@ -8,7 +8,7 @@
                 <result column="type" property="type" jdbcType="INTEGER" />
                 <result column="birthday" property="birthday" jdbcType="VARCHAR" />
                 <result column="wedding_day" property="weddingDay" jdbcType="VARCHAR" />
-                <result column="account" property="account" jdbcType="VARCHAR" />
+                <result column="kehujingli" property="kehujingli" jdbcType="VARCHAR" />
                 <result column="sex" property="sex" jdbcType="VARCHAR" />
                 <result column="laiyuan" property="laiyuan" jdbcType="VARCHAR" />
                 <result column="note" property="note" jdbcType="VARCHAR" />
@@ -24,7 +24,7 @@
                 , t.type
                 , t.birthday
                 , t.wedding_day
-                , t.account
+                , t.kehujingli
                 , t.sex
                 , t.laiyuan
                 , t.note
@@ -62,7 +62,7 @@
                                         , `type`
                                         , `birthday`
                                         , `wedding_day`
-                                        , `account`
+                                        , `kehujingli`
                                         , `sex`
                                         , `laiyuan`
                                         , `note`
@@ -74,7 +74,7 @@
                                         , #{type,jdbcType=INTEGER}
                                         , #{birthday,jdbcType=VARCHAR}
                                         , #{weddingDay,jdbcType=VARCHAR}
-                                        , #{account,jdbcType=VARCHAR}
+                                        , #{kehujingli,jdbcType=VARCHAR}
                                         , #{sex,jdbcType=VARCHAR}
                                         , #{laiyuan,jdbcType=VARCHAR}
                                         , #{note,jdbcType=VARCHAR}
@@ -103,8 +103,8 @@
                 <if test="weddingDay!=null and weddingDay!=''">
         ,wedding_day=#{weddingDay,jdbcType=VARCHAR}
         </if>
-                <if test="account!=null and account!=''">
-        ,account=#{account,jdbcType=VARCHAR}
+                <if test="kehujingli!=null and kehujingli!=''">
+        ,kehujingli=#{kehujingli,jdbcType=VARCHAR}
         </if>
                 <if test="sex!=null and sex!=''">
         ,sex=#{sex,jdbcType=VARCHAR}
@@ -129,7 +129,7 @@
                 , type
                 , birthday
                 , wedding_day
-                , account
+                , kehujingli
                 , sex
                 , laiyuan
                 , note

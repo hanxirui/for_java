@@ -23,7 +23,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="${AdminLTE}plugins/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="${AdminLTE}plugins/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="${res}css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="${AdminLTE}dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter

@@ -238,7 +238,11 @@ function operate(row, rowIndex, colIndex, options) {
 		+ '&nbsp;&nbsp;'
 		+ '<a href="#" onclick="'
 		+ FunUtil.createFun(that, 'del', row)
-		+ ' return false;">删除</a>';
+		+ ' return false;">删除</a>'
+		+ '&nbsp;&nbsp;'
+		+ '<a href="#" onclick="'
+		+ FunUtil.createFun(that, 'resetPwd', row)
+		+ ' return false;">重置密码</a>';
 }
 
 // 保存
@@ -269,6 +273,38 @@ this.edit = function(row) {
 		crudWin.showModal();
 		/* $("#managercode").val(row.managercode);
 		$("#orgcode").val(row.orgcode); */
+	}
+}
+ 
+// 重置密码
+this.resetPwd = function(row) {
+	if (row) {
+
+		var d = dialog({
+			title: '提示',
+			width: 200,
+			content: '确定要重置密码吗?',
+			okValue: '确定',
+			ok: function () {
+				Action.post(ctx + "resetPassword.do", row, function(result) {
+					Action.execResult(result, function(result) {
+						var di = dialog({
+							title: '提示',
+							width: 200,
+							content: '密码重置成功',
+							okValue: '确定',
+							ok: function () {
+								
+							}
+						});
+						di.showModal();
+					});
+				});
+			},
+			cancelValue: '取消',
+			cancel: function () {}
+		});
+		d.showModal();
 	}
 }
 

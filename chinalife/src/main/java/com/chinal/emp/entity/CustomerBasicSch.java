@@ -11,7 +11,7 @@ public class CustomerBasicSch extends BsgridSearch {
 	private Integer type;
 	private String birthday;
 	private String weddingDay;
-	private String account;
+	private String kehujingli;
 	private String sex;
 	private String laiyuan;
 	private String note;
@@ -71,13 +71,13 @@ public class CustomerBasicSch extends BsgridSearch {
 		return this.weddingDay;
 	}
 
-	public void setAccount(String account) {
-		this.account = account;
+	public void setKehujingli(String kehujingli) {
+		this.kehujingli = kehujingli;
 	}
 
-	@ValueField(column = "account")
-	public String getAccount() {
-		return this.account;
+	@ValueField(column = "kehujingli")
+	public String getKehujingli() {
+		return this.kehujingli;
 	}
 
 	public void setSex(String sex) {

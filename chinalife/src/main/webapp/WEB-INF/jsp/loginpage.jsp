@@ -94,7 +94,7 @@ body
 
 h1
 {
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5);
+   /*  text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5); */
     text-transform: uppercase;
     text-align: center;
     color: #666;
@@ -103,7 +103,7 @@ h1
     font: normal 26px/1 Verdana, Helvetica;
     position: relative;
 }
-
+/* 
 h1:after, h1:before
 {
     background-color: #777;
@@ -134,7 +134,7 @@ h1:before
     background-image: -o-linear-gradient(right, #777, #fff);
     background-image: linear-gradient(right, #777, #fff);
     left: 0;
-}
+} */
 
 /*--------------------*/
 
@@ -212,7 +212,7 @@ fieldset
     border-style: solid;
     border-color: #d69e31 #e3a037 #d5982d #e3a037;
 
-    float: left;
+    float: right;
     height: 35px;
     padding: 0;
     width: 120px;
@@ -272,16 +272,15 @@ fieldset
 <body>
     <div class="error ${param.error == true ? '' : 'hide'}"> 
      ${sessionScope.SPRING_SECURITY_LAST_EXCEPTION.message}  
-    ${sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message} 
     </div> 
 <form id="login" action="${ctx}j_spring_security_check" method="post">
-    <h1>Log In</h1>
+   <!--  <h1>中国人寿天津市分公司客户资源经营分析系统</h1> -->
     <fieldset id="inputs">
         <input id="j_username" name="j_username"  type="text" placeholder="Username" autofocus required>   
         <input id="j_password" name="j_password" type="password" placeholder="Password" required>
     </fieldset>
     <fieldset id="actions">
-        <input type="submit" id="submit" value="Log in">
+        <input type="submit" id="submit" value="登录">
     </fieldset>
 </form>
 

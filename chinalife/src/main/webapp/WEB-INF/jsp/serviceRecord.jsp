@@ -73,6 +73,19 @@
 	                        <input name="content" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
+	                    <div class="form-group">
+	                      <label class="col-sm-3 control-label">服务性质</label>
+	                      <div class="col-sm-7">
+								  <label class="radio-inline">
+								    <input type="radio" name="type" id="type0" value="0">统一制式服务
+								  </label>
+								  <label class="radio-inline">
+								    <input type="radio" name="type" id="type1" value="1">自主服务
+								  </label>
+	                      </div>
+	                      
+	                    </div>
+	                    
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">客户经理</label>
 	                      <div class="col-sm-7">
