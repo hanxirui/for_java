@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Set;
 
-public class ChineseToEnglish2 {
+public class ChineseToPinyin {
 	private static LinkedHashMap spellMap = null;
 
 	static {
@@ -15,7 +15,7 @@ public class ChineseToEnglish2 {
 		initialize();
 	}
 
-	private ChineseToEnglish2() {
+	private ChineseToPinyin() {
 
 	}
 
@@ -564,12 +564,12 @@ public class ChineseToEnglish2 {
 	public static void main(String[] args) throws UnsupportedEncodingException {
 		String str = "西安肃宁乐";
 		// 转换成拼音
-		System.out.println(ChineseToEnglish2.getFullSpell(str));
+		System.out.println(ChineseToPinyin.getFullSpell(str));
 		// 中文第一个字全拼,其余去首字母
-		System.out.println(ChineseToEnglish2.getFirstSpell(str));
+		System.out.println(ChineseToPinyin.getFirstSpell(str));
 		// ascii 转 字母
-		System.out.println(ChineseToEnglish2.getSpellByAscii(65));
+		System.out.println(ChineseToPinyin.getSpellByAscii(65));
 		// 字母 转 ascii
-		System.out.println(ChineseToEnglish2.getCnAscii('0'));
+		System.out.println(ChineseToPinyin.getCnAscii('0'));
 	}
 }

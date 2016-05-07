@@ -17,10 +17,10 @@
           </h1>
         </section>-->
        <ul class="nav nav-pills">
-		  <li role="presentation"  class="active"><a href="${ctx}openCustomerForC.do">详情</a></li>
-		  <li role="presentation"><a href="${ctx}openInsuranceForC.do">保单记录</a></li>
-		  <li role="presentation"><a href="${ctx}openServiceRecordForC.do">服务记录</a></li>
-		  <li role="presentation"><a href="${ctx}openSitRecordForC.do">拜访记录</a></li>
+		  <li role="presentation"  class="active"><a href="${ctx}openCustomerForC.do?id=${customer.id}">详情</a></li>
+		  <li role="presentation"><a href="${ctx}openInsuranceForC.do?id=${customer.id}">保单记录</a></li>
+		  <li role="presentation"><a href="${ctx}openServiceRecordForC.do?id=${customer.id}">服务记录</a></li>
+		  <li role="presentation"><a href="${ctx}openSitRecordForC.do?id=${customer.id}">拜访记录</a></li>
 		</ul>
         <!-- Main content -->
         <section class="content">
@@ -30,7 +30,7 @@
                <div class="box-body">
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
-                     客户姓名: <%=userDetails.getcName() %>
+                     客户姓名: ${customer.name}
 				</form>
                </div><!-- /.box-body -->
            </div>
@@ -120,7 +120,7 @@
 var that = this;
 
 var pk = 'id'; // java类中的主键字段
-var listUrl = ctx + 'listCustomerExtras.do'; // 查询
+var listUrl = ctx + 'listCustomerExtras.do?idcardnum='+${customer.idcardnum}; // 查询
 var addUrl = ctx + 'addCustomerExtras.do'; // 添加
 var updateUrl = ctx + 'updateCustomerExtras.do'; // 修改
 var delUrl = ctx + 'delCustomerExtras.do'; // 删除

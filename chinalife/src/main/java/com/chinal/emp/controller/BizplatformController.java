@@ -1,13 +1,21 @@
 package com.chinal.emp.controller;
 
+import java.io.File;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.durcframework.core.support.BsgridController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.chinal.emp.entity.Bizplatform;
 import com.chinal.emp.entity.BizplatformSch;
 import com.chinal.emp.service.BizplatformService;
+import com.chinal.emp.util.FileUtils;
 
 @Controller
 public class BizplatformController extends BsgridController<Bizplatform, BizplatformService> {
@@ -17,9 +25,25 @@ public class BizplatformController extends BsgridController<Bizplatform, Bizplat
 		return "bizplatform";
 	}
 
+	@RequestMapping("/openBizPlatformDetail.do")
+	public ModelAndView openBizPlatformDetail() {
+		ModelAndView mv = new ModelAndView();
+		List<String> files = FileUtils.listFiles(new File("20160506"));
+		mv.addObject("bizfile", files);
+		mv.setViewName("bizplatformDetail");
+		return mv;
+	}
+
 	@RequestMapping("/openBizCalendar.do")
 	public String getBizEvents() {
 		return "bizCalendar";
+	}
+
+	@RequestMapping("/listFile.do")
+	public void listFile(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		response.setCharacterEncoding("UTF-8");
+		response.getWriter().print(JSONObject.toJSON("").toString());
 	}
 
 	@RequestMapping("/addBizplatform.do")

@@ -49,7 +49,7 @@
         <section class="sidebar">
           <!-- Sidebar user panel -->
           <div class="user-panel">
-              <div>你好,<span><sec:authentication property="name"/></span></div>
+              <div>你好,<span> <%=userDetails.getcName() %></div>
           </div>
           <!-- Sidebar Menu -->
           <ul class="sidebar-menu">

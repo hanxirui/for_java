@@ -13,10 +13,10 @@
           </h1>
         </section>-->
         <ul class="nav nav-pills">
-		  <li role="presentation"><a href="${ctx}openCustomerForC.do">详情</a></li>
-		  <li role="presentation"><a href="${ctx}openInsuranceForC.do">保单记录</a></li>
-		  <li role="presentation"><a href="${ctx}openServiceRecordForC.do">服务记录</a></li>
-		  <li role="presentation"  class="active"><a href="${ctx}openSitRecordForC.do">拜访记录</a></li>
+		  <li role="presentation"><a href="${ctx}openCustomerForC.do?id=${customer.id}">详情</a></li>
+		  <li role="presentation"><a href="${ctx}openInsuranceForC.do?id=${customer.id}">保单记录</a></li>
+		  <li role="presentation"><a href="${ctx}openServiceRecordForC.do?id=${customer.id}">服务记录</a></li>
+		  <li role="presentation"  class="active"><a href="${ctx}openSitRecordForC.do?id=${customer.id}">拜访记录</a></li>
 		</ul>
         <!-- Main content -->
         <section class="content">
@@ -91,7 +91,7 @@
 var that = this;
 
 var pk = 'id'; // java类中的主键字段
-var listUrl = ctx + 'listSitRecord.do'; // 查询
+var listUrl = ctx + 'listSitRecord.do?idcardnum='+${customer.idcardnum}; // 查询
 var addUrl = ctx + 'addSitRecord.do'; // 添加
 var updateUrl = ctx + 'updateSitRecord.do'; // 修改
 var delUrl = ctx + 'delSitRecord.do'; // 删除

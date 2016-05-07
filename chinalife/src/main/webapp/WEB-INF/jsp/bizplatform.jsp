@@ -26,7 +26,8 @@
           <div class="box box-default">
                <div class="box-body" align="center">
 
-			  <h3>  <a href="#">  历史平台查询 </a> </h3>
+			  <h3>  <a href="${ctx}openBizPlatformDetail.do">  历史平台查询 </a> </h3>
+
 
     			</div>
     			<div class="box-body" align="center">
@@ -37,6 +38,16 @@
     			<div class="box-body" align="center">
 
 				 <h3>  <a href="${ctx}openBizCalendar.do">本季平台行事历及KPI</a>  </h3>
+
+    			</div>
+    			<div class="box-body" align="center">
+
+				 <h3>  &nbsp;  </h3>
+
+    			</div>
+    			<div class="box-body" align="center">
+
+				 <h3>  &nbsp; </h3>
 
     			</div>
     		</div>
@@ -64,4 +75,47 @@
          user experience. Slimscroll is required when using the
          fixed layout. -->
   </body>
+  <script type="text/javascript">
+	function myFormatter(date) {
+
+		var y = date.getFullYear();
+
+		var m = date.getMonth() + 1;
+
+		return y + '-' + (m < 10 ? ('0' + m) : m);
+
+	}
+
+	function myParser(s) {
+
+		if (!s) {
+
+			return new Date();
+
+		}
+
+		var ss = s.split('-');
+
+		var y = parseInt(ss[0], 10);
+
+		var m = parseInt(ss[1], 10);
+
+		if (!isNaN(y) && !isNaN(m)) {
+
+			return new Date(y, m - 1);
+
+		}
+
+	}
+
+	$(document).ready(function() {
+
+		if (!$("#myDate").datebox('getValue')) {
+
+			$("#myDate").datebox('setValue', myFormatter(new Date()));
+
+		}
+
+	});
+</script>
 </html>

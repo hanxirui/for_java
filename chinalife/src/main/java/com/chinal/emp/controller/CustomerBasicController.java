@@ -1,9 +1,11 @@
 package com.chinal.emp.controller;
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,13 +13,13 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.durcframework.core.expression.ExpressionQuery;
 import org.durcframework.core.expression.subexpression.LikeRightExpression;
 import org.durcframework.core.expression.subexpression.SqlExpression;
 import org.durcframework.core.expression.subexpression.ValueExpression;
 import org.durcframework.core.support.BsgridController;
+import org.durcframework.core.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -38,6 +40,7 @@ import com.chinal.emp.expression.LeftJoinExpression;
 import com.chinal.emp.security.AuthUser;
 import com.chinal.emp.service.CustomerBasicService;
 import com.chinal.emp.service.EmployeeService;
+import com.chinal.emp.util.FileUtils;
 
 import net.sf.jxls.reader.ReaderBuilder;
 import net.sf.jxls.reader.XLSReadStatus;
@@ -156,7 +159,7 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 
 		ExpressionQuery query = new ExpressionQuery();
 
-		query.add(new ValueExpression("t.account", authUser.getAccount()));
+		query.add(new ValueExpression("t.kehujingli", authUser.getEmployee().getCode()));
 
 		// 返回查询结果
 		return this.list(query);
@@ -178,13 +181,24 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 		try {
 			MultipartHttpServletRequest mulRequest = (MultipartHttpServletRequest) request;
 			MultipartFile file = mulRequest.getFile("filename");
-			List<CustomerBasic> list = new ArrayList<CustomerBasic>();
-			list = read(file);
-			if (CollectionUtils.isNotEmpty(list)) {
-				for (CustomerBasic user : list) {
-					this.add(user);
-				}
+
+			String date = DateUtil.format(new Date(), "yyyyMMdd");
+			File dateFile = new File(date);
+			if (!dateFile.exists()) {
+				dateFile.mkdir();
 			}
+			File bakFile = new File(date, file.getOriginalFilename());
+
+			FileUtils.inputstream2file(file.getInputStream(), bakFile);
+
+			// List<CustomerBasic> list = new ArrayList<CustomerBasic>();
+			//
+			// list = read(file);
+			// if (CollectionUtils.isNotEmpty(list)) {
+			// for (CustomerBasic user : list) {
+			// this.add(user);
+			// }
+			// }
 			result.put("status", "success");
 		} catch (Exception e) {
 			result.put("status", "error");
@@ -199,8 +213,7 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 		XLSReader mainReader;
 		try {
 			mainReader = ReaderBuilder.buildFromXML(inputXML);
-			InputStream inputXLS = new BufferedInputStream(file.getInputStream());// new
-																					// FileInputStream(file)
+			InputStream inputXLS = new BufferedInputStream(file.getInputStream());
 			CustomerBasic stu = new CustomerBasic();
 			List users = new ArrayList();
 			Map beans = new HashMap();

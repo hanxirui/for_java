@@ -55,5 +55,7 @@
     <script type="text/javascript" src="${bsgrid}js/lang/grid.zh-CN.min.js"></script>
     <script type="text/javascript" src="${bsgrid}merged/bsgrid.all.min.js"></script>
     <script src="${res}easyui/plugins/jquery.messager.js"></script>
+    <script src="${res}js/ajaxfileupload.js" type="text/javascript"></script>
+    <script src="${res}js/ajaxupload.js" type="text/javascript"></script>
   
   </head>

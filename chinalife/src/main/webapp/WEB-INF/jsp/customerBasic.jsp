@@ -58,7 +58,7 @@
 			         	</a>
 			          </div>
 			           <div class="btn-group">
-			         	<a id="importBtn" class="btn btn-danger">
+			         	<a id="importBtn" class="btn btn-primary">
                            <i class="fa"></i>  导入用户
                         </a>
 			          </div>

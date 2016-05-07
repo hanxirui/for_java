@@ -1,4 +1,4 @@
-package com.hxr.javatone.util;
+package com.chinal.emp.util;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -8,8 +8,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
-public class FileUtil {
+public class FileUtils {
 	// 1. String --> InputStream
 	public static InputStream String2InputStream(String str) {
 		ByteArrayInputStream stream = new ByteArrayInputStream(str.getBytes());
@@ -40,5 +42,23 @@ public class FileUtil {
 		}
 		os.close();
 		ins.close();
+	}
+
+	public static List<String> listFiles(File f) {
+		List<String> files = new ArrayList<String>();
+		if (f != null) {
+			if (f.isDirectory()) {
+				File[] fileArray = f.listFiles();
+				if (fileArray != null) {
+					for (int i = 0; i < fileArray.length; i++) {
+						// 递归调用
+						files.addAll(listFiles(fileArray[i]));
+					}
+				}
+			} else {
+				files.add(f.getName());
+			}
+		}
+		return files;
 	}
 }
