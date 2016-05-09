@@ -12,8 +12,7 @@ public class Employee {
 	private int role;
 	// 密码
 	private String password;
-	// 账号
-	private String account;
+
 	// 工号
 	private String code;
 	// 身份证号
@@ -67,14 +66,6 @@ public class Employee {
 
 	public String getPassword() {
 		return this.password;
-	}
-
-	public void setAccount(String account) {
-		this.account = account;
-	}
-
-	public String getAccount() {
-		return this.account;
 	}
 
 	public void setCode(String code) {

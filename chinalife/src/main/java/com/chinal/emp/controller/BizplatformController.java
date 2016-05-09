@@ -28,6 +28,8 @@ public class BizplatformController extends BsgridController<Bizplatform, Bizplat
 	@RequestMapping("/openBizPlatformDetail.do")
 	public ModelAndView openBizPlatformDetail() {
 		ModelAndView mv = new ModelAndView();
+		System.out.println(this.getRequest().getContextPath());
+		System.out.println(this.getRequest().getRealPath("/"));
 		List<String> files = FileUtils.listFiles(new File("20160506"));
 		mv.addObject("bizfile", files);
 		mv.setViewName("bizplatformDetail");

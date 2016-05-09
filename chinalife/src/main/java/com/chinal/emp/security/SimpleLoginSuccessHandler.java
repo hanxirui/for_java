@@ -69,7 +69,7 @@ public class SimpleLoginSuccessHandler implements AuthenticationSuccessHandler, 
 		try {
 			String ip = this.getIpAddress(request);
 			Date date = new Date();
-			record.setAccount(user.getUsername());
+			record.setEmpcode(user.getUsername());
 			record.setDate(date);
 			record.setIp(ip);
 			recordService.save(record);

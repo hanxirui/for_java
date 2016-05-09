@@ -6,12 +6,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.durcframework.core.expression.ExpressionQuery;
+import org.durcframework.core.expression.subexpression.InnerJoinExpression;
 import org.durcframework.core.expression.subexpression.LikeRightExpression;
+import org.durcframework.core.expression.subexpression.SqlExpression;
+import org.durcframework.core.expression.subexpression.ValueExpression;
 import org.durcframework.core.support.BsgridController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +23,7 @@ import com.chinal.emp.entity.Employee;
 import com.chinal.emp.entity.EmployeeSch;
 import com.chinal.emp.entity.Role;
 import com.chinal.emp.expression.LeftJoinExpression;
+import com.chinal.emp.security.AuthUser;
 import com.chinal.emp.service.EmployeeService;
 import com.chinal.emp.service.RoleService;
 
@@ -39,10 +43,10 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 
 	@RequestMapping("checkPassword.do")
 	public void checkPassword(final HttpServletRequest request, final HttpServletResponse response) {
-		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		AuthUser userDetails = (AuthUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String oldPwd = request.getParameter("oldpassword").trim();
 		String id = request.getParameter("id").trim();
-		String pwd = passwordEncoder.encodePassword(oldPwd, userDetails.getUsername());
+		String pwd = passwordEncoder.encodePassword(oldPwd, userDetails.getEmployee().getCode());
 		response.setContentType("text/html;charset=UTF-8");
 		Employee user = this.get(Integer.parseInt(id));
 		try {
@@ -59,21 +63,21 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 	@RequestMapping("updatePassword.do")
 	public ModelAndView updatePassword(Employee entity) {
 		if (entity.getPassword() != null && !"".equals(entity.getPassword())) {
-			entity.setPassword(passwordEncoder.encodePassword(entity.getPassword(), entity.getAccount()));
+			entity.setPassword(passwordEncoder.encodePassword(entity.getPassword(), entity.getCode()));
 		}
 		return this.modify(entity);
 	}
 
 	@RequestMapping("resetPassword.do")
 	public ModelAndView resetPassword(Employee entity) {
-		entity.setPassword(passwordEncoder.encodePassword("123456", entity.getAccount()));
+		entity.setPassword(passwordEncoder.encodePassword("123456", entity.getCode()));
 		return this.modify(entity);
 	}
 
 	@RequestMapping("/addEmployee.do")
 	public ModelAndView addEmployee(Employee entity) {
 
-		entity.setPassword(passwordEncoder.encodePassword("123456", entity.getAccount()));
+		entity.setPassword(passwordEncoder.encodePassword("123456", entity.getCode()));
 
 		return this.add(entity);
 	}
@@ -82,6 +86,20 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 	public ModelAndView listEmployee(EmployeeSch searchEntity) {
 
 		ExpressionQuery query = new ExpressionQuery();
+
+		SecurityContextImpl securityContextImpl = (SecurityContextImpl) getRequest().getSession()
+				.getAttribute("SPRING_SECURITY_CONTEXT");
+
+		AuthUser onlineUser = (AuthUser) securityContextImpl.getAuthentication().getPrincipal();
+
+		// 四级，五级查询自己部门的
+		query.addValueExpression(new ValueExpression("t.orgcode", onlineUser.getEmployee().getOrgcode()));
+
+		// 三级查询自己及下属的
+		if (onlineUser.getLevel() == 3) {
+			String sql = "FIND_IN_SET(t.code, getChildList('" + onlineUser.getEmployee().getCode() + "'))";
+			query.addSqlExpression(new SqlExpression(sql));
+		}
 
 		query.addJoinExpression(new LeftJoinExpression("role", "t2", "role", "id"));
 		query.addJoinExpression(new LeftJoinExpression("employee", "t3", "managercode", "code"));
@@ -97,22 +115,17 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 	}
 
 	@RequestMapping("/getAllManagers.do")
-	public ModelAndView getAllManagers(EmployeeSch searchEntity) {
+	public ModelAndView getAllManagers(String roleId, String orgcode) {
 
-		Role role = roleService.get(searchEntity.getRole());
+		Role role = roleService.get(Integer.valueOf(roleId));
 
 		ExpressionQuery query = new ExpressionQuery();
-		/*
-		 * 关联DEPARTMENT表 department:第二张表的名字 t2:department表的别名 DEPARTMENT:主表的字段
-		 * ID:第二张表的字段
-		 * 
-		 * 这样就会拼接成:inner join department t2 on t.DEPARTMENT = t2.ID
-		 */
-		query.addJoinExpression(new LeftJoinExpression("role", "t2", "role", "id"));
+
+		query.addJoinExpression(new InnerJoinExpression("role", "t2", "role", "id"));
 		query.addJoinExpression(new LeftJoinExpression("employee", "t3", "managercode", "code"));
 
-		// query.addValueExpression(new ValueExpression("t2.level", ">=",
-		// role.getLevel()));
+		query.addValueExpression(new ValueExpression("t.orgcode", orgcode));
+		query.addValueExpression(new ValueExpression("t2.level", ">=", role.getLevel()));
 
 		return this.listAll(query);
 	}
@@ -121,7 +134,7 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 	public ModelAndView updateEmployee(Employee entity) {
 
 		if (entity.getPassword() != null && !"".equals(entity.getPassword())) {
-			entity.setPassword(passwordEncoder.encodePassword(entity.getPassword(), entity.getAccount()));
+			entity.setPassword(passwordEncoder.encodePassword(entity.getPassword(), entity.getCode()));
 		}
 		return this.modify(entity);
 	}

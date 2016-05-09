@@ -43,7 +43,7 @@ public class CustomUserDetailsService extends CrudService<Employee, EmployeeDao>
 			ExpressionQuery query = new ExpressionQuery();
 			query.addJoinExpression(new LeftJoinExpression("role", "t2", "role", "id"));
 			query.addJoinExpression(new LeftJoinExpression("employee", "t3", "managercode", "code"));
-			query.add(new ValueExpression("t.account", username));
+			query.add(new ValueExpression("t.code", username));
 
 			List<Employee> emps = this.find(query);
 			if (emps.size() == 1) {
@@ -53,9 +53,9 @@ public class CustomUserDetailsService extends CrudService<Employee, EmployeeDao>
 				// getAuthorities() will translate the access level to the
 				// correct
 				// role type
-				user = new AuthUser(dbUser.getAccount(), dbUser.getPassword().toLowerCase(), true, true, true, true,
+				user = new AuthUser(dbUser.getCode(), dbUser.getPassword().toLowerCase(), true, true, true, true,
 						getAuthorities(dbUser.getRoleLevel()));
-				user.setAccount(dbUser.getAccount());
+				user.setCode(dbUser.getCode());
 				user.setId(dbUser.getId());
 				user.setcName(dbUser.getName());
 				user.setLevel(dbUser.getRoleLevel());

@@ -1,72 +1,69 @@
 package com.chinal.emp.entity;
 
-import org.durcframework.core.SearchEntity;
 import org.durcframework.core.expression.annotation.ValueField;
-
 import org.durcframework.core.support.BsgridSearch;
 
 public class ServiceRecordSch extends BsgridSearch {
 
-    private Integer id;
-    private String idcardnum;
-    private String servicetime;
-    private String content;
-    private String account;
-    private String name;
+	private Integer id;
+	private String idcardnum;
+	private String servicetime;
+	private String content;
+	private String empcode;
+	private String name;
 
-    public void setId (Integer id){
-        this.id = id;
-    }
-    
-    @ValueField(column = "id")
-    public Integer getId(){
-        return this.id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public void setIdcardnum (String idcardnum){
-        this.idcardnum = idcardnum;
-    }
-    
-    @ValueField(column = "idcardnum")
-    public String getIdcardnum(){
-        return this.idcardnum;
-    }
+	@ValueField(column = "id")
+	public Integer getId() {
+		return this.id;
+	}
 
-    public void setServicetime (String servicetime){
-        this.servicetime = servicetime;
-    }
-    
-    @ValueField(column = "servicetime")
-    public String getServicetime(){
-        return this.servicetime;
-    }
+	public void setIdcardnum(String idcardnum) {
+		this.idcardnum = idcardnum;
+	}
 
-    public void setContent (String content){
-        this.content = content;
-    }
-    
-    @ValueField(column = "content")
-    public String getContent(){
-        return this.content;
-    }
+	@ValueField(column = "idcardnum")
+	public String getIdcardnum() {
+		return this.idcardnum;
+	}
 
-    public void setAccount (String account){
-        this.account = account;
-    }
-    
-    @ValueField(column = "account")
-    public String getAccount(){
-        return this.account;
-    }
+	public void setServicetime(String servicetime) {
+		this.servicetime = servicetime;
+	}
 
-    public void setName (String name){
-        this.name = name;
-    }
-    
-    @ValueField(column = "name")
-    public String getName(){
-        return this.name;
-    }
+	@ValueField(column = "servicetime")
+	public String getServicetime() {
+		return this.servicetime;
+	}
 
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	@ValueField(column = "content")
+	public String getContent() {
+		return this.content;
+	}
+
+	public void setEmpcode(String empcode) {
+		this.empcode = empcode;
+	}
+
+	@ValueField(column = "empcode")
+	public String getEmpcode() {
+		return this.empcode;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@ValueField(column = "name")
+	public String getName() {
+		return this.name;
+	}
 
 }

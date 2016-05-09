@@ -55,7 +55,7 @@
 													<th w_index="carBand">车品牌</th>
 													<th w_index="carNum">车牌号</th>
 													<th w_index="addr">住址</th>
-													<th w_index="account">维护人</th>
+													<th w_index="empcode">维护人</th>
 													<th w_index="insertDate">维护日期</th>
 													<!-- <th w_render="operate" width="10%;">操作</th> -->
 						</tr>
@@ -104,7 +104,7 @@
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">维护人</label>
 	                      <div class="col-sm-7">
-	                        <input name="account" type="text" class="form-control" required="true">
+	                        <input name="empcode" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">

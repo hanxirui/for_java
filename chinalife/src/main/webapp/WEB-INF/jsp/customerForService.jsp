@@ -49,7 +49,6 @@
 							<!-- <th w_index="type">类型  1-原始；2-自营新拓；3-渠道新拓</th> -->
 							<!-- <th w_index="birthday">生日</th> -->
 							<!-- <th w_index="weddingDay">结婚纪念日</th> -->
-							<!-- <th w_index="account">客户经理</th> -->
 							
 							<th w_index="type"  w_render="fromRender">性质</th>
 							<!-- <th w_index="note">爱好及特点</th> -->
@@ -115,7 +114,7 @@
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">客户经理</label>
 	                      <div class="col-sm-7">
-	                        <input name="account" type="text" class="form-control" required="true">
+	                        <input name="empcode" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">

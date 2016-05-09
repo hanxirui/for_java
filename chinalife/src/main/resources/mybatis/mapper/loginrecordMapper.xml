@@ -3,7 +3,7 @@
 <mapper namespace="com.chinal.emp.dao.LoginrecordDao">
     <resultMap id="queryResultMap" type="com.chinal.emp.entity.Loginrecord">
                 <result column="id" property="id" jdbcType="INTEGER" />
-                <result column="account" property="account" jdbcType="VARCHAR" />
+                <result column="empcode" property="empcode" jdbcType="VARCHAR" />
                 <result column="ip" property="ip" jdbcType="VARCHAR" />
                 <result column="date" property="date" jdbcType="TIMESTAMP" />
             </resultMap>
@@ -12,7 +12,7 @@
 		resultMap="queryResultMap">
 		SELECT 
                          id
-                , account
+                , empcode
                 , ip
                 , date
         		FROM login_record t
@@ -43,13 +43,13 @@
 	INSERT INTO login_record
          (
                               `id`
-                                        , `account`
+                                        , `empcode`
                                         , `ip`
                                         , `date`
                               )
 	VALUES (
                               #{id,jdbcType=INTEGER}
-                                        , #{account,jdbcType=VARCHAR}
+                                        , #{empcode,jdbcType=VARCHAR}
                                         , #{ip,jdbcType=VARCHAR}
                                         , #{date,jdbcType=TIMESTAMP}
                      
@@ -60,7 +60,7 @@
     <update id="update" parameterType="com.chinal.emp.entity.Loginrecord">
     UPDATE login_record
     SET 
-                                                 account=#{account,jdbcType=VARCHAR}
+                                                 empcode=#{empcode,jdbcType=VARCHAR}
                                      , ip=#{ip,jdbcType=VARCHAR}
                                      , date=#{date,jdbcType=TIMESTAMP}
                      WHERE id = #{id,jdbcType=INTEGER}
@@ -69,7 +69,7 @@
     <select id="get" resultMap="queryResultMap" parameterType="com.chinal.emp.entity.Loginrecord">
 		SELECT 
                          id
-                , account
+                , empcode
                 , ip
                 , date
         		FROM login_record t

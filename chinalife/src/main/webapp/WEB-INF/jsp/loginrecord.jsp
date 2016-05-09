@@ -118,7 +118,7 @@
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
 										                       :<input name="id" type="text" class="form-control">      
-					 										                       账号:<input name="account" type="text" class="form-control">      
+					 										                       账号:<input name="empcode" type="text" class="form-control">      
 					 										                       IP地址:<input name="ip" type="text" class="form-control">      
 					 										                       登录时间:<input name="date" type="text" class="form-control">      
 					 					                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
@@ -140,7 +140,7 @@
 					<table id="searchTable">
 						<tr>           
 														<th w_index="id"></th>
-																			<th w_index="account">账号</th>
+																			<th w_index="empcode">账号</th>
 																			<th w_index="ip">IP地址</th>
 																			<th w_index="date">登录时间</th>
 													<th w_render="operate" width="10%;">操作</th>
@@ -160,7 +160,7 @@
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">账号</label>
 	                      <div class="col-sm-7">
-	                        <input name="account" type="text" class="form-control" required="true">
+	                        <input name="empcode" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">

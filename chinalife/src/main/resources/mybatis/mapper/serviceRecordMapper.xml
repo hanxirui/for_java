@@ -6,7 +6,7 @@
                 <result column="idcardnum" property="idcardnum" jdbcType="VARCHAR" />
                 <result column="servicetime" property="servicetime" jdbcType="VARCHAR" />
                 <result column="content" property="content" jdbcType="VARCHAR" />
-                <result column="account" property="account" jdbcType="VARCHAR" />
+                <result column="empcode" property="empcode" jdbcType="VARCHAR" />
                 <result column="name" property="name" jdbcType="VARCHAR" />
             </resultMap>
 
@@ -17,7 +17,7 @@
                 , t.idcardnum
                 , t.servicetime
                 , t.content
-                , t.account
+                , t.empcode
                 , t.name
         		FROM service_record t
 		<include refid="expressionBlock.where" />
@@ -56,14 +56,14 @@
                                                   `idcardnum`
                                         , `servicetime`
                                         , `content`
-                                        , `account`
+                                        , `empcode`
                                         , `name`
                               )
 	VALUES (
                                                   #{idcardnum,jdbcType=VARCHAR}
                                         , #{servicetime,jdbcType=VARCHAR}
                                         , #{content,jdbcType=VARCHAR}
-                                        , #{account,jdbcType=VARCHAR}
+                                        , #{empcode,jdbcType=VARCHAR}
                                         , #{name,jdbcType=VARCHAR}
                      
         )
@@ -88,9 +88,9 @@
          content=#{content,jdbcType=VARCHAR}
         </if>
                                       
-        <if test="account!=null and account!=''">
+        <if test="empcode!=null and empcode!=''">
         ,
-         account=#{account,jdbcType=VARCHAR}
+         empcode=#{empcode,jdbcType=VARCHAR}
         </if>
                                       
         <if test="name!=null and name!=''">
@@ -106,7 +106,7 @@
                 , idcardnum
                 , servicetime
                 , content
-                , account
+                , empcode
                 , name
         		FROM service_record t
 		WHERE id = #{id,jdbcType=INTEGER}

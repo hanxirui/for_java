@@ -29,7 +29,7 @@
 										 										   客户:<input name="idcardnum" type="text" class="form-control">      
 					 										                       服务时间:<input name="servicetime" type="text" class="form-control">      
 					 										                       服务内容:<input name="content" type="text" class="form-control">      
-					 										                       客户经理:<input name="account" type="text" class="form-control">      
+					 										                       客户经理:<input name="empcode" type="text" class="form-control">      
 					 					                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
 				</form>
@@ -51,7 +51,7 @@
 							<th w_index="idcardnum">客户</th>
 							<th w_index="servicetime">服务时间</th>
 							<th w_index="content">服务内容</th>
-							<th w_index="account">客户经理</th>
+							<th w_index="empcode">客户经理</th>
 							<th w_render="operate" width="10%;">操作</th>
 						</tr>
 					</table>
@@ -81,7 +81,7 @@
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">客户经理</label>
 	                      <div class="col-sm-7">
-	                        <input name="account" type="text" class="form-control" required="true">
+	                        <input name="empcode" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										</form>

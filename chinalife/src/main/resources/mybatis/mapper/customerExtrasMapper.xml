@@ -9,7 +9,7 @@
                 <result column="car_band" property="carBand" jdbcType="VARCHAR" />
                 <result column="car_num" property="carNum" jdbcType="VARCHAR" />
                 <result column="addr" property="addr" jdbcType="VARCHAR" />
-                <result column="account" property="account" jdbcType="VARCHAR" />
+                <result column="empcode" property="empcode" jdbcType="VARCHAR" />
                 <result column="insert_date" property="insertDate" jdbcType="VARCHAR" />
             </resultMap>
 
@@ -23,7 +23,7 @@
                 , car_band
                 , car_num
                 , addr
-                , account
+                , empcode
                 , insert_date
         		FROM customer_extras t
 		<include refid="expressionBlock.where" />
@@ -59,7 +59,7 @@
                                         , `car_band`
                                         , `car_num`
                                         , `addr`
-                                        , `account`
+                                        , `empcode`
                                         , `insert_date`
                               )
 	VALUES (
@@ -70,7 +70,7 @@
                                         , #{carBand,jdbcType=VARCHAR}
                                         , #{carNum,jdbcType=VARCHAR}
                                         , #{addr,jdbcType=VARCHAR}
-                                        , #{account,jdbcType=VARCHAR}
+                                        , #{empcode,jdbcType=VARCHAR}
                                         , #{insertDate,jdbcType=VARCHAR}
                      
         )
@@ -104,8 +104,8 @@
         addr=#{addr,jdbcType=VARCHAR}
         </if>
                                       ,
-                <if test="account!=null and account!=''">
-        account=#{account,jdbcType=VARCHAR}
+                <if test="empcode!=null and empcode!=''">
+        empcode=#{empcode,jdbcType=VARCHAR}
         </if>
                                       ,
                 <if test="insertDate!=null and insertDate!=''">
@@ -123,7 +123,7 @@
                 , car_band
                 , car_num
                 , addr
-                , account
+                , empcode
                 , insert_date
         		FROM customer_extras t
 		WHERE id = #{id,jdbcType=INTEGER}

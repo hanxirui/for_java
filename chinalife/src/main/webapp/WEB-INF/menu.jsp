@@ -61,9 +61,10 @@
             <li <%="claim".equals(am)?"class='active'":""%>><a href="${ctx}openClaimRecord.do"><i class="fa fa-diamond"></i> <span>投诉及突发事件管理</span> </a></li>
             <li <%="visit".equals(am)?"class='active'":""%>><a href="${ctx}openSitRecord.do"><i class="fa fa-diamond"></i> <span>拜访管理</span> </a></li>
             <li <%="service".equals(am)?"class='active'":""%>><a href="${ctx}openServiceRecord.do"><i class="fa fa-diamond"></i> <span>服务管理</span> </a></li>
-            <li <%="employee".equals(am)?"class='active'":""%>><a href="${ctx}openEmployee.do"><i class="fa fa-diamond"></i> <span>人员管理</span> </a></li>
-            <li <%="org".equals(am)?"class='active'":""%>><a href="${ctx}openOrg.do"><i class="fa fa-bank"></i> 机构管理</a></li>
-            <li <%="role".equals(am)?"class='active'":""%>><a href="${ctx}openRole.do"><i class="fa fa-child"></i>职务管理</a></li>
+           
+            <li <%="employee".equals(am)?"class='active'":""%> <%=userDetails.getLevel()<3?"style='display:none'":"" %>><a href="${ctx}openEmployee.do"><i class="fa fa-diamond"></i> <span>人员管理</span> </a></li>
+            <li <%="org".equals(am)?"class='active'":""%> <%=userDetails.getLevel()==5?"":"style='display:none'" %>><a href="${ctx}openOrg.do"><i class="fa fa-bank"></i> 机构管理</a></li>
+            <li <%="role".equals(am)?"class='active'":""%> <%=userDetails.getLevel()==5?"":"style='display:none'" %>><a href="${ctx}openRole.do"><i class="fa fa-child"></i>职务管理</a></li>
           </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->
@@ -91,7 +92,7 @@
 	                      </div>
 	                    </div>
 	                    <input name="id" id="id" type="hidden"  value="<%=userDetails.getId() %>">
-		            <input name="account" id="account" type="hidden" value="<%=userDetails.getAccount() %>">
+		            <input name="code" id="code" type="hidden" value="<%=userDetails.getCode() %>">
 					   	
 					   										</form>
 			    </div>

@@ -26,7 +26,7 @@
                <div class="box-body">
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
-	              客户经理:<input name="account" type="text" class="form-control">      
+	              客户经理:<input name="empcode" type="text" class="form-control">      
                    拜访时间:<input name="visittime" type="text" class="form-control">      
                    客户:<input name="idcardnum" type="text" class="form-control">      
                   <!--  拜访内容:<input name="content" type="text" class="form-control">  -->     
@@ -48,7 +48,7 @@
 				<div class="box-body">	 
 					<table id="searchTable">
 						<tr>           
-							<th w_index="account">客户经理</th>
+							<th w_index="empcode">客户经理</th>
 							<th w_index="visittime">拜访时间</th>
 							<th w_index="idcardnum">客户</th>
 							<th w_index="content">拜访内容</th>
@@ -63,7 +63,7 @@
 											   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">客户经理</label>
 	                      <div class="col-sm-7">
-	                        <input name="account" type="text" class="form-control" required="true">
+	                        <input name="empcode" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">

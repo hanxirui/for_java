@@ -28,7 +28,7 @@
                        车品牌:<input name="carBand" type="text" class="form-control">      
                        车牌号:<input name="carNum" type="text" class="form-control">      
                        住址:<input name="addr" type="text" class="form-control">      
-                       维护人:<input name="account" type="text" class="form-control">      
+                       维护人:<input name="empcode" type="text" class="form-control">      
                        维护日期:<input name="insertDate" type="text" class="form-control">      
 	                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
@@ -55,7 +55,7 @@
 																			<th w_index="carBand">车品牌</th>
 																			<th w_index="carNum">车牌号</th>
 																			<th w_index="addr">住址</th>
-																			<th w_index="account">维护人</th>
+																			<th w_index="empcode">维护人</th>
 																			<th w_index="insertDate">维护日期</th>
 													<th w_render="operate" width="10%;">操作</th>
 						</tr>
@@ -110,7 +110,7 @@
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">维护人</label>
 	                      <div class="col-sm-7">
-	                        <input name="account" type="text" class="form-control" required="true">
+	                        <input name="empcode" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">

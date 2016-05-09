@@ -14,16 +14,16 @@ public class AuthUser extends User {
 	 */
 	private static final long serialVersionUID = 7499093762725434808L;
 	private int id;
-	private String account;
+	private String code;
 	private String cName;
 	private int level;
 
 	private Employee employee;
 
-	public AuthUser(final String username, final String password, final boolean enabled,
-			final boolean accountNonExpired, final boolean credentialsNonExpired, final boolean accountNonLocked,
+	public AuthUser(final String username, final String password, final boolean enabled, final boolean codeNonExpired,
+			final boolean credentialsNonExpired, final boolean codeNonLocked,
 			final Collection<? extends GrantedAuthority> authorities) {
-		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+		super(username, password, enabled, codeNonExpired, credentialsNonExpired, codeNonLocked, authorities);
 	}
 
 	/**
@@ -42,18 +42,18 @@ public class AuthUser extends User {
 	}
 
 	/**
-	 * @return account - {return content description}
+	 * @return code - {return content description}
 	 */
-	public String getAccount() {
-		return account;
+	public String getCode() {
+		return code;
 	}
 
 	/**
-	 * @param account
+	 * @param code
 	 *            - {parameter description}.
 	 */
-	public void setAccount(final String account) {
-		this.account = account;
+	public void setCode(final String code) {
+		this.code = code;
 	}
 
 	public String getcName() {

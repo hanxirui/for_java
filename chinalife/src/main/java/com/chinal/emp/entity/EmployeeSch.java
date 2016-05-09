@@ -9,7 +9,6 @@ public class EmployeeSch extends BsgridSearch {
 	private String name;
 	private Integer role;
 	private String password;
-	private String account;
 	private String code;
 	private String idcardnum;
 	private String orgname;
@@ -53,15 +52,6 @@ public class EmployeeSch extends BsgridSearch {
 	@ValueField(column = "password")
 	public String getPassword() {
 		return this.password;
-	}
-
-	public void setAccount(String account) {
-		this.account = account;
-	}
-
-	@ValueField(column = "account")
-	public String getAccount() {
-		return this.account;
 	}
 
 	public void setCode(String code) {

@@ -81,9 +81,8 @@ public class MainStatisticsController extends BaseController {
 		if (count > 0) {
 			// 获得最近六个月的访问客户数
 			ExpressionQuery visitquery = new ExpressionQuery();
-			visitquery.addSqlExpression(
-					new SqlExpression("t.visitTime  >= DATE_SUB(NOW(), INTERVAL 6 MONTH) and t.account='"
-							+ onlineUser.getAccount() + "'"));
+			visitquery.addSqlExpression(new SqlExpression(
+					"t.visitTime  >= DATE_SUB(NOW(), INTERVAL 6 MONTH) and t.empcode='" + onlineUser.getCode() + "'"));
 			Integer visitCount = visitRecordService.findVisitCount(visitquery);
 			DecimalFormat format = new DecimalFormat("0.00");
 			visitPercent = format.format(Double.parseDouble(visitCount + "") / Double.parseDouble(count + ""));

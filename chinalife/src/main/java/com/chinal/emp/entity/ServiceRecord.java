@@ -1,12 +1,10 @@
 package com.chinal.emp.entity;
 
-import java.util.Date;
-
 /**
   
 */
 public class ServiceRecord {
-	// 
+	//
 	private int id;
 	// 客户
 	private String idcardnum;
@@ -15,55 +13,55 @@ public class ServiceRecord {
 	// 服务内容
 	private String content;
 	// 客户经理
-	private String account;
+	private String empcode;
 	// 客户名称
 	private String name;
 
-	public void setId(int id){
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public int getId(){
+	public int getId() {
 		return this.id;
 	}
 
-	public void setIdcardnum(String idcardnum){
+	public void setIdcardnum(String idcardnum) {
 		this.idcardnum = idcardnum;
 	}
 
-	public String getIdcardnum(){
+	public String getIdcardnum() {
 		return this.idcardnum;
 	}
 
-	public void setServicetime(String servicetime){
+	public void setServicetime(String servicetime) {
 		this.servicetime = servicetime;
 	}
 
-	public String getServicetime(){
+	public String getServicetime() {
 		return this.servicetime;
 	}
 
-	public void setContent(String content){
+	public void setContent(String content) {
 		this.content = content;
 	}
 
-	public String getContent(){
+	public String getContent() {
 		return this.content;
 	}
 
-	public void setAccount(String account){
-		this.account = account;
+	public void setEmpcode(String empcode) {
+		this.empcode = empcode;
 	}
 
-	public String getAccount(){
-		return this.account;
+	public String getEmpcode() {
+		return this.empcode;
 	}
 
-	public void setName(String name){
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	public String getName(){
+	public String getName() {
 		return this.name;
 	}
 

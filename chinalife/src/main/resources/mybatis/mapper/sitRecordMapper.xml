@@ -3,7 +3,7 @@
 <mapper namespace="com.chinal.emp.dao.SitRecordDao">
     <resultMap id="queryResultMap" type="com.chinal.emp.entity.SitRecord">
                 <result column="id" property="id" jdbcType="INTEGER" />
-                <result column="account" property="account" jdbcType="VARCHAR" />
+                <result column="empcode" property="empcode" jdbcType="VARCHAR" />
                 <result column="visitTime" property="visittime" jdbcType="VARCHAR" />
                 <result column="idcardnum" property="idcardnum" jdbcType="VARCHAR" />
                 <result column="content" property="content" jdbcType="VARCHAR" />
@@ -14,7 +14,7 @@
 		resultMap="queryResultMap">
 		SELECT 
                          t.id
-                , t.account
+                , t.empcode
                 , t.visitTime
                 , t.idcardnum
                 , t.content
@@ -53,14 +53,14 @@
     >
 	INSERT INTO visit_record
          (
-                                                  `account`
+                                                  `empcode`
                                         , `visitTime`
                                         , `idcardnum`
                                         , `content`
                                         , `name`
                               )
 	VALUES (
-                                                  #{account,jdbcType=VARCHAR}
+                                                  #{empcode,jdbcType=VARCHAR}
                                         , #{visittime,jdbcType=VARCHAR}
                                         , #{idcardnum,jdbcType=VARCHAR}
                                         , #{content,jdbcType=VARCHAR}
@@ -74,8 +74,8 @@
     UPDATE visit_record
     SET 
                                                      
-        <if test="account!=null and account!=''">
-         account=#{account,jdbcType=VARCHAR}
+        <if test="empcode!=null and empcode!=''">
+         empcode=#{empcode,jdbcType=VARCHAR}
         </if>
                                       
         <if test="visitTime!=null and visitTime!=''">
@@ -103,7 +103,7 @@
     <select id="get" resultMap="queryResultMap" parameterType="com.chinal.emp.entity.SitRecord">
 		SELECT 
                          id
-                , account
+                , empcode
                 , visitTime
                 , idcardnum
                 , content

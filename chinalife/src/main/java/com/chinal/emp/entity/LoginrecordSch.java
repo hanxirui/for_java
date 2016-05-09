@@ -8,7 +8,7 @@ import org.durcframework.core.support.BsgridSearch;
 public class LoginrecordSch extends BsgridSearch {
 
 	private Integer id;
-	private String account;
+	private String empcode;
 	private String ip;
 	private Date date;
 
@@ -21,13 +21,13 @@ public class LoginrecordSch extends BsgridSearch {
 		return this.id;
 	}
 
-	public void setAccount(String account) {
-		this.account = account;
+	public void setEmpcode(String empcode) {
+		this.empcode = empcode;
 	}
 
-	@ValueField(column = "account")
-	public String getAccount() {
-		return this.account;
+	@ValueField(column = "empcode")
+	public String getEmpcode() {
+		return this.empcode;
 	}
 
 	public void setIp(String ip) {

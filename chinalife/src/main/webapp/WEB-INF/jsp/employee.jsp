@@ -23,7 +23,6 @@
 			        姓名:<input name="name" type="text" class="form-control">      
                      <!-- 职务:<input name="role" type="text" class="form-control">      
                      密码:<input name="password" type="text" class="form-control">     -->  
-                     账号:<input name="account" type="text" class="form-control">      
                      工号:<input name="code" type="text" class="form-control">      
                     <!--  身份证号:<input name="pid" type="text" class="form-control">   -->    
                      所属公司:<input name="orgname" type="text" class="form-control">      
@@ -52,7 +51,6 @@
 							<th w_index="name">姓名</th>
 							<th w_index="role" w_render="roleRender">职务</th>
 							<!-- <th w_index="password">密码</th> -->
-							<th w_index="account">账号</th>
 							<th w_index="code">工号</th>
 							<th w_index="idcardnum">身份证号</th>
 							<th w_index="orgname">所属公司</th>
@@ -77,16 +75,11 @@
 	                    
 	                      <label class="col-sm-2 control-label">职务</label>
 	                      <div class="col-sm-3">
-	                        <!-- <input name="role" type="text" class="form-control" required="true"> -->
 	                        <select id="role" name="role"  class="form-control" required="true">
 	                        </select>
 	                      </div>
 	                    </div>
                         <div class="form-group">
-	                      <!-- <label class="col-sm-2 control-label">密码</label>
-	                      <div class="col-sm-3">
-	                        <input name="password" type="text" class="form-control" required="true">
-	                      </div> -->
 	                      <label class="col-sm-2 control-label">性别</label>
 	                      <div class="col-sm-3">
 								  <label class="radio-inline">
@@ -95,12 +88,13 @@
 								  <label class="radio-inline">
 								    <input type="radio" name="sex" id="sex1" value="1">男
 								  </label>
-								  <!-- <input type="hidden" name="sex" id="sex"> -->
 	                      </div>
-	                      <label class="col-sm-2 control-label">账号</label>
+	                       <label class="col-sm-2 control-label">电话</label>
 	                      <div class="col-sm-3">
-	                        <input name="account" type="text" class="form-control" required="true">
+	                        <input name="phone" type="text" class="form-control" required="true">
 	                      </div>
+	                       
+	                     
 	                    </div>
                          <div class="form-group">
 	                      <label class="col-sm-2 control-label">工号</label>
@@ -116,12 +110,9 @@
                          <div class="form-group">
 	                      <label class="col-sm-2 control-label">所属公司</label>
 	                      <div class="col-sm-3">
-	                        <!-- <input name="orgname" type="text" class="form-control" required="true"> -->
 	                        <select id="orgname" name="orgname"  class="form-control" required="true">
 	                        </select>
-	                        
 	                      </div>
-	                   
 	                     
 	                      <label class="col-sm-2 control-label">公司代码</label>
 	                      <div class="col-sm-3">
@@ -133,9 +124,10 @@
                       
 	                    
                           <div class="form-group">
-	                      <label class="col-sm-2 control-label">电话</label>
+	                     <label class="col-sm-2 control-label">直接上级</label>
 	                      <div class="col-sm-3">
-	                        <input name="phone" type="text" class="form-control" required="true">
+	                        <select id="managercode" name="managercode"  class="form-control" required="true">
+	                        </select>
 	                      </div>
 	                   
 	                      <label class="col-sm-2 control-label">入司时间</label>
@@ -143,14 +135,9 @@
 	                        <input name="jointime" type="text" class="form-control" required="true"  onfocus="WdatePicker({skin:'default'})">
 	                      </div>
 	                    </div>
-	                    <div class="form-group">
-			    		  <label class="col-sm-2 control-label">直接上级</label>
-	                      <div class="col-sm-3">
-	                       <!--  <input name="managercode" type="text" class="form-control" required="true"> -->
-	                        <select id="managercode" name="managercode"  class="form-control" required="true">
-	                        </select>
-	                      </div>
-	                     </div>
+	                   <!--  <div class="form-group">
+			    		 
+	                     </div> -->
 					  </form>
 			    </div>
 		    
@@ -186,7 +173,7 @@ $addBtn.click(function() {
 	submitUrl = addUrl;
 	reset();
 	crudWin.title('添加');
-	getManagerList();
+	//getManagerList();
 	getRole();
 	getOrgList();
 	crudWin.showModal();	
@@ -266,7 +253,7 @@ this.edit = function(row) {
 		reset();
 		crudWin.title('修改');
 		getRole();
-		getManagerList();
+		//getManagerList();
 		getOrgList();
 		loadFormData($crudFrm,row);	
 		
@@ -365,18 +352,7 @@ this.getRole = function(){
 	    });
 }
 
-var empList;
-$.getJSON("${ctx}getAllManagers.do", null, function (result) {
-	empList = result.data;
-});
-//$("#role").change(getManagerList);
 
-this.getManagerList = function (){
-	  $("#managercode").empty();
-	   $.each(empList, function (i, item) {
-			   $("<option></option>").val(item.code).text(item.name).appendTo($("#managercode"));
-	    });
-}
 
 var orgList;
 $.getJSON("${ctx}listOrg.do", null, function (result) {
@@ -392,6 +368,8 @@ this.getOrgList = function (){
 	   $.each(orgList, function (i, item) {
 		   $("<option></option>").val(item.code).text(item.code).appendTo($("#orgcode"));
     });
+	   
+	   getManagerList();
 }
 
 $("#orgname").on("change",setOrgCode);
@@ -405,9 +383,28 @@ function setOrgCode(){
 		  
    });
 	
+	getManagerList();
 }
 
-
+var getManagerList = function (){
+	  $("#managercode").empty();
+	  
+	  var roleId = $("#role").val();
+	  var orgcode =  $("#orgcode").val();
+	  
+	  
+	  var empList;
+	  $.getJSON("${ctx}getAllManagers.do", {"roleId":roleId,"orgcode":orgcode}, function (result) {
+	  	empList = result.data;
+	  	if(empList){
+			   $.each(empList, function (i, item) {
+					   $("<option></option>").val(item.code).text(item.name).appendTo($("#managercode"));
+			    });
+	       }
+	  });
+	  
+	  
+}
 
 </script>
 

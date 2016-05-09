@@ -6,44 +6,44 @@ import java.util.Date;
   
 */
 public class Loginrecord {
-	// 
+	//
 	private int id;
 	// 账号
-	private String account;
+	private String empcode;
 	// IP地址
 	private String ip;
 	// 登录时间
 	private Date date;
 
-	public void setId(int id){
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public int getId(){
+	public int getId() {
 		return this.id;
 	}
 
-	public void setAccount(String account){
-		this.account = account;
+	public void setEmpcode(String empcode) {
+		this.empcode = empcode;
 	}
 
-	public String getAccount(){
-		return this.account;
+	public String getEmpcode() {
+		return this.empcode;
 	}
 
-	public void setIp(String ip){
+	public void setIp(String ip) {
 		this.ip = ip;
 	}
 
-	public String getIp(){
+	public String getIp() {
 		return this.ip;
 	}
 
-	public void setDate(Date date){
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
-	public Date getDate(){
+	public Date getDate() {
 		return this.date;
 	}
 

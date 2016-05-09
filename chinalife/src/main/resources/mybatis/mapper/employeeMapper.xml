@@ -6,7 +6,6 @@
                 <result column="name" property="name" jdbcType="VARCHAR" />
                 <result column="role" property="role" jdbcType="INTEGER" />
                 <result column="password" property="password" jdbcType="VARCHAR" />
-                <result column="account" property="account" jdbcType="VARCHAR" />
                 <result column="code" property="code" jdbcType="VARCHAR" />
                 <result column="idcardnum" property="idcardnum" jdbcType="VARCHAR" />
                 <result column="orgname" property="orgname" jdbcType="VARCHAR" />
@@ -28,7 +27,6 @@
                 , t.name
                 , t.role
                 , t.password
-                , t.account
                 , t.code
                 , t.idcardnum
                 , t.orgname
@@ -63,7 +61,6 @@
                 , t.name
                 , t.role
                 , t.password
-                , t.account
                 , t.code
                 , t.idcardnum
                 , t.orgname
@@ -95,7 +92,6 @@
                 , t.name
                 , t.role
                 , t.password
-                , t.account
                 , t.code
                 , t.idcardnum
                 , t.orgname
@@ -135,7 +131,6 @@
                                                   `name`
                                         , `role`
                                         , `password`
-                                        , `account`
                                         , `code`
                                         , `idcardnum`
                                         , `orgname`
@@ -149,7 +144,6 @@
                                                   #{name,jdbcType=VARCHAR}
                                         , #{role,jdbcType=INTEGER}
                                         , #{password,jdbcType=VARCHAR}
-                                        , #{account,jdbcType=VARCHAR}
                                         , #{code,jdbcType=VARCHAR}
                                         , #{idcardnum,jdbcType=VARCHAR}
                                         , #{orgname,jdbcType=VARCHAR}
@@ -175,9 +169,7 @@
                                       <if test="password!=null and password!=''">
                                      , password=#{password,jdbcType=VARCHAR}
                                       </if>
-                                      <if test="account!=null and account!=''">
-                                     , account=#{account,jdbcType=VARCHAR}
-                                      </if>
+                                      
                                       <if test="code!=null and code!=''">
                                      , code=#{code,jdbcType=VARCHAR}
                                       </if>
@@ -213,7 +205,6 @@
                 , name
                 , role
                 , password
-                , account
                 , code
                 , idcardnum
                 , orgname
