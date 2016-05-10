@@ -11,6 +11,8 @@ public class ServiceRecordSch extends BsgridSearch {
 	private String content;
 	private String empcode;
 	private String name;
+	// 拜访性质
+	private String type;
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -64,6 +66,15 @@ public class ServiceRecordSch extends BsgridSearch {
 	@ValueField(column = "name")
 	public String getName() {
 		return this.name;
+	}
+
+	@ValueField(column = "type")
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

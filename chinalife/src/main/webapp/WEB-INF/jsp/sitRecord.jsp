@@ -43,10 +43,11 @@
 				<div class="box-body">	 
 					<table id="searchTable">
 						<tr>           
-							<th w_index="empcode">客户经理</th>
+							<th w_index="empcode"  w_render="empRender">客户经理</th>
 							<th w_index="visittime">拜访时间</th>
-							<th w_index="name">客户</th>
+			 				<th w_index="name">客户</th>
 							<th w_index="content">拜访内容</th>
+							<th w_index="type"  w_render="typeRender">拜访性质</th>
 							<th w_render="operate" width="10%;">操作</th>
 						</tr>
 					</table>
@@ -55,12 +56,12 @@
 		    
 		    <div id="crudWin">
 			    	<form id="crudFrm" class="form-horizontal">
-											   										   						<div class="form-group">
+											   										   						<!-- <div class="form-group">
 	                      <label class="col-sm-3 control-label">客户经理</label>
 	                      <div class="col-sm-7">
 	                        <input name="empcode" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
+	                    </div> -->
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">拜访时间</label>
 	                      <div class="col-sm-7">
@@ -285,6 +286,19 @@ var sexRender = function(record, rowIndex, colIndex, options){
 		return "男";
 	}
 	
+}
+
+var typeRender = function(record, rowIndex, colIndex, options){
+	if(record.type==0){
+		return "统一制式拜访";
+	}else{
+		return "自主拜访";
+	}
+	
+}
+
+var empRender = function(record, rowIndex, colIndex, options){
+	return record.empname;
 }
 
 validator = $crudFrm.validate();

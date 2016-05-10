@@ -114,6 +114,42 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 
 	}
 
+	@RequestMapping("/listEmployeeForCus.do")
+	public ModelAndView listEmployeeForCus(EmployeeSch searchEntity, String kehujingli) {
+
+		ExpressionQuery query = new ExpressionQuery();
+
+		SecurityContextImpl securityContextImpl = (SecurityContextImpl) getRequest().getSession()
+				.getAttribute("SPRING_SECURITY_CONTEXT");
+
+		AuthUser onlineUser = (AuthUser) securityContextImpl.getAuthentication().getPrincipal();
+
+		// 三级,四级，五级查询自己部门的
+		if (onlineUser.getLevel() >= 3) {
+			query.addValueExpression(new ValueExpression("t.orgcode", onlineUser.getEmployee().getOrgcode()));
+			// String sql = "FIND_IN_SET(t.code, getChildList('" +
+			// onlineUser.getEmployee().getCode() + "'))";
+			// query.addSqlExpression(new SqlExpression(sql));
+		} else {
+			query.addValueExpression(new ValueExpression("t.code", onlineUser.getEmployee().getCode()));
+		}
+
+		query.addJoinExpression(new LeftJoinExpression("role", "t2", "role", "id"));
+		query.addJoinExpression(new LeftJoinExpression("employee", "t3", "managercode", "code"));
+
+		if (searchEntity.getName() != null) {
+			query.add(new LikeRightExpression("t.name", searchEntity.getName()));
+		}
+		if (kehujingli != null && !"".equals(kehujingli)) {
+			query.addValueExpression(new ValueExpression("t.code", kehujingli));
+		}
+
+		// 返回查询结果
+
+		return this.list(query);
+
+	}
+
 	@RequestMapping("/getAllManagers.do")
 	public ModelAndView getAllManagers(String roleId, String orgcode) {
 

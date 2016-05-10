@@ -4,22 +4,27 @@
     <resultMap id="queryResultMap" type="com.chinal.emp.entity.SitRecord">
                 <result column="id" property="id" jdbcType="INTEGER" />
                 <result column="empcode" property="empcode" jdbcType="VARCHAR" />
+                <result column="empname" property="empname" jdbcType="VARCHAR" />
                 <result column="visitTime" property="visittime" jdbcType="VARCHAR" />
                 <result column="idcardnum" property="idcardnum" jdbcType="VARCHAR" />
                 <result column="content" property="content" jdbcType="VARCHAR" />
                 <result column="name" property="name" jdbcType="VARCHAR" />
+                <result column="type" property="type" jdbcType="VARCHAR" />
             </resultMap>
 
     <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
 		resultMap="queryResultMap">
 		SELECT 
-                         t.id
+                  t.id
                 , t.empcode
                 , t.visitTime
                 , t.idcardnum
                 , t.content
                 , t.name
+                , t.type
+                , t2.name as empname
         		FROM visit_record t
+        		left join employee t2 on t.empcode=t2.code
 		<include refid="expressionBlock.where" />
 		<choose>
 			<when test="sortname == null">
@@ -58,6 +63,7 @@
                                         , `idcardnum`
                                         , `content`
                                         , `name`
+                                        , `type`
                               )
 	VALUES (
                                                   #{empcode,jdbcType=VARCHAR}
@@ -65,6 +71,7 @@
                                         , #{idcardnum,jdbcType=VARCHAR}
                                         , #{content,jdbcType=VARCHAR}
                                         , #{name,jdbcType=VARCHAR}
+                                        , #{type,jdbcType=VARCHAR}
                      
         )
 	</insert>
@@ -97,6 +104,10 @@
         ,
          name=#{name,jdbcType=VARCHAR}
         </if>
+        <if test="type!=null and type!=''">
+        ,
+         type=#{type,jdbcType=VARCHAR}
+        </if>
                       WHERE id = #{id,jdbcType=INTEGER}
     </update>
 
@@ -108,6 +119,7 @@
                 , idcardnum
                 , content
                 , name
+                , type
         		FROM visit_record t
 		WHERE id = #{id,jdbcType=INTEGER}
 	</select>

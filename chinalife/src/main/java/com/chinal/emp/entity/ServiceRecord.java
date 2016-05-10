@@ -16,6 +16,10 @@ public class ServiceRecord {
 	private String empcode;
 	// 客户名称
 	private String name;
+	// 经理名称
+	private String empname;
+	// 拜访性质
+	private String type;
 
 	public void setId(int id) {
 		this.id = id;
@@ -63,6 +67,22 @@ public class ServiceRecord {
 
 	public String getName() {
 		return this.name;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getEmpname() {
+		return empname;
+	}
+
+	public void setEmpname(String empname) {
+		this.empname = empname;
 	}
 
 }

@@ -269,6 +269,8 @@ function loadFormData($frm,data) {
 	}
 //	性别单选框
 	$("#sex"+data['sex']).attr("checked","true");
+//	拜访性质单选框
+	$("#type"+data['type']).attr("checked","true");
 }
 	
 var HtmlUtil = (function(){

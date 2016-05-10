@@ -3,11 +3,13 @@
 <mapper namespace="com.chinal.emp.dao.ServiceRecordDao">
     <resultMap id="queryResultMap" type="com.chinal.emp.entity.ServiceRecord">
                 <result column="id" property="id" jdbcType="INTEGER" />
+<result column="empname" property="empname" jdbcType="VARCHAR" />
                 <result column="idcardnum" property="idcardnum" jdbcType="VARCHAR" />
                 <result column="servicetime" property="servicetime" jdbcType="VARCHAR" />
                 <result column="content" property="content" jdbcType="VARCHAR" />
                 <result column="empcode" property="empcode" jdbcType="VARCHAR" />
                 <result column="name" property="name" jdbcType="VARCHAR" />
+<result column="type" property="type" jdbcType="VARCHAR" />
             </resultMap>
 
     <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
@@ -19,7 +21,10 @@
                 , t.content
                 , t.empcode
                 , t.name
+, t.type
+                , t2.name as empname
         		FROM service_record t
+left join employee t2 on t.empcode=t2.code
 		<include refid="expressionBlock.where" />
 		<choose>
 			<when test="sortname == null">
@@ -53,11 +58,12 @@
     >
 	INSERT INTO service_record
          (
-                                                  `idcardnum`
+                                         `idcardnum`
                                         , `servicetime`
                                         , `content`
                                         , `empcode`
                                         , `name`
+                                        , `type`
                               )
 	VALUES (
                                                   #{idcardnum,jdbcType=VARCHAR}
@@ -65,6 +71,7 @@
                                         , #{content,jdbcType=VARCHAR}
                                         , #{empcode,jdbcType=VARCHAR}
                                         , #{name,jdbcType=VARCHAR}
+                                        , #{type,jdbcType=VARCHAR}
                      
         )
 	</insert>
@@ -97,6 +104,10 @@
         ,
          name=#{name,jdbcType=VARCHAR}
         </if>
+        <if test="type!=null and type!=''">
+        ,
+         type=#{type,jdbcType=VARCHAR}
+        </if>
                       WHERE id = #{id,jdbcType=INTEGER}
     </update>
 
@@ -108,6 +119,7 @@
                 , content
                 , empcode
                 , name
+, type
         		FROM service_record t
 		WHERE id = #{id,jdbcType=INTEGER}
 	</select>
