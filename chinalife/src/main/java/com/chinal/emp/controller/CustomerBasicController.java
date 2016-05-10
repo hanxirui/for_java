@@ -185,12 +185,12 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 			MultipartHttpServletRequest mulRequest = (MultipartHttpServletRequest) request;
 			MultipartFile file = mulRequest.getFile("filename");
 
-			String date = DateUtil.format(new Date(), "yyyyMMdd");
-			File dateFile = new File(date);
+			String date = DateUtil.format(new Date(), "yyyyMM");
+			File dateFile = new File(request.getRealPath("/") + File.separator + date);
 			if (!dateFile.exists()) {
 				dateFile.mkdir();
 			}
-			File bakFile = new File(date, file.getOriginalFilename());
+			File bakFile = new File(dateFile, file.getOriginalFilename());
 
 			FileUtils.inputstream2file(file.getInputStream(), bakFile);
 

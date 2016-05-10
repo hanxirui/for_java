@@ -1,12 +1,14 @@
 package com.chinal.emp.controller;
 
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.durcframework.core.support.BsgridController;
+import org.durcframework.core.util.DateUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -28,9 +30,9 @@ public class BizplatformController extends BsgridController<Bizplatform, Bizplat
 	@RequestMapping("/openBizPlatformDetail.do")
 	public ModelAndView openBizPlatformDetail() {
 		ModelAndView mv = new ModelAndView();
-		System.out.println(this.getRequest().getContextPath());
-		System.out.println(this.getRequest().getRealPath("/"));
-		List<String> files = FileUtils.listFiles(new File("20160506"));
+		String date = DateUtil.format(new Date(), "yyyyMM");
+		List<String> files = FileUtils.listFiles(new File(this.getRequest().getRealPath("/") + File.separator + date));
+		mv.addObject("path", date);
 		mv.addObject("bizfile", files);
 		mv.setViewName("bizplatformDetail");
 		return mv;

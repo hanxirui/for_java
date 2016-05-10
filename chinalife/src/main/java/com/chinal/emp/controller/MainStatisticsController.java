@@ -85,7 +85,7 @@ public class MainStatisticsController extends BaseController {
 					"t.visitTime  >= DATE_SUB(NOW(), INTERVAL 6 MONTH) and t.empcode='" + onlineUser.getCode() + "'"));
 			Integer visitCount = visitRecordService.findVisitCount(visitquery);
 			DecimalFormat format = new DecimalFormat("0.00");
-			visitPercent = format.format(Double.parseDouble(visitCount + "") / Double.parseDouble(count + ""));
+			visitPercent = format.format(Double.parseDouble(visitCount + "") * 100 / Double.parseDouble(count + ""));
 
 			// 获得所有开单的客户数
 			ExpressionQuery insurancequery = new ExpressionQuery();
@@ -105,7 +105,7 @@ public class MainStatisticsController extends BaseController {
 		}
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("cusNum", count);
-		mv.addObject("visitPercent", Double.parseDouble(visitPercent) * 100);
+		mv.addObject("visitPercent", visitPercent);
 		mv.addObject("birthCount", birthCount);
 		mv.addObject("insurancePercent", Double.parseDouble(insurancePercent) * 100);
 		mv.setViewName("mainstatistics");

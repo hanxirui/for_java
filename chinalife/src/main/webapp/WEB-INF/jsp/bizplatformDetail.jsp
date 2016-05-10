@@ -50,7 +50,7 @@
 			          </div>
 			      </form>
 			     <c:forEach items="${bizfile}" var="file">
-			      <a href="${ctx}20160506/${file}">${file}</a>  
+			      <a href="${ctx}${path}/${file}">${file}</a>  <br>
 			     </c:forEach>
 			     <br>
 			     
