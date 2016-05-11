@@ -28,9 +28,13 @@ public class BizplatformController extends BsgridController<Bizplatform, Bizplat
 	}
 
 	@RequestMapping("/openBizPlatformDetail.do")
-	public ModelAndView openBizPlatformDetail() {
+	public ModelAndView openBizPlatformDetail(HttpServletRequest request, HttpServletResponse response, String nian,
+			String ji) {
 		ModelAndView mv = new ModelAndView();
-		String date = DateUtil.format(new Date(), "yyyyMM");
+		String date = nian + ji;
+		if (nian == null || ji == null || "".equals(nian) || "".equals(ji)) {
+			date = DateUtil.format(new Date(), "yyyyMM");
+		}
 		List<String> files = FileUtils.listFiles(new File(this.getRequest().getRealPath("/") + File.separator + date));
 		mv.addObject("path", date);
 		mv.addObject("bizfile", files);

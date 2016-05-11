@@ -32,7 +32,7 @@
     			</div>
     			<div class="box-body" align="center">
 
-			  <h3>  <a href="#">本季平台查询 </a> </h3>
+			  <h3>  <a href="${ctx}openBizPlatformDetail.do">本季平台查询 </a> </h3>
 
     			</div>
     			<div class="box-body" align="center">

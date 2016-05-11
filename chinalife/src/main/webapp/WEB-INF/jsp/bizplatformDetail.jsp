@@ -32,8 +32,8 @@
     			</div>
     			
 
-    			<div class="box-body" align="center">
-				 <form class="form-inline">
+    			<div class="box-body" align="left">
+				 <form id="schFrm" class="form-inline" onsubmit="return false;">
 			        <div class="form-group">
                       <label>时间段: </label>
                         <input id="nian" name="nian" type="text" class="form-control" required="true">
@@ -44,17 +44,23 @@
                       <label>季</label>
                       </div>
                       <div class="btn-group">
-			         	<a id="searchBtn" class="btn btn-primary">
+			         	<a id="schBtn" class="btn btn-primary">
                            <i class="fa"></i>  查询
                         </a>
 			          </div>
 			      </form>
-			     <c:forEach items="${bizfile}" var="file">
-			      <a href="${ctx}${path}/${file}">${file}</a>  <br>
-			     </c:forEach>
-			     <br>
 			     
-			     <form class="form-inline">
+			   
+			     
+			    <!--  <br>流程：
+			     
+			     
+			     <br>核心点： -->
+
+    			</div>
+    			<div class="box-body" align="left">
+
+				   <form class="form-inline">
 			        <div class="form-group">
                       <label>工具： </label>
                    </div>
@@ -64,21 +70,15 @@
                         </a>
 			          </div>
 			      </form>
-			     
-			     <br>流程：
-			     
-			     
-			     <br>核心点：
 
+                   <c:forEach items="${bizfile}" var="file">
+				     <a href="${ctx}${path}/${file}">${file}</a>   <br>
+				   </c:forEach>
     			</div>
-    			<div class="box-body" align="center">
+    			<div class="box-body" align="left">
 
-				 <h3>  &nbsp;  </h3>
-
-    			</div>
-    			<div class="box-body" align="center">
-
-				 <h3>  &nbsp;  </h3>
+				 
+				     <br>
 
     			</div>
     			<div class="box-body" align="center">
@@ -121,7 +121,20 @@
          fixed layout. -->
   </body>
   <script type="text/javascript">
+  
+  var $schBtn = $('#schBtn'); // 查询按钮
+  var $schFrm = $('#schFrm'); // 查询表单
+  $schBtn.click(function() {
+	  //var schData = getFormData($schFrm);
+	  top.window.location.href = "${ctx}/openBizPlatformDetail.do?"+$schFrm.serialize();
+	 /*  $.post("${ctx}/openBizPlatformDetail.do",schData,
+			  function(data,status){
+			   alert("Data: " + data + "\nStatus: " + status);
+	  }); */
+	
+  });
 
+ 
   var $importBtn= $('#importBtn'); // 导入按钮
   $importBtn.click(function() {   
   	    importWin.showModal();    

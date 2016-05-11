@@ -14,6 +14,8 @@
 			access="permitAll" />
 		<security:intercept-url pattern="/login.do"
 			access="permitAll" />
+		<security:intercept-url pattern="/favicon.ico"
+			access="permitAll" />
 		<!-- <security:intercept-url pattern="/openEmployee.do"
 			access="hasRole('ROLE_5')" />
 		<security:intercept-url pattern="/openOrg.do"

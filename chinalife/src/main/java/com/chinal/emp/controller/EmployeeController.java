@@ -101,15 +101,18 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 			query.addSqlExpression(new SqlExpression(sql));
 		}
 
-		query.addJoinExpression(new LeftJoinExpression("role", "t2", "role", "id"));
-		query.addJoinExpression(new LeftJoinExpression("employee", "t3", "managercode", "code"));
-
 		if (searchEntity.getName() != null) {
 			query.add(new LikeRightExpression("t.name", searchEntity.getName()));
 		}
+		// （admin可以看到全部）
+		if (onlineUser.getCode().equals("admin")) {
+			query = new ExpressionQuery();
+		}
+
+		query.addJoinExpression(new LeftJoinExpression("role", "t2", "role", "id"));
+		query.addJoinExpression(new LeftJoinExpression("employee", "t3", "managercode", "code"));
 
 		// 返回查询结果
-
 		return this.list(query);
 
 	}
@@ -132,20 +135,17 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 			// query.addSqlExpression(new SqlExpression(sql));
 		} else {
 			query.addValueExpression(new ValueExpression("t.code", onlineUser.getEmployee().getCode()));
+
 		}
 
-		query.addJoinExpression(new LeftJoinExpression("role", "t2", "role", "id"));
-		query.addJoinExpression(new LeftJoinExpression("employee", "t3", "managercode", "code"));
-
-		if (searchEntity.getName() != null) {
-			query.add(new LikeRightExpression("t.name", searchEntity.getName()));
-		}
+		// 编辑界面，回显的时候用
 		if (kehujingli != null && !"".equals(kehujingli)) {
 			query.addValueExpression(new ValueExpression("t.code", kehujingli));
 		}
 
+		query.addJoinExpression(new LeftJoinExpression("role", "t2", "role", "id"));
+		query.addJoinExpression(new LeftJoinExpression("employee", "t3", "managercode", "code"));
 		// 返回查询结果
-
 		return this.list(query);
 
 	}
@@ -182,6 +182,6 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 
 	public static void main(String[] args) {
 		Md5PasswordEncoder md5 = new Md5PasswordEncoder();
-		System.out.println(md5.encodePassword("123456", "zqs"));
+		System.out.println(md5.encodePassword("123456", "admin"));
 	}
 }

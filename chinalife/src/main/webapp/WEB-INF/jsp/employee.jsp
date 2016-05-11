@@ -126,7 +126,7 @@
                           <div class="form-group">
 	                     <label class="col-sm-2 control-label">直接上级</label>
 	                      <div class="col-sm-3">
-	                        <select id="managercode" name="managercode"  class="form-control" required="true">
+	                        <select id="managercode" name="managercode"  class="form-control">
 	                        </select>
 	                      </div>
 	                   
@@ -347,6 +347,7 @@ $.getJSON("${ctx}listAllRole.do", null, function (result) {
 //获得职务列表
 this.getRole = function(){
 	 $("#role").empty();
+	 
 	 $.each(roleList, function (i, item) {
 	       $("<option></option>").val(item.id).text(item.name).appendTo($("#role"));
 	    });
@@ -392,7 +393,7 @@ var getManagerList = function (){
 	  var roleId = $("#role").val();
 	  var orgcode =  $("#orgcode").val();
 	  
-	  
+	  $("<option></option>").val(0).text("请选择").appendTo($("#managercode"));
 	  var empList;
 	  $.getJSON("${ctx}getAllManagers.do", {"roleId":roleId,"orgcode":orgcode}, function (result) {
 	  	empList = result.data;

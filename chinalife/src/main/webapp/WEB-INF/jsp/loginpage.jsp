@@ -41,10 +41,10 @@ body
     background-image: -ms-linear-gradient(top, #fff, #eee);
     background-image: -o-linear-gradient(top, #fff, #eee);
     background-image: linear-gradient(top, #fff, #eee);  
-    height: 240px;
+    height: 280px;
     width: 400px;
     margin: -150px 0 0 -230px;
-    padding: 30px;
+    padding: 20px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -274,7 +274,8 @@ fieldset
      ${sessionScope.SPRING_SECURITY_LAST_EXCEPTION.message}  
     </div> 
 <form id="login" action="${ctx}j_spring_security_check" method="post">
-   <!--  <h1>中国人寿天津市分公司客户资源经营分析系统</h1> -->
+          <h1>中国人寿天津市分公司</h1>
+          <h1>客户资源经营分析系统</h1> 
     <fieldset id="inputs">
         <input id="j_username" name="j_username"  type="text" placeholder="Username" autofocus required>   
         <input id="j_password" name="j_password" type="password" placeholder="Password" required>
