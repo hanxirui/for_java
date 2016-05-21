@@ -8,28 +8,40 @@ import org.durcframework.core.support.BsgridSearch;
 public class InsuranceRecordSch extends BsgridSearch {
 
     private Integer id;
-    private String orgCode;
-    private String insuranceNum;
-    private String touInsuranceNum;
-    private String typeCode;
-    private String qudao;
-    private String insuranceFei;
-    private String totalInsuranceFei;
-    private String manqiDate;
-    private String feiType;
-    private String feiQijian;
-    private String insuranceQijian;
-    private String state;
-    private String customerIdcardnum;
-    private String customerAddr;
-    private String customerPhone;
-    private String customerMobile;
-    private String account;
-    private String accountCode;
-    private String bankName;
-    private String bankCardNum;
-    private String beibaoxianren;
-    private String shouyiren;
+    private String baoxiandanhao;
+    private String toubaodanhao;
+    private String yewuyuandaima;
+    private String yewuyuanxingming;
+    private String xianzhongmingcheng;
+    private String baodanzhuangtai;
+    private String toubaoriqi;
+    private String shengxiaoriqi;
+    private String jibenbaoe;
+    private String jibenbaofei;
+    private String toubaorenxingming;
+    private String toubaorenxingbie;
+    private String toubaorenshenfenzhenghao;
+    private String toubaorenshoujihao;
+    private String toubaorentongxundizhi;
+    private String toubaorenzhiye;
+    private String beibaoxianrenxingming;
+    private String beibaoxianrenxingbie;
+    private String beibaoxianrenshenfenzhenghao;
+    private String beibaoxianrenshoujihao;
+    private String beibaoxianrentongxundizhi;
+    private String beibaoxianrenzhiye;
+    private String beibaoxianrenyutoubaorenguanxi;
+    private String shouyirenxingming;
+    private String shouyirenxingbie;
+    private String shouyirenshenfenzhenghao;
+    private String shouyishunxu;
+    private String shouyifene;
+    private String shouyirenyutoubaorenguanxi;
+    private String jiaofeiqi;
+    private String baoxianqi;
+    private String jiaofeiyinhang;
+    private String jiaofeizhanghao;
+    private String chushilaiyuan;
 
     public void setId (Integer id){
         this.id = id;
@@ -40,202 +52,310 @@ public class InsuranceRecordSch extends BsgridSearch {
         return this.id;
     }
 
-    public void setOrgCode (String orgCode){
-        this.orgCode = orgCode;
+    public void setBaoxiandanhao (String baoxiandanhao){
+        this.baoxiandanhao = baoxiandanhao;
     }
     
-    @ValueField(column = "org_code")
-    public String getOrgCode(){
-        return this.orgCode;
+    @ValueField(column = "baoxiandanhao")
+    public String getBaoxiandanhao(){
+        return this.baoxiandanhao;
     }
 
-    public void setInsuranceNum (String insuranceNum){
-        this.insuranceNum = insuranceNum;
+    public void setToubaodanhao (String toubaodanhao){
+        this.toubaodanhao = toubaodanhao;
     }
     
-    @ValueField(column = "insurance_num")
-    public String getInsuranceNum(){
-        return this.insuranceNum;
+    @ValueField(column = "toubaodanhao")
+    public String getToubaodanhao(){
+        return this.toubaodanhao;
     }
 
-    public void setTouInsuranceNum (String touInsuranceNum){
-        this.touInsuranceNum = touInsuranceNum;
+    public void setYewuyuandaima (String yewuyuandaima){
+        this.yewuyuandaima = yewuyuandaima;
     }
     
-    @ValueField(column = "tou_insurance_num")
-    public String getTouInsuranceNum(){
-        return this.touInsuranceNum;
+    @ValueField(column = "yewuyuandaima")
+    public String getYewuyuandaima(){
+        return this.yewuyuandaima;
     }
 
-    public void setTypeCode (String typeCode){
-        this.typeCode = typeCode;
+    public void setYewuyuanxingming (String yewuyuanxingming){
+        this.yewuyuanxingming = yewuyuanxingming;
     }
     
-    @ValueField(column = "type_code")
-    public String getTypeCode(){
-        return this.typeCode;
+    @ValueField(column = "yewuyuanxingming")
+    public String getYewuyuanxingming(){
+        return this.yewuyuanxingming;
     }
 
-    public void setQudao (String qudao){
-        this.qudao = qudao;
+    public void setXianzhongmingcheng (String xianzhongmingcheng){
+        this.xianzhongmingcheng = xianzhongmingcheng;
     }
     
-    @ValueField(column = "qudao")
-    public String getQudao(){
-        return this.qudao;
+    @ValueField(column = "xianzhongmingcheng")
+    public String getXianzhongmingcheng(){
+        return this.xianzhongmingcheng;
     }
 
-    public void setInsuranceFei (String insuranceFei){
-        this.insuranceFei = insuranceFei;
+    public void setBaodanzhuangtai (String baodanzhuangtai){
+        this.baodanzhuangtai = baodanzhuangtai;
     }
     
-    @ValueField(column = "insurance_fei")
-    public String getInsuranceFei(){
-        return this.insuranceFei;
+    @ValueField(column = "baodanzhuangtai")
+    public String getBaodanzhuangtai(){
+        return this.baodanzhuangtai;
     }
 
-    public void setTotalInsuranceFei (String totalInsuranceFei){
-        this.totalInsuranceFei = totalInsuranceFei;
+    public void setToubaoriqi (String toubaoriqi){
+        this.toubaoriqi = toubaoriqi;
     }
     
-    @ValueField(column = "total_insurance_fei")
-    public String getTotalInsuranceFei(){
-        return this.totalInsuranceFei;
+    @ValueField(column = "toubaoriqi")
+    public String getToubaoriqi(){
+        return this.toubaoriqi;
     }
 
-    public void setManqiDate (String manqiDate){
-        this.manqiDate = manqiDate;
+    public void setShengxiaoriqi (String shengxiaoriqi){
+        this.shengxiaoriqi = shengxiaoriqi;
     }
     
-    @ValueField(column = "manqi_date")
-    public String getManqiDate(){
-        return this.manqiDate;
+    @ValueField(column = "shengxiaoriqi")
+    public String getShengxiaoriqi(){
+        return this.shengxiaoriqi;
     }
 
-    public void setFeiType (String feiType){
-        this.feiType = feiType;
+    public void setJibenbaoe (String jibenbaoe){
+        this.jibenbaoe = jibenbaoe;
     }
     
-    @ValueField(column = "fei_type")
-    public String getFeiType(){
-        return this.feiType;
+    @ValueField(column = "jibenbaoe")
+    public String getJibenbaoe(){
+        return this.jibenbaoe;
     }
 
-    public void setFeiQijian (String feiQijian){
-        this.feiQijian = feiQijian;
+    public void setJibenbaofei (String jibenbaofei){
+        this.jibenbaofei = jibenbaofei;
     }
     
-    @ValueField(column = "fei_qijian")
-    public String getFeiQijian(){
-        return this.feiQijian;
+    @ValueField(column = "jibenbaofei")
+    public String getJibenbaofei(){
+        return this.jibenbaofei;
     }
 
-    public void setInsuranceQijian (String insuranceQijian){
-        this.insuranceQijian = insuranceQijian;
+    public void setToubaorenxingming (String toubaorenxingming){
+        this.toubaorenxingming = toubaorenxingming;
     }
     
-    @ValueField(column = "insurance_qijian")
-    public String getInsuranceQijian(){
-        return this.insuranceQijian;
+    @ValueField(column = "toubaorenxingming")
+    public String getToubaorenxingming(){
+        return this.toubaorenxingming;
     }
 
-    public void setState (String state){
-        this.state = state;
+    public void setToubaorenxingbie (String toubaorenxingbie){
+        this.toubaorenxingbie = toubaorenxingbie;
     }
     
-    @ValueField(column = "state")
-    public String getState(){
-        return this.state;
+    @ValueField(column = "toubaorenxingbie")
+    public String getToubaorenxingbie(){
+        return this.toubaorenxingbie;
     }
 
-    public void setCustomerIdcardnum (String customerIdcardnum){
-        this.customerIdcardnum = customerIdcardnum;
+    public void setToubaorenshenfenzhenghao (String toubaorenshenfenzhenghao){
+        this.toubaorenshenfenzhenghao = toubaorenshenfenzhenghao;
     }
     
-    @ValueField(column = "customer_idcardnum")
-    public String getCustomerIdcardnum(){
-        return this.customerIdcardnum;
+    @ValueField(column = "toubaorenshenfenzhenghao")
+    public String getToubaorenshenfenzhenghao(){
+        return this.toubaorenshenfenzhenghao;
     }
 
-    public void setCustomerAddr (String customerAddr){
-        this.customerAddr = customerAddr;
+    public void setToubaorenshoujihao (String toubaorenshoujihao){
+        this.toubaorenshoujihao = toubaorenshoujihao;
     }
     
-    @ValueField(column = "customer_addr")
-    public String getCustomerAddr(){
-        return this.customerAddr;
+    @ValueField(column = "toubaorenshoujihao")
+    public String getToubaorenshoujihao(){
+        return this.toubaorenshoujihao;
     }
 
-    public void setCustomerPhone (String customerPhone){
-        this.customerPhone = customerPhone;
+    public void setToubaorentongxundizhi (String toubaorentongxundizhi){
+        this.toubaorentongxundizhi = toubaorentongxundizhi;
     }
     
-    @ValueField(column = "customer_phone")
-    public String getCustomerPhone(){
-        return this.customerPhone;
+    @ValueField(column = "toubaorentongxundizhi")
+    public String getToubaorentongxundizhi(){
+        return this.toubaorentongxundizhi;
     }
 
-    public void setCustomerMobile (String customerMobile){
-        this.customerMobile = customerMobile;
+    public void setToubaorenzhiye (String toubaorenzhiye){
+        this.toubaorenzhiye = toubaorenzhiye;
     }
     
-    @ValueField(column = "customer_mobile")
-    public String getCustomerMobile(){
-        return this.customerMobile;
+    @ValueField(column = "toubaorenzhiye")
+    public String getToubaorenzhiye(){
+        return this.toubaorenzhiye;
     }
 
-    public void setAccount (String account){
-        this.account = account;
+    public void setBeibaoxianrenxingming (String beibaoxianrenxingming){
+        this.beibaoxianrenxingming = beibaoxianrenxingming;
     }
     
-    @ValueField(column = "account")
-    public String getAccount(){
-        return this.account;
+    @ValueField(column = "beibaoxianrenxingming")
+    public String getBeibaoxianrenxingming(){
+        return this.beibaoxianrenxingming;
     }
 
-    public void setAccountCode (String accountCode){
-        this.accountCode = accountCode;
+    public void setBeibaoxianrenxingbie (String beibaoxianrenxingbie){
+        this.beibaoxianrenxingbie = beibaoxianrenxingbie;
     }
     
-    @ValueField(column = "account_code")
-    public String getAccountCode(){
-        return this.accountCode;
+    @ValueField(column = "beibaoxianrenxingbie")
+    public String getBeibaoxianrenxingbie(){
+        return this.beibaoxianrenxingbie;
     }
 
-    public void setBankName (String bankName){
-        this.bankName = bankName;
+    public void setBeibaoxianrenshenfenzhenghao (String beibaoxianrenshenfenzhenghao){
+        this.beibaoxianrenshenfenzhenghao = beibaoxianrenshenfenzhenghao;
     }
     
-    @ValueField(column = "bank_name")
-    public String getBankName(){
-        return this.bankName;
+    @ValueField(column = "beibaoxianrenshenfenzhenghao")
+    public String getBeibaoxianrenshenfenzhenghao(){
+        return this.beibaoxianrenshenfenzhenghao;
     }
 
-    public void setBankCardNum (String bankCardNum){
-        this.bankCardNum = bankCardNum;
+    public void setBeibaoxianrenshoujihao (String beibaoxianrenshoujihao){
+        this.beibaoxianrenshoujihao = beibaoxianrenshoujihao;
     }
     
-    @ValueField(column = "bank_card_num")
-    public String getBankCardNum(){
-        return this.bankCardNum;
+    @ValueField(column = "beibaoxianrenshoujihao")
+    public String getBeibaoxianrenshoujihao(){
+        return this.beibaoxianrenshoujihao;
     }
 
-    public void setBeibaoxianren (String beibaoxianren){
-        this.beibaoxianren = beibaoxianren;
+    public void setBeibaoxianrentongxundizhi (String beibaoxianrentongxundizhi){
+        this.beibaoxianrentongxundizhi = beibaoxianrentongxundizhi;
     }
     
-    @ValueField(column = "beibaoxianren")
-    public String getBeibaoxianren(){
-        return this.beibaoxianren;
+    @ValueField(column = "beibaoxianrentongxundizhi")
+    public String getBeibaoxianrentongxundizhi(){
+        return this.beibaoxianrentongxundizhi;
     }
 
-    public void setShouyiren (String shouyiren){
-        this.shouyiren = shouyiren;
+    public void setBeibaoxianrenzhiye (String beibaoxianrenzhiye){
+        this.beibaoxianrenzhiye = beibaoxianrenzhiye;
     }
     
-    @ValueField(column = "shouyiren")
-    public String getShouyiren(){
-        return this.shouyiren;
+    @ValueField(column = "beibaoxianrenzhiye")
+    public String getBeibaoxianrenzhiye(){
+        return this.beibaoxianrenzhiye;
+    }
+
+    public void setBeibaoxianrenyutoubaorenguanxi (String beibaoxianrenyutoubaorenguanxi){
+        this.beibaoxianrenyutoubaorenguanxi = beibaoxianrenyutoubaorenguanxi;
+    }
+    
+    @ValueField(column = "beibaoxianrenyutoubaorenguanxi")
+    public String getBeibaoxianrenyutoubaorenguanxi(){
+        return this.beibaoxianrenyutoubaorenguanxi;
+    }
+
+    public void setShouyirenxingming (String shouyirenxingming){
+        this.shouyirenxingming = shouyirenxingming;
+    }
+    
+    @ValueField(column = "shouyirenxingming")
+    public String getShouyirenxingming(){
+        return this.shouyirenxingming;
+    }
+
+    public void setShouyirenxingbie (String shouyirenxingbie){
+        this.shouyirenxingbie = shouyirenxingbie;
+    }
+    
+    @ValueField(column = "shouyirenxingbie")
+    public String getShouyirenxingbie(){
+        return this.shouyirenxingbie;
+    }
+
+    public void setShouyirenshenfenzhenghao (String shouyirenshenfenzhenghao){
+        this.shouyirenshenfenzhenghao = shouyirenshenfenzhenghao;
+    }
+    
+    @ValueField(column = "shouyirenshenfenzhenghao")
+    public String getShouyirenshenfenzhenghao(){
+        return this.shouyirenshenfenzhenghao;
+    }
+
+    public void setShouyishunxu (String shouyishunxu){
+        this.shouyishunxu = shouyishunxu;
+    }
+    
+    @ValueField(column = "shouyishunxu")
+    public String getShouyishunxu(){
+        return this.shouyishunxu;
+    }
+
+    public void setShouyifene (String shouyifene){
+        this.shouyifene = shouyifene;
+    }
+    
+    @ValueField(column = "shouyifene")
+    public String getShouyifene(){
+        return this.shouyifene;
+    }
+
+    public void setShouyirenyutoubaorenguanxi (String shouyirenyutoubaorenguanxi){
+        this.shouyirenyutoubaorenguanxi = shouyirenyutoubaorenguanxi;
+    }
+    
+    @ValueField(column = "shouyirenyutoubaorenguanxi")
+    public String getShouyirenyutoubaorenguanxi(){
+        return this.shouyirenyutoubaorenguanxi;
+    }
+
+    public void setJiaofeiqi (String jiaofeiqi){
+        this.jiaofeiqi = jiaofeiqi;
+    }
+    
+    @ValueField(column = "jiaofeiqi")
+    public String getJiaofeiqi(){
+        return this.jiaofeiqi;
+    }
+
+    public void setBaoxianqi (String baoxianqi){
+        this.baoxianqi = baoxianqi;
+    }
+    
+    @ValueField(column = "baoxianqi")
+    public String getBaoxianqi(){
+        return this.baoxianqi;
+    }
+
+    public void setJiaofeiyinhang (String jiaofeiyinhang){
+        this.jiaofeiyinhang = jiaofeiyinhang;
+    }
+    
+    @ValueField(column = "jiaofeiyinhang")
+    public String getJiaofeiyinhang(){
+        return this.jiaofeiyinhang;
+    }
+
+    public void setJiaofeizhanghao (String jiaofeizhanghao){
+        this.jiaofeizhanghao = jiaofeizhanghao;
+    }
+    
+    @ValueField(column = "jiaofeizhanghao")
+    public String getJiaofeizhanghao(){
+        return this.jiaofeizhanghao;
+    }
+
+    public void setChushilaiyuan (String chushilaiyuan){
+        this.chushilaiyuan = chushilaiyuan;
+    }
+    
+    @ValueField(column = "chushilaiyuan")
+    public String getChushilaiyuan(){
+        return this.chushilaiyuan;
     }
 
 

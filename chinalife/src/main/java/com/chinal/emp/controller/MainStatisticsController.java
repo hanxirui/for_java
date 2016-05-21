@@ -90,7 +90,7 @@ public class MainStatisticsController extends BaseController {
 			// 获得所有开单的客户数
 			ExpressionQuery insurancequery = new ExpressionQuery();
 			insurancequery
-					.addValueExpression(new ValueExpression("t.yewuyuan_code", onlineUser.getEmployee().getCode()));
+					.addValueExpression(new ValueExpression("t.yewuyuandaima", onlineUser.getEmployee().getCode()));
 			Integer insuranceCount = insuranceRecordService.findInsuranceCount(insurancequery);
 			insurancePercent = format.format(insuranceCount / count);
 

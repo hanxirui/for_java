@@ -3,56 +3,80 @@
 <mapper namespace="com.chinal.emp.dao.InsuranceRecordDao">
     <resultMap id="queryResultMap" type="com.chinal.emp.entity.InsuranceRecord">
                 <result column="id" property="id" jdbcType="INTEGER" />
-                <result column="org_code" property="orgCode" jdbcType="VARCHAR" />
-                <result column="insurance_num" property="insuranceNum" jdbcType="VARCHAR" />
-                <result column="tou_insurance_num" property="touInsuranceNum" jdbcType="VARCHAR" />
-                <result column="type_code" property="typeCode" jdbcType="VARCHAR" />
-                <result column="qudao" property="qudao" jdbcType="VARCHAR" />
-                <result column="insurance_fei" property="insuranceFei" jdbcType="VARCHAR" />
-                <result column="total_insurance_fei" property="totalInsuranceFei" jdbcType="VARCHAR" />
-                <result column="manqi_date" property="manqiDate" jdbcType="VARCHAR" />
-                <result column="fei_type" property="feiType" jdbcType="VARCHAR" />
-                <result column="fei_qijian" property="feiQijian" jdbcType="VARCHAR" />
-                <result column="insurance_qijian" property="insuranceQijian" jdbcType="VARCHAR" />
-                <result column="state" property="state" jdbcType="VARCHAR" />
-                <result column="customer_idcardnum" property="customerIdcardnum" jdbcType="VARCHAR" />
-                <result column="customer_addr" property="customerAddr" jdbcType="VARCHAR" />
-                <result column="customer_phone" property="customerPhone" jdbcType="VARCHAR" />
-                <result column="customer_mobile" property="customerMobile" jdbcType="VARCHAR" />
-                <result column="yewuyuan_name" property="yewuyuan_name" jdbcType="VARCHAR" />
-                <result column="yewuyuan_code" property="accountCode" jdbcType="VARCHAR" />
-                <result column="bank_name" property="bankName" jdbcType="VARCHAR" />
-                <result column="bank_card_num" property="bankCardNum" jdbcType="VARCHAR" />
-                <result column="beibaoxianren" property="beibaoxianren" jdbcType="VARCHAR" />
-                <result column="shouyiren" property="shouyiren" jdbcType="VARCHAR" />
+                <result column="baoxiandanhao" property="baoxiandanhao" jdbcType="VARCHAR" />
+                <result column="toubaodanhao" property="toubaodanhao" jdbcType="VARCHAR" />
+                <result column="yewuyuandaima" property="yewuyuandaima" jdbcType="VARCHAR" />
+                <result column="yewuyuanxingming" property="yewuyuanxingming" jdbcType="VARCHAR" />
+                <result column="xianzhongmingcheng" property="xianzhongmingcheng" jdbcType="VARCHAR" />
+                <result column="baodanzhuangtai" property="baodanzhuangtai" jdbcType="VARCHAR" />
+                <result column="toubaoriqi" property="toubaoriqi" jdbcType="VARCHAR" />
+                <result column="shengxiaoriqi" property="shengxiaoriqi" jdbcType="VARCHAR" />
+                <result column="jibenbaoe" property="jibenbaoe" jdbcType="VARCHAR" />
+                <result column="jibenbaofei" property="jibenbaofei" jdbcType="VARCHAR" />
+                <result column="toubaorenxingming" property="toubaorenxingming" jdbcType="VARCHAR" />
+                <result column="toubaorenxingbie" property="toubaorenxingbie" jdbcType="VARCHAR" />
+                <result column="toubaorenshenfenzhenghao" property="toubaorenshenfenzhenghao" jdbcType="VARCHAR" />
+                <result column="toubaorenshoujihao" property="toubaorenshoujihao" jdbcType="VARCHAR" />
+                <result column="toubaorentongxundizhi" property="toubaorentongxundizhi" jdbcType="VARCHAR" />
+                <result column="toubaorenzhiye" property="toubaorenzhiye" jdbcType="VARCHAR" />
+                <result column="beibaoxianrenxingming" property="beibaoxianrenxingming" jdbcType="VARCHAR" />
+                <result column="beibaoxianrenxingbie" property="beibaoxianrenxingbie" jdbcType="VARCHAR" />
+                <result column="beibaoxianrenshenfenzhenghao" property="beibaoxianrenshenfenzhenghao" jdbcType="VARCHAR" />
+                <result column="beibaoxianrenshoujihao" property="beibaoxianrenshoujihao" jdbcType="VARCHAR" />
+                <result column="beibaoxianrentongxundizhi" property="beibaoxianrentongxundizhi" jdbcType="VARCHAR" />
+                <result column="beibaoxianrenzhiye" property="beibaoxianrenzhiye" jdbcType="VARCHAR" />
+                <result column="beibaoxianrenyutoubaorenguanxi" property="beibaoxianrenyutoubaorenguanxi" jdbcType="VARCHAR" />
+                <result column="shouyirenxingming" property="shouyirenxingming" jdbcType="VARCHAR" />
+                <result column="shouyirenxingbie" property="shouyirenxingbie" jdbcType="VARCHAR" />
+                <result column="shouyirenshenfenzhenghao" property="shouyirenshenfenzhenghao" jdbcType="VARCHAR" />
+                <result column="shouyishunxu" property="shouyishunxu" jdbcType="VARCHAR" />
+                <result column="shouyifene" property="shouyifene" jdbcType="VARCHAR" />
+                <result column="shouyirenyutoubaorenguanxi" property="shouyirenyutoubaorenguanxi" jdbcType="VARCHAR" />
+                <result column="jiaofeiqi" property="jiaofeiqi" jdbcType="VARCHAR" />
+                <result column="baoxianqi" property="baoxianqi" jdbcType="VARCHAR" />
+                <result column="jiaofeiyinhang" property="jiaofeiyinhang" jdbcType="VARCHAR" />
+                <result column="jiaofeizhanghao" property="jiaofeizhanghao" jdbcType="VARCHAR" />
+                <result column="chushilaiyuan" property="chushilaiyuan" jdbcType="VARCHAR" />
             </resultMap>
 
     <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
 		resultMap="queryResultMap">
 		SELECT 
-                  id
-                , org_code
-                , insurance_num
-                , tou_insurance_num
-                , type_code
-                , qudao
-                , insurance_fei
-                , total_insurance_fei
-                , manqi_date
-                , fei_type
-                , fei_qijian
-                , insurance_qijian
-                , state
-                , customer_idcardnum
-                , customer_addr
-                , customer_phone
-                , customer_mobile
-                , yewuyuan_name
-                , yewuyuan_code
-                , bank_name
-                , bank_card_num
-                , beibaoxianren
-                , shouyiren
+                         t.id
+                , t.baoxiandanhao
+                , t.toubaodanhao
+                , t.yewuyuandaima
+                , t.yewuyuanxingming
+                , t.xianzhongmingcheng
+                , t.baodanzhuangtai
+                , t.toubaoriqi
+                , t.shengxiaoriqi
+                , t.jibenbaoe
+                , t.jibenbaofei
+                , t.toubaorenxingming
+                , t.toubaorenxingbie
+                , t.toubaorenshenfenzhenghao
+                , t.toubaorenshoujihao
+                , t.toubaorentongxundizhi
+                , t.toubaorenzhiye
+                , t.beibaoxianrenxingming
+                , t.beibaoxianrenxingbie
+                , t.beibaoxianrenshenfenzhenghao
+                , t.beibaoxianrenshoujihao
+                , t.beibaoxianrentongxundizhi
+                , t.beibaoxianrenzhiye
+                , t.beibaoxianrenyutoubaorenguanxi
+                , t.shouyirenxingming
+                , t.shouyirenxingbie
+                , t.shouyirenshenfenzhenghao
+                , t.shouyishunxu
+                , t.shouyifene
+                , t.shouyirenyutoubaorenguanxi
+                , t.jiaofeiqi
+                , t.baoxianqi
+                , t.jiaofeiyinhang
+                , t.jiaofeizhanghao
+                , t.chushilaiyuan
         		FROM insurance_record t
 		<include refid="expressionBlock.where" />
 		<choose>
@@ -78,7 +102,7 @@
     
      <select id="findInsuranceCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
 		resultType="java.lang.Integer">
-		SELECT count(distinct t.customer_idcardnum) FROM insurance_record t
+		SELECT count(distinct t.toubaorenshenfenzhenghao) FROM insurance_record t
 		<include refid="expressionBlock.where" />
     </select>
 
@@ -87,52 +111,76 @@
     >
 	INSERT INTO insurance_record
          (
-                                                  `org_code`
-                                        , `insurance_num`
-                                        , `tou_insurance_num`
-                                        , `type_code`
-                                        , `qudao`
-                                        , `insurance_fei`
-                                        , `total_insurance_fei`
-                                        , `manqi_date`
-                                        , `fei_type`
-                                        , `fei_qijian`
-                                        , `insurance_qijian`
-                                        , `state`
-                                        , `customer_idcardnum`
-                                        , `customer_addr`
-                                        , `customer_phone`
-                                        , `customer_mobile`
-                                        , `yewuyuan_name`
-                                        , `yewuyuan_code`
-                                        , `bank_name`
-                                        , `bank_card_num`
-                                        , `beibaoxianren`
-                                        , `shouyiren`
+                                                  `baoxiandanhao`
+                                        , `toubaodanhao`
+                                        , `yewuyuandaima`
+                                        , `yewuyuanxingming`
+                                        , `xianzhongmingcheng`
+                                        , `baodanzhuangtai`
+                                        , `toubaoriqi`
+                                        , `shengxiaoriqi`
+                                        , `jibenbaoe`
+                                        , `jibenbaofei`
+                                        , `toubaorenxingming`
+                                        , `toubaorenxingbie`
+                                        , `toubaorenshenfenzhenghao`
+                                        , `toubaorenshoujihao`
+                                        , `toubaorentongxundizhi`
+                                        , `toubaorenzhiye`
+                                        , `beibaoxianrenxingming`
+                                        , `beibaoxianrenxingbie`
+                                        , `beibaoxianrenshenfenzhenghao`
+                                        , `beibaoxianrenshoujihao`
+                                        , `beibaoxianrentongxundizhi`
+                                        , `beibaoxianrenzhiye`
+                                        , `beibaoxianrenyutoubaorenguanxi`
+                                        , `shouyirenxingming`
+                                        , `shouyirenxingbie`
+                                        , `shouyirenshenfenzhenghao`
+                                        , `shouyishunxu`
+                                        , `shouyifene`
+                                        , `shouyirenyutoubaorenguanxi`
+                                        , `jiaofeiqi`
+                                        , `baoxianqi`
+                                        , `jiaofeiyinhang`
+                                        , `jiaofeizhanghao`
+                                        , `chushilaiyuan`
                               )
 	VALUES (
-                                                  #{orgCode,jdbcType=VARCHAR}
-                                        , #{insuranceNum,jdbcType=VARCHAR}
-                                        , #{touInsuranceNum,jdbcType=VARCHAR}
-                                        , #{typeCode,jdbcType=VARCHAR}
-                                        , #{qudao,jdbcType=VARCHAR}
-                                        , #{insuranceFei,jdbcType=VARCHAR}
-                                        , #{totalInsuranceFei,jdbcType=VARCHAR}
-                                        , #{manqiDate,jdbcType=VARCHAR}
-                                        , #{feiType,jdbcType=VARCHAR}
-                                        , #{feiQijian,jdbcType=VARCHAR}
-                                        , #{insuranceQijian,jdbcType=VARCHAR}
-                                        , #{state,jdbcType=VARCHAR}
-                                        , #{customerIdcardnum,jdbcType=VARCHAR}
-                                        , #{customerAddr,jdbcType=VARCHAR}
-                                        , #{customerPhone,jdbcType=VARCHAR}
-                                        , #{customerMobile,jdbcType=VARCHAR}
-                                        , #{yewuyuan_name,jdbcType=VARCHAR}
-                                        , #{accountCode,jdbcType=VARCHAR}
-                                        , #{bankName,jdbcType=VARCHAR}
-                                        , #{bankCardNum,jdbcType=VARCHAR}
-                                        , #{beibaoxianren,jdbcType=VARCHAR}
-                                        , #{shouyiren,jdbcType=VARCHAR}
+                                                  #{baoxiandanhao,jdbcType=VARCHAR}
+                                        , #{toubaodanhao,jdbcType=VARCHAR}
+                                        , #{yewuyuandaima,jdbcType=VARCHAR}
+                                        , #{yewuyuanxingming,jdbcType=VARCHAR}
+                                        , #{xianzhongmingcheng,jdbcType=VARCHAR}
+                                        , #{baodanzhuangtai,jdbcType=VARCHAR}
+                                        , #{toubaoriqi,jdbcType=VARCHAR}
+                                        , #{shengxiaoriqi,jdbcType=VARCHAR}
+                                        , #{jibenbaoe,jdbcType=VARCHAR}
+                                        , #{jibenbaofei,jdbcType=VARCHAR}
+                                        , #{toubaorenxingming,jdbcType=VARCHAR}
+                                        , #{toubaorenxingbie,jdbcType=VARCHAR}
+                                        , #{toubaorenshenfenzhenghao,jdbcType=VARCHAR}
+                                        , #{toubaorenshoujihao,jdbcType=VARCHAR}
+                                        , #{toubaorentongxundizhi,jdbcType=VARCHAR}
+                                        , #{toubaorenzhiye,jdbcType=VARCHAR}
+                                        , #{beibaoxianrenxingming,jdbcType=VARCHAR}
+                                        , #{beibaoxianrenxingbie,jdbcType=VARCHAR}
+                                        , #{beibaoxianrenshenfenzhenghao,jdbcType=VARCHAR}
+                                        , #{beibaoxianrenshoujihao,jdbcType=VARCHAR}
+                                        , #{beibaoxianrentongxundizhi,jdbcType=VARCHAR}
+                                        , #{beibaoxianrenzhiye,jdbcType=VARCHAR}
+                                        , #{beibaoxianrenyutoubaorenguanxi,jdbcType=VARCHAR}
+                                        , #{shouyirenxingming,jdbcType=VARCHAR}
+                                        , #{shouyirenxingbie,jdbcType=VARCHAR}
+                                        , #{shouyirenshenfenzhenghao,jdbcType=VARCHAR}
+                                        , #{shouyishunxu,jdbcType=VARCHAR}
+                                        , #{shouyifene,jdbcType=VARCHAR}
+                                        , #{shouyirenyutoubaorenguanxi,jdbcType=VARCHAR}
+                                        , #{jiaofeiqi,jdbcType=VARCHAR}
+                                        , #{baoxianqi,jdbcType=VARCHAR}
+                                        , #{jiaofeiyinhang,jdbcType=VARCHAR}
+                                        , #{jiaofeizhanghao,jdbcType=VARCHAR}
+                                        , #{chushilaiyuan,jdbcType=VARCHAR}
                      
         )
 	</insert>
@@ -141,92 +189,174 @@
     <update id="update" parameterType="com.chinal.emp.entity.InsuranceRecord">
     UPDATE insurance_record
     SET 
-                                                             <if test="org_code!=null and org_code!=''">
-        org_code=#{orgCode,jdbcType=VARCHAR}
+                                                     
+        <if test="baoxiandanhao!=null and baoxiandanhao!=''">
+         baoxiandanhao=#{baoxiandanhao,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="insurance_num!=null and insurance_num!=''">
-        insurance_num=#{insuranceNum,jdbcType=VARCHAR}
+                                      
+        <if test="toubaodanhao!=null and toubaodanhao!=''">
+        ,
+         toubaodanhao=#{toubaodanhao,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="tou_insurance_num!=null and tou_insurance_num!=''">
-        tou_insurance_num=#{touInsuranceNum,jdbcType=VARCHAR}
+                                      
+        <if test="yewuyuandaima!=null and yewuyuandaima!=''">
+        ,
+         yewuyuandaima=#{yewuyuandaima,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="type_code!=null and type_code!=''">
-        type_code=#{typeCode,jdbcType=VARCHAR}
+                                      
+        <if test="yewuyuanxingming!=null and yewuyuanxingming!=''">
+        ,
+         yewuyuanxingming=#{yewuyuanxingming,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="qudao!=null and qudao!=''">
-        qudao=#{qudao,jdbcType=VARCHAR}
+                                      
+        <if test="xianzhongmingcheng!=null and xianzhongmingcheng!=''">
+        ,
+         xianzhongmingcheng=#{xianzhongmingcheng,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="insurance_fei!=null and insurance_fei!=''">
-        insurance_fei=#{insuranceFei,jdbcType=VARCHAR}
+                                      
+        <if test="baodanzhuangtai!=null and baodanzhuangtai!=''">
+        ,
+         baodanzhuangtai=#{baodanzhuangtai,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="total_insurance_fei!=null and total_insurance_fei!=''">
-        total_insurance_fei=#{totalInsuranceFei,jdbcType=VARCHAR}
+                                      
+        <if test="toubaoriqi!=null and toubaoriqi!=''">
+        ,
+         toubaoriqi=#{toubaoriqi,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="manqi_date!=null and manqi_date!=''">
-        manqi_date=#{manqiDate,jdbcType=VARCHAR}
+                                      
+        <if test="shengxiaoriqi!=null and shengxiaoriqi!=''">
+        ,
+         shengxiaoriqi=#{shengxiaoriqi,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="fei_type!=null and fei_type!=''">
-        fei_type=#{feiType,jdbcType=VARCHAR}
+                                      
+        <if test="jibenbaoe!=null and jibenbaoe!=''">
+        ,
+         jibenbaoe=#{jibenbaoe,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="fei_qijian!=null and fei_qijian!=''">
-        fei_qijian=#{feiQijian,jdbcType=VARCHAR}
+                                      
+        <if test="jibenbaofei!=null and jibenbaofei!=''">
+        ,
+         jibenbaofei=#{jibenbaofei,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="insurance_qijian!=null and insurance_qijian!=''">
-        insurance_qijian=#{insuranceQijian,jdbcType=VARCHAR}
+                                      
+        <if test="toubaorenxingming!=null and toubaorenxingming!=''">
+        ,
+         toubaorenxingming=#{toubaorenxingming,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="state!=null and state!=''">
-        state=#{state,jdbcType=VARCHAR}
+                                      
+        <if test="toubaorenxingbie!=null and toubaorenxingbie!=''">
+        ,
+         toubaorenxingbie=#{toubaorenxingbie,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="customer_idcardnum!=null and customer_idcardnum!=''">
-        customer_idcardnum=#{customerIdcardnum,jdbcType=VARCHAR}
+                                      
+        <if test="toubaorenshenfenzhenghao!=null and toubaorenshenfenzhenghao!=''">
+        ,
+         toubaorenshenfenzhenghao=#{toubaorenshenfenzhenghao,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="customer_addr!=null and customer_addr!=''">
-        customer_addr=#{customerAddr,jdbcType=VARCHAR}
+                                      
+        <if test="toubaorenshoujihao!=null and toubaorenshoujihao!=''">
+        ,
+         toubaorenshoujihao=#{toubaorenshoujihao,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="customer_phone!=null and customer_phone!=''">
-        customer_phone=#{customerPhone,jdbcType=VARCHAR}
+                                      
+        <if test="toubaorentongxundizhi!=null and toubaorentongxundizhi!=''">
+        ,
+         toubaorentongxundizhi=#{toubaorentongxundizhi,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="customer_mobile!=null and customer_mobile!=''">
-        customer_mobile=#{customerMobile,jdbcType=VARCHAR}
+                                      
+        <if test="toubaorenzhiye!=null and toubaorenzhiye!=''">
+        ,
+         toubaorenzhiye=#{toubaorenzhiye,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="yewuyuan_name!=null and yewuyuan_name!=''">
-        yewuyuan_name=#{yewuyuan_name,jdbcType=VARCHAR}
+                                      
+        <if test="beibaoxianrenxingming!=null and beibaoxianrenxingming!=''">
+        ,
+         beibaoxianrenxingming=#{beibaoxianrenxingming,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="yewuyuan_code!=null and yewuyuan_code!=''">
-        yewuyuan_code=#{accountCode,jdbcType=VARCHAR}
+                                      
+        <if test="beibaoxianrenxingbie!=null and beibaoxianrenxingbie!=''">
+        ,
+         beibaoxianrenxingbie=#{beibaoxianrenxingbie,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="bank_name!=null and bank_name!=''">
-        bank_name=#{bankName,jdbcType=VARCHAR}
+                                      
+        <if test="beibaoxianrenshenfenzhenghao!=null and beibaoxianrenshenfenzhenghao!=''">
+        ,
+         beibaoxianrenshenfenzhenghao=#{beibaoxianrenshenfenzhenghao,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="bank_card_num!=null and bank_card_num!=''">
-        bank_card_num=#{bankCardNum,jdbcType=VARCHAR}
+                                      
+        <if test="beibaoxianrenshoujihao!=null and beibaoxianrenshoujihao!=''">
+        ,
+         beibaoxianrenshoujihao=#{beibaoxianrenshoujihao,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="beibaoxianren!=null and beibaoxianren!=''">
-        beibaoxianren=#{beibaoxianren,jdbcType=VARCHAR}
+                                      
+        <if test="beibaoxianrentongxundizhi!=null and beibaoxianrentongxundizhi!=''">
+        ,
+         beibaoxianrentongxundizhi=#{beibaoxianrentongxundizhi,jdbcType=VARCHAR}
         </if>
-                                      ,
-                <if test="shouyiren!=null and shouyiren!=''">
-        shouyiren=#{shouyiren,jdbcType=VARCHAR}
+                                      
+        <if test="beibaoxianrenzhiye!=null and beibaoxianrenzhiye!=''">
+        ,
+         beibaoxianrenzhiye=#{beibaoxianrenzhiye,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="beibaoxianrenyutoubaorenguanxi!=null and beibaoxianrenyutoubaorenguanxi!=''">
+        ,
+         beibaoxianrenyutoubaorenguanxi=#{beibaoxianrenyutoubaorenguanxi,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="shouyirenxingming!=null and shouyirenxingming!=''">
+        ,
+         shouyirenxingming=#{shouyirenxingming,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="shouyirenxingbie!=null and shouyirenxingbie!=''">
+        ,
+         shouyirenxingbie=#{shouyirenxingbie,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="shouyirenshenfenzhenghao!=null and shouyirenshenfenzhenghao!=''">
+        ,
+         shouyirenshenfenzhenghao=#{shouyirenshenfenzhenghao,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="shouyishunxu!=null and shouyishunxu!=''">
+        ,
+         shouyishunxu=#{shouyishunxu,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="shouyifene!=null and shouyifene!=''">
+        ,
+         shouyifene=#{shouyifene,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="shouyirenyutoubaorenguanxi!=null and shouyirenyutoubaorenguanxi!=''">
+        ,
+         shouyirenyutoubaorenguanxi=#{shouyirenyutoubaorenguanxi,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="jiaofeiqi!=null and jiaofeiqi!=''">
+        ,
+         jiaofeiqi=#{jiaofeiqi,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="baoxianqi!=null and baoxianqi!=''">
+        ,
+         baoxianqi=#{baoxianqi,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="jiaofeiyinhang!=null and jiaofeiyinhang!=''">
+        ,
+         jiaofeiyinhang=#{jiaofeiyinhang,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="jiaofeizhanghao!=null and jiaofeizhanghao!=''">
+        ,
+         jiaofeizhanghao=#{jiaofeizhanghao,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="chushilaiyuan!=null and chushilaiyuan!=''">
+        ,
+         chushilaiyuan=#{chushilaiyuan,jdbcType=VARCHAR}
         </if>
                       WHERE id = #{id,jdbcType=INTEGER}
     </update>
@@ -234,28 +364,40 @@
     <select id="get" resultMap="queryResultMap" parameterType="com.chinal.emp.entity.InsuranceRecord">
 		SELECT 
                          id
-                , org_code
-                , insurance_num
-                , tou_insurance_num
-                , type_code
-                , qudao
-                , insurance_fei
-                , total_insurance_fei
-                , manqi_date
-                , fei_type
-                , fei_qijian
-                , insurance_qijian
-                , state
-                , customer_idcardnum
-                , customer_addr
-                , customer_phone
-                , customer_mobile
-                , yewuyuan_name
-                , yewuyuan_code
-                , bank_name
-                , bank_card_num
-                , beibaoxianren
-                , shouyiren
+                , baoxiandanhao
+                , toubaodanhao
+                , yewuyuandaima
+                , yewuyuanxingming
+                , xianzhongmingcheng
+                , baodanzhuangtai
+                , toubaoriqi
+                , shengxiaoriqi
+                , jibenbaoe
+                , jibenbaofei
+                , toubaorenxingming
+                , toubaorenxingbie
+                , toubaorenshenfenzhenghao
+                , toubaorenshoujihao
+                , toubaorentongxundizhi
+                , toubaorenzhiye
+                , beibaoxianrenxingming
+                , beibaoxianrenxingbie
+                , beibaoxianrenshenfenzhenghao
+                , beibaoxianrenshoujihao
+                , beibaoxianrentongxundizhi
+                , beibaoxianrenzhiye
+                , beibaoxianrenyutoubaorenguanxi
+                , shouyirenxingming
+                , shouyirenxingbie
+                , shouyirenshenfenzhenghao
+                , shouyishunxu
+                , shouyifene
+                , shouyirenyutoubaorenguanxi
+                , jiaofeiqi
+                , baoxianqi
+                , jiaofeiyinhang
+                , jiaofeizhanghao
+                , chushilaiyuan
         		FROM insurance_record t
 		WHERE id = #{id,jdbcType=INTEGER}
 	</select>

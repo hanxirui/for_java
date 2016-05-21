@@ -20,7 +20,7 @@
           <span class="logo-mini"></span>
           <!-- logo for regular state and mobile devices -->
           <!-- <span class="logo-lg">LBS管理</span>  -->
-          <span class="logo-lg">银保业务经营分析系统</span>
+         <!--  <span class="logo-lg">银保业务经营分析系统</span> -->
         </a>
 
         <!-- Header Navbar -->
