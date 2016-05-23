@@ -32,7 +32,9 @@ $(document).ready( function() {
         events: eventArray,
         clickEvents: {
             click: function (target) {
-                console.log('Cal-1 clicked: ', target);
+                console.log('Cal-1 clicked: ', target.date._i);
+                $("date").append(target.date._i);
+                crudWin.showModal();
             },
             today: function () {
                 console.log('Cal-1 today');

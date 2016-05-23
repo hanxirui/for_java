@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinal.emp.dao.BizRecordDao">
+    <resultMap id="queryResultMap" type="com.chinal.emp.entity.BizRecord">
+                <result column="id" property="id" jdbcType="INTEGER" />
+                <result column="yaoyue_num" property="yaoyueNum" jdbcType="VARCHAR" />
+                <result column="daohui_num" property="daohuiNum" jdbcType="VARCHAR" />
+                <result column="receive_num" property="receiveNum" jdbcType="VARCHAR" />
+                <result column="receive_baofei" property="receiveBaofei" jdbcType="VARCHAR" />
+                <result column="daohuilv" property="daohuilv" jdbcType="VARCHAR" />
+                <result column="qiandan_num" property="qiandanNum" jdbcType="VARCHAR" />
+                <result column="qiandanlv" property="qiandanlv" jdbcType="VARCHAR" />
+                <result column="huishoulv" property="huishoulv" jdbcType="VARCHAR" />
+                <result column="kehujingli" property="kehujingli" jdbcType="VARCHAR" />
+                <result column="qiandan_baofei" property="qiandanBaofei" jdbcType="VARCHAR" />
+            </resultMap>
+
+    <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT 
+                         t.id
+                , t.yaoyue_num
+                , t.daohui_num
+                , t.receive_num
+                , t.receive_baofei
+                , t.daohuilv
+                , t.qiandan_num
+                , t.qiandanlv
+                , t.huishoulv
+                , t.kehujingli
+                , t.qiandan_baofei
+        		FROM biz_record t
+		<include refid="expressionBlock.where" />
+		<choose>
+			<when test="sortname == null">
+				ORDER BY t.id desc
+			</when>
+			<otherwise>
+				ORDER BY ${order}
+			</otherwise>
+		</choose>
+		<if test="!isQueryAll">
+			LIMIT
+			#{start,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+		</if>
+	</select>
+
+
+    <select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM biz_record t
+		<include refid="expressionBlock.where" />
+    </select>
+
+    <insert id="save" parameterType="com.chinal.emp.entity.BizRecord"
+    >
+	INSERT INTO biz_record
+         (
+                              `id`
+                                        , `yaoyue_num`
+                                        , `daohui_num`
+                                        , `receive_num`
+                                        , `receive_baofei`
+                                        , `daohuilv`
+                                        , `qiandan_num`
+                                        , `qiandanlv`
+                                        , `huishoulv`
+                                        , `kehujingli`
+                                        , `qiandan_baofei`
+                              )
+	VALUES (
+                              #{id,jdbcType=INTEGER}
+                                        , #{yaoyueNum,jdbcType=VARCHAR}
+                                        , #{daohuiNum,jdbcType=VARCHAR}
+                                        , #{receiveNum,jdbcType=VARCHAR}
+                                        , #{receiveBaofei,jdbcType=VARCHAR}
+                                        , #{daohuilv,jdbcType=VARCHAR}
+                                        , #{qiandanNum,jdbcType=VARCHAR}
+                                        , #{qiandanlv,jdbcType=VARCHAR}
+                                        , #{huishoulv,jdbcType=VARCHAR}
+                                        , #{kehujingli,jdbcType=VARCHAR}
+                                        , #{qiandanBaofei,jdbcType=VARCHAR}
+                     
+        )
+	</insert>
+
+
+    <update id="update" parameterType="com.chinal.emp.entity.BizRecord">
+    UPDATE biz_record
+    SET 
+                                                     
+        <if test="yaoyue_num!=null and yaoyue_num!=''">
+         yaoyue_num=#{yaoyueNum,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="daohui_num!=null and daohui_num!=''">
+        ,
+         daohui_num=#{daohuiNum,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="receive_num!=null and receive_num!=''">
+        ,
+         receive_num=#{receiveNum,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="receive_baofei!=null and receive_baofei!=''">
+        ,
+         receive_baofei=#{receiveBaofei,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="daohuilv!=null and daohuilv!=''">
+        ,
+         daohuilv=#{daohuilv,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="qiandan_num!=null and qiandan_num!=''">
+        ,
+         qiandan_num=#{qiandanNum,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="qiandanlv!=null and qiandanlv!=''">
+        ,
+         qiandanlv=#{qiandanlv,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="huishoulv!=null and huishoulv!=''">
+        ,
+         huishoulv=#{huishoulv,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="kehujingli!=null and kehujingli!=''">
+        ,
+         kehujingli=#{kehujingli,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="qiandan_baofei!=null and qiandan_baofei!=''">
+        ,
+         qiandan_baofei=#{qiandanBaofei,jdbcType=VARCHAR}
+        </if>
+                      WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="get" resultMap="queryResultMap" parameterType="com.chinal.emp.entity.BizRecord">
+		SELECT 
+                         id
+                , yaoyue_num
+                , daohui_num
+                , receive_num
+                , receive_baofei
+                , daohuilv
+                , qiandan_num
+                , qiandanlv
+                , huishoulv
+                , kehujingli
+                , qiandan_baofei
+        		FROM biz_record t
+		WHERE id = #{id,jdbcType=INTEGER}
+	</select>
+	
+	<delete id="del" parameterType="com.chinal.emp.entity.BizRecord">
+		DELETE FROM biz_record
+		WHERE id = #{id,jdbcType=INTEGER}
+	</delete>
+
+</mapper>

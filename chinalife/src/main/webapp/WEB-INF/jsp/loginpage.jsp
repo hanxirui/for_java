@@ -275,7 +275,7 @@ fieldset
     </div> 
 <form id="login" action="${ctx}j_spring_security_check" method="post">
           <h1>中国人寿天津市分公司</h1>
-          <h1>客户资源经营分析系统</h1> 
+          <h1>客户资源经营分析系统</h1>
     <fieldset id="inputs">
         <input id="j_username" name="j_username"  type="text" placeholder="Username" autofocus required>   
         <input id="j_password" name="j_password" type="password" placeholder="Password" required>

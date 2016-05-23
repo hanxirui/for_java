@@ -3,7 +3,11 @@
 <jsp:include page="../menu.jsp" >
     <jsp:param name="activeMenu" value="customer"/>
 </jsp:include>  
-
+<%@page import="com.chinal.emp.security.AuthUser"  %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%
+    AuthUser userDetails = (AuthUser) SecurityContextHolder.getContext().getAuthentication() .getPrincipal();
+%>
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -24,16 +28,16 @@
 				      姓名:<input name="name" type="text" class="form-control">      
                       <!-- 身份证号:<input name="idcardnum" type="text" class="form-control">      
                       类型  1-原始；2-自营新拓；3-渠道新拓:<input name="type" type="text" class="form-control">    -->   
-                      生日:<input name="birthday" type="text" class="form-control">      
+                      <!-- 生日:<input name="birthday" type="text" class="form-control">  -->     
                      <!--  结婚纪念日:<input name="weddingDay" type="text" class="form-control">   -->    
                       客户经理:<input name="kehujingli" type="text" class="form-control">      
                      <!--  性别:<input name="sex" type="text" class="form-control">      
                       初始来源:<input name="laiyuan" type="text" class="form-control">  -->     
-                      爱好:<input name="note" type="text" class="form-control">     
+                     <!--  爱好:<input name="note" type="text" class="form-control">     
                       投保日期:<input name="note" type="text" class="form-control"> ---    <input name="note" type="text" class="form-control">
                       投保银行:<input name="note" type="text" class="form-control">     
                       保单金额:<input name="note" type="text" class="form-control">     
-                      爱好:<input name="note" type="text" class="form-control">      
+                      爱好:<input name="note" type="text" class="form-control">   -->    
                    	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
 				</form>
@@ -47,30 +51,34 @@
 			            	<i class="fa"></i> 录入 
 			         	</a>
 			          </div>
+			          
+			          <%if(userDetails.getLevel()>=3){ %>
 			          <div class="btn-group"><!-- 按钮需要权限控制，3级及以上 -->
 			         	<a id="fenpeiBtn" class="btn btn-primary">
 			            	<i class="fa"></i> 分配 
 			         	</a>
 			          </div>
+			          <%} %>
 			          <div class="btn-group"><!-- 按钮需要权限控制，普通业务员查询自己的-->
-			         	<a id="fenpeiBtn" class="btn btn-primary">
+			         	<a id="apiBtn" class="btn btn-primary">
 			            	<i class="fa"></i> KPI统计查询 
 			         	</a>
 			          </div>
-			           <div class="btn-group">
+			          
+			          <!--  <div class="btn-group">
 			         	<a id="importBtn" class="btn btn-primary">
                            <i class="fa"></i>  导入用户
                         </a>
-			          </div>
+			          </div> -->
 				</div><!-- /.box-header -->
 			
 				<div class="box-body">	 
 					<table id="searchTable">
 						<tr>     
-						    <th w_check="true" w_index="idcardnum" width="3%;"></th>      
+						    <th w_check="true" w_index="idcardnum" width="3%;"   ></th>      
 							<th w_index="name">客户姓名</th>
 							<th w_index="sex"  w_render="sexRender">性别</th>
-							<th w_index="idcardnum">身份证号</th>
+							<th w_index="idcardnum" >身份证号</th>
 							<th w_index="addr">地址</th>
 							<!-- <th w_index="type">类型  1-原始；2-自营新拓；3-渠道新拓</th> -->
 							<!-- <th w_index="birthday">生日</th> -->
@@ -160,7 +168,7 @@
 					   										</form>
 			    </div>
 			    
-		    <div id="importWin">
+		     <div id="importWin">
                     <form id="importFrm"  method="post"   enctype="multipart/form-data"  class="form-horizontal" action="${ctx}importCustomer.do">                   
                        <div class="form-group">
                           <label class="col-sm-2 control-label">选择文件</label>
@@ -169,7 +177,7 @@
                           </div>
                         </div>
                     </form>
-               </div>
+             </div>
                
              <div class="box-body" id="cusWin">	 
 					<table id="cusTable">
@@ -182,7 +190,54 @@
 							<th w_index="orgcode">公司代码</th>
 						</tr>
 					</table>
-				</div>
+			</div>
+				
+			<div id="kpiWin">
+			
+			         <div class="container-fluid">
+					  <div class="row">
+					     <div class="col-md-10">
+	                        时段：<input name="startTime" type="text"  onfocus="WdatePicker({skin:'default'})">-
+	                        <input name="endTime" type="text"  onfocus="WdatePicker({skin:'default'})">
+	                      </div>
+	                    
+					  </div> 
+					  <div class="row">
+					     <div class="col-md-3">
+	                       拜访量： 15人次
+	                      </div>
+					  </div>
+					   <div class="row">
+					     <div class="col-md-5">
+	                       日均拜访量： 5人次
+	                      </div>
+	                   
+	                      <div class="col-md-5">
+	                        拜访深度： 3
+	                      </div>
+					  </div>
+					   <div class="row">
+					     <div class="col-md-5">
+	                        新开自营件数：512件
+	                      </div>
+	                       
+	                      <div class="col-md-5">
+	                        保费： 1024
+	                      </div>
+					  </div>
+					   <div class="row">
+					     <div class="col-md-5">
+	                      新开渠道件数：256
+	                      </div>
+	                    
+	                      <div class="col-md-5">
+	                        保费：1024
+	                      </div>
+					  </div>
+					</div>
+			    </div>	
+				
+			<input type="hidden" id="winFrom">
                
 <script type="text/javascript">     
 var that = this;
@@ -385,15 +440,27 @@ var importWin = dialog({
 });
 
 
-$("#jinglimingcheng").click(function() {
+$("#fenpeiBtn").click(function(){
+	var cardnums = gridObj.getCheckedValues('idcardnum');
+	if(cardnums.length<1){
+		alert("请至少选择一个客户.");
+		return false;
+	}
+	$("#winFrom").val("fenpei");
 	cusWin.showModal();
-	
-	
-});
+})
+
+
 var roleList;
 $.getJSON("${ctx}listAllRole.do", null, function (result) {
 	roleList = result.data;
 });
+
+$("#jinglimingcheng").click(function() {
+	$("#winFrom").val("jinglimingcheng");
+	cusWin.showModal();
+});
+
 var cusGridObj = $.fn.bsgrid.init('cusTable', {
 	url: ctx + 'listEmployeeForCus.do'
     ,pageSizeSelect: true
@@ -411,13 +478,37 @@ var cusWin = dialog({
 	content: document.getElementById('cusWin'),
 	okValue: '保存',
 	ok: function () {
+		
 		var name = cusGridObj.getCheckedValues('name');
 		if(name.length!=1){
 			alert("请选择一个客户经理.");
 			return false;
 		}
-		$('#kehujingli').val(cusGridObj.getCheckedValues('code'));
-		$('#jinglimingcheng').val(cusGridObj.getCheckedValues('name'));
+		
+		if($("#winFrom").val()=="jinglimingcheng"){
+			$('#kehujingli').val(cusGridObj.getCheckedValues('code'));
+			$('#jinglimingcheng').val(cusGridObj.getCheckedValues('name'));
+		}else{
+			
+			var cardnums = gridObj.getCheckedValues('idcardnum');
+			if(cardnums.length<1){
+				alert("请至少选择一个客户.");
+				return false;
+			}
+			
+			var _cardnums=new Array()
+			
+			$.each(cardnums, function(i, n){
+				_cardnums[i]="'"+n+"'";
+				});
+			
+			 Action.post(ctx + 'fenpeiCustomer.do?cusIds='+_cardnums+"&empId="+cusGridObj.getCheckedValues('code'), null, function(result) {
+				Action.execResult(result, function(result) {
+					gridObj.refreshPage();
+					
+				});
+			}); 
+	    }
 		this.close();
 		return false;
 	},
@@ -444,6 +535,29 @@ $("#type").change(function(){
 		$("#laiyuan").attr("disabled",true);
 	}else{
 		$("#laiyuan").attr("disabled",false);
+	}
+});
+
+$("#apiBtn").click(function(){
+	kpiWin.showModal();
+});
+
+var kpiWin = dialog({
+	title: '编辑',
+	width:600,
+	content: document.getElementById('kpiWin'),
+	okValue: '保存',
+	ok: function () {
+		that.save();
+		return false;
+	},
+	cancelValue: '取消',
+	cancel: function () {
+		this.close();
+		return false;
+	},
+	onshow:function(){
+		alert("show");
 	}
 });
 validator = $crudFrm.validate();

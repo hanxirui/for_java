@@ -173,6 +173,11 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 		return this.modify(entity);
 	}
 
+	@RequestMapping("/fenpeiCustomer.do")
+	public void fenpeiCustomer(String cusIds, String empId) {
+		this.getService().fenpeiCustomer(cusIds, empId);
+	}
+
 	@RequestMapping("/delCustomerBasic.do")
 	public ModelAndView delCustomerBasic(CustomerBasic entity) {
 		return this.remove(entity);

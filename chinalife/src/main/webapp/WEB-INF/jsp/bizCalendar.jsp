@@ -36,6 +36,90 @@
 
     </div><!-- ./wrapper -->
 
+               <div id="crudWin">
+                    <div id="date"></div>
+			    	<form id="crudFrm" class="form-horizontal">
+					   										   						<div class="form-group">
+	                      <label class="col-sm-3 control-label">邀约客户数</label>
+	                      <div class="col-sm-3">
+	                        <input name="yaoyueNum" type="text" class="form-control" required="true">
+	                      </div>
+	                       <label class="col-sm-3 control-label">当日回收保费</label>
+	                      <div class="col-sm-3">
+	                        <input name="receiveBaofei" type="text" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   										   		
+					   										   						<div class="form-group">
+					   										   						<label class="col-sm-3 control-label">到会客户数</label>
+	                      <div class="col-sm-3">
+	                        <input name="daohuiNum" type="text" class="form-control" required="true">
+	                      </div>
+	                      <label class="col-sm-3 control-label">当日签单保费</label>
+	                      <div class="col-sm-3">
+	                        <input name="qiandanBaofei" type="text" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   					
+					   										   						<div class="form-group">
+	                      <label class="col-sm-3 control-label">到会率</label>
+	                      <div class="col-sm-3">
+	                        <input name="daohuilv" type="text" class="form-control" required="true">
+	                      </div>
+	                      <label class="col-sm-3 control-label">回收率</label>
+	                      <div class="col-sm-3">
+	                        <input name="huishoulv" type="text" class="form-control" required="true">
+	                      </div>
+	                      
+	                    </div>
+					   										   						
+					   										   						<div class="form-group">
+					   	 <label class="col-sm-3 control-label">签单件数</label>
+	                      <div class="col-sm-3">
+	                        <input name="qiandanNum" type="text" class="form-control" required="true">
+	                      </div>
+	                      <label class="col-sm-3 control-label">签单率</label>
+	                      <div class="col-sm-3">
+	                        <input name="qiandanlv" type="text" class="form-control" required="true">
+	                      </div>
+	                      
+	                    </div>
+					   										   						<div class="form-group">
+	                      
+	                      <label class="col-sm-3 control-label">当日回收件数</label>
+	                      <div class="col-sm-3">
+	                        <input name="receiveNum" type="text" class="form-control" required="true">
+	                      </div>
+	                       <label class="col-sm-3 control-label">客户经理</label>
+	                      <div class="col-sm-3">
+	                        <input name="kehujingli" type="text" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					  </form>
+			    </div>
+			                   
+<script type="text/javascript">     
+var crudWin = dialog({
+	title: '编辑',
+	width:600,
+	content: document.getElementById('crudWin'),
+	okValue: '保存',
+	ok: function () {
+		that.save();
+		return false;
+	},
+	cancelValue: '取消',
+	cancel: function () {
+		this.close();
+		return false;
+	},
+	onshow:function(){
+		
+	}
+});
+
+validator = $crudFrm.validate();
+</script>
     <!-- REQUIRED JS SCRIPTS -->
     <!-- Bootstrap 3.3.5 -->
     <script src="${AdminLTE}bootstrap/js/bootstrap.min.js"></script>

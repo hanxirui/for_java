@@ -84,6 +84,13 @@
 	</insert>
 
 
+ <update id="fenpeiCustomer" parameterType="com.chinal.emp.entity.CustomerBasic">
+    UPDATE customer_basic
+    SET 
+    kehujingli=#{kehujingli,jdbcType=VARCHAR}
+    WHERE idcardnum in (${idcardnum})
+ </update>
+
     <update id="update" parameterType="com.chinal.emp.entity.CustomerBasic">
     UPDATE customer_basic
     SET 
