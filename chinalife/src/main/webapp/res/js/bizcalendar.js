@@ -10,73 +10,109 @@ $(document).ready( function() {
     // Here's some magic to make sure the dates are happening this month.
     var thisMonth = moment().format('YYYY-MM');
     // Events to load into calendar
-    var eventArray = [
-        {
-            title: 'Multi-Day Event',
-            date: thisMonth + '-21'
-        }, {
-            date: thisMonth + '-17',
-            title: 'Another Multi-Day Event'
-        }, {
-            date: thisMonth + '-27',
-            title: 'Single Day Event'
-        }
-    ];
+    var eventArray = new Array();
+    
+    
+    
+//    [
+//     {
+//         title: 'Multi-Day Event',
+//         date: thisMonth + '-21'
+//     }, {
+//         date: thisMonth + '-17',
+//         title: 'Another Multi-Day Event'
+//     }, {
+//         date: thisMonth + '-27',
+//         title: 'Single Day Event'
+//     }
+// ]
+    var initCalendar = function(){
+    	
+        // The order of the click handlers is predictable. Direct click action
+        // callbacks come first: click, nextMonth, previousMonth, nextYear,
+        // previousYear, nextInterval, previousInterval, or today. Then
+        // onMonthChange (if the month changed), inIntervalChange if the interval
+        // has changed, and finally onYearChange (if the year changed).
+        calendars.clndr1 = $('#canlender').clndr({
+            events: eventArray,
+            clickEvents: {
+                click: function (target) {
+                    console.log('Cal-1 clicked: ', target.date._i);
+                   
+                    $.getJSON(ctx+"getEventDay.do?day="+target.date._i, null, function (result) {
+                		console.log(result);
+                		if(result.data.length>0){
+                			bizEdit(result.data[0]);
+                		}else{
+                			bizAdd();
+                		}
+                	});
+                    
+                  
+                	 $("#riqi").val(target.date._i);
+                },
+                today: function () {
+                    console.log('Cal-1 today');
+                },
+                nextMonth: function () {
+                    console.log('Cal-1 next month');
+                },
+                previousMonth: function () {
+                    console.log('Cal-1 previous month');
+                },
+                onMonthChange: function () {
+                    console.log('Cal-1 month changed');
+                },
+                nextYear: function () {
+                    console.log('Cal-1 next year');
+                },
+                previousYear: function () {
+                    console.log('Cal-1 previous year');
+                },
+                onYearChange: function () {
+                    console.log('Cal-1 year changed');
+                },
+                nextInterval: function () {
+                    console.log('Cal-1 next interval');
+                },
+                previousInterval: function () {
+                    console.log('Cal-1 previous interval');
+                },
+                onIntervalChange: function () {
+                    console.log('Cal-1 interval changed');
+                }
+            },
+            multiDayEvents: {
+                singleDay: 'date',
+                endDate: 'endDate',
+                startDate: 'startDate'
+            },
+            showAdjacentMonths: true,
+            adjacentDaysChangeMonth: false
+        });
 
-    // The order of the click handlers is predictable. Direct click action
-    // callbacks come first: click, nextMonth, previousMonth, nextYear,
-    // previousYear, nextInterval, previousInterval, or today. Then
-    // onMonthChange (if the month changed), inIntervalChange if the interval
-    // has changed, and finally onYearChange (if the year changed).
-    calendars.clndr1 = $('#canlender').clndr({
-        events: eventArray,
-        clickEvents: {
-            click: function (target) {
-                console.log('Cal-1 clicked: ', target.date._i);
-                $("date").append(target.date._i);
-                crudWin.showModal();
-            },
-            today: function () {
-                console.log('Cal-1 today');
-            },
-            nextMonth: function () {
-                console.log('Cal-1 next month');
-            },
-            previousMonth: function () {
-                console.log('Cal-1 previous month');
-            },
-            onMonthChange: function () {
-                console.log('Cal-1 month changed');
-            },
-            nextYear: function () {
-                console.log('Cal-1 next year');
-            },
-            previousYear: function () {
-                console.log('Cal-1 previous year');
-            },
-            onYearChange: function () {
-                console.log('Cal-1 year changed');
-            },
-            nextInterval: function () {
-                console.log('Cal-1 next interval');
-            },
-            previousInterval: function () {
-                console.log('Cal-1 previous interval');
-            },
-            onIntervalChange: function () {
-                console.log('Cal-1 interval changed');
-            }
-        },
-        multiDayEvents: {
-            singleDay: 'date',
-            endDate: 'endDate',
-            startDate: 'startDate'
-        },
-        showAdjacentMonths: true,
-        adjacentDaysChangeMonth: false
-    });
+    }
 
     
+    var getEventMonth = function(){
+	    	$.getJSON(ctx+"getEventMonth.do?month="+thisMonth, null, function (result) {
+	    	   try{
+		    		$.each( result.data, function(i, n){
+		    			 var event = {};
+		    			 event.title = n.riqi;
+		    			 event.date = n.riqi;
+		    			 eventArray[i] = event;
+		    		});
+    		   }finally{
+    	    	   initCalendar();
+    	       }
+	    	});
+    }
+    
+    getEventMonth();
+    
+
+   
 
     // Bind all clndrs to the left and right arrow keys
     $(document).keydown( function(e) {

@@ -3,12 +3,6 @@
 <jsp:include page="../menu.jsp" >
     <jsp:param name="activeMenu" value="bizplat"/>
 </jsp:include> 
-<link rel="stylesheet" href="${res}css/clndr.css">
-<script src="${res}js/underscore-min.js"></script>
-<script src="${res}js/moment.min.js"></script>
-<script src="${res}js/clndr.js"></script>
-<script src="${res}js/bizcalendar.js"></script>
-
 <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
       

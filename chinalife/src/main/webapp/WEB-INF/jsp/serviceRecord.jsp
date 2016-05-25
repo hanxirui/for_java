@@ -60,7 +60,7 @@
 	                      <label class="col-sm-3 control-label">客户</label>
 	                      <div class="col-sm-7">
 	                         <input id="idcardnum" name="idcardnum" type="hidden" class="form-control" required="true">
-	                        <input id="name" name="name" type="text" class="form-control" required="true">
+	                        <input id="name" name="cusname" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
@@ -96,7 +96,7 @@
 	                    </div> -->
 					   										</form>
 			    </div>
-                               <div class="box-body" id="cusWin">	 
+               <div class="box-body" id="cusWin">	 
 					<table id="cusTable">
 						<tr>          
 						    <th w_check="true" w_index="idcardnum" width="3%;"></th> 
@@ -195,8 +195,6 @@ var cusWin = dialog({
 	content: document.getElementById('cusWin'),
 	okValue: '保存',
 	ok: function () {
-		/* alert(cusGridObj.getCheckedValues('name'));
-		alert(cusGridObj.getCheckedValues('idcardnum')); */
 		var name = cusGridObj.getCheckedValues('name');
 		if(name.length!=1){
 			alert("请选择一个客户.");

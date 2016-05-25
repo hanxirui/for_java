@@ -3,11 +3,6 @@
 <jsp:include page="../menu.jsp" >
     <jsp:param name="activeMenu" value="bizplat"/>
 </jsp:include> 
-<link rel="stylesheet" href="${res}css/clndr.css">
-<script src="${res}js/underscore-min.js"></script>
-<script src="${res}js/moment.min.js"></script>
-<script src="${res}js/clndr.js"></script>
-<script src="${res}js/bizcalendar.js"></script>
 
 <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -75,47 +70,5 @@
          user experience. Slimscroll is required when using the
          fixed layout. -->
   </body>
-  <script type="text/javascript">
-	function myFormatter(date) {
-
-		var y = date.getFullYear();
-
-		var m = date.getMonth() + 1;
-
-		return y + '-' + (m < 10 ? ('0' + m) : m);
-
-	}
-
-	function myParser(s) {
-
-		if (!s) {
-
-			return new Date();
-
-		}
-
-		var ss = s.split('-');
-
-		var y = parseInt(ss[0], 10);
-
-		var m = parseInt(ss[1], 10);
-
-		if (!isNaN(y) && !isNaN(m)) {
-
-			return new Date(y, m - 1);
-
-		}
-
-	}
-
-	$(document).ready(function() {
-
-		if (!$("#myDate").datebox('getValue')) {
-
-			$("#myDate").datebox('setValue', myFormatter(new Date()));
-
-		}
-
-	});
-</script>
+  
 </html>

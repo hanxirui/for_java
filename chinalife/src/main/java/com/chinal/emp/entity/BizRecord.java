@@ -28,6 +28,8 @@ public class BizRecord {
 	private String kehujingli;
 	// 当日签单保费
 	private String qiandanBaofei;
+	// 日期
+	private String riqi;
 
 	public void setId(int id){
 		this.id = id;
@@ -115,6 +117,14 @@ public class BizRecord {
 
 	public String getQiandanBaofei(){
 		return this.qiandanBaofei;
+	}
+
+	public void setRiqi(String riqi){
+		this.riqi = riqi;
+	}
+
+	public String getRiqi(){
+		return this.riqi;
 	}
 
 }

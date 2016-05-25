@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ include file="../taglib.jsp" %>
 <jsp:include page="../menu.jsp" >
-    <jsp:param name="activeMenu" value="org"/>
+    <jsp:param name="activeMenu" value="bizplat"/>
 </jsp:include>  
 
       <!-- Content Wrapper. Contains page content -->

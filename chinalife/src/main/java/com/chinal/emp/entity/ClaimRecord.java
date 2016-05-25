@@ -49,7 +49,7 @@ public class ClaimRecord {
 	// 投诉时间
 	private String claimtime;
 	// 客户名称
-	private String name;
+	private String cusname;
 
 	public void setId(int id){
 		this.id = id;
@@ -219,12 +219,12 @@ public class ClaimRecord {
 		return this.claimtime;
 	}
 
-	public void setName(String name){
-		this.name = name;
+	public void setCusname(String cusname){
+		this.cusname = cusname;
 	}
 
-	public String getName(){
-		return this.name;
+	public String getCusname(){
+		return this.cusname;
 	}
 
 }

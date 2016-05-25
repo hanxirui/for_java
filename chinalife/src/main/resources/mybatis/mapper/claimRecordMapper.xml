@@ -23,7 +23,7 @@
                 <result column="fourthclaim" property="fourthclaim" jdbcType="VARCHAR" />
                 <result column="fourthtime" property="fourthtime" jdbcType="VARCHAR" />
                 <result column="claimtime" property="claimtime" jdbcType="VARCHAR" />
-                <result column="name" property="name" jdbcType="VARCHAR" />
+                <result column="cusname" property="cusname" jdbcType="VARCHAR" />
             </resultMap>
 
     <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
@@ -50,7 +50,7 @@
                 , t.fourthclaim
                 , t.fourthtime
                 , t.claimtime
-                , t.name
+                , t.cusname
         		FROM claim_record t
 		<include refid="expressionBlock.where" />
 		<choose>
@@ -99,7 +99,7 @@
                                         , `fourthclaim`
                                         , `fourthtime`
                                         , `claimtime`
-                                        , `name`
+                                        , `cusname`
                               )
 	VALUES (
                                                   #{idcardnum,jdbcType=VARCHAR}
@@ -122,7 +122,7 @@
                                         , #{fourthclaim,jdbcType=VARCHAR}
                                         , #{fourthtime,jdbcType=VARCHAR}
                                         , #{claimtime,jdbcType=VARCHAR}
-                                        , #{name,jdbcType=VARCHAR}
+                                        , #{cusname,jdbcType=VARCHAR}
                      
         )
 	</insert>
@@ -231,9 +231,9 @@
          claimtime=#{claimtime,jdbcType=VARCHAR}
         </if>
                                       
-        <if test="name!=null and name!=''">
+        <if test="cusname!=null and cusname!=''">
         ,
-         name=#{name,jdbcType=VARCHAR}
+         cusname=#{cusname,jdbcType=VARCHAR}
         </if>
                       WHERE id = #{id,jdbcType=INTEGER}
     </update>
@@ -261,7 +261,7 @@
                 , fourthclaim
                 , fourthtime
                 , claimtime
-                , name
+                , cusname
         		FROM claim_record t
 		WHERE id = #{id,jdbcType=INTEGER}
 	</select>

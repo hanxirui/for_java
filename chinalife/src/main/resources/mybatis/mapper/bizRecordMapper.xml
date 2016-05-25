@@ -13,6 +13,7 @@
                 <result column="huishoulv" property="huishoulv" jdbcType="VARCHAR" />
                 <result column="kehujingli" property="kehujingli" jdbcType="VARCHAR" />
                 <result column="qiandan_baofei" property="qiandanBaofei" jdbcType="VARCHAR" />
+                <result column="riqi" property="riqi" jdbcType="VARCHAR" />
             </resultMap>
 
     <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
@@ -29,6 +30,7 @@
                 , t.huishoulv
                 , t.kehujingli
                 , t.qiandan_baofei
+                , t.riqi
         		FROM biz_record t
 		<include refid="expressionBlock.where" />
 		<choose>
@@ -53,11 +55,11 @@
     </select>
 
     <insert id="save" parameterType="com.chinal.emp.entity.BizRecord"
+    keyProperty="id" keyColumn="id" useGeneratedKeys="true"
     >
 	INSERT INTO biz_record
          (
-                              `id`
-                                        , `yaoyue_num`
+                                                  `yaoyue_num`
                                         , `daohui_num`
                                         , `receive_num`
                                         , `receive_baofei`
@@ -67,10 +69,10 @@
                                         , `huishoulv`
                                         , `kehujingli`
                                         , `qiandan_baofei`
+                                        , `riqi`
                               )
 	VALUES (
-                              #{id,jdbcType=INTEGER}
-                                        , #{yaoyueNum,jdbcType=VARCHAR}
+                                                  #{yaoyueNum,jdbcType=VARCHAR}
                                         , #{daohuiNum,jdbcType=VARCHAR}
                                         , #{receiveNum,jdbcType=VARCHAR}
                                         , #{receiveBaofei,jdbcType=VARCHAR}
@@ -80,6 +82,7 @@
                                         , #{huishoulv,jdbcType=VARCHAR}
                                         , #{kehujingli,jdbcType=VARCHAR}
                                         , #{qiandanBaofei,jdbcType=VARCHAR}
+                                        , #{riqi,jdbcType=VARCHAR}
                      
         )
 	</insert>
@@ -89,21 +92,21 @@
     UPDATE biz_record
     SET 
                                                      
-        <if test="yaoyue_num!=null and yaoyue_num!=''">
+        <if test="yaoyueNum!=null and yaoyueNum!=''">
          yaoyue_num=#{yaoyueNum,jdbcType=VARCHAR}
         </if>
                                       
-        <if test="daohui_num!=null and daohui_num!=''">
+        <if test="daohuiNum!=null and daohuiNum!=''">
         ,
          daohui_num=#{daohuiNum,jdbcType=VARCHAR}
         </if>
                                       
-        <if test="receive_num!=null and receive_num!=''">
+        <if test="receiveNum!=null and receiveNum!=''">
         ,
          receive_num=#{receiveNum,jdbcType=VARCHAR}
         </if>
                                       
-        <if test="receive_baofei!=null and receive_baofei!=''">
+        <if test="receiveBaofei!=null and receiveBaofei!=''">
         ,
          receive_baofei=#{receiveBaofei,jdbcType=VARCHAR}
         </if>
@@ -113,7 +116,7 @@
          daohuilv=#{daohuilv,jdbcType=VARCHAR}
         </if>
                                       
-        <if test="qiandan_num!=null and qiandan_num!=''">
+        <if test="qiandanNum!=null and qiandanNum!=''">
         ,
          qiandan_num=#{qiandanNum,jdbcType=VARCHAR}
         </if>
@@ -133,9 +136,14 @@
          kehujingli=#{kehujingli,jdbcType=VARCHAR}
         </if>
                                       
-        <if test="qiandan_baofei!=null and qiandan_baofei!=''">
+        <if test="qiandanBaofei!=null and qiandanBaofei!=''">
         ,
          qiandan_baofei=#{qiandanBaofei,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="riqi!=null and riqi!=''">
+        ,
+         riqi=#{riqi,jdbcType=VARCHAR}
         </if>
                       WHERE id = #{id,jdbcType=INTEGER}
     </update>
@@ -153,6 +161,7 @@
                 , huishoulv
                 , kehujingli
                 , qiandan_baofei
+                , riqi
         		FROM biz_record t
 		WHERE id = #{id,jdbcType=INTEGER}
 	</select>
