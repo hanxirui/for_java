@@ -76,7 +76,7 @@ CREATE TABLE `claim_record` (
   `fourthclaim` varchar(30) DEFAULT NULL COMMENT '赔偿金额',
   `fourthtime` varchar(30) DEFAULT NULL COMMENT '赔偿时间',
   `claimtime` varchar(30) DEFAULT NULL COMMENT '投诉时间',
-  `name` varchar(30) DEFAULT NULL COMMENT '客户名称',
+  `cusname` varchar(30) DEFAULT NULL COMMENT '客户名称',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
