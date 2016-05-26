@@ -21,7 +21,7 @@
                <div class="box-body">
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
-										 										                       保单号:<input name="baoxiandanhao" type="text" class="form-control">      
+										 										   保单号:<input name="baoxiandanhao" type="text" class="form-control">      
 					 										                       <!-- 投保单号:<input name="toubaodanhao" type="text" class="form-control">      
 					 										                       业务员代码:<input name="yewuyuandaima" type="text" class="form-control">      
 					 										                       业务员姓名:<input name="yewuyuanxingming" type="text" class="form-control">      
@@ -120,207 +120,185 @@
 		    
 		    <div id="crudWin">
 			    	<form id="crudFrm" class="form-horizontal">
-											   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">保单号</label>
-	                      <div class="col-sm-7">
+						<div class="form-group">
+	                      <label class="col-sm-2 control-label">保单号</label>
+	                      <div class="col-sm-2">
 	                        <input name="baoxiandanhao" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">投保单号</label>
-	                      <div class="col-sm-7">
+	                    
+	                      <label class="col-sm-2 control-label">投保单号</label>
+	                      <div class="col-sm-2">
 	                        <input name="toubaodanhao" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">业务员代码</label>
-	                      <div class="col-sm-7">
+	                    
+	                      <label class="col-sm-2 control-label">业务员代码</label>
+	                      <div class="col-sm-2">
 	                        <input name="yewuyuandaima" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">业务员姓名</label>
-	                      <div class="col-sm-7">
+	                      <label class="col-sm-2 control-label">业务员姓名</label>
+	                      <div class="col-sm-2">
 	                        <input name="yewuyuanxingming" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">险种名称</label>
-	                      <div class="col-sm-7">
+	                    
+	                      <label class="col-sm-2 control-label">险种名称</label>
+	                      <div class="col-sm-2">
 	                        <input name="xianzhongmingcheng" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">保单状态</label>
-	                      <div class="col-sm-7">
+	                   
+	                      <label class="col-sm-2 control-label">保单状态</label>
+	                      <div class="col-sm-2">
 	                        <input name="baodanzhuangtai" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">投保日期</label>
-	                      <div class="col-sm-7">
+	                      <label class="col-sm-2 control-label">投保日期</label>
+	                      <div class="col-sm-2">
 	                        <input name="toubaoriqi" type="text" class="form-control" required="true"  onfocus="WdatePicker({skin:'default'})">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">生效日期</label>
-	                      <div class="col-sm-7">
+	                    
+	                      <label class="col-sm-2 control-label">生效日期</label>
+	                      <div class="col-sm-2">
 	                        <input name="shengxiaoriqi" type="text" class="form-control" required="true"  onfocus="WdatePicker({skin:'default'})">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">基本保额</label>
-	                      <div class="col-sm-7">
+	                    
+	                      <label class="col-sm-2 control-label">基本保额</label>
+	                      <div class="col-sm-2">
 	                        <input name="jibenbaoe" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">基本保费</label>
-	                      <div class="col-sm-7">
+	                      <label class="col-sm-2 control-label">基本保费</label>
+	                      <div class="col-sm-2">
 	                        <input name="jibenbaofei" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">投保人姓名</label>
-	                      <div class="col-sm-7">
+	                    
+	                      <label class="col-sm-2 control-label">投保人姓名</label>
+	                      <div class="col-sm-2">
 	                        <input name="toubaorenxingming" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">投保人性别</label>
-	                      <div class="col-sm-7">
+	                   
+	                      <label class="col-sm-2 control-label">投保人性别</label>
+	                      <div class="col-sm-2">
 	                        <input name="toubaorenxingbie" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">投保人身份证号</label>
-	                      <div class="col-sm-7">
+	                      <label class="col-sm-2 control-label">投保人身份证号</label>
+	                      <div class="col-sm-2">
 	                        <input name="toubaorenshenfenzhenghao" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">投保人手机号</label>
-	                      <div class="col-sm-7">
+	                    
+	                      <label class="col-sm-2 control-label">投保人手机号</label>
+	                      <div class="col-sm-2">
 	                        <input name="toubaorenshoujihao" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">投保人通讯地址</label>
-	                      <div class="col-sm-7">
+	                    
+	                      <label class="col-sm-2 control-label">投保人通讯地址</label>
+	                      <div class="col-sm-2">
 	                        <input name="toubaorentongxundizhi" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">投保人职业</label>
-	                      <div class="col-sm-7">
+	                      <label class="col-sm-2 control-label">投保人职业</label>
+	                      <div class="col-sm-2">
 	                        <input name="toubaorenzhiye" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">被保人姓名</label>
-	                      <div class="col-sm-7">
+	                    
+	                      <label class="col-sm-2 control-label">被保人姓名</label>
+	                      <div class="col-sm-2">
 	                        <input name="beibaoxianrenxingming" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">被保险人性别</label>
-	                      <div class="col-sm-7">
+	                    
+	                      <label class="col-sm-2 control-label">被保险人性别</label>
+	                      <div class="col-sm-2">
 	                        <input name="beibaoxianrenxingbie" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">被保险人身份证号</label>
-	                      <div class="col-sm-7">
+	                      <label class="col-sm-2 control-label">被保险人身份证号</label>
+	                      <div class="col-sm-2">
 	                        <input name="beibaoxianrenshenfenzhenghao" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">被保险人手机号</label>
-	                      <div class="col-sm-7">
+	                   
+	                      <label class="col-sm-2 control-label">被保险人手机号</label>
+	                      <div class="col-sm-2">
 	                        <input name="beibaoxianrenshoujihao" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">被保险人通讯地址</label>
-	                      <div class="col-sm-7">
+	                   
+	                      <label class="col-sm-2 control-label">被保险人通讯地址</label>
+	                      <div class="col-sm-2">
 	                        <input name="beibaoxianrentongxundizhi" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">被保险人职业</label>
-	                      <div class="col-sm-7">
+	                      <label class="col-sm-2 control-label">被保险人职业</label>
+	                      <div class="col-sm-2">
 	                        <input name="beibaoxianrenzhiye" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">被保险人与投保人关系</label>
-	                      <div class="col-sm-7">
+	                   
+	                      <label class="col-sm-2 control-label">被保险人与投保人关系</label>
+	                      <div class="col-sm-2">
 	                        <input name="beibaoxianrenyutoubaorenguanxi" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">受益人姓名</label>
-	                      <div class="col-sm-7">
+	                   
+	                      <label class="col-sm-2 control-label">受益人姓名</label>
+	                      <div class="col-sm-2">
 	                        <input name="shouyirenxingming" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">受益人性别</label>
-	                      <div class="col-sm-7">
+	                      <label class="col-sm-2 control-label">受益人性别</label>
+	                      <div class="col-sm-2">
 	                        <input name="shouyirenxingbie" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">受益人身份证号</label>
-	                      <div class="col-sm-7">
+	                    
+	                      <label class="col-sm-2 control-label">受益人身份证号</label>
+	                      <div class="col-sm-2">
 	                        <input name="shouyirenshenfenzhenghao" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">受益顺序</label>
-	                      <div class="col-sm-7">
+	                   
+	                      <label class="col-sm-2 control-label">受益顺序</label>
+	                      <div class="col-sm-2">
 	                        <input name="shouyishunxu" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">受益份额</label>
-	                      <div class="col-sm-7">
+	                      <label class="col-sm-2 control-label">受益份额</label>
+	                      <div class="col-sm-2">
 	                        <input name="shouyifene" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">受益人与投保人关系</label>
-	                      <div class="col-sm-7">
+	                    
+	                      <label class="col-sm-2 control-label">受益人与投保人关系</label>
+	                      <div class="col-sm-2">
 	                        <input name="shouyirenyutoubaorenguanxi" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">缴费期</label>
-	                      <div class="col-sm-7">
+	                   
+	                      <label class="col-sm-2 control-label">缴费期</label>
+	                      <div class="col-sm-2">
 	                        <input name="jiaofeiqi" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">保险期</label>
-	                      <div class="col-sm-7">
+	                      <label class="col-sm-2 control-label">保险期</label>
+	                      <div class="col-sm-2">
 	                        <input name="baoxianqi" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">缴费银行</label>
-	                      <div class="col-sm-7">
+	                    
+	                      <label class="col-sm-2 control-label">缴费银行</label>
+	                      <div class="col-sm-2">
 	                        <input name="jiaofeiyinhang" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">缴费账号</label>
-	                      <div class="col-sm-7">
+	                    
+	                      <label class="col-sm-2 control-label">缴费账号</label>
+	                      <div class="col-sm-2">
 	                        <input name="jiaofeizhanghao" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
-	                      <label class="col-sm-3 control-label">初始来源</label>
-	                      <div class="col-sm-7">
+	                      <label class="col-sm-2 control-label">初始来源</label>
+	                      <div class="col-sm-2">
 	                        <input name="chushilaiyuan" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
@@ -330,8 +308,8 @@
 			  <div id="importWin">
                     <form id="importFrm"  method="post"   enctype="multipart/form-data"  class="form-horizontal" action="${ctx}importCustomer.do">                   
                        <div class="form-group">
-                          <label class="col-sm-3 control-label">选择文件</label>
-                          <div class="col-sm-3">
+                          <label class="col-sm-2 control-label">选择文件</label>
+                          <div class="col-sm-8">
                            <input class="btn btn-default" id="filename" type="file" name="filename"  accept="xls"/>
                           </div>
                         </div>
@@ -389,7 +367,7 @@ gridObj = $.fn.bsgrid.init('searchTable', {
 
 crudWin = dialog({
 	title: '编辑',
-	width:400,
+	width:800,
 	content: document.getElementById('crudWin'),
 	okValue: '保存',
 	ok: function () {

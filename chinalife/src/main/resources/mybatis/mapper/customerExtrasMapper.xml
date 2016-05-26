@@ -10,6 +10,7 @@
                 <result column="car_num" property="carNum" jdbcType="VARCHAR" />
                 <result column="addr" property="addr" jdbcType="VARCHAR" />
                 <result column="empcode" property="empcode" jdbcType="VARCHAR" />
+                <result column="empname" property="empname" jdbcType="VARCHAR" />
                 <result column="insert_date" property="insertDate" jdbcType="VARCHAR" />
             </resultMap>
 
@@ -24,6 +25,7 @@
                 , car_num
                 , addr
                 , empcode
+                , empname
                 , insert_date
         		FROM customer_extras t
 		<include refid="expressionBlock.where" />
@@ -60,6 +62,7 @@
                                         , `car_num`
                                         , `addr`
                                         , `empcode`
+                                        , `empname`
                                         , `insert_date`
                               )
 	VALUES (
@@ -71,6 +74,7 @@
                                         , #{carNum,jdbcType=VARCHAR}
                                         , #{addr,jdbcType=VARCHAR}
                                         , #{empcode,jdbcType=VARCHAR}
+                                        , #{empname,jdbcType=VARCHAR}
                                         , #{insertDate,jdbcType=VARCHAR}
                      
         )
@@ -108,6 +112,10 @@
         empcode=#{empcode,jdbcType=VARCHAR}
         </if>
                                       ,
+                <if test="empname!=null and empname!=''">
+        empname=#{empname,jdbcType=VARCHAR}
+        </if>
+                                      ,
                 <if test="insertDate!=null and insertDate!=''">
         insert_date=#{insertDate,jdbcType=VARCHAR}
         </if>
@@ -124,6 +132,7 @@
                 , car_num
                 , addr
                 , empcode
+                , empname
                 , insert_date
         		FROM customer_extras t
 		WHERE id = #{id,jdbcType=INTEGER}

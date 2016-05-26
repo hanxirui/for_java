@@ -13,6 +13,8 @@ public class CustomerExtrasSch extends BsgridSearch {
 	private String carNum;
 	private String addr;
 	private String empcode;
+	private String empname;
+
 	private String insertDate;
 
 	public void setId(Integer id) {
@@ -94,6 +96,14 @@ public class CustomerExtrasSch extends BsgridSearch {
 	@ValueField(column = "insert_date")
 	public String getInsertDate() {
 		return this.insertDate;
+	}
+
+	public String getEmpname() {
+		return empname;
+	}
+
+	public void setEmpname(String empname) {
+		this.empname = empname;
 	}
 
 }

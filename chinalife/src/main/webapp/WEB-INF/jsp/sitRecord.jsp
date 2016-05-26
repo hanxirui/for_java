@@ -21,9 +21,9 @@
                <div class="box-body">
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
-	              客户经理:<input name="empcode" type="text" class="form-control">      
-                   拜访时间:<input name="visittime" type="text" class="form-control">      
-                   客户:<input name="name" type="text" class="form-control">      
+                  客户:<input name="name" type="text" class="form-control">        
+                  拜访时间:<input name="visittime" type="text" class="form-control">  
+	              客户经理:<input name="empcode" type="text" class="form-control"> 
                   <!--  拜访内容:<input name="content" type="text" class="form-control">  -->     
                 	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
@@ -43,11 +43,12 @@
 				<div class="box-body">	 
 					<table id="searchTable">
 						<tr>           
-							<th w_index="empcode"  w_render="empRender">客户经理</th>
+							
+							<th w_index="name">客户</th>
 							<th w_index="visittime">拜访时间</th>
-			 				<th w_index="name">客户</th>
 							<th w_index="content">拜访内容</th>
 							<th w_index="type"  w_render="typeRender">拜访性质</th>
+							<th w_index="empcode"  w_render="empRender">客户经理</th>
 							<th w_render="operate" width="10%;">操作</th>
 						</tr>
 					</table>

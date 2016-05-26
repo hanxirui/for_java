@@ -48,14 +48,13 @@
 				<div class="box-body">	 
 					<table id="searchTable">
 						<tr>           
-													<th w_index="id"></th>
-													<th w_index="idcardnum">身份证号</th>
+													<!-- <th w_index="idcardnum">身份证号</th> -->
 													<th w_index="phone">电话</th>
 													<th w_index="mobile">手机</th>
 													<th w_index="carBand">车品牌</th>
 													<th w_index="carNum">车牌号</th>
 													<th w_index="addr">住址</th>
-													<th w_index="empcode">维护人</th>
+													<th w_index="empname">维护人</th>
 													<th w_index="insertDate">维护日期</th>
 													<!-- <th w_render="operate" width="10%;">操作</th> -->
 						</tr>
@@ -65,12 +64,13 @@
 		    
 		    <div id="crudWin">
 			    	<form id="crudFrm" class="form-horizontal">
-					   										   						<div class="form-group">
+					   										   						<%-- <div class="form-group">
 	                      <label class="col-sm-3 control-label">身份证号</label>
 	                      <div class="col-sm-7">
-	                        <input name="idcardnum" type="text" class="form-control" required="true">
+	                        <input name="idcardnum" type="hidden" class="form-control" value="${customer.idcardnum}">
 	                      </div>
-	                    </div>
+	                    </div> --%>
+	                    <input name="idcardnum" type="hidden" value="${customer.idcardnum}">
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">电话</label>
 	                      <div class="col-sm-7">
@@ -101,12 +101,14 @@
 	                        <input name="addr" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
-					   										   						<div class="form-group">
+					   										   						<!-- <div class="form-group">
 	                      <label class="col-sm-3 control-label">维护人</label>
 	                      <div class="col-sm-7">
-	                        <input name="empcode" type="text" class="form-control" required="true">
+	                        <input name="empcode" type="text" class="form-control" >
 	                      </div>
-	                    </div>
+	                    </div> -->
+	                    <input name="empcode" type="hidden" class="form-control" value="<%=userDetails.getCode()%>">
+	                    <input name="empname" type="hidden" class="form-control" value="<%=userDetails.getcName()%>">
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">维护日期</label>
 	                      <div class="col-sm-7">

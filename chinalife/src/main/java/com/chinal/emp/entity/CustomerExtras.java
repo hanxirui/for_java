@@ -20,6 +20,8 @@ public class CustomerExtras {
 	private String addr;
 	// 维护人
 	private String empcode;
+	// 维护人
+	private String empname;
 	// 维护日期
 	private String insertDate;
 
@@ -93,6 +95,14 @@ public class CustomerExtras {
 
 	public String getInsertDate() {
 		return this.insertDate;
+	}
+
+	public String getEmpname() {
+		return empname;
+	}
+
+	public void setEmpname(String empname) {
+		this.empname = empname;
 	}
 
 }

@@ -200,7 +200,7 @@
 				<%} %>
 				<%if(userDetails.getLevel()>=4){ %>
 				<div class="form-group"   style="margin-bottom: 0em;">
-					<label class="col-sm-5 control-label">经理室处理情况：</label>
+				  <label class="col-sm-5 control-label">经理室处理情况：&nbsp;&nbsp;&nbsp;&nbsp;</label>
 				</div>
 				<div class="form-group" style="margin-bottom: 0em;">
 					<label class="col-sm-2 control-label">处理内容</label>

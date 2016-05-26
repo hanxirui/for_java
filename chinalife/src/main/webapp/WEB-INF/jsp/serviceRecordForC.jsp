@@ -26,11 +26,10 @@
                <div class="box-body">
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
-										 										   客户:<input name="idcardnum" type="text" class="form-control">      
-					 										                       服务时间:<input name="servicetime" type="text" class="form-control">      
-					 										                       服务内容:<input name="content" type="text" class="form-control">      
-					 										                       客户经理:<input name="empcode" type="text" class="form-control">      
-					 					                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
+			         客户:<input name="idcardnum" type="text" class="form-control">      
+                     服务时间:<input name="servicetime" type="text" class="form-control">      
+                     客户经理:<input name="empcode" type="text" class="form-control">      
+                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
 				</form>
                </div><!-- /.box-body -->
@@ -48,10 +47,11 @@
 				<div class="box-body">	 
 					<table id="searchTable">
 						<tr>           
-							<th w_index="idcardnum">客户</th>
+							<th w_index="name">客户</th>
 							<th w_index="servicetime">服务时间</th>
 							<th w_index="content">服务内容</th>
-							<th w_index="empcode">客户经理</th>
+							<th w_index="type"  w_render="typeRender">服务性质</th>
+							<th w_index="empcode"  w_render="empRender">客户经理</th>
 							<th w_render="operate" width="10%;">操作</th>
 						</tr>
 					</table>
@@ -63,7 +63,8 @@
 											   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">客户</label>
 	                      <div class="col-sm-7">
-	                        <input name="idcardnum" type="text" class="form-control" required="true">
+	                         <input id="idcardnum" name="idcardnum" type="hidden" class="form-control" required="true">
+	                        <input id="name" name="name" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
@@ -78,14 +79,38 @@
 	                        <input name="content" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
-					   										   						<div class="form-group">
+	                    <div class="form-group">
+	                      <label class="col-sm-3 control-label">服务性质</label>
+	                      <div class="col-sm-7">
+								  <label class="radio-inline">
+								    <input type="radio" name="type" id="type0" value="0">统一制式服务
+								  </label>
+								  <label class="radio-inline">
+								    <input type="radio" name="type" id="type1" value="1">自主服务
+								  </label>
+	                      </div>
+	                      
+	                    </div>
+	                    
+					   <!-- 	<div class="form-group">
 	                      <label class="col-sm-3 control-label">客户经理</label>
 	                      <div class="col-sm-7">
 	                        <input name="empcode" type="text" class="form-control" required="true">
 	                      </div>
-	                    </div>
+	                    </div> -->
 					   										</form>
 			    </div>
+               <div class="box-body" id="cusWin">	 
+					<table id="cusTable">
+						<tr>          
+						    <th w_check="true" w_index="idcardnum" width="3%;"></th> 
+							<th w_index="name">客户姓名</th>
+							<th w_index="sex"  w_render="sexRender">性别</th>
+							<th w_index="idcardnum">身份证号</th>
+							<th w_index="addr">地址</th>
+						</tr>
+					</table>
+				</div>
 		    
 <script type="text/javascript">     
 var that = this;
@@ -125,6 +150,12 @@ $schBtn.click(function() {
 	search();
 });
 
+$("#name").click(function() {
+	cusWin.showModal();
+	
+	
+});
+
 gridObj = $.fn.bsgrid.init('searchTable', {
 	url: listUrl
     ,pageSizeSelect: true
@@ -149,6 +180,43 @@ crudWin = dialog({
 		this.close();
 		return false;
 	}
+});
+
+var cusGridObj = $.fn.bsgrid.init('cusTable', {
+	url: ctx + 'listCustomerForEmp.do'
+    ,pageSizeSelect: true
+    ,rowHoverColor: true // 移动行变色
+    ,rowSelectedColor: false // 选择行不高亮
+    ,isProcessLockScreen:false // 加载数据不显示遮罩层
+	,displayBlankRows: false
+	,pagingLittleToolbar: true
+    ,pageSize: 10
+});
+
+var cusWin = dialog({
+	title: '选择客户',
+	width:800,
+	content: document.getElementById('cusWin'),
+	okValue: '保存',
+	ok: function () {
+		var name = cusGridObj.getCheckedValues('name');
+		if(name.length!=1){
+			alert("请选择一个客户.");
+			return false;
+		}
+		$('#name').val(cusGridObj.getCheckedValues('name'));
+		$('#idcardnum').val(cusGridObj.getCheckedValues('idcardnum'));
+		this.close();
+		return false;
+	},
+	cancelValue: '取消',
+	cancel: function () {
+		this.close();
+		return false;
+	},
+	onshow: function () {
+		$("#cusTable_pt_outTab").width($("#cusTable").width());
+    }
 });
 
 function search(){
@@ -211,6 +279,28 @@ this.del = function(row) {
 		});
 		d.showModal();
 	}
+}
+
+var sexRender = function(record, rowIndex, colIndex, options){
+	if(record.sex==0){
+		return "女";
+	}else{
+		return "男";
+	}
+	
+}
+
+var typeRender = function(record, rowIndex, colIndex, options){
+	if(record.type==0){
+		return "统一制式服务";
+	}else{
+		return "自主服务";
+	}
+	
+}
+
+var empRender = function(record, rowIndex, colIndex, options){
+	return record.empname;
 }
 
 validator = $crudFrm.validate();

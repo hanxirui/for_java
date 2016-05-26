@@ -21,9 +21,8 @@
                <div class="box-body">
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
-			         客户:<input name="idcardnum" type="text" class="form-control">      
+	             客户:<input name="name" type="text" class="form-control">      
                      服务时间:<input name="servicetime" type="text" class="form-control">      
-                     服务内容:<input name="content" type="text" class="form-control">      
                      客户经理:<input name="empcode" type="text" class="form-control">      
                    	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
@@ -46,8 +45,8 @@
 							<th w_index="name">客户</th>
 							<th w_index="servicetime">服务时间</th>
 							<th w_index="content">服务内容</th>
+							<th w_index="type"  w_render="typeRender">服务性质</th>
 							<th w_index="empcode"  w_render="empRender">客户经理</th>
-                            <th w_index="type"  w_render="typeRender">服务性质</th>
 							<th w_render="operate" width="10%;">操作</th>
 						</tr>
 					</table>
@@ -60,7 +59,7 @@
 	                      <label class="col-sm-3 control-label">客户</label>
 	                      <div class="col-sm-7">
 	                         <input id="idcardnum" name="idcardnum" type="hidden" class="form-control" required="true">
-	                        <input id="name" name="cusname" type="text" class="form-control" required="true">
+	                        <input id="name" name="name" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">

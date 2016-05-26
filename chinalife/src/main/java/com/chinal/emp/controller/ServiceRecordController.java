@@ -2,6 +2,8 @@ package com.chinal.emp.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.durcframework.core.expression.ExpressionQuery;
+import org.durcframework.core.expression.subexpression.ValueExpression;
 import org.durcframework.core.support.BsgridController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextImpl;
@@ -50,9 +52,13 @@ public class ServiceRecordController extends BsgridController<ServiceRecord, Ser
 	@RequestMapping("/listServiceRecord.do")
 	public ModelAndView listServiceRecord(ServiceRecordSch searchEntity, String idcardnum) {
 		if (idcardnum != null && !"".equals(idcardnum)) {
-			searchEntity.setIdcardnum(idcardnum);
+			ExpressionQuery query = new ExpressionQuery();
+			query.addValueExpression(new ValueExpression("t.idcardnum", idcardnum));
+			return this.list(query);
+		} else {
+			return this.list(searchEntity);
 		}
-		return this.list(searchEntity);
+
 	}
 
 	@RequestMapping("/updateServiceRecord.do")

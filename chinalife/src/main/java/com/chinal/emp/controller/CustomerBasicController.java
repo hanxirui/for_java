@@ -34,7 +34,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.chinal.emp.entity.CustomerBasic;
 import com.chinal.emp.entity.CustomerBasicSch;
 import com.chinal.emp.entity.Employee;
-import com.chinal.emp.expression.LeftJoinExpression;
 import com.chinal.emp.security.AuthUser;
 import com.chinal.emp.service.CustomerBasicService;
 import com.chinal.emp.service.EmployeeService;
@@ -146,7 +145,8 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 		if (onlineUser.getLevel() == 1) {
 			cusquery.add(new ValueExpression("t.kehujingli", onlineUser.getEmployee().getCode()));
 		}
-		cusquery.addJoinExpression(new LeftJoinExpression("customer_extras", "t2", "idcardnum", "idcardnum"));
+		// cusquery.addJoinExpression(new LeftJoinExpression("customer_extras",
+		// "t2", "idcardnum", "idcardnum"));
 		if (searchEntity.getName() != null) {
 			cusquery.add(new LikeRightExpression("t.name", searchEntity.getName()));
 		}
