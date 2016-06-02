@@ -30,6 +30,10 @@ public class BizRecord {
 	private String qiandanBaofei;
 	// 日期
 	private String riqi;
+	// 业务平台
+	private String bizplatTitle;
+	// 
+	private int bizpaltId;
 
 	public void setId(int id){
 		this.id = id;
@@ -125,6 +129,22 @@ public class BizRecord {
 
 	public String getRiqi(){
 		return this.riqi;
+	}
+
+	public void setBizplatTitle(String bizplatTitle){
+		this.bizplatTitle = bizplatTitle;
+	}
+
+	public String getBizplatTitle(){
+		return this.bizplatTitle;
+	}
+
+	public void setBizpaltId(int bizpaltId){
+		this.bizpaltId = bizpaltId;
+	}
+
+	public int getBizpaltId(){
+		return this.bizpaltId;
 	}
 
 }

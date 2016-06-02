@@ -10,6 +10,7 @@
 <html>
 <head>
 <title>登录</title>
+<link rel="shortcut icon" type="image/x-icon" href="${ctx}favicon.ico" />
 <style>
 
 html, body

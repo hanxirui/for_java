@@ -26,11 +26,12 @@
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
 				      姓名:<input name="name" type="text" class="form-control">      
-                      <!-- 身份证号:<input name="idcardnum" type="text" class="form-control">      
-                      类型  1-原始；2-自营新拓；3-渠道新拓:<input name="type" type="text" class="form-control">    -->   
+                       身份证号:<input name="idcardnum" type="text" class="form-control">      
+                     <!-- 类型  1-原始；2-自营新拓；3-渠道新拓:<input name="type" type="text" class="form-control">    -->   
                       <!-- 生日:<input name="birthday" type="text" class="form-control">  -->     
                      <!--  结婚纪念日:<input name="weddingDay" type="text" class="form-control">   -->    
-                      客户经理:<input name="kehujingli" type="text" class="form-control">      
+                     客户经理:<input name="kehujingli" type="text" class="form-control">   
+                     公司（下拉）:<input name="kehujingli" type="text" class="form-control">  
                      <!--  性别:<input name="sex" type="text" class="form-control">      
                       初始来源:<input name="laiyuan" type="text" class="form-control">  -->     
                      <!--  爱好:<input name="note" type="text" class="form-control">     
@@ -64,7 +65,16 @@
 			            	<i class="fa"></i> KPI统计查询 
 			         	</a>
 			          </div>
-			          
+			          <div class="btn-group">
+			         	 <a id="apiBtn" class="btn btn-primary">
+			            	<i class="fa"></i>二访客户数量：3个
+			            </a>
+			          </div>
+			          <div class="btn-group">
+			            <a id="apiBtn" class="btn btn-primary">
+			            	<i class="fa"></i> 三访及以上客户数量：3个
+			            </a>
+			          </div>
 			          <!--  <div class="btn-group">
 			         	<a id="importBtn" class="btn btn-primary">
                            <i class="fa"></i>  导入用户
@@ -83,9 +93,11 @@
 							<!-- <th w_index="type">类型  1-原始；2-自营新拓；3-渠道新拓</th> -->
 							<!-- <th w_index="birthday">生日</th> -->
 							<!-- <th w_index="weddingDay">结婚纪念日</th> -->
-							<!-- <th w_index="kehujingli">客户经理</th> -->
 							
-							<th w_index="type"  w_render="fromRender">性质</th>
+							<th w_index="type"  w_render="fromRender">初始来源</th>
+							<th w_index="leibie"  w_render="leibieRender">类别</th>
+							<th w_index="kehujingli">客户经理</th>
+							<th w_index="kehujingli">机构</th>
 							<!-- <th w_index="note">爱好及特点</th> -->
 							<th w_render="operate" width="10%;">操作</th>
 						</tr>
@@ -115,7 +127,7 @@
 	                        <input name="addr" type="text" class="form-control" required="true">
 	                      </div>
 	                   
-	                      <label class="col-sm-2 control-label">性质</label>
+	                      <label class="col-sm-2 control-label">初始来源</label>
 	                      <div class="col-sm-3">
 	                        <select id="type" name="type"  class="form-control" required="true">
 	                          <option value="1">发放</option>
@@ -212,9 +224,6 @@
 	                       日均拜访量： 5人次
 	                      </div>
 	                   
-	                      <div class="col-md-5">
-	                        拜访深度： 3
-	                      </div>
 					  </div>
 					   <div class="row">
 					     <div class="col-md-5">
@@ -405,6 +414,18 @@ var fromRender = function(record, rowIndex, colIndex, options){
 	}
 }
 
+var leibieRender = function(record, rowIndex, colIndex, options){
+	/* if(record.laiyuan==2){
+		return "自营新拓";
+	}else if(record.laiyuan==3){
+		return "渠道新拓";
+	}else{
+		return "发放";
+	} */
+	
+	return "新客户";
+}
+
 var $importBtn= $('#importBtn'); // 导入按钮
 $importBtn.click(function() {   
 	    importWin.showModal();    
@@ -546,12 +567,12 @@ var kpiWin = dialog({
 	title: '编辑',
 	width:600,
 	content: document.getElementById('kpiWin'),
-	okValue: '保存',
+	okValue: '查询',
 	ok: function () {
 		that.save();
 		return false;
 	},
-	cancelValue: '取消',
+	cancelValue: '关闭',
 	cancel: function () {
 		this.close();
 		return false;

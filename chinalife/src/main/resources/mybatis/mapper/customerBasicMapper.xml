@@ -12,7 +12,10 @@
                 <result column="sex" property="sex" jdbcType="VARCHAR" />
                 <result column="laiyuan" property="laiyuan" jdbcType="VARCHAR" />
                 <result column="note" property="note" jdbcType="VARCHAR" />
+                <result column="phone" property="phone" jdbcType="VARCHAR" />
                 <result column="addr" property="addr" jdbcType="VARCHAR" />
+                <result column="daorurenyuan" property="daorurenyuan" jdbcType="VARCHAR" />
+                <result column="leibie" property="leibie" jdbcType="VARCHAR" />
             </resultMap>
 
     <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
@@ -28,7 +31,10 @@
                 , t.sex
                 , t.laiyuan
                 , t.note
+                , t.phone
                 , t.addr
+                , t.daorurenyuan
+                , t.leibie
         		FROM customer_basic t
 		<include refid="expressionBlock.where" />
 		<choose>
@@ -66,7 +72,10 @@
                                         , `sex`
                                         , `laiyuan`
                                         , `note`
+                                        , `phone`
                                         , `addr`
+                                        , `daorurenyuan`
+                                        , `leibie`
                               )
 	VALUES (
                                                   #{name,jdbcType=VARCHAR}
@@ -78,7 +87,10 @@
                                         , #{sex,jdbcType=VARCHAR}
                                         , #{laiyuan,jdbcType=VARCHAR}
                                         , #{note,jdbcType=VARCHAR}
+                                        , #{phone,jdbcType=VARCHAR}
                                         , #{addr,jdbcType=VARCHAR}
+                                        , #{daorurenyuan,jdbcType=VARCHAR}
+                                        , #{leibie,jdbcType=VARCHAR}
                      
         )
 	</insert>
@@ -122,8 +134,25 @@
                 <if test="note!=null and note!=''">
         ,note=#{note,jdbcType=VARCHAR}
         </if>
+                                      
+        <if test="phone!=null and phone!=''">
+        ,
+         phone=#{phone,jdbcType=VARCHAR}
+        </if>
+                                      
         <if test="addr!=null and addr!=''">
-        ,addr=#{addr,jdbcType=VARCHAR}
+        ,
+         addr=#{addr,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="daorurenyuan!=null and daorurenyuan!=''">
+        ,
+         daorurenyuan=#{daorurenyuan,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="leibie!=null and leibie!=''">
+        ,
+         leibie=#{leibie,jdbcType=VARCHAR}
         </if>
                       WHERE id = #{id,jdbcType=INTEGER}
     </update>
@@ -140,7 +169,10 @@
                 , sex
                 , laiyuan
                 , note
+                , phone
                 , addr
+                , daorurenyuan
+                , leibie
         		FROM customer_basic t
 		WHERE id = #{id,jdbcType=INTEGER}
 	</select>

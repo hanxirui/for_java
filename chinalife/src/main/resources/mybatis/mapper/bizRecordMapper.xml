@@ -14,6 +14,8 @@
                 <result column="kehujingli" property="kehujingli" jdbcType="VARCHAR" />
                 <result column="qiandan_baofei" property="qiandanBaofei" jdbcType="VARCHAR" />
                 <result column="riqi" property="riqi" jdbcType="VARCHAR" />
+                <result column="bizplat_title" property="bizplatTitle" jdbcType="VARCHAR" />
+                <result column="bizpalt_id" property="bizpaltId" jdbcType="INTEGER" />
             </resultMap>
 
     <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
@@ -31,6 +33,8 @@
                 , t.kehujingli
                 , t.qiandan_baofei
                 , t.riqi
+                , t.bizplat_title
+                , t.bizpalt_id
         		FROM biz_record t
 		<include refid="expressionBlock.where" />
 		<choose>
@@ -70,6 +74,8 @@
                                         , `kehujingli`
                                         , `qiandan_baofei`
                                         , `riqi`
+                                        , `bizplat_title`
+                                        , `bizpalt_id`
                               )
 	VALUES (
                                                   #{yaoyueNum,jdbcType=VARCHAR}
@@ -83,6 +89,8 @@
                                         , #{kehujingli,jdbcType=VARCHAR}
                                         , #{qiandanBaofei,jdbcType=VARCHAR}
                                         , #{riqi,jdbcType=VARCHAR}
+                                        , #{bizplatTitle,jdbcType=VARCHAR}
+                                        , #{bizpaltId,jdbcType=INTEGER}
                      
         )
 	</insert>
@@ -145,6 +153,16 @@
         ,
          riqi=#{riqi,jdbcType=VARCHAR}
         </if>
+                                      
+        <if test="bizplatTitle!=null and bizplatTitle!=''">
+        ,
+         bizplat_title=#{bizplatTitle,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="bizpaltId!=null and bizpaltId!=''">
+        ,
+         bizpalt_id=#{bizpaltId,jdbcType=INTEGER}
+        </if>
                       WHERE id = #{id,jdbcType=INTEGER}
     </update>
 
@@ -162,6 +180,8 @@
                 , kehujingli
                 , qiandan_baofei
                 , riqi
+                , bizplat_title
+                , bizpalt_id
         		FROM biz_record t
 		WHERE id = #{id,jdbcType=INTEGER}
 	</select>

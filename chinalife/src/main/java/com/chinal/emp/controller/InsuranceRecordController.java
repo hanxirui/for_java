@@ -1,12 +1,10 @@
 package com.chinal.emp.controller;
 
 import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.durcframework.core.support.BsgridController;
-import org.durcframework.core.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +28,6 @@ import com.chinal.emp.entity.InsuranceRecord;
 import com.chinal.emp.entity.InsuranceRecordSch;
 import com.chinal.emp.service.CustomerBasicService;
 import com.chinal.emp.service.InsuranceRecordService;
-import com.chinal.emp.util.FileUtils;
 
 import net.sf.jxls.reader.ReaderBuilder;
 import net.sf.jxls.reader.XLSReadStatus;
@@ -92,14 +88,16 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 			MultipartHttpServletRequest mulRequest = (MultipartHttpServletRequest) request;
 			MultipartFile file = mulRequest.getFile("filename");
 
-			String date = DateUtil.format(new Date(), "yyyyMM");
-			File dateFile = new File(request.getRealPath("/") + File.separator + date);
-			if (!dateFile.exists()) {
-				dateFile.mkdir();
-			}
-			File bakFile = new File(dateFile, file.getOriginalFilename());
-
-			FileUtils.inputstream2file(file.getInputStream(), bakFile);
+			// 备份文件
+			// String date = DateUtil.format(new Date(), "yyyyMM");
+			// File dateFile = new File(request.getRealPath("/") +
+			// File.separator + date);
+			// if (!dateFile.exists()) {
+			// dateFile.mkdir();
+			// }
+			// File bakFile = new File(dateFile, file.getOriginalFilename());
+			//
+			// FileUtils.inputstream2file(file.getInputStream(), bakFile);
 
 			List<InsuranceRecord> list = new ArrayList<InsuranceRecord>();
 

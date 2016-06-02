@@ -35,7 +35,7 @@
 				<div class="box-header">
 					 <div class="btn-group">
 			         	<a id="addBtn" class="btn btn-primary">
-			            	<i class="fa fa-plus"></i> 录入 
+			            	<i class="fa"></i> 录入 
 			         	</a>
 			          </div>
 				</div><!-- /.box-header -->

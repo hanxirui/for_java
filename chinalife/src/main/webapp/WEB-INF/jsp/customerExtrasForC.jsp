@@ -21,6 +21,9 @@
 		  <li role="presentation"><a href="${ctx}openInsuranceForC.do?id=${customer.id}">保单记录</a></li>
 		  <li role="presentation"><a href="${ctx}openServiceRecordForC.do?id=${customer.id}">服务记录</a></li>
 		  <li role="presentation"><a href="${ctx}openSitRecordForC.do?id=${customer.id}">拜访记录</a></li>
+		  <li>
+                <a href="${ctx}openCustomerBasic.do"><i class="fa fa-reply"></i>返回</a>
+           </li>
 		</ul>
         <!-- Main content -->
         <section class="content">
@@ -40,7 +43,7 @@
 				     详细信息
 					 <div class="btn-group">
 			         	<a id="addBtn" class="btn btn-primary">
-			            	<i class="fa fa-plus"></i> 录入 
+			            	<i class="fa"></i> 录入 
 			         	</a>
 			          </div>
 				</div><!-- /.box-header -->

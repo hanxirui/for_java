@@ -17,6 +17,9 @@
 		  <li role="presentation"><a href="${ctx}openInsuranceForC.do?id=${customer.id}">保单记录</a></li>
 		  <li role="presentation"><a href="${ctx}openServiceRecordForC.do?id=${customer.id}">服务记录</a></li>
 		  <li role="presentation"  class="active"><a href="${ctx}openSitRecordForC.do?id=${customer.id}">拜访记录</a></li>
+		  <li>
+                <a href="${ctx}openCustomerBasic.do"><i class="fa fa-reply"></i>返回</a>
+           </li>
 		</ul>
         <!-- Main content -->
         <section class="content">
@@ -26,9 +29,9 @@
                <div class="box-body">
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
-                  客户:<input name="name" type="text" class="form-control">        
+                  客户:<input name="name" type="hidden" class="form-control">        
                   拜访时间:<input name="visittime" type="text" class="form-control">  
-	              客户经理:<input name="empcode" type="text" class="form-control"> 
+	              客户经理:<input name="empcode" type="hidden" class="form-control"> 
                   <!--  拜访内容:<input name="content" type="text" class="form-control">  -->     
                 	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
@@ -40,9 +43,10 @@
 				<div class="box-header">
 					 <div class="btn-group">
 			         	<a id="addBtn" class="btn btn-primary">
-			            	<i class="fa fa-plus"></i> 录入 
+			            	<i class="fa"></i> 录入 
 			         	</a>
 			          </div>
+			          
 				</div><!-- /.box-header -->
 			
 				<div class="box-body">	 

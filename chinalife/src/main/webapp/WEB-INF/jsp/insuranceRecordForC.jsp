@@ -17,60 +17,21 @@
 		  <li role="presentation"  class="active"><a href="${ctx}openInsuranceForC.do?id=${customer.id}">保单记录</a></li>
 		  <li role="presentation"><a href="${ctx}openServiceRecordForC.do?id=${customer.id}">服务记录</a></li>
 		  <li role="presentation"><a href="${ctx}openSitRecordForC.do?id=${customer.id}">拜访记录</a></li>
+		  <li>
+                <a href="${ctx}openCustomerBasic.do"><i class="fa fa-reply"></i>返回</a>
+           </li>
 		</ul>
         <!-- Main content -->
         <section class="content">
 
           <!-- Your Page Content Here -->
-          <div class="box box-default">
-               <div class="box-body">
-                 <!-- form start -->
-                 <form id="schFrm" class="form-inline" onsubmit="return false;">
-										 										                       保单号:<input name="baoxiandanhao" type="text" class="form-control">      
-					 										                       投保单号:<input name="toubaodanhao" type="text" class="form-control">      
-					 										                       业务员代码:<input name="yewuyuandaima" type="text" class="form-control">      
-					 										                       业务员姓名:<input name="yewuyuanxingming" type="text" class="form-control">      
-					 										                       险种名称:<input name="xianzhongmingcheng" type="text" class="form-control">      
-					 										                       保单状态:<input name="baodanzhuangtai" type="text" class="form-control">      
-					 										                       投保日期:<input name="toubaoriqi" type="text" class="form-control">      
-					 										                       生效日期:<input name="shengxiaoriqi" type="text" class="form-control">      
-					 										                       基本保额:<input name="jibenbaoe" type="text" class="form-control">      
-					 										                       基本保费:<input name="jibenbaofei" type="text" class="form-control">      
-					 										                       投保人姓名:<input name="toubaorenxingming" type="text" class="form-control">      
-					 										                       投保人性别:<input name="toubaorenxingbie" type="text" class="form-control">      
-					 										                       投保人身份证号:<input name="toubaorenshenfenzhenghao" type="text" class="form-control">      
-					 										                       投保人手机号:<input name="toubaorenshoujihao" type="text" class="form-control">      
-					 										                       投保人通讯地址:<input name="toubaorentongxundizhi" type="text" class="form-control">      
-					 										                       投保人职业:<input name="toubaorenzhiye" type="text" class="form-control">      
-					 										                       被保人姓名:<input name="beibaoxianrenxingming" type="text" class="form-control">      
-					 										                       被保险人性别:<input name="beibaoxianrenxingbie" type="text" class="form-control">      
-					 										                       被保险人身份证号:<input name="beibaoxianrenshenfenzhenghao" type="text" class="form-control">      
-					 										                       被保险人手机号:<input name="beibaoxianrenshoujihao" type="text" class="form-control">      
-					 										                       被保险人通讯地址:<input name="beibaoxianrentongxundizhi" type="text" class="form-control">      
-					 										                       被保险人职业:<input name="beibaoxianrenzhiye" type="text" class="form-control">      
-					 										                       被保险人与投保人关系:<input name="beibaoxianrenyutoubaorenguanxi" type="text" class="form-control">      
-					 										                       受益人姓名:<input name="shouyirenxingming" type="text" class="form-control">      
-					 										                       受益人性别:<input name="shouyirenxingbie" type="text" class="form-control">      
-					 										                       受益人身份证号:<input name="shouyirenshenfenzhenghao" type="text" class="form-control">      
-					 										                       受益顺序:<input name="shouyishunxu" type="text" class="form-control">      
-					 										                       受益份额:<input name="shouyifene" type="text" class="form-control">      
-					 										                       受益人与投保人关系:<input name="shouyirenyutoubaorenguanxi" type="text" class="form-control">      
-					 										                       缴费期:<input name="jiaofeiqi" type="text" class="form-control">      
-					 										                       保险期:<input name="baoxianqi" type="text" class="form-control">      
-					 										                       缴费银行:<input name="jiaofeiyinhang" type="text" class="form-control">      
-					 										                       缴费账号:<input name="jiaofeizhanghao" type="text" class="form-control">      
-					 										                       初始来源:<input name="chushilaiyuan" type="text" class="form-control">      
-					 					                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
-					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
-				</form>
-               </div><!-- /.box-body -->
-           </div>
+         
            
-          <div class="box">
+          <div class="box box-default">
 				<div class="box-header">
 					 <div class="btn-group">
 			         	<a id="addBtn" class="btn btn-primary">
-			            	<i class="fa fa-plus"></i> 录入 
+			            	<i class="fa"></i> 录入 
 			         	</a>
 			          </div>
 				</div><!-- /.box-header -->

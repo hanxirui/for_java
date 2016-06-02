@@ -5,17 +5,20 @@ import org.durcframework.core.support.BsgridSearch;
 
 public class CustomerBasicSch extends BsgridSearch {
 
-	private Integer id;
-	private String name;
-	private String idcardnum;
-	private Integer type;
-	private String birthday;
-	private String weddingDay;
-	private String kehujingli;
-	private String sex;
-	private String laiyuan;
-	private String note;
-	private String addr;
+    private Integer id;
+    private String name;
+    private String idcardnum;
+    private Integer type;
+    private String birthday;
+    private String weddingDay;
+    private String kehujingli;
+    private String sex;
+    private String laiyuan;
+    private String note;
+    private String phone;
+    private String addr;
+    private String daorurenyuan;
+    private String leibie;
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -107,12 +110,41 @@ public class CustomerBasicSch extends BsgridSearch {
 		return this.note;
 	}
 
-	public String getAddr() {
-		return addr;
-	}
+    public void setPhone (String phone){
+        this.phone = phone;
+    }
+    
+    @ValueField(column = "phone")
+    public String getPhone(){
+        return this.phone;
+    }
 
-	public void setAddr(String addr) {
-		this.addr = addr;
-	}
+    public void setAddr (String addr){
+        this.addr = addr;
+    }
+    
+    @ValueField(column = "addr")
+    public String getAddr(){
+        return this.addr;
+    }
+
+    public void setDaorurenyuan (String daorurenyuan){
+        this.daorurenyuan = daorurenyuan;
+    }
+    
+    @ValueField(column = "daorurenyuan")
+    public String getDaorurenyuan(){
+        return this.daorurenyuan;
+    }
+
+    public void setLeibie (String leibie){
+        this.leibie = leibie;
+    }
+    
+    @ValueField(column = "leibie")
+    public String getLeibie(){
+        return this.leibie;
+    }
+
 
 }

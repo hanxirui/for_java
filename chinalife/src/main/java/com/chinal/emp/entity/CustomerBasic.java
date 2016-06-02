@@ -24,8 +24,14 @@ public class CustomerBasic {
 	private String laiyuan;
 	// 爱好及特点
 	private String note;
-
+	// 
+	private String phone;
+	// 
 	private String addr;
+	// 导入人员
+	private String daorurenyuan;
+	// 类别
+	private String leibie;
 
 	public void setId(int id) {
 		this.id = id;
@@ -91,28 +97,52 @@ public class CustomerBasic {
 		return this.sex;
 	}
 
-	public void setNote(String note) {
-		this.note = note;
-	}
-
-	public String getNote() {
-		return this.note;
-	}
-
-	public String getLaiyuan() {
-		return laiyuan;
-	}
-
-	public void setLaiyuan(String laiyuan) {
+	public void setLaiyuan(String laiyuan){
 		this.laiyuan = laiyuan;
 	}
 
-	public String getAddr() {
-		return addr;
+	public String getLaiyuan(){
+		return this.laiyuan;
 	}
 
-	public void setAddr(String addr) {
+	public void setNote(String note){
+		this.note = note;
+	}
+
+	public String getNote(){
+		return this.note;
+	}
+
+	public void setPhone(String phone){
+		this.phone = phone;
+	}
+
+	public String getPhone(){
+		return this.phone;
+	}
+
+	public void setAddr(String addr){
 		this.addr = addr;
+	}
+
+	public String getAddr(){
+		return this.addr;
+	}
+
+	public void setDaorurenyuan(String daorurenyuan){
+		this.daorurenyuan = daorurenyuan;
+	}
+
+	public String getDaorurenyuan(){
+		return this.daorurenyuan;
+	}
+
+	public void setLeibie(String leibie){
+		this.leibie = leibie;
+	}
+
+	public String getLeibie(){
+		return this.leibie;
 	}
 
 }

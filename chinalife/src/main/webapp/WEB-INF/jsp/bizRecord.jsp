@@ -42,7 +42,7 @@
 				<div class="box-header">
 					 <div class="btn-group">
 			         	<a id="addBtn" class="btn btn-primary">
-			            	<i class="fa fa-plus"></i> 录入 
+			            	<i class="fa"></i> 录入 
 			         	</a>
 			          </div>
 				</div><!-- /.box-header -->
@@ -133,6 +133,24 @@
 	                      <label class="col-sm-3 control-label">当日签单保费</label>
 	                      <div class="col-sm-7">
 	                        <input name="qiandanBaofei" type="text" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   										   						<div class="form-group">
+	                      <label class="col-sm-3 control-label">日期</label>
+	                      <div class="col-sm-7">
+	                        <input name="riqi" type="text" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   										   						<div class="form-group">
+	                      <label class="col-sm-3 control-label">业务平台</label>
+	                      <div class="col-sm-7">
+	                        <input name="bizplatTitle" type="text" class="form-control" required="true">
+	                      </div>
+	                    </div>
+					   										   						<div class="form-group">
+	                      <label class="col-sm-3 control-label"></label>
+	                      <div class="col-sm-7">
+	                        <input name="bizpaltId" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										</form>

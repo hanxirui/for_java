@@ -131,7 +131,7 @@
 				<div class="box-header">
 					 <div class="btn-group">
 			         	<a id="addBtn" class="btn btn-primary">
-			            	<i class="fa fa-plus"></i> 新增订单 
+			            	<i class="fa"></i> 新增订单 
 			         	</a>
 			          </div>
 				</div><!-- /.box-header -->

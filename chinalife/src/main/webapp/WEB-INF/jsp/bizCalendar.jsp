@@ -17,6 +17,13 @@
 
           <!-- Your Page Content Here -->
           <div class="box box-default">
+	          <div class="box-header">
+					<div class="btn-group">
+						<a id="addBtn" class="btn btn-primary"> <i class="fa"></i>
+							统计
+						</a>
+					</div>
+				</div>
                <div class="box-body">
 
 					    <div class="container">
@@ -29,6 +36,14 @@
 
                <div id="crudWin">
 			    	<form id="crudFrm" class="form-horizontal">
+			    	   <div class="form-group">
+	                      <label class="col-sm-3 control-label">平台名称</label>
+	                      <div class="col-sm-3">
+	                        <input name="yaoyueNum" type="text" class="form-control">
+	                        <!--  同一个平台可能在多天举行 -->
+	                      </div>
+	                      
+	                    </div>
 					   	<div class="form-group">
 	                      <label class="col-sm-3 control-label">邀约客户数</label>
 	                      <div class="col-sm-3">
@@ -74,8 +89,7 @@
 	                      </div>
 	                      
 	                    </div>
-					   										   						<div class="form-group">
-	                      
+					   	<div class="form-group">
 	                      <label class="col-sm-3 control-label">当日回收件数</label>
 	                      <div class="col-sm-3">
 	                        <input name="receiveNum" type="text" class="form-control">
@@ -86,6 +100,7 @@
 	                        <input id="riqi" name="riqi" type="hidden" class="form-control">
 	                      </div>
 	                    </div>
+	                   
 					  </form>
 			    </div>
 			                   

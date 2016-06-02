@@ -42,18 +42,60 @@
     var clndrTemplate =
         "<div class='clndr-controls'>" +
             "<div class='clndr-control-button'>" +
-                "<span class='clndr-previous-button'>previous</span>" +
+                "<span class='clndr-previous-button'>上月</span>" +
             "</div>" +
-            "<div class='month'><%= month %> <%= year %></div>" +
+            "<div class='month'>" +
+            " <%= year %>年" +
+            "<% if ( month==\"May\"){ %> " +
+            " <%= \"5月\" %> " +
+           " <%} else if ( month==\"June\") { %> " +
+           " <%= \"6月\" %> " +
+           " <%} else if ( month==\"July\") { %> " +
+           " <%= \"7月\" %> " +
+           " <%} else if ( month==\"August\") { %> " +
+           " <%= \"8月\" %> " +
+           " <%} else if ( month==\"September\") { %> " +
+           " <%= \"9月\" %> " +
+           " <%} else if ( month==\"October\") { %> " +
+           " <%= \"10月\" %> " +
+           " <%} else if ( month==\"November\") { %> " +
+           " <%= \"11月\" %> " +
+           " <%} else if ( month==\"December\") { %> " +
+           " <%= \"12月\" %> " +
+           " <%} else if ( month==\"January\") { %> " +
+           " <%= \"1月\" %> " +
+           " <%} else if ( month==\"February\") { %> " +
+           " <%= \"2月\" %> " +
+           " <%} else if ( month==\"March\") { %> " +
+           " <%= \"3月\" %> " +
+           " <%} else if ( month==\"April\") { %> " +
+           " <%= \"4月\" %> " +
+           " <%}%> </div>" +
             "<div class='clndr-control-button rightalign'>" +
-                "<span class='clndr-next-button'>next</span>" +
+                "<span class='clndr-next-button'>下月</span>" +
             "</div>" +
         "</div>" +
         "<table class='clndr-table' border='0' cellspacing='0' cellpadding='0'>" +
             "<thead>" +
                 "<tr class='header-days'>" +
                 "<% for(var i = 0; i < daysOfTheWeek.length; i++) { %>" +
-                    "<td class='header-day'><%= daysOfTheWeek[i] %></td>" +
+                    "<td class='header-day'>" +
+                    "<% if ( i==0){ %> " +
+                    " <%= \"星期天\" %> " +
+                   " <%} else if ( i==1) { %> " +
+                   " <%= \"星期一\" %> " +
+                   " <%} else if ( i==2) { %> " +
+                   " <%= \"星期二\" %> " +
+                   " <%} else if ( i==3) { %> " +
+                   " <%= \"星期三\" %> " +
+                   " <%} else if ( i==4) { %> " +
+                   " <%= \"星期四\" %> " +
+                   " <%} else if ( i==5) { %> " +
+                   " <%= \"星期五\" %> " +
+                   " <%} else if ( i==6) { %> " +
+                   " <%= \"星期六\" %> " +
+                   " <%}%> " +
+                    "</td>" +
                 "<% } %>" +
                 "</tr>" +
             "</thead>" +
@@ -64,6 +106,7 @@
                 "<% var d = j + i * 7; %>" +
                     "<td class='<%= days[d].classes %>'>" +
                         "<div class='day-contents'><%= days[d].day %></div>" +
+                        "<div class='day-contents'>事件名称</div>" +
                     "</td>" +
                 "<% } %>" +
                 "</tr>" +

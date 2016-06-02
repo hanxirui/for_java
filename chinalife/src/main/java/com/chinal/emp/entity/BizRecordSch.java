@@ -19,6 +19,8 @@ public class BizRecordSch extends BsgridSearch {
     private String kehujingli;
     private String qiandanBaofei;
     private String riqi;
+    private String bizplatTitle;
+    private Integer bizpaltId;
 
     public void setId (Integer id){
         this.id = id;
@@ -126,6 +128,24 @@ public class BizRecordSch extends BsgridSearch {
     @ValueField(column = "riqi")
     public String getRiqi(){
         return this.riqi;
+    }
+
+    public void setBizplatTitle (String bizplatTitle){
+        this.bizplatTitle = bizplatTitle;
+    }
+    
+    @ValueField(column = "bizplat_title")
+    public String getBizplatTitle(){
+        return this.bizplatTitle;
+    }
+
+    public void setBizpaltId (Integer bizpaltId){
+        this.bizpaltId = bizpaltId;
+    }
+    
+    @ValueField(column = "bizpalt_id")
+    public Integer getBizpaltId(){
+        return this.bizpaltId;
     }
 
 
