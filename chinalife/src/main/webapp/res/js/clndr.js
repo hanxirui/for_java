@@ -106,7 +106,9 @@
                 "<% var d = j + i * 7; %>" +
                     "<td class='<%= days[d].classes %>'>" +
                         "<div class='day-contents'><%= days[d].day %></div>" +
-                        "<div class='day-contents'>事件名称</div>" +
+                        "<% for(var n = 0; n < days[d].events.length; n++){ %>" +
+                        "<div class='day-contents'> <%=days[d].events[n].title%></div>"+
+                        "<% } %>" +
                     "</td>" +
                 "<% } %>" +
                 "</tr>" +

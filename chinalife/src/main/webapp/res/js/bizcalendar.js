@@ -99,7 +99,7 @@ $(document).ready( function() {
 	    	   try{
 		    		$.each( result.data, function(i, n){
 		    			 var event = {};
-		    			 event.title = n.riqi;
+		    			 event.title = n.bizplatTitle;
 		    			 event.date = n.riqi;
 		    			 eventArray[i] = event;
 		    		});
