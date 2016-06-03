@@ -51,11 +51,10 @@
     </select>
 
     <insert id="save" parameterType="com.chinal.emp.entity.Bizplatform"
-    >
+    keyProperty="id" keyColumn="id" useGeneratedKeys="true">
 	INSERT INTO bizplatform
          (
-                              `id`
-                                        , `title`
+                                         `title`
                                         , `zhishibaifang`
                                         , `caiye`
                                         , `start`
@@ -66,8 +65,7 @@
                                         , `emp_id`
                               )
 	VALUES (
-                              #{id,jdbcType=INTEGER}
-                                        , #{title,jdbcType=VARCHAR}
+                                         #{title,jdbcType=VARCHAR}
                                         , #{zhishibaifang,jdbcType=VARCHAR}
                                         , #{caiye,jdbcType=VARCHAR}
                                         , #{start,jdbcType=VARCHAR}

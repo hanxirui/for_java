@@ -271,6 +271,10 @@ function loadFormData($frm,data) {
 	$("#sex"+data['sex']).attr("checked","true");
 //	拜访性质单选框
 	$("#type"+data['type']).attr("checked","true");
+	
+//	拜访性质单选框
+	$("#zhishibaifang"+data['zhishibaifang']).attr("checked","true");
+	
 }
 	
 var HtmlUtil = (function(){
