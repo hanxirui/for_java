@@ -16,12 +16,15 @@
                 <result column="addr" property="addr" jdbcType="VARCHAR" />
                 <result column="daorurenyuan" property="daorurenyuan" jdbcType="VARCHAR" />
                 <result column="leibie" property="leibie" jdbcType="VARCHAR" />
+                <result column="empname" property="empname" jdbcType="VARCHAR" />
+                <result column="emporgcode" property="emporgcode" jdbcType="VARCHAR" />
+                <result column="emporgname" property="emporgname" jdbcType="VARCHAR" />
             </resultMap>
 
     <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
 		resultMap="queryResultMap">
 		SELECT 
-                  t.id
+                         t.id
                 , t.name
                 , t.idcardnum
                 , t.type
@@ -35,6 +38,9 @@
                 , t.addr
                 , t.daorurenyuan
                 , t.leibie
+                , t.empname
+                , t.emporgcode
+                , t.emporgname
         		FROM customer_basic t
 		<include refid="expressionBlock.where" />
 		<choose>
@@ -52,18 +58,61 @@
 	</select>
 
 
+    
     <select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
 		resultType="java.lang.Integer">
 		SELECT count(*) FROM customer_basic t
 		<include refid="expressionBlock.where" />
     </select>
 
+  <select id="findVisit" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT 
+                         t.id
+                , t.name
+                , t.idcardnum
+                , t.type
+                , t.birthday
+                , t.wedding_day
+                , t.kehujingli
+                , t.sex
+                , t.laiyuan
+                , t.note
+                , t.phone
+                , t.addr
+                , t.daorurenyuan
+                , t.leibie
+                , t.empname
+                , t.emporgcode
+                , t.emporgname
+        		FROM customer_basic t
+		<include refid="expressionBlock.where" />
+		<choose>
+			<when test="sortname == null">
+				ORDER BY t.id desc
+			</when>
+			<otherwise>
+				ORDER BY ${order}
+			</otherwise>
+		</choose>
+		<if test="!isQueryAll">
+			LIMIT
+			#{start,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+		</if>
+	</select>
+
+    <select id="findVisitCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT  count(idcardnum) from (select count(idcardnum) vcount,idcardnum,empcode kehujingli from visit_record group by idcardnum) t 
+		<include refid="expressionBlock.where" />
+    </select>
+    
     <insert id="save" parameterType="com.chinal.emp.entity.CustomerBasic"
     keyProperty="id" keyColumn="id" useGeneratedKeys="true"
     >
 	INSERT INTO customer_basic
          (
-                                          `name`
+                                                  `name`
                                         , `idcardnum`
                                         , `type`
                                         , `birthday`
@@ -76,6 +125,9 @@
                                         , `addr`
                                         , `daorurenyuan`
                                         , `leibie`
+                                        , `empname`
+                                        , `emporgcode`
+                                        , `emporgname`
                               )
 	VALUES (
                                                   #{name,jdbcType=VARCHAR}
@@ -91,48 +143,60 @@
                                         , #{addr,jdbcType=VARCHAR}
                                         , #{daorurenyuan,jdbcType=VARCHAR}
                                         , #{leibie,jdbcType=VARCHAR}
+                                        , #{empname,jdbcType=VARCHAR}
+                                        , #{emporgcode,jdbcType=VARCHAR}
+                                        , #{emporgname,jdbcType=VARCHAR}
                      
         )
 	</insert>
 
 
- <update id="fenpeiCustomer" parameterType="com.chinal.emp.entity.CustomerBasic">
-    UPDATE customer_basic
-    SET 
-    kehujingli=#{kehujingli,jdbcType=VARCHAR}
-    WHERE idcardnum in (${idcardnum})
- </update>
-
     <update id="update" parameterType="com.chinal.emp.entity.CustomerBasic">
     UPDATE customer_basic
     SET 
+                                                     
         <if test="name!=null and name!=''">
-        name=#{name,jdbcType=VARCHAR}
+         name=#{name,jdbcType=VARCHAR}
         </if>
                                       
-                <if test="idcardnum!=null and idcardnum!=''">
-        ,idcardnum=#{idcardnum,jdbcType=VARCHAR}
+        <if test="idcardnum!=null and idcardnum!=''">
+        ,
+         idcardnum=#{idcardnum,jdbcType=VARCHAR}
         </if>
-                <if test="type!=null and type!=''">
-        ,type=#{type,jdbcType=INTEGER}
+                                      
+        <if test="type!=null and type!=''">
+        ,
+         type=#{type,jdbcType=INTEGER}
         </if>
-                <if test="birthday!=null and birthday!=''">
-        ,birthday=#{birthday,jdbcType=VARCHAR}
+                                      
+        <if test="birthday!=null and birthday!=''">
+        ,
+         birthday=#{birthday,jdbcType=VARCHAR}
         </if>
-                <if test="weddingDay!=null and weddingDay!=''">
-        ,wedding_day=#{weddingDay,jdbcType=VARCHAR}
+                                      
+        <if test="weddingDay!=null and weddingDay!=''">
+        ,
+         wedding_day=#{weddingDay,jdbcType=VARCHAR}
         </if>
-                <if test="kehujingli!=null and kehujingli!=''">
-        ,kehujingli=#{kehujingli,jdbcType=VARCHAR}
+                                      
+        <if test="kehujingli!=null and kehujingli!=''">
+        ,
+         kehujingli=#{kehujingli,jdbcType=VARCHAR}
         </if>
-                <if test="sex!=null and sex!=''">
-        ,sex=#{sex,jdbcType=VARCHAR}
+                                      
+        <if test="sex!=null and sex!=''">
+        ,
+         sex=#{sex,jdbcType=VARCHAR}
         </if>
-                <if test="laiyuan!=null and laiyuan!=''">
-        ,laiyuan=#{laiyuan,jdbcType=VARCHAR}
+                                      
+        <if test="laiyuan!=null and laiyuan!=''">
+        ,
+         laiyuan=#{laiyuan,jdbcType=VARCHAR}
         </if>
-                <if test="note!=null and note!=''">
-        ,note=#{note,jdbcType=VARCHAR}
+                                      
+        <if test="note!=null and note!=''">
+        ,
+         note=#{note,jdbcType=VARCHAR}
         </if>
                                       
         <if test="phone!=null and phone!=''">
@@ -154,6 +218,21 @@
         ,
          leibie=#{leibie,jdbcType=VARCHAR}
         </if>
+                                      
+        <if test="empname!=null and empname!=''">
+        ,
+         empname=#{empname,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="emporgcode!=null and emporgcode!=''">
+        ,
+         emporgcode=#{emporgcode,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="emporgname!=null and emporgname!=''">
+        ,
+         emporgname=#{emporgname,jdbcType=VARCHAR}
+        </if>
                       WHERE id = #{id,jdbcType=INTEGER}
     </update>
 
@@ -173,6 +252,9 @@
                 , addr
                 , daorurenyuan
                 , leibie
+                , empname
+                , emporgcode
+                , emporgname
         		FROM customer_basic t
 		WHERE id = #{id,jdbcType=INTEGER}
 	</select>

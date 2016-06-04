@@ -34,9 +34,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.chinal.emp.entity.CustomerBasic;
 import com.chinal.emp.entity.CustomerBasicSch;
 import com.chinal.emp.entity.Employee;
+import com.chinal.emp.entity.Org;
 import com.chinal.emp.security.AuthUser;
 import com.chinal.emp.service.CustomerBasicService;
 import com.chinal.emp.service.EmployeeService;
+import com.chinal.emp.service.OrgService;
 import com.chinal.emp.util.FileUtils;
 
 import net.sf.jxls.reader.ReaderBuilder;
@@ -55,6 +57,9 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 
 	@Autowired
 	private EmployeeService employeeService;
+
+	@Autowired
+	private OrgService orgService;
 
 	@RequestMapping("/openCustomerBasic.do")
 	public String openCustomerBasic() {
@@ -106,6 +111,7 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 
 	@RequestMapping("/addCustomerBasic.do")
 	public ModelAndView addCustomerBasic(CustomerBasic entity) {
+		setOrg(entity);
 		return this.add(entity);
 	}
 
@@ -126,7 +132,7 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 		}
 
 		// 二级，三级查询自己及下属的
-		if (onlineUser.getLevel() == 2 || onlineUser.getLevel() == 3) {
+		else if (onlineUser.getLevel() == 2 || onlineUser.getLevel() == 3) {
 			String sql = "FIND_IN_SET(code, getChildList('" + onlineUser.getEmployee().getCode() + "'))";
 
 			empquery.addSqlExpression(new SqlExpression(sql));
@@ -136,23 +142,98 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 				for (Employee t_employee : emps) {
 					empCodes.append(",").append(t_employee.getCode());
 				}
-				String cussql = "FIND_IN_SET(t.kehujingli, getChildList('" + empCodes.toString().substring(1) + "'))";
+				// String cussql = "FIND_IN_SET(t.kehujingli, getChildList('" +
+				// empCodes.toString().substring(1) + "'))";
+				// modify 20160604 感觉上面逻辑不对
+				String cussql = "FIND_IN_SET(t.kehujingli, '" + empCodes.toString().substring(1) + "')";
 				cusquery.addSqlExpression(new SqlExpression(cussql));
 			}
 		}
 
 		// 一级查询自己负责的
-		if (onlineUser.getLevel() == 1) {
+		else if (onlineUser.getLevel() == 1) {
 			cusquery.add(new ValueExpression("t.kehujingli", onlineUser.getEmployee().getCode()));
 		}
+		if (searchEntity.getEmpname() != null && !"".equals(searchEntity.getEmpname())) {
+			cusquery.add(new ValueExpression("t.empname", searchEntity.getEmpname()));
+		}
+
+		if (searchEntity.getEmporgcode() != null && !"".equals(searchEntity.getEmporgcode())
+				&& !"0".equals(searchEntity.getEmporgcode())) {
+			cusquery.add(new ValueExpression("t.emporgcode", searchEntity.getEmporgcode()));
+		}
+
 		// cusquery.addJoinExpression(new LeftJoinExpression("customer_extras",
 		// "t2", "idcardnum", "idcardnum"));
-		if (searchEntity.getName() != null) {
+		if (searchEntity.getName() != null && !"".equals(searchEntity.getName())) {
 			cusquery.add(new LikeRightExpression("t.name", searchEntity.getName()));
 		}
 
+		if (searchEntity.getVcount() != null && Integer.parseInt(searchEntity.getVcount()) == 2) {
+			cusquery.addSqlExpression(new SqlExpression(
+					"t.idcardnum in (SELECT  t4.idcardnum from (select count(idcardnum) vcount,idcardnum from visit_record group by idcardnum) t4 where t4.vcount=2)"));
+		} else if (searchEntity.getVcount() != null && Integer.parseInt(searchEntity.getVcount()) == 3) {
+			cusquery.addSqlExpression(new SqlExpression(
+					"t.idcardnum in (SELECT  t4.idcardnum from (select count(idcardnum) vcount,idcardnum from visit_record group by idcardnum) t4 where t4.vcount>=3)"));
+		}
+
 		// 返回查询结果
-		return this.list(cusquery);
+		ModelAndView mv = this.list(cusquery);
+		return mv;
+	}
+
+	@RequestMapping("/getCustomerCountByVisit.do")
+	public ModelAndView getCustomerCountByVisit(int count) {
+		SecurityContextImpl securityContextImpl = (SecurityContextImpl) getRequest().getSession()
+				.getAttribute("SPRING_SECURITY_CONTEXT");
+
+		AuthUser onlineUser = (AuthUser) securityContextImpl.getAuthentication().getPrincipal();
+
+		ExpressionQuery empquery = new ExpressionQuery();
+		ExpressionQuery cusquery = new ExpressionQuery();
+		// 不同的级别，查询的用户数量不一样
+
+		// 四级，五级查询全部
+		if (onlineUser.getLevel() == 5 || onlineUser.getLevel() == 4) {
+
+		}
+
+		// 二级，三级查询自己及下属的
+		else if (onlineUser.getLevel() == 2 || onlineUser.getLevel() == 3) {
+			String sql = "FIND_IN_SET(code, getChildList('" + onlineUser.getEmployee().getCode() + "'))";
+
+			empquery.addSqlExpression(new SqlExpression(sql));
+			List<Employee> emps = employeeService.findTree(empquery);
+			if (emps.size() > 0) {
+				StringBuffer empCodes = new StringBuffer();
+				for (Employee t_employee : emps) {
+					empCodes.append(",").append(t_employee.getCode());
+				}
+				// String cussql = "FIND_IN_SET(t.kehujingli, getChildList('" +
+				// empCodes.toString().substring(1) + "'))";
+				// modify 20160604 感觉上面逻辑不对
+				String cussql = "FIND_IN_SET(t.kehujingli, '" + empCodes.toString().substring(1) + "')";
+				cusquery.addSqlExpression(new SqlExpression(cussql));
+			}
+		}
+
+		// 一级查询自己负责的
+		else if (onlineUser.getLevel() == 1) {
+			cusquery.add(new ValueExpression("t.kehujingli", onlineUser.getEmployee().getCode()));
+		}
+		if (count == 2) {
+			cusquery.add(new ValueExpression("t.vcount", count));
+		}
+
+		else if (count == 3) {
+			cusquery.add(new ValueExpression("t.vcount", count));
+		}
+
+		// 返回查询结果
+		ModelAndView mv = new ModelAndView();
+		mv.addObject(DEF_MODEL_NAME, this.getService().findVisitCount(cusquery));
+		mv.setViewName("render");
+		return mv;
 	}
 
 	@RequestMapping("/listCustomerForEmp.do")
@@ -170,7 +251,30 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 
 	@RequestMapping("/updateCustomerBasic.do")
 	public ModelAndView updateCustomerBasic(CustomerBasic entity) {
+		setOrg(entity);
 		return this.modify(entity);
+	}
+
+	private void setOrg(CustomerBasic entity) {
+		// 获得机构信息
+		if (entity.getKehujingli().equals(getOnlineUser().getCode())) {
+			entity.setEmporgcode(getOnlineUser().getEmployee().getOrgcode());
+			entity.setEmporgname(getOnlineUser().getEmployee().getOrgname());
+		} else {
+			ExpressionQuery query = new ExpressionQuery();
+			query.addValueExpression(new ValueExpression("code", entity.getKehujingli()));
+			List<Employee> emps = employeeService.findSimple(query);
+
+			if (emps.size() > 0) {
+				query = new ExpressionQuery();
+				query.addValueExpression(new ValueExpression("code", emps.get(0).getOrgcode()));
+				List<Org> orgs = orgService.find(query);
+				if (orgs.size() > 0) {
+					entity.setEmporgcode(orgs.get(0).getCode());
+					entity.setEmporgname(orgs.get(0).getName());
+				}
+			}
+		}
 	}
 
 	@RequestMapping("/fenpeiCustomer.do")
@@ -237,5 +341,12 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	private AuthUser getOnlineUser() {
+		SecurityContextImpl securityContextImpl = (SecurityContextImpl) getRequest().getSession()
+				.getAttribute("SPRING_SECURITY_CONTEXT");
+		AuthUser onlineUser = (AuthUser) securityContextImpl.getAuthentication().getPrincipal();
+		return onlineUser;
 	}
 }

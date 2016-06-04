@@ -24,14 +24,22 @@ public class CustomerBasic {
 	private String laiyuan;
 	// 爱好及特点
 	private String note;
-	// 
+	//
 	private String phone;
-	// 
+	//
 	private String addr;
 	// 导入人员
 	private String daorurenyuan;
 	// 类别
 	private String leibie;
+	// 客户经理
+	private String empname;
+	// 机构编号
+	private String emporgcode;
+	// 机构
+	private String emporgname;
+	// 拜访次数，界面和查询用，持久化不用
+	private String vcount;
 
 	public void setId(int id) {
 		this.id = id;
@@ -97,52 +105,84 @@ public class CustomerBasic {
 		return this.sex;
 	}
 
-	public void setLaiyuan(String laiyuan){
+	public void setLaiyuan(String laiyuan) {
 		this.laiyuan = laiyuan;
 	}
 
-	public String getLaiyuan(){
+	public String getLaiyuan() {
 		return this.laiyuan;
 	}
 
-	public void setNote(String note){
+	public void setNote(String note) {
 		this.note = note;
 	}
 
-	public String getNote(){
+	public String getNote() {
 		return this.note;
 	}
 
-	public void setPhone(String phone){
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-	public String getPhone(){
+	public String getPhone() {
 		return this.phone;
 	}
 
-	public void setAddr(String addr){
+	public void setAddr(String addr) {
 		this.addr = addr;
 	}
 
-	public String getAddr(){
+	public String getAddr() {
 		return this.addr;
 	}
 
-	public void setDaorurenyuan(String daorurenyuan){
+	public void setDaorurenyuan(String daorurenyuan) {
 		this.daorurenyuan = daorurenyuan;
 	}
 
-	public String getDaorurenyuan(){
+	public String getDaorurenyuan() {
 		return this.daorurenyuan;
 	}
 
-	public void setLeibie(String leibie){
+	public void setLeibie(String leibie) {
 		this.leibie = leibie;
 	}
 
-	public String getLeibie(){
+	public String getLeibie() {
 		return this.leibie;
+	}
+
+	public void setEmpname(String empname) {
+		this.empname = empname;
+	}
+
+	public String getEmpname() {
+		return this.empname;
+	}
+
+	public void setEmporgcode(String emporgcode) {
+		this.emporgcode = emporgcode;
+	}
+
+	public String getEmporgcode() {
+		return this.emporgcode;
+	}
+
+	public void setEmporgname(String emporgname) {
+		this.emporgname = emporgname;
+	}
+
+	public String getEmporgname() {
+		return this.emporgname;
+	}
+
+	public String getVcount() {
+		return vcount;
+	}
+
+	public void setVcount(String vcount) {
+		this.vcount = vcount;
 	}
 
 }

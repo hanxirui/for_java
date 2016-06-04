@@ -30,8 +30,8 @@
                      <!-- 类型  1-原始；2-自营新拓；3-渠道新拓:<input name="type" type="text" class="form-control">    -->   
                       <!-- 生日:<input name="birthday" type="text" class="form-control">  -->     
                      <!--  结婚纪念日:<input name="weddingDay" type="text" class="form-control">   -->    
-                     客户经理:<input name="kehujingli" type="text" class="form-control">   
-                     公司（下拉）:<input name="kehujingli" type="text" class="form-control">  
+                     客户经理:<input name="empname" type="text" class="form-control">   
+                     机构:<select name="emporgcode" id="emporgcode" type="text" class="form-control"> </select> 
                      <!--  性别:<input name="sex" type="text" class="form-control">      
                       初始来源:<input name="laiyuan" type="text" class="form-control">  -->     
                      <!--  爱好:<input name="note" type="text" class="form-control">     
@@ -39,6 +39,7 @@
                       投保银行:<input name="note" type="text" class="form-control">     
                       保单金额:<input name="note" type="text" class="form-control">     
                       爱好:<input name="note" type="text" class="form-control">   -->    
+                      <input id="vcount" name="vcount" type="hidden" class="form-control">   
                    	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
 				</form>
@@ -66,13 +67,13 @@
 			         	</a>
 			          </div>
 			          <div class="btn-group">
-			         	 <a id="apiBtn" class="btn btn-primary">
-			            	<i class="fa"></i>二访客户数量：3个
+			         	 <a id="vtBtn" class="btn btn-primary">
+			            	
 			            </a>
 			          </div>
 			          <div class="btn-group">
-			            <a id="apiBtn" class="btn btn-primary">
-			            	<i class="fa"></i> 三访及以上客户数量：3个
+			            <a id="vsBtn" class="btn btn-primary">
+			            	
 			            </a>
 			          </div>
 			          <!--  <div class="btn-group">
@@ -96,8 +97,8 @@
 							
 							<th w_index="type"  w_render="fromRender">初始来源</th>
 							<th w_index="leibie"  w_render="leibieRender">类别</th>
-							<th w_index="kehujingli">客户经理</th>
-							<th w_index="kehujingli">机构</th>
+							<th w_index="empname">客户经理</th>
+							<th w_index="emporgname">机构</th>
 							<!-- <th w_index="note">爱好及特点</th> -->
 							<th w_render="operate" width="10%;">操作</th>
 						</tr>
@@ -109,7 +110,7 @@
 		    
 		    <div id="crudWin">
 			    	<form id="crudFrm" class="form-horizontal">
-											   <div class="form-group">
+						<div class="form-group">
 	                      <label class="col-sm-2 control-label">姓名</label>
 	                      <div class="col-sm-3">
 	                        <input name="name" type="text" class="form-control" required="true">
@@ -158,7 +159,7 @@
 	                      <label class="col-sm-2 control-label">客户经理</label>
 	                      <div class="col-sm-3">
 	                        <input id="kehujingli" name="kehujingli" type="hidden" class="form-control" required="true">
-	                        <input id="jinglimingcheng" name="jinglimingcheng" type="text" class="form-control" required="true">
+	                        <input id="empname" name="empname" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   <div class="form-group">
@@ -177,7 +178,18 @@
 	                        <input name="note" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
-					   										</form>
+	                    <div class="form-group">
+	                      <label class="col-sm-2 control-label">类别</label>
+	                      <div class="col-sm-3">
+	                       <select id="leibie" name="leibie"  class="form-control" required="true">
+	                          <option value="1">新客户</option>
+	                          <option value="2">维护期</option>
+	                          <option value="3">投诉客户</option>
+	                          <option value="4">待出单客户</option>
+	                        </select>
+	                      </div>
+	                    </div>
+					</form>
 			    </div>
 			    
 		     <div id="importWin">
@@ -265,6 +277,8 @@ var $schFrm = $('#schFrm'); // 查询表单
 var $crudFrm = $('#crudFrm'); // 编辑表单
 
 var $schBtn = $('#schBtn'); // 查询按钮
+var $vtBtn = $('#vtBtn'); // 查询按钮
+var $vsBtn = $('#vsBtn'); // 查询按钮
 var $addBtn = $('#addBtn'); // 添加按钮
 
 var validator; // 验证器
@@ -285,6 +299,12 @@ $addBtn.click(function() {
 
 $schBtn.click(function() {
 	search();
+});
+$vtBtn.click(function() {
+	search('2');
+});
+$vsBtn.click(function() {
+	search('3');
 });
 
 gridObj = $.fn.bsgrid.init('searchTable', {
@@ -315,13 +335,14 @@ crudWin = dialog({
 		if($("#kehujingli").val()){
 			$.getJSON("${ctx}listEmployeeForCus.do", {"kehujingli":$("#kehujingli").val()}, function (result) {
 				var emp = result.data[0];
-				$("#jinglimingcheng").val((emp.name));
+				$("#empname").val((emp.name));
 			});
 		}
 	}
 });
 
-function search(){
+function search(vcount){
+	$("#vcount").val(vcount);
     var schData = getFormData($schFrm);
     gridObj.search(schData);
 }
@@ -415,15 +436,16 @@ var fromRender = function(record, rowIndex, colIndex, options){
 }
 
 var leibieRender = function(record, rowIndex, colIndex, options){
-	/* if(record.laiyuan==2){
-		return "自营新拓";
-	}else if(record.laiyuan==3){
-		return "渠道新拓";
+	 if(record.leibie==1){
+		return "新客户";
+	}else if(record.leibie==2){
+		return "维护期";
+	}else if(record.leibie==3){
+		return "投诉客户";
 	}else{
-		return "发放";
-	} */
-	
-	return "新客户";
+		return "待出单客户";
+	} 
+
 }
 
 var $importBtn= $('#importBtn'); // 导入按钮
@@ -477,8 +499,8 @@ $.getJSON("${ctx}listAllRole.do", null, function (result) {
 	roleList = result.data;
 });
 
-$("#jinglimingcheng").click(function() {
-	$("#winFrom").val("jinglimingcheng");
+$("#empname").click(function() {
+	$("#winFrom").val("empname");
 	cusWin.showModal();
 });
 
@@ -506,9 +528,9 @@ var cusWin = dialog({
 			return false;
 		}
 		
-		if($("#winFrom").val()=="jinglimingcheng"){
+		if($("#winFrom").val()=="empname"){
 			$('#kehujingli').val(cusGridObj.getCheckedValues('code'));
-			$('#jinglimingcheng').val(cusGridObj.getCheckedValues('name'));
+			$('#empname').val(cusGridObj.getCheckedValues('name'));
 		}else{
 			
 			var cardnums = gridObj.getCheckedValues('idcardnum');
@@ -581,6 +603,36 @@ var kpiWin = dialog({
 		alert("show");
 	}
 });
+
+
+
+var getOrgList = function (){
+	  
+	  
+	  $("<option></option>").val(0).text("请选择").appendTo($("#emporgcode"));
+	  var empList;
+	  $.getJSON("${ctx}listOrg.do", null, function (result) {
+	  	empList = result.data;
+	  	if(empList){
+			   $.each(empList, function (i, item) {
+					   $("<option></option>").val(item.code).text(item.name).appendTo($("#emporgcode"));
+			    });
+	       }
+	  });
+	  
+	  
+}
+getOrgList();
+
+$.getJSON("${ctx}getCustomerCountByVisit.do", {'count':2}, function (result) {
+  	console.log(result);
+  	$("#vtBtn").append("<i class='fa'></i>二访客户数量："+result+"位");
+});
+
+$.getJSON("${ctx}getCustomerCountByVisit.do", {'count':3}, function (result) {
+	$("#vsBtn").append("<i class='fa'></i>三访及以上客户数量："+result+"位");
+});
+  
 validator = $crudFrm.validate();
 </script>
 

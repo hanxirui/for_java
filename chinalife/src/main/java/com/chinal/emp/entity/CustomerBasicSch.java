@@ -5,20 +5,25 @@ import org.durcframework.core.support.BsgridSearch;
 
 public class CustomerBasicSch extends BsgridSearch {
 
-    private Integer id;
-    private String name;
-    private String idcardnum;
-    private Integer type;
-    private String birthday;
-    private String weddingDay;
-    private String kehujingli;
-    private String sex;
-    private String laiyuan;
-    private String note;
-    private String phone;
-    private String addr;
-    private String daorurenyuan;
-    private String leibie;
+	private Integer id;
+	private String name;
+	private String idcardnum;
+	private Integer type;
+	private String birthday;
+	private String weddingDay;
+	private String kehujingli;
+	private String sex;
+	private String laiyuan;
+	private String note;
+	private String phone;
+	private String addr;
+	private String daorurenyuan;
+	private String leibie;
+	private String empname;
+	private String emporgcode;
+	private String emporgname;
+	// 拜访次数，界面和查询用，持久化不用
+	private String vcount;
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -110,41 +115,75 @@ public class CustomerBasicSch extends BsgridSearch {
 		return this.note;
 	}
 
-    public void setPhone (String phone){
-        this.phone = phone;
-    }
-    
-    @ValueField(column = "phone")
-    public String getPhone(){
-        return this.phone;
-    }
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
-    public void setAddr (String addr){
-        this.addr = addr;
-    }
-    
-    @ValueField(column = "addr")
-    public String getAddr(){
-        return this.addr;
-    }
+	@ValueField(column = "phone")
+	public String getPhone() {
+		return this.phone;
+	}
 
-    public void setDaorurenyuan (String daorurenyuan){
-        this.daorurenyuan = daorurenyuan;
-    }
-    
-    @ValueField(column = "daorurenyuan")
-    public String getDaorurenyuan(){
-        return this.daorurenyuan;
-    }
+	public void setAddr(String addr) {
+		this.addr = addr;
+	}
 
-    public void setLeibie (String leibie){
-        this.leibie = leibie;
-    }
-    
-    @ValueField(column = "leibie")
-    public String getLeibie(){
-        return this.leibie;
-    }
+	@ValueField(column = "addr")
+	public String getAddr() {
+		return this.addr;
+	}
 
+	public void setDaorurenyuan(String daorurenyuan) {
+		this.daorurenyuan = daorurenyuan;
+	}
+
+	@ValueField(column = "daorurenyuan")
+	public String getDaorurenyuan() {
+		return this.daorurenyuan;
+	}
+
+	public void setLeibie(String leibie) {
+		this.leibie = leibie;
+	}
+
+	@ValueField(column = "leibie")
+	public String getLeibie() {
+		return this.leibie;
+	}
+
+	public void setEmpname(String empname) {
+		this.empname = empname;
+	}
+
+	@ValueField(column = "empname")
+	public String getEmpname() {
+		return this.empname;
+	}
+
+	public void setEmporgcode(String emporgcode) {
+		this.emporgcode = emporgcode;
+	}
+
+	@ValueField(column = "emporgcode")
+	public String getEmporgcode() {
+		return this.emporgcode;
+	}
+
+	public void setEmporgname(String emporgname) {
+		this.emporgname = emporgname;
+	}
+
+	@ValueField(column = "emporgname")
+	public String getEmporgname() {
+		return this.emporgname;
+	}
+
+	public String getVcount() {
+		return vcount;
+	}
+
+	public void setVcount(String vcount) {
+		this.vcount = vcount;
+	}
 
 }
