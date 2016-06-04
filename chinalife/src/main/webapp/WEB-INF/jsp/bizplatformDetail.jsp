@@ -40,6 +40,9 @@
 						录入
 					</a>
 				</div>
+				<div class="btn-group">
+					 <a href="${ctx}openBizplatform.do"><i class="fa fa-reply"></i>返回</a>
+				</div>
 			</div>
 			<!-- /.box-header -->
 
@@ -314,7 +317,7 @@
 			}
 			
 		   var uploadRender = function(record, rowIndex, colIndex, options) {
-			   var pathString="<ul>";
+			   var pathString="";
 			   
 			    if(colIndex==4){
 			    	 if(record.caiye){
@@ -322,7 +325,7 @@
 						    var paths=record.caiye.split(",");
 						    $.each(paths,function (i,path){
 						    	var t_path = "platform/"+record.id+"/caiye/"+path;
-						    	pathString += "<li> <a href='"+t_path+"'>"+path+"</a</li>";
+						    	pathString += " <a href='"+t_path+"'>"+path+"</a><br>";
 						    });
 						    }
 				}else if(colIndex==5){
@@ -331,7 +334,7 @@
 						    var paths=record.huashu.split(",");
 						    $.each(paths,function (i,path){
 						    	var t_path = "platform/"+record.id+"/huashu/"+path;
-						    	pathString += "<li> <a href='"+t_path+"'>"+path+"</a</li>";
+						    	pathString += " <a href='"+t_path+"'>"+path+"</a><br>";
 						    });
 						    }
 				}else if(colIndex==6){
@@ -340,7 +343,7 @@
 						    var paths=record.jishuziliao.split(",");
 						    $.each(paths,function (i,path){
 						    	var t_path = "platform/"+record.id+"/jishuziliao/"+path;
-						    	pathString += "<li> <a href='"+t_path+"'>"+path+"</a</li>";
+						    	pathString += " <a href='"+t_path+"'>"+path+"</a><br>";
 						    });
 						    }
 				}else if(colIndex==7){
@@ -349,13 +352,13 @@
 						    var paths=record.others.split(",");
 						    $.each(paths,function (i,path){
 						    	var t_path = "platform/"+record.id+"/others/"+path;
-						    	pathString += "<li> <a href='"+t_path+"'>"+path+"</a</li>";
+						    	pathString += " <a href='"+t_path+"'>"+path+"</a><br>";
 						    });
 						    }
 				}
 			    
-			    pathString += "</ul>";
-				return "<a id='importBtn' class='btn btn-primary btn-xs' onClick='showImp("+record.id+","+colIndex+")' style='color:#eee;'><i class='fa'></i> 上传 </a>"+pathString;
+			    /* pathString += "</ul>"; */
+				return "<a id='importBtn' class='btn btn-primary btn-xs' onClick='showImp("+record.id+","+colIndex+")' style='color:#eee;'><i class='fa'></i> 上传 </a><br>"+pathString;
 
 			}
 

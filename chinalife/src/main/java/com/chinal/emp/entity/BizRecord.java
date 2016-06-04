@@ -1,12 +1,10 @@
 package com.chinal.emp.entity;
 
-import java.util.Date;
-
 /**
   
 */
 public class BizRecord {
-	// 
+	//
 	private int id;
 	// 邀约客户数
 	private String yaoyueNum;
@@ -32,119 +30,119 @@ public class BizRecord {
 	private String riqi;
 	// 业务平台
 	private String bizplatTitle;
-	// 
-	private int bizpaltId;
+	//
+	private int bizplatId;
 
-	public void setId(int id){
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public int getId(){
+	public int getId() {
 		return this.id;
 	}
 
-	public void setYaoyueNum(String yaoyueNum){
+	public void setYaoyueNum(String yaoyueNum) {
 		this.yaoyueNum = yaoyueNum;
 	}
 
-	public String getYaoyueNum(){
+	public String getYaoyueNum() {
 		return this.yaoyueNum;
 	}
 
-	public void setDaohuiNum(String daohuiNum){
+	public void setDaohuiNum(String daohuiNum) {
 		this.daohuiNum = daohuiNum;
 	}
 
-	public String getDaohuiNum(){
+	public String getDaohuiNum() {
 		return this.daohuiNum;
 	}
 
-	public void setReceiveNum(String receiveNum){
+	public void setReceiveNum(String receiveNum) {
 		this.receiveNum = receiveNum;
 	}
 
-	public String getReceiveNum(){
+	public String getReceiveNum() {
 		return this.receiveNum;
 	}
 
-	public void setReceiveBaofei(String receiveBaofei){
+	public void setReceiveBaofei(String receiveBaofei) {
 		this.receiveBaofei = receiveBaofei;
 	}
 
-	public String getReceiveBaofei(){
+	public String getReceiveBaofei() {
 		return this.receiveBaofei;
 	}
 
-	public void setDaohuilv(String daohuilv){
+	public void setDaohuilv(String daohuilv) {
 		this.daohuilv = daohuilv;
 	}
 
-	public String getDaohuilv(){
+	public String getDaohuilv() {
 		return this.daohuilv;
 	}
 
-	public void setQiandanNum(String qiandanNum){
+	public void setQiandanNum(String qiandanNum) {
 		this.qiandanNum = qiandanNum;
 	}
 
-	public String getQiandanNum(){
+	public String getQiandanNum() {
 		return this.qiandanNum;
 	}
 
-	public void setQiandanlv(String qiandanlv){
+	public void setQiandanlv(String qiandanlv) {
 		this.qiandanlv = qiandanlv;
 	}
 
-	public String getQiandanlv(){
+	public String getQiandanlv() {
 		return this.qiandanlv;
 	}
 
-	public void setHuishoulv(String huishoulv){
+	public void setHuishoulv(String huishoulv) {
 		this.huishoulv = huishoulv;
 	}
 
-	public String getHuishoulv(){
+	public String getHuishoulv() {
 		return this.huishoulv;
 	}
 
-	public void setKehujingli(String kehujingli){
+	public void setKehujingli(String kehujingli) {
 		this.kehujingli = kehujingli;
 	}
 
-	public String getKehujingli(){
+	public String getKehujingli() {
 		return this.kehujingli;
 	}
 
-	public void setQiandanBaofei(String qiandanBaofei){
+	public void setQiandanBaofei(String qiandanBaofei) {
 		this.qiandanBaofei = qiandanBaofei;
 	}
 
-	public String getQiandanBaofei(){
+	public String getQiandanBaofei() {
 		return this.qiandanBaofei;
 	}
 
-	public void setRiqi(String riqi){
+	public void setRiqi(String riqi) {
 		this.riqi = riqi;
 	}
 
-	public String getRiqi(){
+	public String getRiqi() {
 		return this.riqi;
 	}
 
-	public void setBizplatTitle(String bizplatTitle){
+	public void setBizplatTitle(String bizplatTitle) {
 		this.bizplatTitle = bizplatTitle;
 	}
 
-	public String getBizplatTitle(){
+	public String getBizplatTitle() {
 		return this.bizplatTitle;
 	}
 
-	public void setBizpaltId(int bizpaltId){
-		this.bizpaltId = bizpaltId;
+	public void setBizplatId(int bizplatId) {
+		this.bizplatId = bizplatId;
 	}
 
-	public int getBizpaltId(){
-		return this.bizpaltId;
+	public int getBizplatId() {
+		return this.bizplatId;
 	}
 
 }

@@ -15,7 +15,7 @@
                 <result column="qiandan_baofei" property="qiandanBaofei" jdbcType="VARCHAR" />
                 <result column="riqi" property="riqi" jdbcType="VARCHAR" />
                 <result column="bizplat_title" property="bizplatTitle" jdbcType="VARCHAR" />
-                <result column="bizpalt_id" property="bizpaltId" jdbcType="INTEGER" />
+                <result column="bizplat_id" property="bizplatId" jdbcType="INTEGER" />
             </resultMap>
 
     <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
@@ -34,7 +34,7 @@
                 , t.qiandan_baofei
                 , t.riqi
                 , t.bizplat_title
-                , t.bizpalt_id
+                , t.bizplat_id
         		FROM biz_record t
 		<include refid="expressionBlock.where" />
 		<choose>
@@ -75,7 +75,7 @@
                                         , `qiandan_baofei`
                                         , `riqi`
                                         , `bizplat_title`
-                                        , `bizpalt_id`
+                                        , `bizplat_id`
                               )
 	VALUES (
                                                   #{yaoyueNum,jdbcType=VARCHAR}
@@ -90,7 +90,7 @@
                                         , #{qiandanBaofei,jdbcType=VARCHAR}
                                         , #{riqi,jdbcType=VARCHAR}
                                         , #{bizplatTitle,jdbcType=VARCHAR}
-                                        , #{bizpaltId,jdbcType=INTEGER}
+                                        , #{bizplatId,jdbcType=INTEGER}
                      
         )
 	</insert>
@@ -159,9 +159,9 @@
          bizplat_title=#{bizplatTitle,jdbcType=VARCHAR}
         </if>
                                       
-        <if test="bizpaltId!=null and bizpaltId!=''">
+        <if test="bizplatId!=null and bizplatId!=''">
         ,
-         bizpalt_id=#{bizpaltId,jdbcType=INTEGER}
+         bizplat_id=#{bizplatId,jdbcType=INTEGER}
         </if>
                       WHERE id = #{id,jdbcType=INTEGER}
     </update>
@@ -181,7 +181,7 @@
                 , qiandan_baofei
                 , riqi
                 , bizplat_title
-                , bizpalt_id
+                , bizplat_id
         		FROM biz_record t
 		WHERE id = #{id,jdbcType=INTEGER}
 	</select>

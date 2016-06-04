@@ -19,20 +19,20 @@
     			</div>
     		</div>
           <div class="box box-default">
-               <div class="box-body" align="center">
+              <%--  <div class="box-body" align="center">
 
 			  <h3>  <a href="${ctx}openBizPlatformDetail.do">  历史平台查询 </a> </h3>
 
 
+    			</div> --%>
+    			<div class="box-body" align="center">
+
+			  <h3>  <a href="${ctx}openBizPlatformDetail.do">平台信息 </a> </h3>
+
     			</div>
     			<div class="box-body" align="center">
 
-			  <h3>  <a href="${ctx}openBizPlatformDetail.do">本季平台查询 </a> </h3>
-
-    			</div>
-    			<div class="box-body" align="center">
-
-				 <h3>  <a href="${ctx}openBizCalendar.do">本季平台行事历及KPI</a>  </h3>
+				 <h3>  <a href="${ctx}openBizCalendar.do">平台行事历及KPI</a> </h3>
 
     			</div>
     			<div class="box-body" align="center">

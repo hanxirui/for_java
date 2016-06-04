@@ -150,7 +150,7 @@
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label"></label>
 	                      <div class="col-sm-7">
-	                        <input name="bizpaltId" type="text" class="form-control" required="true">
+	                        <input name="bizplatId" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
 					   										</form>

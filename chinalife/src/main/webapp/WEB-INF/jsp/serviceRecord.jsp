@@ -145,12 +145,6 @@ $schBtn.click(function() {
 	search();
 });
 
-$("#name").click(function() {
-	cusWin.showModal();
-	
-	
-});
-
 gridObj = $.fn.bsgrid.init('searchTable', {
 	url: listUrl
     ,pageSizeSelect: true
@@ -175,6 +169,11 @@ crudWin = dialog({
 		this.close();
 		return false;
 	}
+});
+
+
+$("#name").click(function() {
+	cusWin.showModal();
 });
 
 var cusGridObj = $.fn.bsgrid.init('cusTable', {

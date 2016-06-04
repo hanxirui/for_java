@@ -40,10 +40,12 @@ $(document).ready( function() {
                     console.log('Cal-1 clicked: ', target.date._i);
                    
                     $.getJSON(ctx+"getEventDay.do?day="+target.date._i, null, function (result) {
-                		console.log(result);
+                    	
+                		
                 		if(result.data.length>0){
                 			bizEdit(result.data[0]);
                 		}else{
+                			$("#riqi").val(target.date._i);
                 			bizAdd();
                 		}
                 	});

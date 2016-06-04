@@ -10,9 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.durcframework.core.expression.ExpressionQuery;
+import org.durcframework.core.expression.subexpression.ValueExpression;
 import org.durcframework.core.support.BsgridController;
 import org.durcframework.core.util.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSONObject;
 import com.chinal.emp.entity.Bizplatform;
 import com.chinal.emp.entity.BizplatformSch;
+import com.chinal.emp.security.AuthUser;
 import com.chinal.emp.service.BizplatformService;
 import com.chinal.emp.util.FileUtils;
 
@@ -83,6 +87,23 @@ public class BizplatformController extends BsgridController<Bizplatform, Bizplat
 	@RequestMapping("/delBizplatform.do")
 	public ModelAndView delBizplatform(Bizplatform entity) {
 		return this.remove(entity);
+	}
+
+	// 为平台行事历查询所有的业务平台，只能查询同一部门的和当前日期的
+	@RequestMapping("/listBizPlatformForCal.do")
+	public ModelAndView listBizPlatformForCal(String date, String empid) {
+
+		ExpressionQuery query = new ExpressionQuery();
+		query.addValueExpression(new ValueExpression("t.start", "<=", date));
+		query.addValueExpression(new ValueExpression("t.end", ">=", date));
+
+		if (empid == null || "".equals(empid) || "undefined".equals(empid)) {
+			SecurityContextImpl securityContextImpl = (SecurityContextImpl) getRequest().getSession()
+					.getAttribute("SPRING_SECURITY_CONTEXT");
+			AuthUser onlineUser = (AuthUser) securityContextImpl.getAuthentication().getPrincipal();
+			empid = onlineUser.getCode();
+		}
+		return this.list(query);
 	}
 
 	@RequestMapping("/uploadPlatform.do")
