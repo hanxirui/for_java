@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.collections.CollectionUtils;
 import org.durcframework.core.support.BsgridController;
 import org.durcframework.core.util.DateUtil;
+import org.jxls.reader.ReaderBuilder;
+import org.jxls.reader.ReaderConfig;
+import org.jxls.reader.XLSReadStatus;
+import org.jxls.reader.XLSReader;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,10 +32,6 @@ import com.chinal.emp.entity.Gongzidan;
 import com.chinal.emp.entity.GongzidanSch;
 import com.chinal.emp.service.GongzidanService;
 import com.chinal.emp.util.FileUtils;
-
-import net.sf.jxls.reader.ReaderBuilder;
-import net.sf.jxls.reader.XLSReadStatus;
-import net.sf.jxls.reader.XLSReader;
 
 @Controller
 public class GongzidanController extends BsgridController<Gongzidan, GongzidanService> {
@@ -105,8 +105,9 @@ public class GongzidanController extends BsgridController<Gongzidan, GongzidanSe
 		XLSReader mainReader;
 		try {
 			mainReader = ReaderBuilder.buildFromXML(inputXML);
-			InputStream inputXLS = new BufferedInputStream(file.getInputStream());// new
-																					// FileInputStream(file)
+
+			InputStream inputXLS = new BufferedInputStream(file.getInputStream());
+			ReaderConfig.getInstance().setUseDefaultValuesForPrimitiveTypes(true);
 			Gongzidan gongzidan = new Gongzidan();
 			List gongzidans = new ArrayList();
 			Map beans = new HashMap();

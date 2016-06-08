@@ -17,6 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.collections.CollectionUtils;
 import org.durcframework.core.support.BsgridController;
 import org.durcframework.core.util.DateUtil;
+import org.jxls.reader.ReaderBuilder;
+import org.jxls.reader.XLSReadStatus;
+import org.jxls.reader.XLSReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,10 +35,6 @@ import com.chinal.emp.entity.InsuranceRecordSch;
 import com.chinal.emp.service.CustomerBasicService;
 import com.chinal.emp.service.InsuranceRecordService;
 import com.chinal.emp.util.FileUtils;
-
-import net.sf.jxls.reader.ReaderBuilder;
-import net.sf.jxls.reader.XLSReadStatus;
-import net.sf.jxls.reader.XLSReader;
 
 @Controller
 public class InsuranceRecordController extends BsgridController<InsuranceRecord, InsuranceRecordService> {

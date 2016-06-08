@@ -78,7 +78,7 @@
 				<div class="box-header">
 					 <div class="btn-group">
 			         	<a id="addBtn" class="btn btn-primary">
-			            	<i class="fa fa-plus"></i> 录入 
+			            	<i class="fa"></i> 录入 
 			         	</a>
 			          </div>
 			           <div class="btn-group">
@@ -91,7 +91,7 @@
 				<div class="box-body" style="width:3000px;overflow-x:auto;">	 
 					<table id="searchTable">
 						<tr>           
-														<th w_index="xuhao">序号</th>
+														<!-- <th w_index="xuhao">序号</th> -->
 																			<th w_index="bumen">部门</th>
 																			<th w_index="xingming">姓名</th>
 																			<th w_index="xingbie">性别</th>
