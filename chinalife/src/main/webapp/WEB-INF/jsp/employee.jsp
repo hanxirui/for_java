@@ -374,6 +374,7 @@ this.getOrgList = function (){
 }
 
 $("#orgname").on("change",setOrgCode);
+$("#role").change(function(){getManagerList();});
 
 function setOrgCode(){
 	var orgname = $("#orgname").val();

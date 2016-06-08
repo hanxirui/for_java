@@ -169,7 +169,10 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 			cusquery.add(new LikeRightExpression("t.name", searchEntity.getName()));
 		}
 
-		if (searchEntity.getVcount() != null && Integer.parseInt(searchEntity.getVcount()) == 2) {
+		if (searchEntity.getVcount() != null && Integer.parseInt(searchEntity.getVcount()) == 1) {
+			cusquery.addSqlExpression(new SqlExpression(
+					"t.idcardnum in (SELECT  t4.idcardnum from (select count(idcardnum) vcount,idcardnum from visit_record group by idcardnum) t4 where t4.vcount>=1)"));
+		} else if (searchEntity.getVcount() != null && Integer.parseInt(searchEntity.getVcount()) == 2) {
 			cusquery.addSqlExpression(new SqlExpression(
 					"t.idcardnum in (SELECT  t4.idcardnum from (select count(idcardnum) vcount,idcardnum from visit_record group by idcardnum) t4 where t4.vcount=2)"));
 		} else if (searchEntity.getVcount() != null && Integer.parseInt(searchEntity.getVcount()) == 3) {

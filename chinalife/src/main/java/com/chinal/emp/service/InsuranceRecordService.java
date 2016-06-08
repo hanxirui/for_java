@@ -12,4 +12,8 @@ public class InsuranceRecordService extends CrudService<InsuranceRecord, Insuran
 	public Integer findInsuranceCount(ExpressionQuery query) {
 		return this.getDao().findInsuranceCount(query);
 	}
+
+	public void delInsurances(String[] ids) {
+		this.getDao().delInsuranceByids(ids);
+	}
 }

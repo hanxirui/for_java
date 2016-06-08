@@ -219,7 +219,6 @@
 				if (validateVal) {
 					Action.post(submitUrl, data, function(result) {
 						location.reload();
-						;
 						crudWin.close();
 					});
 				}

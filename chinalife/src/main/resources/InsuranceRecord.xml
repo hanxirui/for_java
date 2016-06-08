@@ -36,7 +36,7 @@
     <mapping row="1" col="29">insurance.jiaofeiqi</mapping> 
     <mapping row="1" col="30">insurance.baoxianqi</mapping> 
     <mapping row="1" col="31">insurance.jiaofeiyinhang</mapping> 
-    <mapping row="1" col="31">insurance.jiaofeizhanghao</mapping> 
+    <mapping row="1" col="32">insurance.jiaofeizhanghao</mapping> 
    
    </section> 
     <loopbreakcondition> 

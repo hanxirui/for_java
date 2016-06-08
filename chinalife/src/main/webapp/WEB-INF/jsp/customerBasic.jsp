@@ -277,8 +277,8 @@ var $schFrm = $('#schFrm'); // 查询表单
 var $crudFrm = $('#crudFrm'); // 编辑表单
 
 var $schBtn = $('#schBtn'); // 查询按钮
-var $vtBtn = $('#vtBtn'); // 查询按钮
-var $vsBtn = $('#vsBtn'); // 查询按钮
+var $vtBtn = $('#vtBtn'); // 二访查询按钮
+var $vsBtn = $('#vsBtn'); // 三访查询按钮
 var $addBtn = $('#addBtn'); // 添加按钮
 
 var validator; // 验证器
@@ -648,8 +648,6 @@ validator = $crudFrm.validate();
 
     </div><!-- ./wrapper -->
 
-
-          
     <!-- REQUIRED JS SCRIPTS -->
     <!-- Bootstrap 3.3.5 -->
     <script src="${AdminLTE}bootstrap/js/bootstrap.min.js"></script>

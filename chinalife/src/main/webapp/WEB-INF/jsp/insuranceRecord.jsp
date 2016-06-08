@@ -69,6 +69,11 @@
 			         	</a>
 			          </div>
 			           <div class="btn-group">
+			         	<a id="delBtn" class="btn btn-primary">
+                           <i class="fa"></i>  删除
+                        </a>
+			          </div>
+			           <div class="btn-group">
 			         	<a id="importBtn" class="btn btn-primary">
                            <i class="fa"></i>  导入
                         </a>
@@ -77,7 +82,8 @@
 			
 				<div class="box-body" style="width:2700px;overflow-x:auto;">	 
 					<table id="searchTable">
-						<tr>           
+						<tr>        
+						        <th w_check="true" w_index="id" width="3%;"   ></th>         
 								<th w_index="baoxiandanhao">保单号</th>
 								<th w_index="toubaodanhao">投保单号</th>
 								<th w_index="yewuyuandaima">业务员代码</th>
@@ -334,6 +340,7 @@ var $crudFrm = $('#crudFrm'); // 编辑表单
 
 var $schBtn = $('#schBtn'); // 查询按钮
 var $addBtn = $('#addBtn'); // 添加按钮
+var $delBtn = $('#delBtn'); // 删除按钮
 
 var validator; // 验证器
 
@@ -344,6 +351,27 @@ function reset() {
 
 
 // 初始化事件
+$delBtn.click(function() {
+	var $check_boxes = gridObj.getCheckedValues('id');
+    if($check_boxes.length<=0){ alert('至少选择一条记录！');return;   }  
+    
+    
+    if(confirm('您确定要删除吗？')){  
+        $.ajax({  
+            type:'post',  
+            traditional :true,  
+            url:'${ctx}delInsurances.do',  
+            data:{'ids':$check_boxes},  
+            success:function(data){  
+            	gridObj.refreshPage();
+				console.log(data);
+            }  
+        });  
+    }  
+    return false;  
+});
+
+
 $addBtn.click(function() {
 	submitUrl = addUrl;
 	reset();

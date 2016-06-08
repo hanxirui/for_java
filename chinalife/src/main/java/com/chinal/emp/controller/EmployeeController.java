@@ -13,7 +13,6 @@ import org.durcframework.core.expression.subexpression.ValueExpression;
 import org.durcframework.core.support.BsgridController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,7 +42,7 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 
 	@RequestMapping("checkPassword.do")
 	public void checkPassword(final HttpServletRequest request, final HttpServletResponse response) {
-		AuthUser userDetails = (AuthUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		AuthUser userDetails = getAuthUser();
 		String oldPwd = request.getParameter("oldpassword").trim();
 		String id = request.getParameter("id").trim();
 		String pwd = passwordEncoder.encodePassword(oldPwd, userDetails.getEmployee().getCode());
@@ -87,10 +86,7 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 
 		ExpressionQuery query = new ExpressionQuery();
 
-		SecurityContextImpl securityContextImpl = (SecurityContextImpl) getRequest().getSession()
-				.getAttribute("SPRING_SECURITY_CONTEXT");
-
-		AuthUser onlineUser = (AuthUser) securityContextImpl.getAuthentication().getPrincipal();
+		AuthUser onlineUser = getAuthUser();
 
 		// 四级，五级查询自己部门的
 		query.addValueExpression(new ValueExpression("t.orgcode", onlineUser.getEmployee().getOrgcode()));
@@ -122,10 +118,7 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 
 		ExpressionQuery query = new ExpressionQuery();
 
-		SecurityContextImpl securityContextImpl = (SecurityContextImpl) getRequest().getSession()
-				.getAttribute("SPRING_SECURITY_CONTEXT");
-
-		AuthUser onlineUser = (AuthUser) securityContextImpl.getAuthentication().getPrincipal();
+		AuthUser onlineUser = getAuthUser();
 
 		// 三级,四级，五级查询自己部门的
 		if (onlineUser.getLevel() >= 3) {
@@ -150,6 +143,14 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 
 	}
 
+	private AuthUser getAuthUser() {
+		SecurityContextImpl securityContextImpl = (SecurityContextImpl) getRequest().getSession()
+				.getAttribute("SPRING_SECURITY_CONTEXT");
+
+		AuthUser onlineUser = (AuthUser) securityContextImpl.getAuthentication().getPrincipal();
+		return onlineUser;
+	}
+
 	@RequestMapping("/getAllManagers.do")
 	public ModelAndView getAllManagers(String roleId, String orgcode) {
 
@@ -160,7 +161,13 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 		query.addJoinExpression(new InnerJoinExpression("role", "t2", "role", "id"));
 		query.addJoinExpression(new LeftJoinExpression("employee", "t3", "managercode", "code"));
 
-		query.addValueExpression(new ValueExpression("t.orgcode", orgcode));
+		if (null == orgcode || "".equals(orgcode)) {
+			AuthUser userDetails = getAuthUser();
+			query.addValueExpression(new ValueExpression("t.orgcode", userDetails.getEmployee().getOrgcode()));
+		} else {
+			query.addValueExpression(new ValueExpression("t.orgcode", orgcode));
+		}
+
 		query.addValueExpression(new ValueExpression("t2.level", ">=", role.getLevel()));
 
 		return this.listAll(query);
