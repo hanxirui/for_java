@@ -160,7 +160,7 @@ gridObj = $.fn.bsgrid.init('searchTable', {
     ,rowSelectedColor: false // 选择行不高亮
     ,isProcessLockScreen:false // 加载数据不显示遮罩层
 	,displayBlankRows: false
-    ,pageSize: 10
+    
 });
 
 crudWin = dialog({
@@ -187,7 +187,7 @@ var cusGridObj = $.fn.bsgrid.init('cusTable', {
     ,isProcessLockScreen:false // 加载数据不显示遮罩层
 	,displayBlankRows: false
 	,pagingLittleToolbar: true
-    ,pageSize: 10
+    
 });
 
 var cusWin = dialog({

@@ -194,7 +194,7 @@ gridObj = $.fn.bsgrid.init('searchTable', {
 	,displayBlankRows: false
 	,stripeRows:false// 隔行变色, 默认值false, 对应样式是: grid.css -> .bsgrid tr.even_index_row td
 	,pagingLittleToolbar:false// 是否显示精简的图标按钮分页工具条, 默认值false
-    ,pageSize: 10
+    //
 });
 
 crudWin = dialog({

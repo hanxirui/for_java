@@ -26,4 +26,5 @@ public interface CustomerBasicDao extends BaseDao<CustomerBasic> {
 	 * @return
 	 */
 	int findVisitCount(ExpressionQuery query);
+
 }

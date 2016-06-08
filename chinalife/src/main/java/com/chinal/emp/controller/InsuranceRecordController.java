@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.durcframework.core.expression.ExpressionQuery;
+import org.durcframework.core.expression.subexpression.ValueExpression;
 import org.durcframework.core.support.BsgridController;
 import org.durcframework.core.util.DateUtil;
 import org.jxls.reader.ReaderBuilder;
@@ -107,6 +109,7 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 			if (CollectionUtils.isNotEmpty(list)) {
 				for (InsuranceRecord insuranceRecord : list) {
 					this.add(insuranceRecord);
+					addCustomerBasic(insuranceRecord);
 				}
 			}
 			result.put("status", "success");
@@ -116,6 +119,69 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 		}
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().print(JSONObject.toJSON(result).toString());
+	}
+
+	private void addCustomerBasic(InsuranceRecord insuranceRecord) {
+		CustomerBasic toubaoren = new CustomerBasic();
+		CustomerBasic beibaoren = new CustomerBasic();
+		CustomerBasic shouyiren = new CustomerBasic();
+
+		String tb = insuranceRecord.getToubaorenshenfenzhenghao();
+		String bb = insuranceRecord.getBeibaoxianrenshenfenzhenghao();
+		String sy = insuranceRecord.getShouyirenshenfenzhenghao();
+		if (tb != null && !"".equals(tb)) {
+			toubaoren.setName(insuranceRecord.getToubaorenxingming());
+			toubaoren.setBirthday(insuranceRecord.getToubaorenshenfenzhenghao().substring(6, 14));
+			toubaoren.setSex(insuranceRecord.getToubaorenxingbie());
+			toubaoren.setAddr(insuranceRecord.getToubaorentongxundizhi());
+			toubaoren.setPhone(insuranceRecord.getToubaorenshoujihao());
+			toubaoren.setIdcardnum(insuranceRecord.getToubaorenshenfenzhenghao());
+			toubaoren.setEmporgcode(insuranceRecord.getJigouhao());
+			// toubaoren.setEmporgname(emporgname);
+			toubaoren.setEmpname(insuranceRecord.getYewuyuanxingming());
+			toubaoren.setKehujingli(insuranceRecord.getYewuyuandaima());
+			ExpressionQuery query = new ExpressionQuery();
+			query.addValueExpression(new ValueExpression("t.idcardnum", toubaoren.getIdcardnum()));
+			int count = customerBasicService.findTotalCount(query);
+			if (count == 0) {
+				customerBasicService.save(toubaoren);
+			}
+		} else if (bb != null && !"".equals(bb) && !bb.equals(tb)) {
+			beibaoren.setName(insuranceRecord.getToubaorenxingming());
+			beibaoren.setBirthday(insuranceRecord.getBeibaoxianrenshenfenzhenghao().substring(6, 14));
+			beibaoren.setSex(insuranceRecord.getBeibaoxianrenxingbie());
+			beibaoren.setAddr(insuranceRecord.getBeibaoxianrentongxundizhi());
+			beibaoren.setPhone(insuranceRecord.getBeibaoxianrenshoujihao());
+			beibaoren.setIdcardnum(insuranceRecord.getBeibaoxianrenshenfenzhenghao());
+			beibaoren.setEmporgcode(insuranceRecord.getJigouhao());
+			// beibaoren.setEmporgname(emporgname);
+			beibaoren.setEmpname(insuranceRecord.getYewuyuanxingming());
+			beibaoren.setKehujingli(insuranceRecord.getYewuyuandaima());
+			ExpressionQuery query = new ExpressionQuery();
+			query.addValueExpression(new ValueExpression("t.idcardnum", beibaoren.getIdcardnum()));
+			int count = customerBasicService.findTotalCount(query);
+			if (count == 0) {
+				customerBasicService.save(beibaoren);
+			}
+		} else if (sy != null && !"".equals(sy) && !sy.equals(tb) && !sy.equals(bb)) {
+			shouyiren.setName(insuranceRecord.getShouyirenxingming());
+			shouyiren.setBirthday(insuranceRecord.getShouyirenshenfenzhenghao().substring(6, 14));
+			shouyiren.setSex(insuranceRecord.getShouyirenxingbie());
+			// shouyiren.setAddr(insuranceRecord.getShouyirentongxundizhi());
+			// shouyiren.setPhone(insuranceRecord.getShouyirenshoujihao());
+			shouyiren.setIdcardnum(insuranceRecord.getShouyirenshenfenzhenghao());
+			shouyiren.setEmporgcode(insuranceRecord.getJigouhao());
+			// shouyiren.setEmporgname(emporgname);
+			shouyiren.setEmpname(insuranceRecord.getYewuyuanxingming());
+			shouyiren.setKehujingli(insuranceRecord.getYewuyuandaima());
+			ExpressionQuery query = new ExpressionQuery();
+			query.addValueExpression(new ValueExpression("t.idcardnum", shouyiren.getIdcardnum()));
+			int count = customerBasicService.findTotalCount(query);
+			if (count == 0) {
+				customerBasicService.save(shouyiren);
+			}
+		}
+
 	}
 
 	private List<InsuranceRecord> read(final MultipartFile file) {
@@ -198,4 +264,5 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 		this.getService().delInsurances(ids);
 		return this.successView();
 	}
+
 }

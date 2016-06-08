@@ -10,28 +10,28 @@ public class CustomerBasic {
 	private String name;
 	// 身份证号
 	private String idcardnum;
-	// 类型 1-原始；2-自营新拓；3-渠道新拓
-	private int type;
+	// 类型 1-发放；2-新拓
+	private int type = 1;
 	// 生日
 	private String birthday;
 	// 结婚纪念日
 	private String weddingDay;
-	// 客户经理
+	// 客户经理code
 	private String kehujingli;
 	// 性别
 	private String sex;
-	// 初始来源
-	private String laiyuan;
+	// 初始来源 1 发放 2 自营新拓 3 渠道新拓
+	private String laiyuan = "1";
 	// 爱好及特点
 	private String note;
-	//
+	// 电话
 	private String phone;
-	//
+	// 地址
 	private String addr;
 	// 导入人员
 	private String daorurenyuan;
 	// 类别
-	private String leibie;
+	private String leibie = "1";
 	// 客户经理
 	private String empname;
 	// 机构编号

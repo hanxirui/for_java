@@ -37,4 +37,5 @@ public class CustomerBasicService extends CrudService<CustomerBasic, CustomerBas
 	public int findVisitCount(ExpressionQuery query) {
 		return this.getDao().findVisitCount(query);
 	}
+
 }

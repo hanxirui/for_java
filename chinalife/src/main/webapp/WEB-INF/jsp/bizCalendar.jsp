@@ -173,8 +173,8 @@
 				,
 				isProcessLockScreen : false // 加载数据不显示遮罩层
 				,
-				displayBlankRows : false,
-				pageSize : 10
+				displayBlankRows : false//,
+				//pageSize : 10 和 pageSizeSelect : true, 冲突
 			});
 
 			crudWin = dialog({
@@ -267,8 +267,8 @@
 				isProcessLockScreen : false // 加载数据不显示遮罩层
 				,
 				displayBlankRows : false,
-				pagingLittleToolbar : true,
-				pageSize : 10
+				pagingLittleToolbar : true//,
+				//pageSize : 10
 			});
 			$("#bizplatTitle").click(
 					function() {

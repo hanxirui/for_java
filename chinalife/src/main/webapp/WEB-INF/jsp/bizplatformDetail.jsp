@@ -176,8 +176,8 @@
 				,
 				isProcessLockScreen : false // 加载数据不显示遮罩层
 				,
-				displayBlankRows : false,
-				pageSize : 10
+				displayBlankRows : false//,
+				//pageSize : 10
 			});
 
 			crudWin = dialog({

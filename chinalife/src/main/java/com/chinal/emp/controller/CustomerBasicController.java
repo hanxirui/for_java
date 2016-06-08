@@ -178,7 +178,8 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 			cusquery.addSqlExpression(new SqlExpression(
 					"t.idcardnum in (SELECT  t4.idcardnum from (select count(idcardnum) vcount,idcardnum from visit_record group by idcardnum) t4 where t4.vcount>=3)"));
 		}
-
+		cusquery.setPageIndex(searchEntity.getPageIndex());
+		cusquery.setPageSize(searchEntity.getPageSize());
 		// 返回查询结果
 		ModelAndView mv = this.list(cusquery);
 		return mv;

@@ -452,8 +452,8 @@
 				<form id="importFrm" method="post" enctype="multipart/form-data"
 					class="form-horizontal" action="${ctx}importCustomer.do">
 					<div class="form-group">
-						<label class="col-sm-2 control-label">选择文件</label>
-						<div class="col-sm-8">
+						<label class="col-sm-3 control-label">选择文件</label>
+						<div class="col-sm-7">
 							<input class="btn btn-default" id="filename" type="file"
 								name="filename" accept="xls" />
 						</div>
@@ -533,8 +533,8 @@
 					,
 					isProcessLockScreen : false // 加载数据不显示遮罩层
 					,
-					displayBlankRows : false,
-					pageSize : 10
+					displayBlankRows : false//,
+					//pageSize : 10
 				});
 
 				crudWin = dialog({
