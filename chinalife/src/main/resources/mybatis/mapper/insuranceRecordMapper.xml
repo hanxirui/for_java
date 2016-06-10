@@ -72,8 +72,10 @@
 		<result column="dianhua" property="dianhua" jdbcType="VARCHAR" />
 		<result column="chushengriqi" property="chushengriqi" jdbcType="VARCHAR" />
 		<result column="bumengjingli" property="bumengjingli" jdbcType="VARCHAR" />
-		<result column="yuanzhuanguanyuan" property="yuanzhuanguanyuan"
-			jdbcType="VARCHAR" />
+		<result column="yuanzhuanguanyuangonghao" property="yuanzhuanguanyuangonghao" jdbcType="VARCHAR" />
+                <result column="yuanzhuanguanyuan" property="yuanzhuanguanyuan"
+jdbcType="VARCHAR" />
+			<result column="xinfenpeirenyuangonghao" property="xinfenpeirenyuangonghao" jdbcType="VARCHAR" />
 		<result column="xinfenpeirenyuan" property="xinfenpeirenyuan"
 			jdbcType="VARCHAR" />
 		<result column="fafangshijian" property="fafangshijian"
@@ -128,7 +130,9 @@
 		, t.dianhua
 		, t.chushengriqi
 		, t.bumengjingli
+                , t.yuanzhuanguanyuangonghao
 		, t.yuanzhuanguanyuan
+                , t.xinfenpeirenyuangonghao
 		, t.xinfenpeirenyuan
 		, t.fafangshijian
 		, t.fafangbiaoshi
@@ -206,7 +210,9 @@
 		, `dianhua`
 		, `chushengriqi`
 		, `bumengjingli`
+                                        , `yuanzhuanguanyuangonghao`
 		, `yuanzhuanguanyuan`
+                                        , `xinfenpeirenyuangonghao`
 		, `xinfenpeirenyuan`
 		, `fafangshijian`
 		, `fafangbiaoshi`
@@ -254,7 +260,9 @@
 		, #{dianhua,jdbcType=VARCHAR}
 		, #{chushengriqi,jdbcType=VARCHAR}
 		, #{bumengjingli,jdbcType=VARCHAR}
+                                        , #{yuanzhuanguanyuangonghao,jdbcType=VARCHAR}
 		, #{yuanzhuanguanyuan,jdbcType=VARCHAR}
+                                        , #{xinfenpeirenyuangonghao,jdbcType=VARCHAR}
 		, #{xinfenpeirenyuan,jdbcType=VARCHAR}
 		, #{fafangshijian,jdbcType=VARCHAR}
 		, #{fafangbiaoshi,jdbcType=VARCHAR}
@@ -480,12 +488,22 @@
 			bumengjingli=#{bumengjingli,jdbcType=VARCHAR}
 		</if>
 
-		<if test="yuanzhuanguanyuan!=null and yuanzhuanguanyuan!=''">
+		<if test="yuanzhuanguanyuangonghao!=null and yuanzhuanguanyuangonghao!=''">
+        ,
+         yuanzhuanguanyuangonghao=#{yuanzhuanguanyuangonghao,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="yuanzhuanguanyuan!=null and yuanzhuanguanyuan!=''">
 			,
 			yuanzhuanguanyuan=#{yuanzhuanguanyuan,jdbcType=VARCHAR}
 		</if>
 
-		<if test="xinfenpeirenyuan!=null and xinfenpeirenyuan!=''">
+		<if test="xinfenpeirenyuangonghao!=null and xinfenpeirenyuangonghao!=''">
+        ,
+         xinfenpeirenyuangonghao=#{xinfenpeirenyuangonghao,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="xinfenpeirenyuan!=null and xinfenpeirenyuan!=''">
 			,
 			xinfenpeirenyuan=#{xinfenpeirenyuan,jdbcType=VARCHAR}
 		</if>
@@ -548,7 +566,9 @@
 		, dianhua
 		, chushengriqi
 		, bumengjingli
+                , yuanzhuanguanyuangonghao
 		, yuanzhuanguanyuan
+                , xinfenpeirenyuangonghao
 		, xinfenpeirenyuan
 		, fafangshijian
 		, fafangbiaoshi

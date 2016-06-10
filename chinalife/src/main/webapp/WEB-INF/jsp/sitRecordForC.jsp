@@ -122,7 +122,7 @@
 var that = this;
 
 var pk = 'id'; // java类中的主键字段
-var listUrl = ctx + 'listSitRecord.do?idcardnum='+${customer.idcardnum}; // 查询
+var listUrl = ctx + 'listSitRecord.do?idcardnum=${customer.idcardnum}'; // 查询
 var addUrl = ctx + 'addSitRecord.do'; // 添加
 var updateUrl = ctx + 'updateSitRecord.do'; // 修改
 var delUrl = ctx + 'delSitRecord.do'; // 删除

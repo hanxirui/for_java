@@ -108,7 +108,12 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 			list = read(file);
 			if (CollectionUtils.isNotEmpty(list)) {
 				for (InsuranceRecord insuranceRecord : list) {
-					this.add(insuranceRecord);
+					ExpressionQuery query = new ExpressionQuery();
+					query.addValueExpression(
+							new ValueExpression("t.baoxiandanhao", insuranceRecord.getBaoxiandanhao()));
+					if (this.getService().find(query).size() == 0) {
+						this.add(insuranceRecord);
+					}
 					addCustomerBasic(insuranceRecord);
 				}
 			}

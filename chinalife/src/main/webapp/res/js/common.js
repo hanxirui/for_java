@@ -263,7 +263,7 @@ function getFormData($schForm){
 function loadFormData($frm,data) {
 	for(var name in data) {
 		var val = data[name];
-		if(name!="sex"){
+		if(name!="sex"&&name!="type"&&name!="zhishibaifang"){
 		  $('[name='+name+']').val(val);
 		}
 	}

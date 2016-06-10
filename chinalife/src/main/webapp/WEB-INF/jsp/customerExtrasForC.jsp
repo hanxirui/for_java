@@ -125,7 +125,7 @@
 var that = this;
 
 var pk = 'id'; // java类中的主键字段
-var listUrl = ctx + 'listCustomerExtras.do?idcardnum='+${customer.idcardnum}; // 查询
+var listUrl = ctx + 'listCustomerExtras.do?idcardnum=${customer.idcardnum}'; // 查询
 var addUrl = ctx + 'addCustomerExtras.do'; // 添加
 var updateUrl = ctx + 'updateCustomerExtras.do'; // 修改
 var delUrl = ctx + 'delCustomerExtras.do'; // 删除

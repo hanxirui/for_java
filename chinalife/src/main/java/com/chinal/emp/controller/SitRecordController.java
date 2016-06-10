@@ -36,8 +36,12 @@ public class SitRecordController extends BsgridController<SitRecord, SitRecordSe
 	}
 
 	@RequestMapping("/openSitRecord.do")
-	public String openSitRecord() {
-		return "sitRecord";
+	public ModelAndView openSitRecord(String id) {
+		ModelAndView mv = new ModelAndView();
+		CustomerBasic cus = customerBasicService.get(Integer.parseInt(id));
+		mv.addObject("customer", cus);
+		mv.setViewName("sitRecord");
+		return mv;
 	}
 
 	@RequestMapping("/addSitRecord.do")
@@ -54,6 +58,9 @@ public class SitRecordController extends BsgridController<SitRecord, SitRecordSe
 		if (idcardnum != null && !"".equals(idcardnum)) {
 			ExpressionQuery query = new ExpressionQuery();
 			query.addValueExpression(new ValueExpression("t.idcardnum", idcardnum));
+
+			query.setPageSize(searchEntity.getPageSize());
+			query.setPageIndex(searchEntity.getPageIndex());
 			return this.list(query);
 		} else {
 			return this.list(searchEntity);

@@ -292,7 +292,7 @@
 var that = this;
 
 var pk = 'id'; // java类中的主键字段
-var listUrl = ctx + 'listInsuranceRecord.do?idcardnum='+${customer.idcardnum}; // 查询
+var listUrl = ctx + 'listInsuranceRecord.do?idcardnum=${customer.idcardnum}'; // 查询
 var addUrl = ctx + 'addInsuranceRecord.do'; // 添加
 var updateUrl = ctx + 'updateInsuranceRecord.do'; // 修改
 var delUrl = ctx + 'delInsuranceRecord.do'; // 删除

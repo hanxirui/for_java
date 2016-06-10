@@ -5,7 +5,7 @@
                 <result column="id" property="id" jdbcType="INTEGER" />
                 <result column="empcode" property="empcode" jdbcType="VARCHAR" />
                 <result column="empname" property="empname" jdbcType="VARCHAR" />
-                <result column="visitTime" property="visittime" jdbcType="VARCHAR" />
+                <result column="visittime" property="visittime" jdbcType="VARCHAR" />
                 <result column="idcardnum" property="idcardnum" jdbcType="VARCHAR" />
                 <result column="content" property="content" jdbcType="VARCHAR" />
                 <result column="name" property="name" jdbcType="VARCHAR" />
@@ -17,7 +17,7 @@
 		SELECT 
                   t.id
                 , t.empcode
-                , t.visitTime
+                , t.visittime
                 , t.idcardnum
                 , t.content
                 , t.name
@@ -59,7 +59,7 @@
 	INSERT INTO visit_record
          (
                                                   `empcode`
-                                        , `visitTime`
+                                        , `visittime`
                                         , `idcardnum`
                                         , `content`
                                         , `name`
@@ -85,9 +85,9 @@
          empcode=#{empcode,jdbcType=VARCHAR}
         </if>
                                       
-        <if test="visitTime!=null and visitTime!=''">
+        <if test="visittime!=null and visittime!=''">
         ,
-         visitTime=#{visittime,jdbcType=VARCHAR}
+         visittime=#{visittime,jdbcType=VARCHAR}
         </if>
                                       
         <if test="idcardnum!=null and idcardnum!=''">
@@ -115,7 +115,7 @@
 		SELECT 
                          id
                 , empcode
-                , visitTime
+                , visittime
                 , idcardnum
                 , content
                 , name

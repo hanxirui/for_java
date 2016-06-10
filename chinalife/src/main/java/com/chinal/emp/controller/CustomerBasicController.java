@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.durcframework.core.SearchEntity;
 import org.durcframework.core.expression.ExpressionQuery;
 import org.durcframework.core.expression.subexpression.LikeRightExpression;
 import org.durcframework.core.expression.subexpression.SqlExpression;
@@ -91,21 +92,42 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 	}
 
 	@RequestMapping("/openCustomerForService.do")
-	public String openCustomerForService() {
-		return "customerForService";
+	public ModelAndView openCustomerForService(String from) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("from", from);
+		mv.setViewName("customerForService");
+		return mv;
+	}
+
+	@RequestMapping("/openCustomerForVisit.do")
+	public String openCustomerForVisit() {
+		return "customerForVisit";
 	}
 
 	@RequestMapping("/listCustomerForService.do")
-	public ModelAndView listCustomerForService(CustomerBasicSch searchEntity) {
-		ExpressionQuery query = new ExpressionQuery();
-		SecurityContextImpl securityContextImpl = (SecurityContextImpl) getRequest().getSession()
-				.getAttribute("SPRING_SECURITY_CONTEXT");
-		AuthUser onlineUser = (AuthUser) securityContextImpl.getAuthentication().getPrincipal();
-		query.addSqlExpression(new SqlExpression(
-				"DAYOFYEAR(t.birthday)  >= DAYOFYEAR(NOW())  and DAYOFYEAR(t.birthday)  <= (DAYOFYEAR(NOW())+7)"));
-		query.addSqlExpression(new SqlExpression("t.kehujingli='" + onlineUser.getEmployee().getCode() + "'"));
+	public ModelAndView listCustomerForService(CustomerBasicSch searchEntity, String from) {
+		ExpressionQuery query = genCustomerQuery(searchEntity);
+
+		// 生日提醒客户
+		if (null != from && "b".equals(from)) {
+			query.addSqlExpression(new SqlExpression(
+					"DAYOFYEAR(t.birthday)  >= DAYOFYEAR(NOW())  and DAYOFYEAR(t.birthday)  <= (DAYOFYEAR(NOW())+7)"));
+		}
+
+		// 制式服务未录客户
+		if (false) {
+		}
+
 		// 返回查询结果
 		return this.list(query);
+	}
+
+	@RequestMapping("/listCustomerForVisit.do")
+	public ModelAndView listCustomerForVisit(CustomerBasicSch searchEntity) {
+		ExpressionQuery cusquery = genCustomerQuery(searchEntity);
+		// 返回查询结果
+		ModelAndView mv = this.list(cusquery);
+		return mv;
 	}
 
 	@RequestMapping("/addCustomerBasic.do")
@@ -116,6 +138,13 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 
 	@RequestMapping("/listCustomerBasic.do")
 	public ModelAndView listCustomerBasic(CustomerBasicSch searchEntity) {
+		ExpressionQuery cusquery = genCustomerQuery(searchEntity);
+		// 返回查询结果
+		ModelAndView mv = this.list(cusquery);
+		return mv;
+	}
+
+	private ExpressionQuery genCustomerQuery(CustomerBasicSch searchEntity) {
 		SecurityContextImpl securityContextImpl = (SecurityContextImpl) getRequest().getSession()
 				.getAttribute("SPRING_SECURITY_CONTEXT");
 
@@ -162,27 +191,27 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 			cusquery.add(new ValueExpression("t.emporgcode", searchEntity.getEmporgcode()));
 		}
 
-		// cusquery.addJoinExpression(new LeftJoinExpression("customer_extras",
-		// "t2", "idcardnum", "idcardnum"));
 		if (searchEntity.getName() != null && !"".equals(searchEntity.getName())) {
 			cusquery.add(new LikeRightExpression("t.name", searchEntity.getName()));
 		}
 
-		if (searchEntity.getVcount() != null && Integer.parseInt(searchEntity.getVcount()) == 1) {
+		if (searchEntity.getVcount() != null && !"".equals(searchEntity.getVcount())
+				&& Integer.parseInt(searchEntity.getVcount()) == 1) {
 			cusquery.addSqlExpression(new SqlExpression(
 					"t.idcardnum in (SELECT  t4.idcardnum from (select count(idcardnum) vcount,idcardnum from visit_record group by idcardnum) t4 where t4.vcount>=1)"));
-		} else if (searchEntity.getVcount() != null && Integer.parseInt(searchEntity.getVcount()) == 2) {
+		} else if (searchEntity.getVcount() != null && !"".equals(searchEntity.getVcount())
+				&& Integer.parseInt(searchEntity.getVcount()) == 2) {
 			cusquery.addSqlExpression(new SqlExpression(
 					"t.idcardnum in (SELECT  t4.idcardnum from (select count(idcardnum) vcount,idcardnum from visit_record group by idcardnum) t4 where t4.vcount=2)"));
-		} else if (searchEntity.getVcount() != null && Integer.parseInt(searchEntity.getVcount()) == 3) {
+		} else if (searchEntity.getVcount() != null && !"".equals(searchEntity.getVcount())
+				&& Integer.parseInt(searchEntity.getVcount()) == 3) {
 			cusquery.addSqlExpression(new SqlExpression(
 					"t.idcardnum in (SELECT  t4.idcardnum from (select count(idcardnum) vcount,idcardnum from visit_record group by idcardnum) t4 where t4.vcount>=3)"));
 		}
-		cusquery.setPageIndex(searchEntity.getPageIndex());
-		cusquery.setPageSize(searchEntity.getPageSize());
-		// 返回查询结果
-		ModelAndView mv = this.list(cusquery);
-		return mv;
+
+		cusquery.setPageSize(searchEntity.getPageSize()).setPageIndex(searchEntity.getPageIndex());
+		cusquery.addSort(searchEntity.getSortname(), searchEntity.getSortorder());
+		return cusquery;
 	}
 
 	@RequestMapping("/getCustomerCountByVisit.do")
@@ -240,14 +269,15 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 	}
 
 	@RequestMapping("/listCustomerForEmp.do")
-	public ModelAndView listCustomerForEmp() {
+	public ModelAndView listCustomerForEmp(SearchEntity searchEntity) {
 
 		AuthUser authUser = (AuthUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		ExpressionQuery query = new ExpressionQuery();
 
 		query.add(new ValueExpression("t.kehujingli", authUser.getEmployee().getCode()));
-
+		query.setPageIndex(searchEntity.getPageIndex());
+		query.setPageSize(searchEntity.getPageSize());
 		// 返回查询结果
 		return this.list(query);
 	}

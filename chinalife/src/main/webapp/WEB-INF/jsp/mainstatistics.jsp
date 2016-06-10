@@ -37,8 +37,8 @@
 				</div><!-- /.box-header -->
 			
 				<div class="box-body">	 
-					近期有<a href="openCustomerForService.do">${birthCount}</a>个客户生日服务未录<br>
-					<!-- xxx客户制式服务未录<br> -->
+					近期有<a href="openCustomerForService.do?from=b">${birthCount}</a>位客户生日服务未录<br>
+					近期有<a href="openCustomerForService.do?from=b">${unService}</a>位客户制式服务未录<br>
 				</div><!-- /.box-body -->
 			</div>
 		    

@@ -36,8 +36,12 @@ public class ServiceRecordController extends BsgridController<ServiceRecord, Ser
 	}
 
 	@RequestMapping("/openServiceRecord.do")
-	public String openServiceRecord() {
-		return "serviceRecord";
+	public ModelAndView openServiceRecord(String id) {
+		ModelAndView mv = new ModelAndView();
+		CustomerBasic cus = customerBasicService.get(Integer.parseInt(id));
+		mv.addObject("customer", cus);
+		mv.setViewName("serviceRecord");
+		return mv;
 	}
 
 	@RequestMapping("/addServiceRecord.do")
@@ -54,6 +58,9 @@ public class ServiceRecordController extends BsgridController<ServiceRecord, Ser
 		if (idcardnum != null && !"".equals(idcardnum)) {
 			ExpressionQuery query = new ExpressionQuery();
 			query.addValueExpression(new ValueExpression("t.idcardnum", idcardnum));
+
+			query.setPageSize(searchEntity.getPageSize());
+			query.setPageIndex(searchEntity.getPageIndex());
 			return this.list(query);
 		} else {
 			return this.list(searchEntity);
