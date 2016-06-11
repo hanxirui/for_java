@@ -102,14 +102,14 @@ public class MainStatisticsController extends BaseController {
 				for (Employee t_employee : emps) {
 					empCodes.append(",").append(t_employee.getCode());
 				}
-				String cussql = "FIND_IN_SET(t.kehujingli, '" + empCodes.toString().substring(1) + "')";
+				String cussql = "FIND_IN_SET(t.empcode, '" + empCodes.toString().substring(1) + "')";
 				cusquery.addSqlExpression(new SqlExpression(cussql));
 			}
 		}
 
 		// 一级查询自己负责的
 		if (onlineUser.getLevel() == 1) {
-			cusquery.add(new ValueExpression("t.kehujingli", onlineUser.getEmployee().getCode()));
+			cusquery.add(new ValueExpression("t.empcode", onlineUser.getEmployee().getCode()));
 		}
 		return cusquery;
 	}

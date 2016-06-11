@@ -31,11 +31,17 @@ import org.springframework.web.servlet.ModelAndView;
 import org.xml.sax.SAXException;
 
 import com.alibaba.fastjson.JSONObject;
+import com.chinal.emp.entity.BankRecord;
 import com.chinal.emp.entity.CustomerBasic;
+import com.chinal.emp.entity.Employee;
 import com.chinal.emp.entity.InsuranceRecord;
 import com.chinal.emp.entity.InsuranceRecordSch;
+import com.chinal.emp.entity.Org;
+import com.chinal.emp.service.BankRecordService;
 import com.chinal.emp.service.CustomerBasicService;
+import com.chinal.emp.service.EmployeeService;
 import com.chinal.emp.service.InsuranceRecordService;
+import com.chinal.emp.service.OrgService;
 import com.chinal.emp.util.FileUtils;
 
 @Controller
@@ -48,6 +54,15 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 
 	@Autowired
 	private CustomerBasicService customerBasicService;
+
+	@Autowired
+	private OrgService orgService;
+
+	@Autowired
+	private EmployeeService empService;
+
+	@Autowired
+	private BankRecordService bankService;
 
 	@RequestMapping("/openInsuranceForC.do")
 	public ModelAndView openInsuranceForC(String id) {
@@ -108,12 +123,7 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 			list = read(file);
 			if (CollectionUtils.isNotEmpty(list)) {
 				for (InsuranceRecord insuranceRecord : list) {
-					ExpressionQuery query = new ExpressionQuery();
-					query.addValueExpression(
-							new ValueExpression("t.baoxiandanhao", insuranceRecord.getBaoxiandanhao()));
-					if (this.getService().find(query).size() == 0) {
-						this.add(insuranceRecord);
-					}
+
 					addCustomerBasic(insuranceRecord);
 				}
 			}
@@ -127,7 +137,7 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 	}
 
 	private void addCustomerBasic(InsuranceRecord insuranceRecord) {
-		CustomerBasic toubaoren = new CustomerBasic();
+
 		CustomerBasic beibaoren = new CustomerBasic();
 		CustomerBasic shouyiren = new CustomerBasic();
 
@@ -135,21 +145,80 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 		String bb = insuranceRecord.getBeibaoxianrenshenfenzhenghao();
 		String sy = insuranceRecord.getShouyirenshenfenzhenghao();
 		if (tb != null && !"".equals(tb)) {
-			toubaoren.setName(insuranceRecord.getToubaorenxingming());
-			toubaoren.setBirthday(insuranceRecord.getToubaorenshenfenzhenghao().substring(6, 14));
-			toubaoren.setSex(insuranceRecord.getToubaorenxingbie());
-			toubaoren.setAddr(insuranceRecord.getToubaorentongxundizhi());
-			toubaoren.setPhone(insuranceRecord.getToubaorenshoujihao());
-			toubaoren.setIdcardnum(insuranceRecord.getToubaorenshenfenzhenghao());
-			toubaoren.setEmporgcode(insuranceRecord.getJigouhao());
-			// toubaoren.setEmporgname(emporgname);
-			toubaoren.setEmpname(insuranceRecord.getYewuyuanxingming());
-			toubaoren.setKehujingli(insuranceRecord.getYewuyuandaima());
+			CustomerBasic toubaoren = new CustomerBasic();
+			genToubanren(insuranceRecord, toubaoren);
 			ExpressionQuery query = new ExpressionQuery();
-			query.addValueExpression(new ValueExpression("t.idcardnum", toubaoren.getIdcardnum()));
-			int count = customerBasicService.findTotalCount(query);
-			if (count == 0) {
+			query.addValueExpression(new ValueExpression("t.idcardnum", insuranceRecord.getToubaorenshenfenzhenghao()));
+			List<CustomerBasic> cus = customerBasicService.find(query);
+			// 客户不存在
+			if (cus == null || cus.size() == 0) {
+				// 新分配人员不存在
+				if (insuranceRecord.getXinfenpeirenyuangonghao() == null
+						|| "".equals(insuranceRecord.getXinfenpeirenyuangonghao())) {
+					ExpressionQuery empQuery = new ExpressionQuery();
+					empQuery.addValueExpression(new ValueExpression("t.code", insuranceRecord.getYewuyuandaima()));
+					List<Employee> emp = empService.find(empQuery);
+					// 业务员不为公司员工
+					if (emp == null || emp.size() == 0) {
+						// 根据银行网点和员工对应关系，获得员工信息，，将用专管员信息填充原专管员；新分配人员为空，客户中的客户经理保持为空
+						ExpressionQuery bankQuery = new ExpressionQuery();
+						bankQuery.addValueExpression(new ValueExpression("t.code", insuranceRecord.getYewuyuandaima()));
+						List<BankRecord> banks = bankService.find(bankQuery);
+						if (banks != null && banks.size() > 0) {
+							BankRecord bank = banks.get(0);
+							if (bank.getMzhuanguanyuancode() != null && !"".equals(bank.getMzhuanguanyuancode())) {
+								insuranceRecord.setYuanzhuanguanyuan(bank.getMzhuanguanyuan());
+								insuranceRecord.setYuanzhuanguanyuangonghao(bank.getMzhuanguanyuancode());
+							}
+						}
+
+					} else if (emp.size() > 0) {
+						// 业务员为公司员工
+						Employee employee = emp.get(0);
+						insuranceRecord.setYuanzhuanguanyuan(employee.getName());
+						insuranceRecord.setYuanzhuanguanyuangonghao(employee.getCode());
+						insuranceRecord.setXinfenpeirenyuan(employee.getName());
+						insuranceRecord.setXinfenpeirenyuangonghao(employee.getCode());
+						toubaoren.setEmpname(employee.getName());
+						toubaoren.setKehujingli(employee.getCode());
+					}
+
+				} else {
+					// 新分配人员存在,将客户的客户经理信息置为新分配人员。
+					toubaoren.setEmpname(insuranceRecord.getXinfenpeirenyuan());
+					toubaoren.setKehujingli(insuranceRecord.getXinfenpeirenyuangonghao());
+
+				}
 				customerBasicService.save(toubaoren);
+			} else if (cus.size() > 0) {
+				// 客户存在
+				CustomerBasic customer = cus.get(0);
+				// 新分配人员不存在
+				if (insuranceRecord.getXinfenpeirenyuangonghao() == null
+						|| "".equals(insuranceRecord.getXinfenpeirenyuangonghao())) {
+					insuranceRecord.setXinfenpeirenyuan(customer.getEmpname());
+					insuranceRecord.setXinfenpeirenyuangonghao(customer.getKehujingli());
+				} else {
+					// 新分配人员存在
+					// 如果客户经理和新分配人员相同
+					if (customer.getKehujingli().equals(insuranceRecord.getXinfenpeirenyuangonghao())) {
+						// do nothing
+					} else {
+						// 客户经理和新分配人员不相同
+						customer.setBeizhu("保单中新分配人员和该客户的客户经理信息不一致，请关注。");
+						insuranceRecord.setBeizhu("客户的客户经理信息和该保单中新分配人员信息不一致，请关注。");
+						customerBasicService.update(customer);
+					}
+				}
+
+			}
+
+			ExpressionQuery insuranceQuery = new ExpressionQuery();
+			insuranceQuery
+					.addValueExpression(new ValueExpression("t.baoxiandanhao", insuranceRecord.getBaoxiandanhao()));
+			// 保单重复的处理逻辑
+			if (this.getService().find(insuranceQuery).size() == 0) {
+				this.add(insuranceRecord);
 			}
 		} else if (bb != null && !"".equals(bb) && !bb.equals(tb)) {
 			beibaoren.setName(insuranceRecord.getToubaorenxingming());
@@ -187,6 +256,33 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 			}
 		}
 
+	}
+
+	private void genToubanren(InsuranceRecord insuranceRecord, CustomerBasic toubaoren) {
+		toubaoren.setName(insuranceRecord.getToubaorenxingming());
+		toubaoren.setBirthday(insuranceRecord.getToubaorenshenfenzhenghao().substring(6, 14));
+		toubaoren.setSex(insuranceRecord.getToubaorenxingbie());
+		toubaoren.setAddr(insuranceRecord.getToubaorentongxundizhi());
+		toubaoren.setPhone(insuranceRecord.getToubaorenshoujihao());
+		toubaoren.setIdcardnum(insuranceRecord.getToubaorenshenfenzhenghao());
+		toubaoren.setEmporgcode(insuranceRecord.getJigouhao());
+		String jigouName = getJigouName(insuranceRecord.getJigouhao());
+		if (null != jigouName) {
+			toubaoren.setEmporgname(jigouName);
+		}
+		toubaoren.setEmpname(insuranceRecord.getXinfenpeirenyuan());
+		toubaoren.setKehujingli(insuranceRecord.getXinfenpeirenyuangonghao());
+	}
+
+	private String getJigouName(String jigouhao) {
+		ExpressionQuery query = new ExpressionQuery();
+		query.addValueExpression(new ValueExpression("t.code", jigouhao));
+		List<Org> orgs = orgService.find(query);
+		if (orgs != null && orgs.size() > 0) {
+			return orgs.get(0).getName();
+		} else {
+			return null;
+		}
 	}
 
 	private List<InsuranceRecord> read(final MultipartFile file) {

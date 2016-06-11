@@ -167,7 +167,7 @@
 
 					<label class="col-sm-2 control-label">客户经理</label>
 					<div class="col-sm-3">
-						<input id="kehujingli" name="kehujingli" type="hidden"
+						<input id="empcode" name="empcode" type="hidden"
 							class="form-control" required="true"> <input id="empname"
 							name="empname" type="text" class="form-control" required="true">
 					</div>
@@ -303,10 +303,17 @@
 				search();
 			});
 			$vtBtn.click(function() {
+				/* 二访客户 */
 				search('2');
 			});
 			$vsBtn.click(function() {
+				/* 三访客户 */
 				search('3');
+			});
+			
+			$("#unfenpeiBtn").click(function() {
+				/* 未分配客户 */
+				search('NAN');
 			});
 
 			gridObj = $.fn.bsgrid.init('searchTable', {
@@ -336,9 +343,9 @@
 					return false;
 				},
 				onshow : function() {
-					if ($("#kehujingli").val()) {
+					if ($("#empcode").val()) {
 						$.getJSON("${ctx}listEmployeeForCus.do", {
-							"kehujingli" : $("#kehujingli").val()
+							"empcode" : $("#empcode").val()
 						}, function(result) {
 							var emp = result.data[0];
 							$("#empname").val((emp.name));
@@ -537,7 +544,7 @@
 					}
 
 					if ($("#winFrom").val() == "empname") {
-						$('#kehujingli').val(
+						$('#empcode').val(
 								cusGridObj.getCheckedValues('code'));
 						$('#empname').val(cusGridObj.getCheckedValues('name'));
 					} else {

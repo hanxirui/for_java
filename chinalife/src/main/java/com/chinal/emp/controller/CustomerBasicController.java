@@ -170,17 +170,17 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 				for (Employee t_employee : emps) {
 					empCodes.append(",").append(t_employee.getCode());
 				}
-				// String cussql = "FIND_IN_SET(t.kehujingli, getChildList('" +
+				// String cussql = "FIND_IN_SET(t.empcode, getChildList('" +
 				// empCodes.toString().substring(1) + "'))";
 				// modify 20160604 感觉上面逻辑不对
-				String cussql = "FIND_IN_SET(t.kehujingli, '" + empCodes.toString().substring(1) + "')";
+				String cussql = "FIND_IN_SET(t.empcode, '" + empCodes.toString().substring(1) + "')";
 				cusquery.addSqlExpression(new SqlExpression(cussql));
 			}
 		}
 
 		// 一级查询自己负责的
 		else if (onlineUser.getLevel() == 1) {
-			cusquery.add(new ValueExpression("t.kehujingli", onlineUser.getEmployee().getCode()));
+			cusquery.add(new ValueExpression("t.empcode", onlineUser.getEmployee().getCode()));
 		}
 		if (searchEntity.getEmpname() != null && !"".equals(searchEntity.getEmpname())) {
 			cusquery.add(new ValueExpression("t.empname", searchEntity.getEmpname()));
@@ -207,6 +207,8 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 				&& Integer.parseInt(searchEntity.getVcount()) == 3) {
 			cusquery.addSqlExpression(new SqlExpression(
 					"t.idcardnum in (SELECT  t4.idcardnum from (select count(idcardnum) vcount,idcardnum from visit_record group by idcardnum) t4 where t4.vcount>=3)"));
+		} else if (searchEntity.getVcount() != null && "NAN".equals(searchEntity.getVcount())) {
+			cusquery.addSqlExpression(new SqlExpression("t.empcode is null)"));
 		}
 
 		cusquery.setPageSize(searchEntity.getPageSize()).setPageIndex(searchEntity.getPageIndex());
@@ -241,10 +243,10 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 				for (Employee t_employee : emps) {
 					empCodes.append(",").append(t_employee.getCode());
 				}
-				// String cussql = "FIND_IN_SET(t.kehujingli, getChildList('" +
+				// String cussql = "FIND_IN_SET(t.empcode, getChildList('" +
 				// empCodes.toString().substring(1) + "'))";
 				// modify 20160604 感觉上面逻辑不对
-				String cussql = "FIND_IN_SET(t.kehujingli, '" + empCodes.toString().substring(1) + "')";
+				String cussql = "FIND_IN_SET(t.empcode, '" + empCodes.toString().substring(1) + "')";
 				cusquery.addSqlExpression(new SqlExpression(cussql));
 			}
 		}
@@ -275,7 +277,7 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 
 		ExpressionQuery query = new ExpressionQuery();
 
-		query.add(new ValueExpression("t.kehujingli", authUser.getEmployee().getCode()));
+		query.add(new ValueExpression("t.empcode", authUser.getEmployee().getCode()));
 		query.setPageIndex(searchEntity.getPageIndex());
 		query.setPageSize(searchEntity.getPageSize());
 		// 返回查询结果

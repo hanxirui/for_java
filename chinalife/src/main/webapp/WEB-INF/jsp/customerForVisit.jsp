@@ -118,7 +118,7 @@
 	                    
 	                      <label class="col-sm-2 control-label">客户经理</label>
 	                      <div class="col-sm-3">
-	                        <input id="kehujingli" name="kehujingli" type="hidden" class="form-control" required="true">
+	                        <input id="empcode" name="empcode" type="hidden" class="form-control" required="true">
 	                        <input id="empname" name="empname" type="text" class="form-control" required="true">
 	                      </div>
 	                    </div>
@@ -292,8 +292,8 @@ crudWin = dialog({
 		return false;
 	},
 	onshow:function(){
-		if($("#kehujingli").val()){
-			$.getJSON("${ctx}listEmployeeForCus.do", {"kehujingli":$("#kehujingli").val()}, function (result) {
+		if($("#empcode").val()){
+			$.getJSON("${ctx}listEmployeeForCus.do", {"empcode":$("#empcode").val()}, function (result) {
 				var emp = result.data[0];
 				$("#empname").val((emp.name));
 			});
@@ -480,7 +480,7 @@ var cusWin = dialog({
 		}
 		
 		if($("#winFrom").val()=="empname"){
-			$('#kehujingli').val(cusGridObj.getCheckedValues('code'));
+			$('#empcode').val(cusGridObj.getCheckedValues('code'));
 			$('#empname').val(cusGridObj.getCheckedValues('name'));
 		}else{
 			

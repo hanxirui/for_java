@@ -8,7 +8,7 @@
                 <result column="type" property="type" jdbcType="INTEGER" />
                 <result column="birthday" property="birthday" jdbcType="VARCHAR" />
                 <result column="wedding_day" property="weddingDay" jdbcType="VARCHAR" />
-                <result column="kehujingli" property="kehujingli" jdbcType="VARCHAR" />
+                <result column="empcode" property="empcode" jdbcType="VARCHAR" />
                 <result column="sex" property="sex" jdbcType="VARCHAR" />
                 <result column="laiyuan" property="laiyuan" jdbcType="VARCHAR" />
                 <result column="note" property="note" jdbcType="VARCHAR" />
@@ -19,6 +19,7 @@
                 <result column="empname" property="empname" jdbcType="VARCHAR" />
                 <result column="emporgcode" property="emporgcode" jdbcType="VARCHAR" />
                 <result column="emporgname" property="emporgname" jdbcType="VARCHAR" />
+                <result column="beizhu" property="beizhu" jdbcType="VARCHAR" />
             </resultMap>
 
     <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
@@ -30,7 +31,7 @@
                 , t.type
                 , t.birthday
                 , t.wedding_day
-                , t.kehujingli
+                , t.empcode
                 , t.sex
                 , t.laiyuan
                 , t.note
@@ -41,6 +42,7 @@
                 , t.empname
                 , t.emporgcode
                 , t.emporgname
+                , t.beizhu
         		FROM customer_basic t
 		<include refid="expressionBlock.where" />
 		<choose>
@@ -74,7 +76,7 @@
                 , t.type
                 , t.birthday
                 , t.wedding_day
-                , t.kehujingli
+                , t.empcode
                 , t.sex
                 , t.laiyuan
                 , t.note
@@ -85,6 +87,7 @@
                 , t.empname
                 , t.emporgcode
                 , t.emporgname
+                , t.beizhu
         		FROM customer_basic t
 		<include refid="expressionBlock.where" />
 		<choose>
@@ -103,7 +106,7 @@
 
     <select id="findVisitCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
 		resultType="java.lang.Integer">
-		SELECT  count(idcardnum) from (select count(idcardnum) vcount,idcardnum,empcode kehujingli from visit_record group by idcardnum) t 
+		SELECT  count(idcardnum) from (select count(idcardnum) vcount,idcardnum,empcode from visit_record group by idcardnum) t 
 		<include refid="expressionBlock.where" />
     </select>
     
@@ -117,7 +120,7 @@
                                         , `type`
                                         , `birthday`
                                         , `wedding_day`
-                                        , `kehujingli`
+                                        , `empcode`
                                         , `sex`
                                         , `laiyuan`
                                         , `note`
@@ -128,6 +131,7 @@
                                         , `empname`
                                         , `emporgcode`
                                         , `emporgname`
+                                        , `beizhu`
                               )
 	VALUES (
                                                   #{name,jdbcType=VARCHAR}
@@ -135,7 +139,7 @@
                                         , #{type,jdbcType=INTEGER}
                                         , #{birthday,jdbcType=VARCHAR}
                                         , #{weddingDay,jdbcType=VARCHAR}
-                                        , #{kehujingli,jdbcType=VARCHAR}
+                                        , #{empcode,jdbcType=VARCHAR}
                                         , #{sex,jdbcType=VARCHAR}
                                         , #{laiyuan,jdbcType=VARCHAR}
                                         , #{note,jdbcType=VARCHAR}
@@ -146,6 +150,7 @@
                                         , #{empname,jdbcType=VARCHAR}
                                         , #{emporgcode,jdbcType=VARCHAR}
                                         , #{emporgname,jdbcType=VARCHAR}
+                                        , #{beizhu,jdbcType=VARCHAR}
                      
         )
 	</insert>
@@ -179,9 +184,9 @@
          wedding_day=#{weddingDay,jdbcType=VARCHAR}
         </if>
                                       
-        <if test="kehujingli!=null and kehujingli!=''">
+        <if test="empcode!=null and empcode!=''">
         ,
-         kehujingli=#{kehujingli,jdbcType=VARCHAR}
+         empcode=#{empcode,jdbcType=VARCHAR}
         </if>
                                       
         <if test="sex!=null and sex!=''">
@@ -233,6 +238,10 @@
         ,
          emporgname=#{emporgname,jdbcType=VARCHAR}
         </if>
+        <if test="beizhu!=null and beizhu!=''">
+        ,
+         beizhu=#{beizhu,jdbcType=VARCHAR}
+        </if>
                       WHERE id = #{id,jdbcType=INTEGER}
     </update>
 
@@ -244,7 +253,7 @@
                 , type
                 , birthday
                 , wedding_day
-                , kehujingli
+                , empcode
                 , sex
                 , laiyuan
                 , note
@@ -255,6 +264,7 @@
                 , empname
                 , emporgcode
                 , emporgname
+                , t.beizhu
         		FROM customer_basic t
 		WHERE id = #{id,jdbcType=INTEGER}
 	</select>

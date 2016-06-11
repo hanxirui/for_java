@@ -22,6 +22,7 @@ public class CustomerBasicSch extends BsgridSearch {
 	private String empname;
 	private String emporgcode;
 	private String emporgname;
+	private String beizhu;
 	// 拜访次数，界面和查询用，持久化不用
 	private String vcount;
 
@@ -184,6 +185,14 @@ public class CustomerBasicSch extends BsgridSearch {
 
 	public void setVcount(String vcount) {
 		this.vcount = vcount;
+	}
+
+	public String getBeizhu() {
+		return beizhu;
+	}
+
+	public void setBeizhu(String beizhu) {
+		this.beizhu = beizhu;
 	}
 
 }

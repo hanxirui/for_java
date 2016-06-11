@@ -21,16 +21,10 @@
 			<div class="box-body">
 				<!-- form start -->
 				<form id="schFrm" class="form-inline" onsubmit="return false;">
-					银行名称:<input name="bankname" type="text" class="form-control">
-					银行代码:<input name="bankcode" type="text" class="form-control">
-					支行:<input name="zhihangname" type="text" class="form-control">
-					支行代码:<input name="zhihangcode" type="text" class="form-control">
-					网点:<input name="wangdianname" type="text" class="form-control">
-					网点代码:<input name="wangdiancode" type="text" class="form-control">
-					专管员:<input name="mzhuanguanyuan" type="text" class="form-control">
-					专管员代码:<input name="mzhuanguanyuancode" type="text" class="form-control"> 
-				    专管员:<input name="szhuanguanyuan" type="text" class="form-control"> 
-					专管员代码:<input name="szhuanguanyuancode" type="text" class="form-control">
+					网点:<input name="wangdianname" type="text" class="form-control input-sm">
+					网点代码:<input name="wangdiancode" type="text" class="form-control input-sm">
+					专管员:<input name="mzhuanguanyuan" type="text" class="form-control input-sm">
+					专管员代码:<input name="mzhuanguanyuancode" type="text" class="form-control input-sm"> 
 					<button id="schBtn" type="submit" class="btn btn-primary">
 						<i class="fa fa-search"></i> 查询
 					</button>

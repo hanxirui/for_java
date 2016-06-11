@@ -116,7 +116,7 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 	}
 
 	@RequestMapping("/listEmployeeForCus.do")
-	public ModelAndView listEmployeeForCus(EmployeeSch searchEntity, String kehujingli) {
+	public ModelAndView listEmployeeForCus(EmployeeSch searchEntity, String empcode) {
 
 		ExpressionQuery query = new ExpressionQuery();
 
@@ -134,8 +134,8 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 		}
 
 		// 编辑界面，回显的时候用
-		if (kehujingli != null && !"".equals(kehujingli)) {
-			query.addValueExpression(new ValueExpression("t.code", kehujingli));
+		if (empcode != null && !"".equals(empcode)) {
+			query.addValueExpression(new ValueExpression("t.code", empcode));
 		}
 
 		query.addJoinExpression(new LeftJoinExpression("role", "t2", "role", "id"));

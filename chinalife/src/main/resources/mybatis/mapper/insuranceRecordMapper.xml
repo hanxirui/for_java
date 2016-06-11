@@ -72,16 +72,19 @@
 		<result column="dianhua" property="dianhua" jdbcType="VARCHAR" />
 		<result column="chushengriqi" property="chushengriqi" jdbcType="VARCHAR" />
 		<result column="bumengjingli" property="bumengjingli" jdbcType="VARCHAR" />
-		<result column="yuanzhuanguanyuangonghao" property="yuanzhuanguanyuangonghao" jdbcType="VARCHAR" />
-                <result column="yuanzhuanguanyuan" property="yuanzhuanguanyuan"
-jdbcType="VARCHAR" />
-			<result column="xinfenpeirenyuangonghao" property="xinfenpeirenyuangonghao" jdbcType="VARCHAR" />
+		<result column="yuanzhuanguanyuangonghao" property="yuanzhuanguanyuangonghao"
+			jdbcType="VARCHAR" />
+		<result column="yuanzhuanguanyuan" property="yuanzhuanguanyuan"
+			jdbcType="VARCHAR" />
+		<result column="xinfenpeirenyuangonghao" property="xinfenpeirenyuangonghao"
+			jdbcType="VARCHAR" />
 		<result column="xinfenpeirenyuan" property="xinfenpeirenyuan"
 			jdbcType="VARCHAR" />
 		<result column="fafangshijian" property="fafangshijian"
 			jdbcType="VARCHAR" />
 		<result column="fafangbiaoshi" property="fafangbiaoshi"
 			jdbcType="VARCHAR" />
+		<result column="beizhu" property="beizhu" jdbcType="VARCHAR" />
 	</resultMap>
 
 	<select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
@@ -91,51 +94,66 @@ jdbcType="VARCHAR" />
 		, t.baoxiandanhao
 		, t.toubaodanhao
 		, t.yewuyuandaima
-		, t.yewuyuanxingming
+		,
+		t.yewuyuanxingming
 		, t.xianzhongmingcheng
 		, t.baodanzhuangtai
-		, t.toubaoriqi
+		,
+		t.toubaoriqi
 		, t.shengxiaoriqi
 		, t.jibenbaoe
 		, t.jibenbaofei
-		, t.toubaorenxingming
+		,
+		t.toubaorenxingming
 		, t.toubaorenxingbie
 		, t.toubaorenshenfenzhenghao
-		, t.toubaorenshoujihao
+		,
+		t.toubaorenshoujihao
 		, t.toubaorentongxundizhi
 		, t.toubaorenzhiye
-		, t.beibaoxianrenxingming
+		,
+		t.beibaoxianrenxingming
 		, t.beibaoxianrenxingbie
-		, t.beibaoxianrenshenfenzhenghao
+		,
+		t.beibaoxianrenshenfenzhenghao
 		, t.beibaoxianrenshoujihao
-		, t.beibaoxianrentongxundizhi
+		,
+		t.beibaoxianrentongxundizhi
 		, t.beibaoxianrenzhiye
-		, t.beibaoxianrenyutoubaorenguanxi
+		,
+		t.beibaoxianrenyutoubaorenguanxi
 		, t.shouyirenxingming
-		, t.shouyirenxingbie
+		,
+		t.shouyirenxingbie
 		, t.shouyirenshenfenzhenghao
 		, t.shouyishunxu
-		, t.shouyifene
+		,
+		t.shouyifene
 		, t.shouyirenyutoubaorenguanxi
 		, t.jiaofeiqi
 		, t.baoxianqi
-		, t.jiaofeiyinhang
+		,
+		t.jiaofeiyinhang
 		, t.jiaofeizhanghao
 		, t.chushilaiyuan
 		, t.jigouhao
-		, t.xianzhongdaima
+		,
+		t.xianzhongdaima
 		, t.qudao
 		, t.zhihang
 		, t.wangdian
 		, t.dianhua
-		, t.chushengriqi
+		,
+		t.chushengriqi
 		, t.bumengjingli
-                , t.yuanzhuanguanyuangonghao
+		, t.yuanzhuanguanyuangonghao
 		, t.yuanzhuanguanyuan
-                , t.xinfenpeirenyuangonghao
+		, t.xinfenpeirenyuangonghao
 		, t.xinfenpeirenyuan
 		, t.fafangshijian
-		, t.fafangbiaoshi
+		,
+		t.fafangbiaoshi
+		, t.beizhu
 		FROM insurance_record t
 		<include refid="expressionBlock.where" />
 		<choose>
@@ -166,106 +184,155 @@ jdbcType="VARCHAR" />
 	</select>
 	<insert id="save" parameterType="com.chinal.emp.entity.InsuranceRecord"
 		keyProperty="id" keyColumn="id" useGeneratedKeys="true">
-		INSERT INTO insurance_record
+		INSERT INTO
+		insurance_record
 		(
 		`baoxiandanhao`
 		, `toubaodanhao`
 		, `yewuyuandaima`
-		, `yewuyuanxingming`
+		,
+		`yewuyuanxingming`
 		, `xianzhongmingcheng`
 		, `baodanzhuangtai`
-		, `toubaoriqi`
+		,
+		`toubaoriqi`
 		, `shengxiaoriqi`
 		, `jibenbaoe`
 		, `jibenbaofei`
-		, `toubaorenxingming`
+		,
+		`toubaorenxingming`
 		, `toubaorenxingbie`
 		, `toubaorenshenfenzhenghao`
-		, `toubaorenshoujihao`
+		,
+		`toubaorenshoujihao`
 		, `toubaorentongxundizhi`
 		, `toubaorenzhiye`
-		, `beibaoxianrenxingming`
+		,
+		`beibaoxianrenxingming`
 		, `beibaoxianrenxingbie`
-		, `beibaoxianrenshenfenzhenghao`
+		,
+		`beibaoxianrenshenfenzhenghao`
 		, `beibaoxianrenshoujihao`
-		, `beibaoxianrentongxundizhi`
+		,
+		`beibaoxianrentongxundizhi`
 		, `beibaoxianrenzhiye`
-		, `beibaoxianrenyutoubaorenguanxi`
+		,
+		`beibaoxianrenyutoubaorenguanxi`
 		, `shouyirenxingming`
-		, `shouyirenxingbie`
+		,
+		`shouyirenxingbie`
 		, `shouyirenshenfenzhenghao`
 		, `shouyishunxu`
-		, `shouyifene`
+		,
+		`shouyifene`
 		, `shouyirenyutoubaorenguanxi`
 		, `jiaofeiqi`
 		, `baoxianqi`
-		, `jiaofeiyinhang`
+		,
+		`jiaofeiyinhang`
 		, `jiaofeizhanghao`
 		, `chushilaiyuan`
 		, `jigouhao`
-		, `xianzhongdaima`
+		,
+		`xianzhongdaima`
 		, `qudao`
 		, `zhihang`
 		, `wangdian`
 		, `dianhua`
-		, `chushengriqi`
+		,
+		`chushengriqi`
 		, `bumengjingli`
-                                        , `yuanzhuanguanyuangonghao`
+		, `yuanzhuanguanyuangonghao`
 		, `yuanzhuanguanyuan`
-                                        , `xinfenpeirenyuangonghao`
+		, `xinfenpeirenyuangonghao`
 		, `xinfenpeirenyuan`
 		, `fafangshijian`
-		, `fafangbiaoshi`
+		,
+		`fafangbiaoshi`
+		, `beizhu`
 		)
 		VALUES (
 		#{baoxiandanhao,jdbcType=VARCHAR}
-		, #{toubaodanhao,jdbcType=VARCHAR}
+		,
+		#{toubaodanhao,jdbcType=VARCHAR}
 		, #{yewuyuandaima,jdbcType=VARCHAR}
-		, #{yewuyuanxingming,jdbcType=VARCHAR}
-		, #{xianzhongmingcheng,jdbcType=VARCHAR}
-		, #{baodanzhuangtai,jdbcType=VARCHAR}
+		,
+		#{yewuyuanxingming,jdbcType=VARCHAR}
+		,
+		#{xianzhongmingcheng,jdbcType=VARCHAR}
+		,
+		#{baodanzhuangtai,jdbcType=VARCHAR}
 		, #{toubaoriqi,jdbcType=VARCHAR}
-		, #{shengxiaoriqi,jdbcType=VARCHAR}
+		,
+		#{shengxiaoriqi,jdbcType=VARCHAR}
 		, #{jibenbaoe,jdbcType=VARCHAR}
-		, #{jibenbaofei,jdbcType=VARCHAR}
+		,
+		#{jibenbaofei,jdbcType=VARCHAR}
 		, #{toubaorenxingming,jdbcType=VARCHAR}
 		, #{toubaorenxingbie,jdbcType=VARCHAR}
-		, #{toubaorenshenfenzhenghao,jdbcType=VARCHAR}
-		, #{toubaorenshoujihao,jdbcType=VARCHAR}
-		, #{toubaorentongxundizhi,jdbcType=VARCHAR}
-		, #{toubaorenzhiye,jdbcType=VARCHAR}
-		, #{beibaoxianrenxingming,jdbcType=VARCHAR}
-		, #{beibaoxianrenxingbie,jdbcType=VARCHAR}
-		, #{beibaoxianrenshenfenzhenghao,jdbcType=VARCHAR}
-		, #{beibaoxianrenshoujihao,jdbcType=VARCHAR}
-		, #{beibaoxianrentongxundizhi,jdbcType=VARCHAR}
-		, #{beibaoxianrenzhiye,jdbcType=VARCHAR}
-		, #{beibaoxianrenyutoubaorenguanxi,jdbcType=VARCHAR}
-		, #{shouyirenxingming,jdbcType=VARCHAR}
-		, #{shouyirenxingbie,jdbcType=VARCHAR}
-		, #{shouyirenshenfenzhenghao,jdbcType=VARCHAR}
-		, #{shouyishunxu,jdbcType=VARCHAR}
+		,
+		#{toubaorenshenfenzhenghao,jdbcType=VARCHAR}
+		,
+		#{toubaorenshoujihao,jdbcType=VARCHAR}
+		,
+		#{toubaorentongxundizhi,jdbcType=VARCHAR}
+		,
+		#{toubaorenzhiye,jdbcType=VARCHAR}
+		,
+		#{beibaoxianrenxingming,jdbcType=VARCHAR}
+		,
+		#{beibaoxianrenxingbie,jdbcType=VARCHAR}
+		,
+		#{beibaoxianrenshenfenzhenghao,jdbcType=VARCHAR}
+		,
+		#{beibaoxianrenshoujihao,jdbcType=VARCHAR}
+		,
+		#{beibaoxianrentongxundizhi,jdbcType=VARCHAR}
+		,
+		#{beibaoxianrenzhiye,jdbcType=VARCHAR}
+		,
+		#{beibaoxianrenyutoubaorenguanxi,jdbcType=VARCHAR}
+		,
+		#{shouyirenxingming,jdbcType=VARCHAR}
+		,
+		#{shouyirenxingbie,jdbcType=VARCHAR}
+		,
+		#{shouyirenshenfenzhenghao,jdbcType=VARCHAR}
+		,
+		#{shouyishunxu,jdbcType=VARCHAR}
 		, #{shouyifene,jdbcType=VARCHAR}
-		, #{shouyirenyutoubaorenguanxi,jdbcType=VARCHAR}
-		, #{jiaofeiqi,jdbcType=VARCHAR}
+		,
+		#{shouyirenyutoubaorenguanxi,jdbcType=VARCHAR}
+		,
+		#{jiaofeiqi,jdbcType=VARCHAR}
 		, #{baoxianqi,jdbcType=VARCHAR}
-		, #{jiaofeiyinhang,jdbcType=VARCHAR}
-		, #{jiaofeizhanghao,jdbcType=VARCHAR}
+		,
+		#{jiaofeiyinhang,jdbcType=VARCHAR}
+		,
+		#{jiaofeizhanghao,jdbcType=VARCHAR}
 		, #{chushilaiyuan,jdbcType=VARCHAR}
 		, #{jigouhao,jdbcType=VARCHAR}
 		, #{xianzhongdaima,jdbcType=VARCHAR}
-		, #{qudao,jdbcType=VARCHAR}
+		,
+		#{qudao,jdbcType=VARCHAR}
 		, #{zhihang,jdbcType=VARCHAR}
-		, #{wangdian,jdbcType=VARCHAR}
+		,
+		#{wangdian,jdbcType=VARCHAR}
 		, #{dianhua,jdbcType=VARCHAR}
-		, #{chushengriqi,jdbcType=VARCHAR}
+		,
+		#{chushengriqi,jdbcType=VARCHAR}
 		, #{bumengjingli,jdbcType=VARCHAR}
-                                        , #{yuanzhuanguanyuangonghao,jdbcType=VARCHAR}
-		, #{yuanzhuanguanyuan,jdbcType=VARCHAR}
-                                        , #{xinfenpeirenyuangonghao,jdbcType=VARCHAR}
-		, #{xinfenpeirenyuan,jdbcType=VARCHAR}
-		, #{fafangshijian,jdbcType=VARCHAR}
+		, #{yuanzhuanguanyuangonghao,jdbcType=VARCHAR}
+		,
+		#{yuanzhuanguanyuan,jdbcType=VARCHAR}
+		, #{xinfenpeirenyuangonghao,jdbcType=VARCHAR}
+		,
+		#{xinfenpeirenyuan,jdbcType=VARCHAR}
+		,
+		#{fafangshijian,jdbcType=VARCHAR}
 		, #{fafangbiaoshi,jdbcType=VARCHAR}
+		,
+		#{beizhu,jdbcType=VARCHAR}
 
 		)
 	</insert>
@@ -489,21 +556,21 @@ jdbcType="VARCHAR" />
 		</if>
 
 		<if test="yuanzhuanguanyuangonghao!=null and yuanzhuanguanyuangonghao!=''">
-        ,
-         yuanzhuanguanyuangonghao=#{yuanzhuanguanyuangonghao,jdbcType=VARCHAR}
-        </if>
-                                      
-        <if test="yuanzhuanguanyuan!=null and yuanzhuanguanyuan!=''">
+			,
+			yuanzhuanguanyuangonghao=#{yuanzhuanguanyuangonghao,jdbcType=VARCHAR}
+		</if>
+
+		<if test="yuanzhuanguanyuan!=null and yuanzhuanguanyuan!=''">
 			,
 			yuanzhuanguanyuan=#{yuanzhuanguanyuan,jdbcType=VARCHAR}
 		</if>
 
 		<if test="xinfenpeirenyuangonghao!=null and xinfenpeirenyuangonghao!=''">
-        ,
-         xinfenpeirenyuangonghao=#{xinfenpeirenyuangonghao,jdbcType=VARCHAR}
-        </if>
-                                      
-        <if test="xinfenpeirenyuan!=null and xinfenpeirenyuan!=''">
+			,
+			xinfenpeirenyuangonghao=#{xinfenpeirenyuangonghao,jdbcType=VARCHAR}
+		</if>
+
+		<if test="xinfenpeirenyuan!=null and xinfenpeirenyuan!=''">
 			,
 			xinfenpeirenyuan=#{xinfenpeirenyuan,jdbcType=VARCHAR}
 		</if>
@@ -517,6 +584,10 @@ jdbcType="VARCHAR" />
 			,
 			fafangbiaoshi=#{fafangbiaoshi,jdbcType=VARCHAR}
 		</if>
+		<if test="beizhu!=null and beizhu!=''">
+			,
+			beizhu=#{beizhu,jdbcType=VARCHAR}
+		</if>
 		WHERE id = #{id,jdbcType=INTEGER}
 	</update>
 
@@ -527,23 +598,29 @@ jdbcType="VARCHAR" />
 		, baoxiandanhao
 		, toubaodanhao
 		, yewuyuandaima
-		, yewuyuanxingming
+		,
+		yewuyuanxingming
 		, xianzhongmingcheng
 		, baodanzhuangtai
 		, toubaoriqi
-		, shengxiaoriqi
+		,
+		shengxiaoriqi
 		, jibenbaoe
 		, jibenbaofei
 		, toubaorenxingming
-		, toubaorenxingbie
+		,
+		toubaorenxingbie
 		, toubaorenshenfenzhenghao
 		, toubaorenshoujihao
-		, toubaorentongxundizhi
+		,
+		toubaorentongxundizhi
 		, toubaorenzhiye
 		, beibaoxianrenxingming
-		, beibaoxianrenxingbie
+		,
+		beibaoxianrenxingbie
 		, beibaoxianrenshenfenzhenghao
-		, beibaoxianrenshoujihao
+		,
+		beibaoxianrenshoujihao
 		, beibaoxianrentongxundizhi
 		, beibaoxianrenzhiye
 		, beibaoxianrenyutoubaorenguanxi
@@ -552,28 +629,34 @@ jdbcType="VARCHAR" />
 		, shouyirenshenfenzhenghao
 		, shouyishunxu
 		, shouyifene
-		, shouyirenyutoubaorenguanxi
+		,
+		shouyirenyutoubaorenguanxi
 		, jiaofeiqi
 		, baoxianqi
 		, jiaofeiyinhang
-		, jiaofeizhanghao
+		,
+		jiaofeizhanghao
 		, chushilaiyuan
 		, jigouhao
 		, xianzhongdaima
 		, qudao
-		, zhihang
+		,
+		zhihang
 		, wangdian
 		, dianhua
 		, chushengriqi
 		, bumengjingli
-                , yuanzhuanguanyuangonghao
+		, yuanzhuanguanyuangonghao
 		, yuanzhuanguanyuan
-                , xinfenpeirenyuangonghao
+		, xinfenpeirenyuangonghao
 		, xinfenpeirenyuan
 		, fafangshijian
-		, fafangbiaoshi
+		,
+		fafangbiaoshi
+		, beizhu
 		FROM insurance_record t
-		WHERE id = #{id,jdbcType=INTEGER}
+		WHERE id =
+		#{id,jdbcType=INTEGER}
 	</select>
 
 	<delete id="del" parameterType="com.chinal.emp.entity.InsuranceRecord">

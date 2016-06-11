@@ -38,6 +38,9 @@ public class CustomerBasic {
 	private String emporgcode;
 	// 机构
 	private String emporgname;
+
+	private String beizhu;
+
 	// 拜访次数，界面和查询用，持久化不用
 	private String vcount;
 
@@ -183,6 +186,14 @@ public class CustomerBasic {
 
 	public void setVcount(String vcount) {
 		this.vcount = vcount;
+	}
+
+	public String getBeizhu() {
+		return beizhu;
+	}
+
+	public void setBeizhu(String beizhu) {
+		this.beizhu = beizhu;
 	}
 
 }

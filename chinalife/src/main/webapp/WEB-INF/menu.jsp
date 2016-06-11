@@ -66,7 +66,7 @@
             <li <%="org".equals(am)?"class='active'":""%> <%=userDetails.getLevel()==5?"":"style='display:none'" %>><a href="${ctx}openOrg.do"><i class="fa fa-bank"></i> 机构管理</a></li>
             <li <%="role".equals(am)?"class='active'":""%> <%=userDetails.getLevel()==5?"":"style='display:none'" %>><a href="${ctx}openRole.do"><i class="fa fa-child"></i>职务管理</a></li>
             <li <%="jixiao".equals(am)?"class='active'":""%> <%=userDetails.getLevel()==5?"":"style='display:none'" %>><a href="${ctx}openGongzidan.do"><i class="fa fa-trophy"></i>绩效管理</a></li>
-            <li <%="bank".equals(am)?"class='active'":""%> <%=userDetails.getLevel()==5?"":"style='display:none'" %>><a href="${ctx}openBankReport.do"><i class="fa fa-trophy"></i>银行机构管理</a></li>
+            <li <%="bank".equals(am)?"class='active'":""%> <%=userDetails.getLevel()==5?"":"style='display:none'" %>><a href="${ctx}openBankRecord.do"><i class="fa fa-trophy"></i>银行机构管理</a></li>
           </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->

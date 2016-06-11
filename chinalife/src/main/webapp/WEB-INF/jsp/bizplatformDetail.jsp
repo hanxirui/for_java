@@ -20,14 +20,17 @@
 			<div class="box-body">
 				<!-- form start -->
 				<form id="schFrm" class="form-inline" onsubmit="return false;">
-					开始时间:<input name="start" type="text" class="form-control">
-					结束时间:<input name="end" type="text" class="form-control">
+					年:<select id="year" name="year" class="form-control"></select> 
+					季度:<select id="jidu" name="jidu" class="form-control">
+					    <option value="1">1季度</option>
+					    <option value="2">2季度</option>
+					    <option value="3">3季度</option>
+					    <option value="4">4季度</option>
+					   </select> 
 					<button id="schBtn" type="submit" class="btn btn-primary">
 						<i class="fa fa-search"></i> 查询
 					</button>
-					<button type="reset" class="btn btn-default">
-						<i class="fa fa-remove"></i> 清空
-					</button>
+					
 				</form>
 			</div>
 			<!-- /.box-body -->
@@ -361,6 +364,20 @@
 				return "<a id='importBtn' class='btn btn-primary btn-xs' onClick='showImp("+record.id+","+colIndex+")' style='color:#eee;'><i class='fa'></i> 上传 </a><br>"+pathString;
 
 			}
+		   
+		   var setYear = function(){
+			 //设置年份的选择 
+			   var myDate= new Date(); 
+			   var startYear=myDate.getFullYear()-10;//起始年份 
+			   var endYear=myDate.getFullYear();//结束年份 
+			   var obj=document.getElementById('year') 
+			   for (var i=startYear;i<=endYear;i++) 
+			   { 
+			      obj.options.add(new Option(i,i)); 
+			   } 
+			   obj.options[obj.options.length-1].selected=1; 
+		   }
+		   setYear();
 
 			validator = $crudFrm.validate();
 		</script>

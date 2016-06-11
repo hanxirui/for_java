@@ -49,6 +49,7 @@
                 <result column="caixianjixiao" property="caixianjixiao" jdbcType="VARCHAR" />
                 <result column="koucaixianjixiao" property="koucaixianjixiao" jdbcType="VARCHAR" />
                 <result column="shifaheji" property="shifaheji" jdbcType="VARCHAR" />
+                <result column="riqi" property="riqi" jdbcType="VARCHAR" />
             </resultMap>
 
     <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
@@ -101,6 +102,7 @@
                 , t.caixianjixiao
                 , t.koucaixianjixiao
                 , t.shifaheji
+                , t.riqi
         		FROM gongzidan t
 		<include refid="expressionBlock.where" />
 		<choose>
@@ -175,6 +177,7 @@
                                         , `caixianjixiao`
                                         , `koucaixianjixiao`
                                         , `shifaheji`
+                                        , `riqi`
                               )
 	VALUES (
                               #{xuhao,jdbcType=VARCHAR}
@@ -224,6 +227,7 @@
                                         , #{caixianjixiao,jdbcType=VARCHAR}
                                         , #{koucaixianjixiao,jdbcType=VARCHAR}
                                         , #{shifaheji,jdbcType=VARCHAR}
+                                        , #{riqi,jdbcType=VARCHAR}
                      
         )
 	</insert>
@@ -466,6 +470,10 @@
         ,
          shifaheji=#{shifaheji,jdbcType=VARCHAR}
         </if>
+        <if test="riqi!=null and riqi!=''">
+        ,
+         riqi=#{riqi,jdbcType=VARCHAR}
+        </if>
                       WHERE  shenfenzhenghao=#{shenfenzhenghao,jdbcType=VARCHAR}
     </update>
 
@@ -518,6 +526,7 @@
                 , caixianjixiao
                 , koucaixianjixiao
                 , shifaheji
+                , riqi
         		FROM gongzidan t
 		WHERE  shenfenzhenghao=#{shenfenzhenghao,jdbcType=VARCHAR}
 	</select>
@@ -525,6 +534,11 @@
 	<delete id="del" parameterType="com.chinal.emp.entity.Gongzidan">
 		DELETE FROM gongzidan
 		WHERE  shenfenzhenghao=#{shenfenzhenghao,jdbcType=VARCHAR}
+	</delete>
+	
+	<delete id="delByRiqi" parameterType="string">
+		DELETE FROM gongzidan
+		WHERE  riqi=#{riqi,jdbcType=VARCHAR}
 	</delete>
 
 </mapper>
