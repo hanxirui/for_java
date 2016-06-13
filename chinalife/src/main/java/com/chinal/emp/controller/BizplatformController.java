@@ -71,6 +71,7 @@ public class BizplatformController extends BsgridController<Bizplatform, Bizplat
 
 	@RequestMapping("/addBizplatform.do")
 	public ModelAndView addBizplatform(Bizplatform entity) {
+		entity.setOrgcode(getOnlineUser().getEmployee().getOrgcode());
 		return this.add(entity);
 	}
 
@@ -94,8 +95,8 @@ public class BizplatformController extends BsgridController<Bizplatform, Bizplat
 	public ModelAndView listBizPlatformForCal(String date, String empid) {
 
 		ExpressionQuery query = new ExpressionQuery();
-		query.addValueExpression(new ValueExpression("t.start", "<=", date));
-		query.addValueExpression(new ValueExpression("t.end", ">=", date));
+		query.addValueExpression(new ValueExpression("t.startdate", "<=", date));
+		query.addValueExpression(new ValueExpression("t.enddate", ">=", date));
 
 		if (empid == null || "".equals(empid) || "undefined".equals(empid)) {
 			SecurityContextImpl securityContextImpl = (SecurityContextImpl) getRequest().getSession()
@@ -178,4 +179,10 @@ public class BizplatformController extends BsgridController<Bizplatform, Bizplat
 		response.getWriter().print(JSONObject.toJSON(result).toString());
 	}
 
+	private AuthUser getOnlineUser() {
+		SecurityContextImpl securityContextImpl = (SecurityContextImpl) getRequest().getSession()
+				.getAttribute("SPRING_SECURITY_CONTEXT");
+		AuthUser onlineUser = (AuthUser) securityContextImpl.getAuthentication().getPrincipal();
+		return onlineUser;
+	}
 }

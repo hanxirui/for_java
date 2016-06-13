@@ -276,6 +276,13 @@ function loadFormData($frm,data) {
 	$("#zhishibaifang"+data['zhishibaifang']).attr("checked","true");
 	
 }
+
+function loadTongjiFormData($frm,data) {
+	for(var name in data) {
+		var val = data[name];
+		 $('[name=tongji'+name+']').val(val);
+	}
+}
 	
 var HtmlUtil = (function(){
 	

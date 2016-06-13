@@ -13,12 +13,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.chinal.emp.entity.Bizplatform;
 import com.chinal.emp.entity.Employee;
 import com.chinal.emp.security.AuthUser;
+import com.chinal.emp.service.BizplatformService;
 import com.chinal.emp.service.CustomerBasicService;
 import com.chinal.emp.service.EmployeeService;
 import com.chinal.emp.service.InsuranceRecordService;
 import com.chinal.emp.service.SitRecordService;
+import com.chinal.emp.util.DateUtil;
 
 @Controller
 public class MainStatisticsController extends BaseController {
@@ -34,6 +37,9 @@ public class MainStatisticsController extends BaseController {
 
 	@Autowired
 	private InsuranceRecordService insuranceRecordService;
+
+	@Autowired
+	private BizplatformService bizplatformService;
 
 	@RequestMapping("/openMainStatistics.do")
 	public ModelAndView openEmployee() {
@@ -70,7 +76,15 @@ public class MainStatisticsController extends BaseController {
 			birthCount = customerBasicService.findTotalCount(cusquery);
 
 			// 制式服务未录
-			// unService =
+			// TODO 找到当前的制式服务
+			ExpressionQuery bizQuery = new ExpressionQuery();
+			bizQuery.addValueExpression(new ValueExpression("t.orgcode", getOnlineUser().getEmployee().getOrgcode()));
+			bizQuery.addSqlExpression(new SqlExpression(
+					"t.startdate>" + DateUtil.getShortFormatNow() + " and t.enddate<" + DateUtil.getShortFormatNow()));
+			List<Bizplatform> plats = bizplatformService.find(bizQuery);
+			// TODO 找到登录人员所有的客户
+			// TODO 找到已经进行过制式服务的客户
+
 		}
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("cusNum", count);
@@ -146,4 +160,10 @@ public class MainStatisticsController extends BaseController {
 		return cusquery;
 	}
 
+	private AuthUser getOnlineUser() {
+		SecurityContextImpl securityContextImpl = (SecurityContextImpl) getRequest().getSession()
+				.getAttribute("SPRING_SECURITY_CONTEXT");
+		AuthUser onlineUser = (AuthUser) securityContextImpl.getAuthentication().getPrincipal();
+		return onlineUser;
+	}
 }

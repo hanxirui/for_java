@@ -195,7 +195,9 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 			cusquery.add(new LikeRightExpression("t.name", searchEntity.getName()));
 		}
 
-		if (searchEntity.getVcount() != null && !"".equals(searchEntity.getVcount())
+		if (searchEntity.getVcount() != null && "NAN".equals(searchEntity.getVcount())) {
+			cusquery.addSqlExpression(new SqlExpression("t.empcode is null or t.empcode=''"));
+		} else if (searchEntity.getVcount() != null && !"".equals(searchEntity.getVcount())
 				&& Integer.parseInt(searchEntity.getVcount()) == 1) {
 			cusquery.addSqlExpression(new SqlExpression(
 					"t.idcardnum in (SELECT  t4.idcardnum from (select count(idcardnum) vcount,idcardnum from visit_record group by idcardnum) t4 where t4.vcount>=1)"));
@@ -207,8 +209,6 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 				&& Integer.parseInt(searchEntity.getVcount()) == 3) {
 			cusquery.addSqlExpression(new SqlExpression(
 					"t.idcardnum in (SELECT  t4.idcardnum from (select count(idcardnum) vcount,idcardnum from visit_record group by idcardnum) t4 where t4.vcount>=3)"));
-		} else if (searchEntity.getVcount() != null && "NAN".equals(searchEntity.getVcount())) {
-			cusquery.addSqlExpression(new SqlExpression("t.empcode is null)"));
 		}
 
 		cusquery.setPageSize(searchEntity.getPageSize()).setPageIndex(searchEntity.getPageIndex());
@@ -292,12 +292,12 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 
 	private void setOrg(CustomerBasic entity) {
 		// 获得机构信息
-		if (entity.getKehujingli().equals(getOnlineUser().getCode())) {
+		if (entity.getEmpcode().equals(getOnlineUser().getCode())) {
 			entity.setEmporgcode(getOnlineUser().getEmployee().getOrgcode());
 			entity.setEmporgname(getOnlineUser().getEmployee().getOrgname());
 		} else {
 			ExpressionQuery query = new ExpressionQuery();
-			query.addValueExpression(new ValueExpression("code", entity.getKehujingli()));
+			query.addValueExpression(new ValueExpression("code", entity.getEmpcode()));
 			List<Employee> emps = employeeService.findSimple(query);
 
 			if (emps.size() > 0) {
@@ -313,8 +313,21 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 	}
 
 	@RequestMapping("/fenpeiCustomer.do")
-	public void fenpeiCustomer(String cusIds, String empId) {
-		this.getService().fenpeiCustomer(cusIds, empId);
+	public void fenpeiCustomer(String cusIds, String empcode) {
+
+		ExpressionQuery query = new ExpressionQuery();
+		query.addValueExpression(new ValueExpression("t.code", empcode));
+		List<Employee> emps = employeeService.findSimple(query);
+		if (null != emps && emps.size() > 0) {
+			Employee emp = emps.get(0);
+			CustomerBasic basic = new CustomerBasic();
+			basic.setEmpcode(empcode);
+			basic.setEmpname(emp.getName());
+			basic.setEmporgcode(emp.getOrgcode());
+			basic.setEmporgname(emp.getOrgname());
+			basic.setIdcardnum(cusIds);
+			this.getService().fenpeiCustomer(basic);
+		}
 	}
 
 	@RequestMapping("/delCustomerBasic.do")

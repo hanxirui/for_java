@@ -9,6 +9,7 @@ $(document).ready( function() {
 
     // Here's some magic to make sure the dates are happening this month.
     var thisMonth = moment().format('YYYY-MM');
+    currMonth = thisMonth;
     // Events to load into calendar
     var eventArray = new Array();
     
@@ -62,8 +63,11 @@ $(document).ready( function() {
                 previousMonth: function () {
                     console.log('Cal-1 previous month');
                 },
-                onMonthChange: function () {
+                onMonthChange: function (month) {
                     console.log('Cal-1 month changed');
+                    console.log(month.format('YYYY-MM'));
+                    getEventMonth(month.format('YYYY-MM'));
+                    currMonth = month.format('YYYY-MM');
                 },
                 nextYear: function () {
                     console.log('Cal-1 next year');
@@ -96,8 +100,8 @@ $(document).ready( function() {
     }
 
     
-    var getEventMonth = function(){
-	    	$.getJSON(ctx+"getEventMonth.do?month="+thisMonth, null, function (result) {
+    var getEventMonth = function(month){
+	    	$.getJSON(ctx+"getEventMonth.do?month="+month, null, function (result) {
 	    	   try{
 		    		$.each( result.data, function(i, n){
 		    			 var event = {};
@@ -111,7 +115,7 @@ $(document).ready( function() {
 	    	});
     }
     
-    getEventMonth();
+    getEventMonth(thisMonth);
     
 
    

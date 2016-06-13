@@ -562,7 +562,7 @@
 						});
 
 						Action.post(ctx + 'fenpeiCustomer.do?cusIds='
-								+ _cardnums + "&empId="
+								+ _cardnums + "&empcode="
 								+ cusGridObj.getCheckedValues('code'), null,
 								function(result) {
 									Action.execResult(result, function(result) {

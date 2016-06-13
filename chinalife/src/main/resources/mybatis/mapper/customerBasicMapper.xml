@@ -244,6 +244,32 @@
         </if>
                       WHERE id = #{id,jdbcType=INTEGER}
     </update>
+    <update id="fenpeiCustomer" parameterType="com.chinal.emp.entity.CustomerBasic">
+    UPDATE customer_basic
+    SET 
+                                                     
+                                      
+        <if test="empcode!=null and empcode!=''">
+         empcode=#{empcode,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="empname!=null and empname!=''">
+        ,
+         empname=#{empname,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="emporgcode!=null and emporgcode!=''">
+        ,
+         emporgcode=#{emporgcode,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="emporgname!=null and emporgname!=''">
+        ,
+         emporgname=#{emporgname,jdbcType=VARCHAR}
+        </if>
+       
+        WHERE idcardnum in (${idcardnum})
+    </update>
 
     <select id="get" resultMap="queryResultMap" parameterType="com.chinal.emp.entity.CustomerBasic">
 		SELECT 

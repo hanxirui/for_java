@@ -21,7 +21,7 @@
 			   <!--  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
 			    <!-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
 				<div class="btn-group">
-					<a id="addBtn" class="btn btn-primary"> <i class="fa"></i> 统计
+					<a id="tongji" class="btn btn-primary"> <i class="fa"></i> 统计
 					</a>
 				</div>
 				<!-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -58,20 +58,22 @@
 					<div class="col-sm-3">
 						<input id="yaoyueNum" name="yaoyueNum" type="text" class="form-control">
 					</div>
-					<label class="col-sm-3 control-label">回收保费</label>
-					<div class="col-sm-3">
-						<input id="receiveBaofei" name="receiveBaofei" type="text" class="form-control">
-					</div>
-				</div>
-
-				<div class="form-group">
+				
 					<label class="col-sm-3 control-label">到会客户数</label>
 					<div class="col-sm-3">
 						<input id="daohuiNum" name="daohuiNum" type="text" class="form-control">
 					</div>
-					<label class="col-sm-3 control-label">签单保费</label>
+					
+				</div>
+
+				<div class="form-group">
+				<label class="col-sm-3 control-label">签单保费</label>
 					<div class="col-sm-3">
 						<input id="qiandanBaofei" name="qiandanBaofei" type="text" class="form-control">
+					</div>
+					<label class="col-sm-3 control-label">回收保费</label>
+					<div class="col-sm-3">
+						<input id="receiveBaofei" name="receiveBaofei" type="text" class="form-control">
 					</div>
 				</div>
 
@@ -88,18 +90,18 @@
 				</div>
 				
 				<div class="form-group">
-					<label class="col-sm-3 control-label">到会率</label>
+					<label class="col-sm-3 control-label">到会率(%)</label>
 					<div class="col-sm-3">
 						<input id="daohuilv" name="daohuilv" type="text" class="form-control" readonly>
 					</div>
-					<label class="col-sm-3 control-label">回收率</label>
+					<label class="col-sm-3 control-label">回收率(%)</label>
 					<div class="col-sm-3">
 						<input id="huishoulv" name="huishoulv" type="text" class="form-control" readonly>
 					</div>
 
 				</div>
 				<div class="form-group">
-				<label class="col-sm-3 control-label">签单率</label>
+				<label class="col-sm-3 control-label">签单率(%)</label>
 					<div class="col-sm-3">
 						<input id="qiandanlv" name="qiandanlv" type="text" class="form-control" readonly>
 					</div>
@@ -114,6 +116,80 @@
 
 			</form>
 		</div>
+		
+		<div id="tongjiWin">
+			<form id="tongjiFrm" class="form-horizontal">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">平台名称</label>
+					<div class="col-sm-3">
+						<input id="tongjibizplatTitle" name="tongjibizplatTitle" type="text"
+							class="form-control" readonly> <input id="tongjibizplatId"
+							name="tongjibizplatId" type="hidden" class="form-control" readonly>
+						<!--  同一个平台可能在多天举行 -->
+					</div>
+
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">邀约客户数</label>
+					<div class="col-sm-3">
+						<input id="tongjiyaoyueNum" name="tongjiyaoyueNum" type="text" readonly class="form-control" readonly>
+					</div>
+					<label class="col-sm-3 control-label">回收保费</label>
+					<div class="col-sm-3">
+						<input id="tongjireceiveBaofei" name="tongjireceiveBaofei" type="text" class="form-control" readonly>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label">到会客户数</label>
+					<div class="col-sm-3">
+						<input id="tongjidaohuiNum" name="tongjidaohuiNum" type="text" class="form-control" readonly>
+					</div>
+					<label class="col-sm-3 control-label">签单保费</label>
+					<div class="col-sm-3">
+						<input id="tongjiqiandanBaofei" name="tongjiqiandanBaofei" type="text" class="form-control" readonly>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-3 control-label">签单件数</label>
+					<div class="col-sm-3">
+						<input id="tongjiqiandanNum" name="tongjiqiandanNum" type="text" class="form-control" readonly>
+					</div>
+					<label class="col-sm-3 control-label">回收件数</label>
+					<div class="col-sm-3">
+						<input id="tongjireceiveNum" name="tongjireceiveNum" type="text" class="form-control" readonly>
+					</div>
+
+				</div>
+				
+				<div class="form-group">
+					<label class="col-sm-3 control-label">到会率(%)</label>
+					<div class="col-sm-3">
+						<input id="tongjidaohuilv" name="tongjidaohuilv" type="text" class="form-control" readonly>
+					</div>
+					<label class="col-sm-3 control-label">回收率(%)</label>
+					<div class="col-sm-3">
+						<input id="tongjihuishoulv" name="tongjihuishoulv" type="text" class="form-control" readonly>
+					</div>
+
+				</div>
+				<div class="form-group">
+				<label class="col-sm-3 control-label">签单率(%)</label>
+					<div class="col-sm-3">
+						<input id="tongjiqiandanlv" name="tongjiqiandanlv" type="text" class="form-control" readonly>
+					</div>
+					
+					<!--   <label class="col-sm-3 control-label">客户经理</label> -->
+					<div class="col-sm-3">
+						<input id="tongjikehujingli" name="tongjikehujingli" type="hidden"
+							class="form-control"> <input id="tongjiriqi" name="riqi"
+							type="hidden" class="form-control">
+					</div>
+				</div>
+
+			</form>
+		</div>
 
 
 		<div class="box-body" id="cusWin">
@@ -121,8 +197,8 @@
 				<tr>
 					<th w_check="true" w_index="id" width="3%;"></th>
 					<th w_index="title">平台名称</th>
-					<th w_index="start">开始时间</th>
-					<th w_index="end">结束时间</th>
+					<th w_index="startdate">开始时间</th>
+					<th w_index="enddate">结束时间</th>
 				</tr>
 			</table>
 		</div>
@@ -142,7 +218,7 @@
 			var $crudFrm = $('#crudFrm'); // 编辑表单
 
 			var $schBtn = $('#schBtn'); // 查询按钮
-			var $addBtn = $('#addBtn'); // 添加按钮
+			var $tongji = $('#tongji'); // 添加按钮
 
 			var validator; // 验证器
 
@@ -158,8 +234,6 @@
 			}
 
 			// 初始化事件
-			$addBtn.click(bizAdd);
-
 			$schBtn.click(function() {
 				search();
 			});
@@ -185,9 +259,9 @@
 				button:[ {
 		             value: '计算',
 		             callback: function () {
-		            	 $("#daohuilv").val(parseFloat($("#yaoyueNum").val()/$("#daohuiNum").val()).toFixed(1));
-		                 $("#huishoulv").val(parseFloat($("#receiveBaofei").val()/$("#qiandanBaofei").val()).toFixed(1));
-		                 $("#qiandanlv").val(parseFloat($("#qiandanNum").val()/$("#daohuiNum").val()).toFixed(1));
+		            	 $("#daohuilv").val(parseFloat($("#daohuiNum").val()*100/$("#yaoyueNum").val()).toFixed(0));
+		                 $("#huishoulv").val(parseFloat($("#receiveBaofei").val()*100/$("#qiandanBaofei").val()).toFixed(0));
+		                 $("#qiandanlv").val(parseFloat($("#qiandanNum").val()*100/$("#daohuiNum").val()).toFixed(0));
 		                 return false;
 		             },
 		             autoFocus: true
@@ -301,6 +375,31 @@
 				},
 				onshow : function() {
 					$("#cusTable_pt_outTab").width($("#cusTable").width());
+				}
+			});
+			
+			var getTongjiInfo = function() {
+				
+				$.getJSON("${ctx}getBizplatTongjiInfo.do", {'currMonth' : currMonth}, function(result) {
+					loadTongjiFormData($crudFrm, result);
+				});
+				
+				
+				
+				tongjiWin.showModal();
+			}
+       var currMonth;
+			// 初始化事件
+		$tongji.click(getTongjiInfo);
+			
+		var	tongjiWin = dialog({
+				title : '统计信息',
+				width : 600,
+				content : document.getElementById('tongjiWin'),
+				cancelValue : '关闭',
+				cancel : function() {
+					this.close();
+					return false;
 				}
 			});
 

@@ -23,45 +23,45 @@
 				<mapping row="1" col="14">insurance.baoxianqi</mapping>
 				<mapping row="1" col="15">insurance.baodanzhuangtai</mapping>
 				<mapping row="1" col="16">insurance.yuanzhuanguanyuan</mapping>
-				<mapping row="1" col="16">insurance.yuanzhuanguanyuangonghao</mapping>
-				<mapping row="1" col="17">insurance.toubaorenxingbie</mapping>
-				<mapping row="1" col="18">insurance.toubaorenshenfenzhenghao
+				<mapping row="1" col="17">insurance.yuanzhuanguanyuangonghao</mapping>
+				<mapping row="1" col="18">insurance.toubaorenxingbie</mapping>
+				<mapping row="1" col="19">insurance.toubaorenshenfenzhenghao
 				</mapping>
-				<mapping row="1" col="19">insurance.toubaorenzhiye</mapping>
-				<mapping row="1" col="20">insurance.beibaoxianrenxingming
+				<mapping row="1" col="20">insurance.toubaorenzhiye</mapping>
+				<mapping row="1" col="21">insurance.beibaoxianrenxingming
 				</mapping>
-				<mapping row="1" col="21">insurance.beibaoxianrenxingbie
+				<mapping row="1" col="22">insurance.beibaoxianrenxingbie
 				</mapping>
-				<mapping row="1" col="22">insurance.beibaoxianrenshenfenzhenghao
+				<mapping row="1" col="23">insurance.beibaoxianrenshenfenzhenghao
 				</mapping>
-				<mapping row="1" col="23">insurance.beibaoxianrenshoujihao
+				<mapping row="1" col="24">insurance.beibaoxianrenshoujihao
 				</mapping>
-				<mapping row="1" col="24">insurance.beibaoxianrentongxundizhi
+				<mapping row="1" col="25">insurance.beibaoxianrentongxundizhi
 				</mapping>
-				<mapping row="1" col="25">insurance.beibaoxianrenzhiye</mapping>
-				<mapping row="1" col="26">insurance.beibaoxianrenyutoubaorenguanxi
+				<mapping row="1" col="26">insurance.beibaoxianrenzhiye</mapping>
+				<mapping row="1" col="27">insurance.beibaoxianrenyutoubaorenguanxi
 				</mapping>
-				<mapping row="1" col="27">insurance.shouyirenxingming</mapping>
-				<mapping row="1" col="28">insurance.shouyirenxingbie</mapping>
-				<mapping row="1" col="29">insurance.shouyirenshenfenzhenghao
+				<mapping row="1" col="28">insurance.shouyirenxingming</mapping>
+				<mapping row="1" col="29">insurance.shouyirenxingbie</mapping>
+				<mapping row="1" col="30">insurance.shouyirenshenfenzhenghao
 				</mapping>
-				<mapping row="1" col="30">insurance.shouyishunxu</mapping>
-				<mapping row="1" col="31">insurance.shouyifene</mapping>
-				<mapping row="1" col="32">insurance.shouyirenyutoubaorenguanxi
+				<mapping row="1" col="31">insurance.shouyishunxu</mapping>
+				<mapping row="1" col="32">insurance.shouyifene</mapping>
+				<mapping row="1" col="33">insurance.shouyirenyutoubaorenguanxi
 				</mapping>
-				<mapping row="1" col="33">insurance.xianzhongmingcheng</mapping>
-				<mapping row="1" col="34">insurance.jibenbaoe</mapping>
-				<mapping row="1" col="35">insurance.toubaoriqi</mapping>
-				<mapping row="1" col="36">insurance.jiaofeiyinhang</mapping>
-				<mapping row="1" col="37">insurance.jiaofeizhanghao</mapping>
-				<mapping row="1" col="38">insurance.zhihang</mapping>
-				<mapping row="1" col="39">insurance.wangdian</mapping>
-				<mapping row="1" col="40">insurance.bumengjingli</mapping>
-				<mapping row="1" col="41">insurance.xinfenpeirenyuangonghao</mapping>
-				<mapping row="1" col="41">insurance.xinfenpeirenyuan</mapping>
-				<mapping row="1" col="42">insurance.fafangshijian</mapping>
-				<mapping row="1" col="43">insurance.fafangbiaoshi</mapping>
-				<mapping row="1" col="44">insurance.chushilaiyuan</mapping>
+				<mapping row="1" col="34">insurance.xianzhongmingcheng</mapping>
+				<mapping row="1" col="35">insurance.jibenbaoe</mapping>
+				<mapping row="1" col="36">insurance.toubaoriqi</mapping>
+				<mapping row="1" col="37">insurance.jiaofeiyinhang</mapping>
+				<mapping row="1" col="38">insurance.jiaofeizhanghao</mapping>
+				<mapping row="1" col="39">insurance.zhihang</mapping>
+				<mapping row="1" col="40">insurance.wangdian</mapping>
+				<mapping row="1" col="41">insurance.bumengjingli</mapping>
+				<mapping row="1" col="42">insurance.xinfenpeirenyuangonghao</mapping>
+				<mapping row="1" col="43">insurance.xinfenpeirenyuan</mapping>
+				<mapping row="1" col="44">insurance.fafangshijian</mapping>
+				<mapping row="1" col="45">insurance.fafangbiaoshi</mapping>
+				<mapping row="1" col="46">insurance.chushilaiyuan</mapping>
 
 			</section>
 			<loopbreakcondition>

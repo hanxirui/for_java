@@ -54,8 +54,8 @@
 					<tr>
 						<th w_index="title">平台名称</th>
 						<th w_index="zhishibaifang" w_render="zhishiRender">制式拜访</th>
-						<th w_index="start">开始时间</th>
-						<th w_index="end">结束时间</th>
+						<th w_index="startdate">开始时间</th>
+						<th w_index="enddate">结束时间</th>
 						<th w_index="caiye" w_render="uploadRender">彩页</th>
 						<th w_index="huashu" w_render="uploadRender">话术</th>
 						<th w_index="jishuziliao" w_render="uploadRender">技术资料</th>
@@ -91,18 +91,18 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">开始时间</label>
 					<div class="col-sm-7">
-						<input name="start" type="text" class="form-control"
+						<input name="startdate" type="text" class="form-control"
 							required="true" onfocus="WdatePicker({skin:'default'})">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label">结束时间</label>
 					<div class="col-sm-7">
-						<input name="end" type="text" class="form-control" required="true" onfocus="WdatePicker({skin:'default'})">
+						<input name="enddate" type="text" class="form-control" required="true" onfocus="WdatePicker({skin:'default'})">
 					</div>
 				</div>
 
-				<input name="empId" type="hidden" class="form-control"
+				<input name="empcode" type="hidden" class="form-control"
 					value="<%=userDetails.getCode()%>">
 			</form>
 		</div>

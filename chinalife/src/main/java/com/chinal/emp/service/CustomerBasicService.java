@@ -11,10 +11,8 @@ import com.chinal.emp.entity.CustomerBasic;
 
 @Service
 public class CustomerBasicService extends CrudService<CustomerBasic, CustomerBasicDao> {
-	public void fenpeiCustomer(String cusIds, String empId) {
-		CustomerBasic basic = new CustomerBasic();
-		basic.setKehujingli(empId);
-		basic.setIdcardnum(cusIds);
+	public void fenpeiCustomer(CustomerBasic basic) {
+
 		this.getDao().fenpeiCustomer(basic);
 	}
 

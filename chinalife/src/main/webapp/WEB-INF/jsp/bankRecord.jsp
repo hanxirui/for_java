@@ -39,7 +39,7 @@
 		<div class="box">
 			<div class="box-header">
 				<div class="btn-group">
-					<a id="addBtn" class="btn btn-primary"> <i class="fa fa-plus"></i>
+					<a id="addBtn" class="btn btn-primary"> <i class="fa"></i>
 						录入
 					</a>
 				</div>
@@ -74,8 +74,7 @@
 						<input name="bankname" type="text" class="form-control"
 							required="true">
 					</div>
-				</div>
-				<div class="form-group">
+				
 					<label class="col-sm-2 control-label">银行代码</label>
 					<div class="col-sm-3">
 						<input name="bankcode" type="text" class="form-control"
@@ -88,8 +87,7 @@
 						<input name="zhihangname" type="text" class="form-control"
 							required="true">
 					</div>
-				</div>
-				<div class="form-group">
+				
 					<label class="col-sm-2 control-label">支行代码</label>
 					<div class="col-sm-3">
 						<input name="zhihangcode" type="text" class="form-control"
@@ -102,8 +100,7 @@
 						<input name="wangdianname" type="text" class="form-control"
 							required="true">
 					</div>
-				</div>
-				<div class="form-group">
+				
 					<label class="col-sm-2 control-label">网点代码</label>
 					<div class="col-sm-3">
 						<input name="wangdiancode" type="text" class="form-control"
@@ -111,28 +108,26 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label">专管员</label>
+					<label class="col-sm-2 control-label">第一专管员</label>
 					<div class="col-sm-3">
 						<input name="mzhuanguanyuan" type="text" class="form-control"
 							required="true">
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">专管员代码</label>
+				
+					<label class="col-sm-2 control-label">第一专管员代码</label>
 					<div class="col-sm-3">
 						<input name="mzhuanguanyuancode" type="text" class="form-control"
 							required="true">
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label"></label>
+					<label class="col-sm-2 control-label">第二专管员</label>
 					<div class="col-sm-3">
 						<input name="szhuanguanyuan" type="text" class="form-control"
 							required="true">
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">专管员代码</label>
+				
+					<label class="col-sm-2 control-label">第二专管员代码</label>
 					<div class="col-sm-3">
 						<input name="szhuanguanyuancode" type="text" class="form-control"
 							required="true">
@@ -193,7 +188,7 @@
 
 			crudWin = dialog({
 				title : '编辑',
-				width : 400,
+				width : 600,
 				content : document.getElementById('crudWin'),
 				okValue : '保存',
 				ok : function() {

@@ -6,12 +6,13 @@
                 <result column="title" property="title" jdbcType="VARCHAR" />
                 <result column="zhishibaifang" property="zhishibaifang" jdbcType="VARCHAR" />
                 <result column="caiye" property="caiye" jdbcType="VARCHAR" />
-                <result column="start" property="start" jdbcType="VARCHAR" />
-                <result column="end" property="end" jdbcType="VARCHAR" />
+                <result column="startdate" property="startdate" jdbcType="VARCHAR" />
+                <result column="enddate" property="enddate" jdbcType="VARCHAR" />
                 <result column="huashu" property="huashu" jdbcType="VARCHAR" />
                 <result column="jishuziliao" property="jishuziliao" jdbcType="VARCHAR" />
                 <result column="others" property="others" jdbcType="VARCHAR" />
-                <result column="emp_id" property="empId" jdbcType="VARCHAR" />
+                <result column="empcode" property="empcode" jdbcType="VARCHAR" />
+                <result column="orgcode" property="orgcode" jdbcType="VARCHAR" />
             </resultMap>
 
     <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
@@ -21,12 +22,13 @@
                 , t.title
                 , t.zhishibaifang
                 , t.caiye
-                , t.start
-                , t.end
+                , t.startdate
+                , t.enddate
                 , t.huashu
                 , t.jishuziliao
                 , t.others
-                , t.emp_id
+                , t.empcode
+                , t.orgcode
         		FROM bizplatform t
 		<include refid="expressionBlock.where" />
 		<choose>
@@ -43,7 +45,6 @@
 		</if>
 	</select>
 
-
     <select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
 		resultType="java.lang.Integer">
 		SELECT count(*) FROM bizplatform t
@@ -57,23 +58,25 @@
                                          `title`
                                         , `zhishibaifang`
                                         , `caiye`
-                                        , `start`
-                                        , `end`
+                                        , `startdate`
+                                        , `enddate`
                                         , `huashu`
                                         , `jishuziliao`
                                         , `others`
-                                        , `emp_id`
+                                        , `empcode`
+                                        , `orgcode`
                               )
 	VALUES (
                                          #{title,jdbcType=VARCHAR}
                                         , #{zhishibaifang,jdbcType=VARCHAR}
                                         , #{caiye,jdbcType=VARCHAR}
-                                        , #{start,jdbcType=VARCHAR}
-                                        , #{end,jdbcType=VARCHAR}
+                                        , #{startdate,jdbcType=VARCHAR}
+                                        , #{enddate,jdbcType=VARCHAR}
                                         , #{huashu,jdbcType=VARCHAR}
                                         , #{jishuziliao,jdbcType=VARCHAR}
                                         , #{others,jdbcType=VARCHAR}
-                                        , #{empId,jdbcType=VARCHAR}
+                                        , #{empcode,jdbcType=VARCHAR}
+                                        , #{orgcode,jdbcType=VARCHAR}
                      
         )
 	</insert>
@@ -97,14 +100,14 @@
          caiye=#{caiye,jdbcType=VARCHAR}
         </if>
                                       
-        <if test="start!=null and start!=''">
+        <if test="startdate!=null and startdate!=''">
         ,
-         start=#{start,jdbcType=VARCHAR}
+         startdate=#{startdate,jdbcType=VARCHAR}
         </if>
                                       
-        <if test="end!=null and end!=''">
+        <if test="enddate!=null and enddate!=''">
         ,
-         end=#{end,jdbcType=VARCHAR}
+         enddate=#{enddate,jdbcType=VARCHAR}
         </if>
                                       
         <if test="huashu!=null and huashu!=''">
@@ -122,9 +125,14 @@
          others=#{others,jdbcType=VARCHAR}
         </if>
                                       
-        <if test="empId!=null and empId!=''">
+        <if test="empcode!=null and empcode!=''">
         ,
-         emp_id=#{empId,jdbcType=VARCHAR}
+         empcode=#{empcode,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="orgcode!=null and orgcode!=''">
+        ,
+         orgcode=#{orgcode,jdbcType=VARCHAR}
         </if>
                       WHERE id = #{id,jdbcType=INTEGER}
     </update>
@@ -135,12 +143,13 @@
                 , title
                 , zhishibaifang
                 , caiye
-                , start
-                , end
+                , startdate
+                , enddate
                 , huashu
                 , jishuziliao
                 , others
-                , emp_id
+                , empcode
+                , orgcode
         		FROM bizplatform t
 		WHERE id = #{id,jdbcType=INTEGER}
 	</select>

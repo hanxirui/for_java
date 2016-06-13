@@ -50,6 +50,26 @@
 			#{start,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
 		</if>
 	</select>
+    <select id="getTongjiInfo"  parameterType="string"
+		resultMap="queryResultMap">
+		SELECT 
+                  sum(t.yaoyue_num) yaoyue_num
+                , sum(t.daohui_num) daohui_num
+                , sum(t.receive_num) receive_num
+                , sum(t.receive_baofei) receive_baofei
+                , round(sum(t.daohui_num)*100/sum(t.yaoyue_num)) daohuilv
+                , sum(t.qiandan_num) qiandan_num
+                , round(sum(t.qiandan_num)*100/sum(t.yaoyue_num)) qiandanlv
+                , round(sum(t.receive_baofei)*100/sum(t.qiandan_baofei)) huishoulv
+                , sum(t.qiandan_baofei) qiandan_baofei
+                , t.bizplat_title
+        		FROM biz_record t
+		        where t.riqi like CONCAT(#{currMonth,jdbcType=VARCHAR},'%' )
+				group BY t.bizplat_title
+			
+			
+		
+	</select>
 
 
     <select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
@@ -63,7 +83,7 @@
     >
 	INSERT INTO biz_record
          (
-                                                  `yaoyue_num`
+                                          `yaoyue_num`
                                         , `daohui_num`
                                         , `receive_num`
                                         , `receive_baofei`

@@ -1,5 +1,7 @@
 package com.chinal.emp.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.durcframework.core.expression.ExpressionQuery;
@@ -70,6 +72,18 @@ public class BizRecordController extends BsgridController<BizRecord, BizRecordSe
 	@RequestMapping("/delBizRecord.do")
 	public ModelAndView delBizRecord(BizRecord entity) {
 		return this.remove(entity);
+	}
+
+	@RequestMapping("/getBizplatTongjiInfo.do")
+	public ModelAndView getBizplatTongjiInfo(String currMonth) {
+		ModelAndView mv = new ModelAndView();
+		List<BizRecord> records = this.getService().getTongjiInfo(currMonth);
+		BizRecord record = new BizRecord();
+		if (records != null && records.size() > 0) {
+			record = records.get(0);
+		}
+		mv = this.render(record);
+		return mv;
 	}
 
 }

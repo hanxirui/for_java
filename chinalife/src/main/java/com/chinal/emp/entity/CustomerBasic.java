@@ -17,7 +17,7 @@ public class CustomerBasic {
 	// 结婚纪念日
 	private String weddingDay;
 	// 客户经理code
-	private String kehujingli;
+	private String empcode;
 	// 性别
 	private String sex;
 	// 初始来源 1 发放 2 自营新拓 3 渠道新拓
@@ -92,12 +92,12 @@ public class CustomerBasic {
 		return this.weddingDay;
 	}
 
-	public void setKehujingli(String kehujingli) {
-		this.kehujingli = kehujingli;
+	public void setEmpcode(String empcode) {
+		this.empcode = empcode;
 	}
 
-	public String getKehujingli() {
-		return this.kehujingli;
+	public String getEmpcode() {
+		return this.empcode;
 	}
 
 	public void setSex(String sex) {

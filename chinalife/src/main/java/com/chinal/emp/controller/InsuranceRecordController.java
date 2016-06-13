@@ -157,7 +157,7 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 						|| "".equals(insuranceRecord.getXinfenpeirenyuangonghao())) {
 					ExpressionQuery empQuery = new ExpressionQuery();
 					empQuery.addValueExpression(new ValueExpression("t.code", insuranceRecord.getYewuyuandaima()));
-					List<Employee> emp = empService.find(empQuery);
+					List<Employee> emp = empService.findSimple(empQuery);
 					// 业务员不为公司员工
 					if (emp == null || emp.size() == 0) {
 						// 根据银行网点和员工对应关系，获得员工信息，，将用专管员信息填充原专管员；新分配人员为空，客户中的客户经理保持为空
@@ -180,13 +180,13 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 						insuranceRecord.setXinfenpeirenyuan(employee.getName());
 						insuranceRecord.setXinfenpeirenyuangonghao(employee.getCode());
 						toubaoren.setEmpname(employee.getName());
-						toubaoren.setKehujingli(employee.getCode());
+						toubaoren.setEmpcode(employee.getCode());
 					}
 
 				} else {
 					// 新分配人员存在,将客户的客户经理信息置为新分配人员。
 					toubaoren.setEmpname(insuranceRecord.getXinfenpeirenyuan());
-					toubaoren.setKehujingli(insuranceRecord.getXinfenpeirenyuangonghao());
+					toubaoren.setEmpcode(insuranceRecord.getXinfenpeirenyuangonghao());
 
 				}
 				customerBasicService.save(toubaoren);
@@ -197,11 +197,11 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 				if (insuranceRecord.getXinfenpeirenyuangonghao() == null
 						|| "".equals(insuranceRecord.getXinfenpeirenyuangonghao())) {
 					insuranceRecord.setXinfenpeirenyuan(customer.getEmpname());
-					insuranceRecord.setXinfenpeirenyuangonghao(customer.getKehujingli());
+					insuranceRecord.setXinfenpeirenyuangonghao(customer.getEmpcode());
 				} else {
 					// 新分配人员存在
 					// 如果客户经理和新分配人员相同
-					if (customer.getKehujingli().equals(insuranceRecord.getXinfenpeirenyuangonghao())) {
+					if (customer.getEmpcode().equals(insuranceRecord.getXinfenpeirenyuangonghao())) {
 						// do nothing
 					} else {
 						// 客户经理和新分配人员不相同
@@ -223,14 +223,15 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 		} else if (bb != null && !"".equals(bb) && !bb.equals(tb)) {
 			beibaoren.setName(insuranceRecord.getToubaorenxingming());
 			beibaoren.setBirthday(insuranceRecord.getBeibaoxianrenshenfenzhenghao().substring(6, 14));
-			beibaoren.setSex(insuranceRecord.getBeibaoxianrenxingbie());
+			beibaoren.setSex(insuranceRecord.getBeibaoxianrenxingbie() != null
+					&& "男".equals(insuranceRecord.getBeibaoxianrenxingbie()) ? "1" : "0");
 			beibaoren.setAddr(insuranceRecord.getBeibaoxianrentongxundizhi());
 			beibaoren.setPhone(insuranceRecord.getBeibaoxianrenshoujihao());
 			beibaoren.setIdcardnum(insuranceRecord.getBeibaoxianrenshenfenzhenghao());
 			beibaoren.setEmporgcode(insuranceRecord.getJigouhao());
 			// beibaoren.setEmporgname(emporgname);
 			beibaoren.setEmpname(insuranceRecord.getYewuyuanxingming());
-			beibaoren.setKehujingli(insuranceRecord.getYewuyuandaima());
+			beibaoren.setEmpcode(insuranceRecord.getYewuyuandaima());
 			ExpressionQuery query = new ExpressionQuery();
 			query.addValueExpression(new ValueExpression("t.idcardnum", beibaoren.getIdcardnum()));
 			int count = customerBasicService.findTotalCount(query);
@@ -240,14 +241,16 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 		} else if (sy != null && !"".equals(sy) && !sy.equals(tb) && !sy.equals(bb)) {
 			shouyiren.setName(insuranceRecord.getShouyirenxingming());
 			shouyiren.setBirthday(insuranceRecord.getShouyirenshenfenzhenghao().substring(6, 14));
-			shouyiren.setSex(insuranceRecord.getShouyirenxingbie());
+			shouyiren.setSex(
+					insuranceRecord.getShouyirenxingbie() != null && "男".equals(insuranceRecord.getShouyirenxingbie())
+							? "1" : "0");
 			// shouyiren.setAddr(insuranceRecord.getShouyirentongxundizhi());
 			// shouyiren.setPhone(insuranceRecord.getShouyirenshoujihao());
 			shouyiren.setIdcardnum(insuranceRecord.getShouyirenshenfenzhenghao());
 			shouyiren.setEmporgcode(insuranceRecord.getJigouhao());
 			// shouyiren.setEmporgname(emporgname);
 			shouyiren.setEmpname(insuranceRecord.getYewuyuanxingming());
-			shouyiren.setKehujingli(insuranceRecord.getYewuyuandaima());
+			shouyiren.setEmpcode(insuranceRecord.getYewuyuandaima());
 			ExpressionQuery query = new ExpressionQuery();
 			query.addValueExpression(new ValueExpression("t.idcardnum", shouyiren.getIdcardnum()));
 			int count = customerBasicService.findTotalCount(query);
@@ -260,8 +263,11 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 
 	private void genToubanren(InsuranceRecord insuranceRecord, CustomerBasic toubaoren) {
 		toubaoren.setName(insuranceRecord.getToubaorenxingming());
+
 		toubaoren.setBirthday(insuranceRecord.getToubaorenshenfenzhenghao().substring(6, 14));
-		toubaoren.setSex(insuranceRecord.getToubaorenxingbie());
+		toubaoren.setSex(
+				insuranceRecord.getToubaorenxingbie() != null && "男".equals(insuranceRecord.getToubaorenxingbie()) ? "1"
+						: "0");
 		toubaoren.setAddr(insuranceRecord.getToubaorentongxundizhi());
 		toubaoren.setPhone(insuranceRecord.getToubaorenshoujihao());
 		toubaoren.setIdcardnum(insuranceRecord.getToubaorenshenfenzhenghao());
@@ -271,7 +277,7 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 			toubaoren.setEmporgname(jigouName);
 		}
 		toubaoren.setEmpname(insuranceRecord.getXinfenpeirenyuan());
-		toubaoren.setKehujingli(insuranceRecord.getXinfenpeirenyuangonghao());
+		toubaoren.setEmpcode(insuranceRecord.getXinfenpeirenyuangonghao());
 	}
 
 	private String getJigouName(String jigouhao) {
@@ -366,4 +372,22 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 		return this.successView();
 	}
 
+	public static void main(String[] args) {
+		for (int t_i = 0; t_i < 1914; t_i++) {
+			if (t_i < 10) {
+				System.out.println("12012319491010000" + t_i);
+			}
+			if (t_i >= 10 && t_i < 100) {
+				System.out.println("1201231949101000" + t_i);
+			}
+			if (t_i >= 100 && t_i < 1000) {
+				System.out.println("120123194910100" + t_i);
+			}
+			if (t_i >= 1000) {
+				System.out.println("12012319491010" + t_i);
+			}
+
+		}
+
+	}
 }
