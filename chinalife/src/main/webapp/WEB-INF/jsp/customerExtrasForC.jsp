@@ -70,52 +70,52 @@
 					   										   						<%-- <div class="form-group">
 	                      <label class="col-sm-3 control-label">身份证号</label>
 	                      <div class="col-sm-7">
-	                        <input name="idcardnum" type="hidden" class="form-control" value="${customer.idcardnum}">
+	                        <input name="idcardnum" type="hidden" class="form-control  input-sm" value="${customer.idcardnum}">
 	                      </div>
 	                    </div> --%>
 	                    <input name="idcardnum" type="hidden" value="${customer.idcardnum}">
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">电话</label>
 	                      <div class="col-sm-7">
-	                        <input name="phone" type="text" class="form-control" required="true">
+	                        <input name="phone" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">手机</label>
 	                      <div class="col-sm-7">
-	                        <input name="mobile" type="text" class="form-control" required="true">
+	                        <input name="mobile" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">车品牌</label>
 	                      <div class="col-sm-7">
-	                        <input name="carBand" type="text" class="form-control" required="true">
+	                        <input name="carBand" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">车牌号</label>
 	                      <div class="col-sm-7">
-	                        <input name="carNum" type="text" class="form-control" required="true">
+	                        <input name="carNum" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">住址</label>
 	                      <div class="col-sm-7">
-	                        <input name="addr" type="text" class="form-control" required="true">
+	                        <input name="addr" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<!-- <div class="form-group">
 	                      <label class="col-sm-3 control-label">维护人</label>
 	                      <div class="col-sm-7">
-	                        <input name="empcode" type="text" class="form-control" >
+	                        <input name="empcode" type="text" class="form-control  input-sm" >
 	                      </div>
 	                    </div> -->
-	                    <input name="empcode" type="hidden" class="form-control" value="<%=userDetails.getCode()%>">
-	                    <input name="empname" type="hidden" class="form-control" value="<%=userDetails.getcName()%>">
+	                    <input name="empcode" type="hidden" class="form-control  input-sm" value="<%=userDetails.getCode()%>">
+	                    <input name="empname" type="hidden" class="form-control  input-sm" value="<%=userDetails.getcName()%>">
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">维护日期</label>
 	                      <div class="col-sm-7">
-	                        <input name="insertDate" type="text" class="form-control" required="true" onfocus="WdatePicker({skin:'default'})">
+	                        <input name="insertDate" type="text" class="form-control  input-sm" required="true" onfocus="WdatePicker({skin:'default'})">
 	                      </div>
 	                    </div>
 					   										</form>

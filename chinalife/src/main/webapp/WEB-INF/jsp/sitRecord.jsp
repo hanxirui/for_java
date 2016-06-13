@@ -21,10 +21,10 @@
 			<div class="box-body">
 				<!-- form start -->
 				<form id="schFrm" class="form-inline" onsubmit="return false;">
-					客户:<input name="name" type="text" class="form-control">
-					拜访时间:<input name="visittime" type="text" class="form-control">
-					客户经理:<input name="empcode" type="text" class="form-control">
-					<!--  拜访内容:<input name="content" type="text" class="form-control">  -->
+					客户:<input name="name" type="text" class="form-control  input-sm">
+					拜访时间:<input name="visittime" type="text" class="form-control  input-sm">
+					客户经理:<input name="empcode" type="text" class="form-control  input-sm">
+					<!--  拜访内容:<input name="content" type="text" class="form-control  input-sm">  -->
 					<button id="schBtn" type="submit" class="btn btn-primary">
 						<i class="fa fa-search"></i> 查询
 					</button>
@@ -70,13 +70,13 @@
 				<!-- <div class="form-group">
 	                      <label class="col-sm-3 control-label">客户经理</label>
 	                      <div class="col-sm-7">
-	                        <input name="empcode" type="text" class="form-control" required="true">
+	                        <input name="empcode" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div> -->
 				<div class="form-group">
 					<label class="col-sm-3 control-label">拜访时间</label>
 					<div class="col-sm-7">
-						<input name="visittime" type="text" class="form-control"
+						<input name="visittime" type="text" class="form-control  input-sm"
 							required="true" onfocus="WdatePicker({skin:'default'})">
 					</div>
 				</div>
@@ -84,8 +84,8 @@
 					<label class="col-sm-3 control-label">客户</label>
 					<div class="col-sm-7">
 						<input id="idcardnum" name="idcardnum" type="hidden"
-							class="form-control" required="true"> <input id="name"
-							name="name" type="text" class="form-control" required="true">
+							class="form-control  input-sm" required="true"> <input id="name"
+							name="name" type="text" class="form-control  input-sm" required="true">
 					</div>
 				</div>
 				<div class="form-group">
@@ -102,7 +102,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">拜访内容</label>
 					<div class="col-sm-7">
-						<input name="content" type="textarea" class="form-control"
+						<input name="content" type="textarea" class="form-control  input-sm"
 							required="true">
 					</div>
 				</div>

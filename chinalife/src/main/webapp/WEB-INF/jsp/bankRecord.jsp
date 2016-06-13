@@ -71,65 +71,65 @@
 				<div class="form-group">
 					<label class="col-sm-2 control-label">银行名称</label>
 					<div class="col-sm-3">
-						<input name="bankname" type="text" class="form-control"
+						<input name="bankname" type="text" class="form-control  input-sm"
 							required="true">
 					</div>
 				
 					<label class="col-sm-2 control-label">银行代码</label>
 					<div class="col-sm-3">
-						<input name="bankcode" type="text" class="form-control"
+						<input name="bankcode" type="text" class="form-control  input-sm"
 							required="true">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">支行</label>
 					<div class="col-sm-3">
-						<input name="zhihangname" type="text" class="form-control"
+						<input name="zhihangname" type="text" class="form-control  input-sm"
 							required="true">
 					</div>
 				
 					<label class="col-sm-2 control-label">支行代码</label>
 					<div class="col-sm-3">
-						<input name="zhihangcode" type="text" class="form-control"
+						<input name="zhihangcode" type="text" class="form-control  input-sm"
 							required="true">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">网点</label>
 					<div class="col-sm-3">
-						<input name="wangdianname" type="text" class="form-control"
+						<input name="wangdianname" type="text" class="form-control  input-sm"
 							required="true">
 					</div>
 				
 					<label class="col-sm-2 control-label">网点代码</label>
 					<div class="col-sm-3">
-						<input name="wangdiancode" type="text" class="form-control"
+						<input name="wangdiancode" type="text" class="form-control  input-sm"
 							required="true">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">第一专管员</label>
 					<div class="col-sm-3">
-						<input name="mzhuanguanyuan" type="text" class="form-control"
+						<input name="mzhuanguanyuan" type="text" class="form-control  input-sm"
 							required="true">
 					</div>
 				
 					<label class="col-sm-2 control-label">第一专管员代码</label>
 					<div class="col-sm-3">
-						<input name="mzhuanguanyuancode" type="text" class="form-control"
+						<input name="mzhuanguanyuancode" type="text" class="form-control  input-sm"
 							required="true">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">第二专管员</label>
 					<div class="col-sm-3">
-						<input name="szhuanguanyuan" type="text" class="form-control"
+						<input name="szhuanguanyuan" type="text" class="form-control  input-sm"
 							required="true">
 					</div>
 				
 					<label class="col-sm-2 control-label">第二专管员代码</label>
 					<div class="col-sm-3">
-						<input name="szhuanguanyuancode" type="text" class="form-control"
+						<input name="szhuanguanyuancode" type="text" class="form-control  input-sm"
 							required="true">
 					</div>
 				</div>

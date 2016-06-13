@@ -21,15 +21,15 @@
                <div class="box-body">
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
-                       :<input name="id" type="text" class="form-control">      
-                       身份证号:<input name="idcardnum" type="text" class="form-control">      
-                       电话:<input name="phone" type="text" class="form-control">      
-                       手机:<input name="mobile" type="text" class="form-control">      
-                       车品牌:<input name="carBand" type="text" class="form-control">      
-                       车牌号:<input name="carNum" type="text" class="form-control">      
-                       住址:<input name="addr" type="text" class="form-control">      
-                       维护人:<input name="empcode" type="text" class="form-control">      
-                       维护日期:<input name="insertDate" type="text" class="form-control">      
+                       :<input name="id" type="text" class="form-control  input-sm">      
+                       身份证号:<input name="idcardnum" type="text" class="form-control  input-sm">      
+                       电话:<input name="phone" type="text" class="form-control  input-sm">      
+                       手机:<input name="mobile" type="text" class="form-control  input-sm">      
+                       车品牌:<input name="carBand" type="text" class="form-control  input-sm">      
+                       车牌号:<input name="carNum" type="text" class="form-control  input-sm">      
+                       住址:<input name="addr" type="text" class="form-control  input-sm">      
+                       维护人:<input name="empcode" type="text" class="form-control  input-sm">      
+                       维护日期:<input name="insertDate" type="text" class="form-control  input-sm">      
 	                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
 				</form>
@@ -68,55 +68,55 @@
 											   						<div class="form-group">
 	                      <label class="col-sm-3 control-label"></label>
 	                      <div class="col-sm-7">
-	                        <input name="id" type="text" class="form-control" required="true">
+	                        <input name="id" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">身份证号</label>
 	                      <div class="col-sm-7">
-	                        <input name="idcardnum" type="text" class="form-control" required="true">
+	                        <input name="idcardnum" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">电话</label>
 	                      <div class="col-sm-7">
-	                        <input name="phone" type="text" class="form-control" required="true">
+	                        <input name="phone" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">手机</label>
 	                      <div class="col-sm-7">
-	                        <input name="mobile" type="text" class="form-control" required="true">
+	                        <input name="mobile" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">车品牌</label>
 	                      <div class="col-sm-7">
-	                        <input name="carBand" type="text" class="form-control" required="true">
+	                        <input name="carBand" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">车牌号</label>
 	                      <div class="col-sm-7">
-	                        <input name="carNum" type="text" class="form-control" required="true">
+	                        <input name="carNum" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">住址</label>
 	                      <div class="col-sm-7">
-	                        <input name="addr" type="text" class="form-control" required="true">
+	                        <input name="addr" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">维护人</label>
 	                      <div class="col-sm-7">
-	                        <input name="empcode" type="text" class="form-control" required="true">
+	                        <input name="empcode" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">维护日期</label>
 	                      <div class="col-sm-7">
-	                        <input name="insertDate" type="text" class="form-control" required="true" onfocus="WdatePicker({skin:'default'})">
+	                        <input name="insertDate" type="text" class="form-control  input-sm" required="true" onfocus="WdatePicker({skin:'default'})">
 	                      </div>
 	                    </div>
 					   										</form>

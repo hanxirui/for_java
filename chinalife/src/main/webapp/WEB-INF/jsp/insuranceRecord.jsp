@@ -21,13 +21,13 @@
 			<div class="box-body">
 				<!-- form start -->
 				<form id="schFrm" class="form-inline" onsubmit="return false;">
-					保单号:<input name="baoxiandanhao" type="text" class="form-control">
-					业务员代码:<input name="yewuyuandaima" type="text" class="form-control">
+					保单号:<input name="baoxiandanhao" type="text" class="form-control  input-sm">
+					业务员代码:<input name="yewuyuandaima" type="text" class="form-control  input-sm">
 					业务员姓名:<input name="yewuyuanxingming" type="text"
-						class="form-control"> 投保人姓名:<input
-						name="toubaorenxingming" type="text" class="form-control">
+						class="form-control  input-sm"> 投保人姓名:<input
+						name="toubaorenxingming" type="text" class="form-control  input-sm">
 					被保人姓名:<input name="beibaoxianrenxingming" type="text"
-						class="form-control">
+						class="form-control  input-sm">
 					<button id="schBtn" type="submit" class="btn btn-primary">
 						<i class="fa fa-search"></i> 查询
 					</button>
@@ -121,307 +121,306 @@
 				<div class="form-group">
 					<label class="col-sm-2 control-label">保单号</label>
 					<div class="col-sm-2">
-						<input name="baoxiandanhao" type="text" class="form-control"
-							required="true">
+						<input name="baoxiandanhao" type="text" class="form-control  input-sm"
+							>
 					</div>
 
 					<label class="col-sm-2 control-label">投保单号</label>
 					<div class="col-sm-2">
-						<input name="toubaodanhao" type="text" class="form-control"
-							required="true">
+						<input name="toubaodanhao" type="text" class="form-control  input-sm"
+							>
 					</div>
 
 					<label class="col-sm-2 control-label">业务员代码</label>
 					<div class="col-sm-2">
-						<input name="yewuyuandaima" type="text" class="form-control"
-							required="true">
+						<input name="yewuyuandaima" type="text" class="form-control  input-sm"
+							>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">业务员姓名</label>
 					<div class="col-sm-2">
-						<input name="yewuyuanxingming" type="text" class="form-control"
-							required="true">
+						<input name="yewuyuanxingming" type="text" class="form-control  input-sm"
+							>
 					</div>
 
 					<label class="col-sm-2 control-label">险种名称</label>
 					<div class="col-sm-2">
-						<input name="xianzhongmingcheng" type="text" class="form-control"
-							required="true">
+						<input name="xianzhongmingcheng" type="text" class="form-control  input-sm"
+							>
 					</div>
 
 					<label class="col-sm-2 control-label">保单状态</label>
 					<div class="col-sm-2">
-						<input name="baodanzhuangtai" type="text" class="form-control"
-							required="true">
+						<input name="baodanzhuangtai" type="text" class="form-control  input-sm"
+							>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">投保日期</label>
 					<div class="col-sm-2">
-						<input name="toubaoriqi" type="text" class="form-control"
-							required="true" onfocus="WdatePicker({skin:'default'})">
+						<input name="toubaoriqi" type="text" class="form-control  input-sm"
+							 onfocus="WdatePicker({skin:'default'})">
 					</div>
 
 					<label class="col-sm-2 control-label">生效日期</label>
 					<div class="col-sm-2">
-						<input name="shengxiaoriqi" type="text" class="form-control"
-							required="true" onfocus="WdatePicker({skin:'default'})">
+						<input name="shengxiaoriqi" type="text" class="form-control  input-sm"
+							 onfocus="WdatePicker({skin:'default'})">
 					</div>
 
 					<label class="col-sm-2 control-label">基本保额</label>
 					<div class="col-sm-2">
-						<input name="jibenbaoe" type="text" class="form-control"
-							required="true">
+						<input name="jibenbaoe" type="text" class="form-control  input-sm"
+							>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">基本保费</label>
 					<div class="col-sm-2">
-						<input name="jibenbaofei" type="text" class="form-control"
-							required="true">
+						<input name="jibenbaofei" type="text" class="form-control  input-sm"
+							>
 					</div>
 
 					<label class="col-sm-2 control-label">投保人姓名</label>
 					<div class="col-sm-2">
-						<input name="toubaorenxingming" type="text" class="form-control"
-							required="true">
+						<input name="toubaorenxingming" type="text" class="form-control  input-sm"
+							>
 					</div>
 
 					<label class="col-sm-2 control-label">投保人性别</label>
 					<div class="col-sm-2">
-						<input name="toubaorenxingbie" type="text" class="form-control"
-							required="true">
+						<input name="toubaorenxingbie" type="text" class="form-control  input-sm"
+							>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">投保人身份证号</label>
 					<div class="col-sm-2">
 						<input name="toubaorenshenfenzhenghao" type="text"
-							class="form-control" required="true">
+							class="form-control  input-sm" >
 					</div>
 
 					<label class="col-sm-2 control-label">投保人手机号</label>
 					<div class="col-sm-2">
-						<input name="toubaorenshoujihao" type="text" class="form-control"
-							required="true">
+						<input name="toubaorenshoujihao" type="text" class="form-control  input-sm"
+							>
 					</div>
 
 					<label class="col-sm-2 control-label">投保人通讯地址</label>
 					<div class="col-sm-2">
 						<input name="toubaorentongxundizhi" type="text"
-							class="form-control" required="true">
+							class="form-control  input-sm" >
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">投保人职业</label>
 					<div class="col-sm-2">
-						<input name="toubaorenzhiye" type="text" class="form-control"
-							required="true">
+						<input name="toubaorenzhiye" type="text" class="form-control  input-sm"
+							>
 					</div>
 
 					<label class="col-sm-2 control-label">被保人姓名</label>
 					<div class="col-sm-2">
 						<input name="beibaoxianrenxingming" type="text"
-							class="form-control" required="true">
+							class="form-control  input-sm" >
 					</div>
 
 					<label class="col-sm-2 control-label">被保险人性别</label>
 					<div class="col-sm-2">
 						<input name="beibaoxianrenxingbie" type="text"
-							class="form-control" required="true">
+							class="form-control  input-sm" >
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">被保险人身份证号</label>
 					<div class="col-sm-2">
 						<input name="beibaoxianrenshenfenzhenghao" type="text"
-							class="form-control" required="true">
+							class="form-control  input-sm" >
 					</div>
 
 					<label class="col-sm-2 control-label">被保险人手机号</label>
 					<div class="col-sm-2">
 						<input name="beibaoxianrenshoujihao" type="text"
-							class="form-control" required="true">
+							class="form-control  input-sm" >
 					</div>
 
 					<label class="col-sm-2 control-label">被保险人通讯地址</label>
 					<div class="col-sm-2">
 						<input name="beibaoxianrentongxundizhi" type="text"
-							class="form-control" required="true">
+							class="form-control  input-sm" >
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">被保险人职业</label>
 					<div class="col-sm-2">
-						<input name="beibaoxianrenzhiye" type="text" class="form-control"
-							required="true">
+						<input name="beibaoxianrenzhiye" type="text" class="form-control  input-sm"
+							>
 					</div>
 
 					<label class="col-sm-2 control-label">被保险人与投保人关系</label>
 					<div class="col-sm-2">
 						<input name="beibaoxianrenyutoubaorenguanxi" type="text"
-							class="form-control" required="true">
+							class="form-control  input-sm" >
 					</div>
 
 					<label class="col-sm-2 control-label">受益人姓名</label>
 					<div class="col-sm-2">
-						<input name="shouyirenxingming" type="text" class="form-control"
-							required="true">
+						<input name="shouyirenxingming" type="text" class="form-control  input-sm"
+							>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">受益人性别</label>
 					<div class="col-sm-2">
-						<input name="shouyirenxingbie" type="text" class="form-control"
-							required="true">
+						<input name="shouyirenxingbie" type="text" class="form-control  input-sm"
+							>
 					</div>
 
 					<label class="col-sm-2 control-label">受益人身份证号</label>
 					<div class="col-sm-2">
 						<input name="shouyirenshenfenzhenghao" type="text"
-							class="form-control" required="true">
+							class="form-control  input-sm" >
 					</div>
 
 					<label class="col-sm-2 control-label">受益顺序</label>
 					<div class="col-sm-2">
-						<input name="shouyishunxu" type="text" class="form-control"
-							required="true">
+						<input name="shouyishunxu" type="text" class="form-control  input-sm"
+							>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">受益份额</label>
 					<div class="col-sm-2">
-						<input name="shouyifene" type="text" class="form-control"
-							required="true">
+						<input name="shouyifene" type="text" class="form-control  input-sm"
+							>
 					</div>
 
 					<label class="col-sm-2 control-label">受益人与投保人关系</label>
 					<div class="col-sm-2">
 						<input name="shouyirenyutoubaorenguanxi" type="text"
-							class="form-control" required="true">
+							class="form-control  input-sm" >
 					</div>
 
 					<label class="col-sm-2 control-label">缴费期</label>
 					<div class="col-sm-2">
-						<input name="jiaofeiqi" type="text" class="form-control"
-							required="true">
+						<input name="jiaofeiqi" type="text" class="form-control  input-sm"
+							>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">保险期</label>
 					<div class="col-sm-2">
-						<input name="baoxianqi" type="text" class="form-control"
-							required="true">
+						<input name="baoxianqi" type="text" class="form-control  input-sm"
+							>
 					</div>
 
 					<label class="col-sm-2 control-label">缴费银行</label>
 					<div class="col-sm-2">
-						<input name="jiaofeiyinhang" type="text" class="form-control"
-							required="true">
+						<input name="jiaofeiyinhang" type="text" class="form-control  input-sm"
+							>
 					</div>
 
 					<label class="col-sm-2 control-label">缴费账号</label>
 					<div class="col-sm-2">
-						<input name="jiaofeizhanghao" type="text" class="form-control"
-							required="true">
+						<input name="jiaofeizhanghao" type="text" class="form-control  input-sm"
+							>
 					</div>
 				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">初始来源</label>
-					<div class="col-sm-2">
-						<input name="chushilaiyuan" type="text" class="form-control"
-							required="true">
-					</div>
-				</div>
+				
 				<div class="form-group">
 					<label class="col-sm-2 control-label">机构号</label>
 					<div class="col-sm-2">
-						<input name="jigouhao" type="text" class="form-control"
-							required="true">
+						<input name="jigouhao" type="text" class="form-control  input-sm"
+							>
 					</div>
 
 					<label class="col-sm-2 control-label">险种代码</label>
 					<div class="col-sm-2">
-						<input name="xianzhongdaima" type="text" class="form-control"
-							required="true">
+						<input name="xianzhongdaima" type="text" class="form-control  input-sm"
+							>
 					</div>
 
 					<label class="col-sm-2 control-label">渠道</label>
 					<div class="col-sm-2">
-						<input name="qudao" type="text" class="form-control"
-							required="true">
+						<input name="qudao" type="text" class="form-control  input-sm"
+							>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">支行</label>
 					<div class="col-sm-2">
-						<input name="zhihang" type="text" class="form-control"
-							required="true">
+						<input name="zhihang" type="text" class="form-control  input-sm"
+							>
 					</div>
 
 					<label class="col-sm-2 control-label">网点</label>
 					<div class="col-sm-2">
-						<input name="wangdian" type="text" class="form-control"
-							required="true">
+						<input name="wangdian" type="text" class="form-control  input-sm"
+							>
 					</div>
 
 					<label class="col-sm-2 control-label">电话</label>
 					<div class="col-sm-2">
-						<input name="dianhua" type="text" class="form-control"
-							required="true">
+						<input name="dianhua" type="text" class="form-control  input-sm"
+							>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">出生日期</label>
 					<div class="col-sm-2">
-						<input name="chushengriqi" type="text" class="form-control"
-							required="true">
+						<input name="chushengriqi" type="text" class="form-control  input-sm"
+							>
 					</div>
 
 					<label class="col-sm-2 control-label">部门经理</label>
 					<div class="col-sm-2">
-						<input name="bumengjingli" type="text" class="form-control"
-							required="true">
+						<input name="bumengjingli" type="text" class="form-control  input-sm"
+							>
 					</div>
 
 					<label class="col-sm-2 control-label">原专管员</label>
 					<div class="col-sm-2">
-						<input name="yuanzhuanguanyuan" type="text" class="form-control"
-							required="true">
+						<input name="yuanzhuanguanyuan" type="text" class="form-control  input-sm"
+							>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">新分配人员</label>
 					<div class="col-sm-2">
-						<input name="xinfenpeirenyuan" type="text" class="form-control"
-							required="true">
+						<input name="xinfenpeirenyuan" type="text" class="form-control  input-sm"
+							>
 					</div>
 
 					<label class="col-sm-2 control-label">发放时间</label>
 					<div class="col-sm-2">
-						<input name="fafangshijian" type="text" class="form-control"
-							required="true">
+						<input name="fafangshijian" type="text" class="form-control  input-sm"
+							>
 					</div>
 
 					<label class="col-sm-2 control-label">发放标识</label>
 					<div class="col-sm-2">
-						<input name="fafangbiaoshi" type="text" class="form-control"
-							required="true">
+						<input name="fafangbiaoshi" type="text" class="form-control  input-sm"
+							>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">原专管员工号</label>
 					<div class="col-sm-2">
 						<input name="yuanzhuanguanyuangonghao" type="text"
-							class="form-control" required="true">
+							class="form-control  input-sm" >
 					</div>
 					<label class="col-sm-2 control-label">新分配人员工号</label>
 					<div class="col-sm-2">
 						<input name="xinfenpeirenyuangonghao" type="text"
-							class="form-control" required="true">
+							class="form-control  input-sm" >
 					</div>
 				</div>
+					<label class="col-sm-2 control-label">初始来源</label>
+					<div class="col-sm-2">
+						<input name="chushilaiyuan" type="text" class="form-control  input-sm"
+							>
+					</div>
 			</form>
 		</div>
 		<div id="importWin">

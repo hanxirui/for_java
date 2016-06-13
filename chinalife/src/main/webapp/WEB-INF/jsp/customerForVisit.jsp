@@ -25,11 +25,11 @@
                <div class="box-body">
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
-				      姓名:<input name="name" type="text" class="form-control">      
-                       身份证号:<input name="idcardnum" type="text" class="form-control">      
-                     客户经理:<input name="empname" type="text" class="form-control">   
-                     机构:<select name="emporgcode" id="emporgcode" type="text" class="form-control"> </select> 
-                      <input id="vcount" name="vcount" type="hidden" class="form-control">   
+				      姓名:<input name="name" type="text" class="form-control  input-sm">      
+                       身份证号:<input name="idcardnum" type="text" class="form-control  input-sm">      
+                     客户经理:<input name="empname" type="text" class="form-control  input-sm">   
+                     机构:<select name="emporgcode" id="emporgcode" type="text" class="form-control  input-sm"> </select> 
+                      <input id="vcount" name="vcount" type="hidden" class="form-control  input-sm">   
                    	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
 				</form>
@@ -73,24 +73,24 @@
 						<div class="form-group">
 	                      <label class="col-sm-2 control-label">姓名</label>
 	                      <div class="col-sm-3">
-	                        <input name="name" type="text" class="form-control" required="true">
+	                        <input name="name" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                   
 	                      <label class="col-sm-2 control-label">身份证号</label>
 	                      <div class="col-sm-3">
-	                        <input name="idcardnum" type="text" class="form-control" required="true">
+	                        <input name="idcardnum" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                       </div>
 	                       
 	                      <div class="form-group">
 	                      <label class="col-sm-2 control-label">地址</label>
 	                      <div class="col-sm-3">
-	                        <input name="addr" type="text" class="form-control" required="true">
+	                        <input name="addr" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                   
 	                      <label class="col-sm-2 control-label">初始来源</label>
 	                      <div class="col-sm-3">
-	                        <select id="type" name="type"  class="form-control" required="true">
+	                        <select id="type" name="type"  class="form-control  input-sm" required="true">
 	                          <option value="1">发放</option>
 	                          <option value="2">新拓</option>
 	                        </select>
@@ -99,7 +99,7 @@
 	                     <div class="form-group">
 	                      <label class="col-sm-2 control-label">新拓方式</label>
 	                      <div class="col-sm-3">
-	                        <select id="laiyuan" name="laiyuan"  class="form-control" required="true" disabled>
+	                        <select id="laiyuan" name="laiyuan"  class="form-control  input-sm" required="true" disabled>
 	                          <option value="2">自营新拓</option>
 	                          <option value="3">渠道新拓</option>
 	                        </select>
@@ -107,19 +107,19 @@
 	                       
 	                      <label class="col-sm-2 control-label">生日</label>
 	                      <div class="col-sm-3">
-	                        <input name="birthday" type="text" class="form-control" required="true"  onfocus="WdatePicker({skin:'default'})">
+	                        <input name="birthday" type="text" class="form-control  input-sm" required="true"  onfocus="WdatePicker({skin:'default'})">
 	                      </div>
 	                    </div>
 					   <div class="form-group">
 	                      <label class="col-sm-2 control-label">结婚纪念日</label>
 	                      <div class="col-sm-3">
-	                        <input name="weddingDay" type="text" class="form-control" required="false" onfocus="WdatePicker({skin:'default'})">
+	                        <input name="weddingDay" type="text" class="form-control  input-sm" onfocus="WdatePicker({skin:'default'})">
 	                      </div>
 	                    
 	                      <label class="col-sm-2 control-label">客户经理</label>
 	                      <div class="col-sm-3">
-	                        <input id="empcode" name="empcode" type="hidden" class="form-control" required="true">
-	                        <input id="empname" name="empname" type="text" class="form-control" required="true">
+	                        <input id="empcode" name="empcode" type="hidden" class="form-control  input-sm" required="true">
+	                        <input id="empname" name="empname" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   <div class="form-group">
@@ -135,13 +135,13 @@
 	                   
 	                      <label class="col-sm-2 control-label">爱好及特点</label>
 	                      <div class="col-sm-3">
-	                        <input name="note" type="text" class="form-control" required="false">
+	                        <input name="note" type="text" class="form-control  input-sm">
 	                      </div>
 	                    </div>
 	                    <div class="form-group">
 	                      <label class="col-sm-2 control-label">类别</label>
 	                      <div class="col-sm-3">
-	                       <select id="leibie" name="leibie"  class="form-control" required="true">
+	                       <select id="leibie" name="leibie"  class="form-control  input-sm" required="true">
 	                          <option value="1">新客户</option>
 	                          <option value="2">维护期</option>
 	                          <option value="3">投诉客户</option>

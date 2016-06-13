@@ -25,26 +25,26 @@
 			<div class="box-body">
 				<!-- form start -->
 				<form id="schFrm" class="form-inline" onsubmit="return false;">
-					客户身份证号:<input name="idcardnum" type="text" class="form-control">
-					<!-- 投诉原因:<input name="reason" type="text" class="form-control">    -->
-					涉及保单:<input name="insuranceid" type="text" class="form-control">
-					客户经理:<input name="firstaccount" type="text" class="form-control">
-					<!--  处理内容:<input name="firstcontent" type="text" class="form-control">      
-                      赔偿金额:<input name="firstclaim" type="text" class="form-control">      
-                      处理时间:<input name="firsttime" type="text" class="form-control">      
-                      区域经理:<input name="secondaccount" type="text" class="form-control">      
-                      处理内容:<input name="secondcontent" type="text" class="form-control">      
-                      处理时间:<input name="secondtime" type="text" class="form-control">      
-                      赔偿金额:<input name="secondclaim" type="text" class="form-control">      
-                      部门经理:<input name="thirdaccount" type="text" class="form-control">      
-                      处理内容:<input name="thirdcontent" type="text" class="form-control">      
-                      赔偿金额:<input name="thirdclaim" type="text" class="form-control">      
-                      处理时间:<input name="thirdtime" type="text" class="form-control">      
-                      经理室:<input name="fourthaccount" type="text" class="form-control">      
-                      处理内容:<input name="fourthcontent" type="text" class="form-control">      
-                      赔偿金额:<input name="fourthclaim" type="text" class="form-control">      
-                      赔偿时间:<input name="fourthtime" type="text" class="form-control">      
-                      投诉时间:<input name="claimtime" type="text" class="form-control">   -->
+					客户身份证号:<input name="idcardnum" type="text" class="form-control  input-sm">
+					<!-- 投诉原因:<input name="reason" type="text" class="form-control  input-sm">    -->
+					涉及保单:<input name="insuranceid" type="text" class="form-control  input-sm">
+					客户经理:<input name="firstaccount" type="text" class="form-control  input-sm">
+					<!--  处理内容:<input name="firstcontent" type="text" class="form-control  input-sm">      
+                      赔偿金额:<input name="firstclaim" type="text" class="form-control  input-sm">      
+                      处理时间:<input name="firsttime" type="text" class="form-control  input-sm">      
+                      区域经理:<input name="secondaccount" type="text" class="form-control  input-sm">      
+                      处理内容:<input name="secondcontent" type="text" class="form-control  input-sm">      
+                      处理时间:<input name="secondtime" type="text" class="form-control  input-sm">      
+                      赔偿金额:<input name="secondclaim" type="text" class="form-control  input-sm">      
+                      部门经理:<input name="thirdaccount" type="text" class="form-control  input-sm">      
+                      处理内容:<input name="thirdcontent" type="text" class="form-control  input-sm">      
+                      赔偿金额:<input name="thirdclaim" type="text" class="form-control  input-sm">      
+                      处理时间:<input name="thirdtime" type="text" class="form-control  input-sm">      
+                      经理室:<input name="fourthaccount" type="text" class="form-control  input-sm">      
+                      处理内容:<input name="fourthcontent" type="text" class="form-control  input-sm">      
+                      赔偿金额:<input name="fourthclaim" type="text" class="form-control  input-sm">      
+                      赔偿时间:<input name="fourthtime" type="text" class="form-control  input-sm">      
+                      投诉时间:<input name="claimtime" type="text" class="form-control  input-sm">   -->
 					<button id="schBtn" type="submit" class="btn btn-primary">
 						<i class="fa fa-search"></i> 查询
 					</button>
@@ -102,26 +102,26 @@
 				<div class="form-group"  style="margin-bottom: 0em;">
 					<label class="col-sm-2 control-label">客户</label>
 					<div class="col-sm-3">
-						<input id="cusname"  name="cusname" type="text" class="form-control"
+						<input id="cusname"  name="cusname" type="text" class="form-control  input-sm"
 							required="true"> 
 						<input id="idcardnum" name="idcardnum" type="hidden"
-							class="form-control" >
+							class="form-control  input-sm" >
 					</div>
 					<label class="col-sm-2 control-label">涉及保单</label>
 					<div class="col-sm-3">
-						<input name="insuranceid" type="text" class="form-control"
+						<input name="insuranceid" type="text" class="form-control  input-sm"
 							required="true">
 					</div>
 				</div>
 				<div class="form-group"  style="margin-bottom: 0em;">
 					<label class="col-sm-2 control-label">投诉时间</label>
 					<div class="col-sm-3">
-						<input name="claimtime" type="text" class="form-control"
+						<input name="claimtime" type="text" class="form-control  input-sm"
 							required="true"  onfocus="WdatePicker({skin:'default'})">
 					</div>
 					<label class="col-sm-2 control-label">投诉原因</label>
 					<div class="col-sm-3">
-						<input name="reason" type="text" class="form-control"
+						<input name="reason" type="text" class="form-control  input-sm"
 							required="true">
 					</div>
 				</div>
@@ -131,7 +131,7 @@
 				<div class="form-group" style="margin-bottom: 0em;">
 					<label class="col-sm-2 control-label">处理内容</label>
 					<div class="col-sm-8">
-						<input name="firstcontent" type="text" class="form-control"
+						<input name="firstcontent" type="text" class="form-control  input-sm"
 							required="true">
 					</div>
 				</div>
@@ -139,12 +139,12 @@
 				<div class="form-group" style="margin-bottom: 0em;">
 					<label class="col-sm-2 control-label">处理时间</label>
 					<div class="col-sm-3">
-						<input name="firsttime" type="text" class="form-control"
+						<input name="firsttime" type="text" class="form-control  input-sm"
 							required="true"  onfocus="WdatePicker({skin:'default'})">
 					</div>
 					<label class="col-sm-2 control-label">赔偿金额</label>
 					<div class="col-sm-3">
-						<input name="firstclaim" type="text" class="form-control"
+						<input name="firstclaim" type="text" class="form-control  input-sm"
 							required="true">
 					</div>
 				</div>
@@ -157,19 +157,19 @@
 				<div class="form-group" style="margin-bottom: 0em;">
 					<label class="col-sm-2 control-label">处理内容</label>
 					<div class="col-sm-8">
-						<input name="secondcontent" type="text" class="form-control"
+						<input name="secondcontent" type="text" class="form-control  input-sm"
 							required="true">
 					</div>
 				</div>
 				<div class="form-group" style="margin-bottom: 0em;">
 					<label class="col-sm-2 control-label">处理时间</label>
 					<div class="col-sm-3">
-						<input name="secondtime" type="text" class="form-control"
+						<input name="secondtime" type="text" class="form-control  input-sm"
 							required="true"  onfocus="WdatePicker({skin:'default'})">
 					</div>
 					<label class="col-sm-2 control-label">赔偿金额</label>
 					<div class="col-sm-3">
-						<input name="secondclaim" type="text" class="form-control"
+						<input name="secondclaim" type="text" class="form-control  input-sm"
 							required="true">
 					</div>
 				</div>
@@ -181,19 +181,19 @@
 				<div class="form-group" style="margin-bottom: 0em;">
 					<label class="col-sm-2 control-label">处理内容</label>
 					<div class="col-sm-8">
-						<input name="thirdcontent" type="text" class="form-control"
+						<input name="thirdcontent" type="text" class="form-control  input-sm"
 							required="true">
 					</div>
 				</div>
 				<div class="form-group" style="margin-bottom: 0em;">
 					<label class="col-sm-2 control-label">处理时间</label>
 					<div class="col-sm-3">
-						<input name="thirdtime" type="text" class="form-control"
+						<input name="thirdtime" type="text" class="form-control  input-sm"
 							required="true"  onfocus="WdatePicker({skin:'default'})">
 					</div>
 					<label class="col-sm-2 control-label">赔偿金额</label>
 					<div class="col-sm-3">
-						<input name="thirdclaim" type="text" class="form-control"
+						<input name="thirdclaim" type="text" class="form-control  input-sm"
 							required="true">
 					</div>
 				</div> 
@@ -205,19 +205,19 @@
 				<div class="form-group" style="margin-bottom: 0em;">
 					<label class="col-sm-2 control-label">处理内容</label>
 					<div class="col-sm-8">
-						<input name="fourthcontent" type="text" class="form-control"
+						<input name="fourthcontent" type="text" class="form-control  input-sm"
 							required="true">
 					</div>
 				</div>
 				<div class="form-group" style="margin-bottom: 0em;">
 					<label class="col-sm-2 control-label">赔偿金额</label>
 					<div class="col-sm-3">
-						<input name="fourthclaim" type="text" class="form-control"
+						<input name="fourthclaim" type="text" class="form-control  input-sm"
 							required="true">
 					</div>
 					<label class="col-sm-2 control-label">处理时间</label>
 					<div class="col-sm-3">
-						<input name="fourthtime" type="text" class="form-control"
+						<input name="fourthtime" type="text" class="form-control  input-sm"
 							required="true"  onfocus="WdatePicker({skin:'default'})">
 					</div>
 				</div>

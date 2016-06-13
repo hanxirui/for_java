@@ -47,8 +47,8 @@
 					<label class="col-sm-3 control-label">平台名称</label>
 					<div class="col-sm-3">
 						<input id="bizplatTitle" name="bizplatTitle" type="text"
-							class="form-control"> <input id="bizplatId"
-							name="bizplatId" type="hidden" class="form-control">
+							class="form-control  input-sm"> <input id="bizplatId"
+							name="bizplatId" type="hidden" class="form-control  input-sm">
 						<!--  同一个平台可能在多天举行 -->
 					</div>
 
@@ -56,12 +56,12 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">邀约客户数</label>
 					<div class="col-sm-3">
-						<input id="yaoyueNum" name="yaoyueNum" type="text" class="form-control">
+						<input id="yaoyueNum" name="yaoyueNum" type="text" class="form-control  input-sm">
 					</div>
 				
 					<label class="col-sm-3 control-label">到会客户数</label>
 					<div class="col-sm-3">
-						<input id="daohuiNum" name="daohuiNum" type="text" class="form-control">
+						<input id="daohuiNum" name="daohuiNum" type="text" class="form-control  input-sm">
 					</div>
 					
 				</div>
@@ -69,22 +69,22 @@
 				<div class="form-group">
 				<label class="col-sm-3 control-label">签单保费</label>
 					<div class="col-sm-3">
-						<input id="qiandanBaofei" name="qiandanBaofei" type="text" class="form-control">
+						<input id="qiandanBaofei" name="qiandanBaofei" type="text" class="form-control  input-sm">
 					</div>
 					<label class="col-sm-3 control-label">回收保费</label>
 					<div class="col-sm-3">
-						<input id="receiveBaofei" name="receiveBaofei" type="text" class="form-control">
+						<input id="receiveBaofei" name="receiveBaofei" type="text" class="form-control  input-sm">
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="col-sm-3 control-label">签单件数</label>
 					<div class="col-sm-3">
-						<input id="qiandanNum" name="qiandanNum" type="text" class="form-control">
+						<input id="qiandanNum" name="qiandanNum" type="text" class="form-control  input-sm">
 					</div>
 					<label class="col-sm-3 control-label">回收件数</label>
 					<div class="col-sm-3">
-						<input id="receiveNum" name="receiveNum" type="text" class="form-control">
+						<input id="receiveNum" name="receiveNum" type="text" class="form-control  input-sm">
 					</div>
 
 				</div>
@@ -92,25 +92,25 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">到会率(%)</label>
 					<div class="col-sm-3">
-						<input id="daohuilv" name="daohuilv" type="text" class="form-control" readonly>
+						<input id="daohuilv" name="daohuilv" type="text" class="form-control  input-sm" readonly>
 					</div>
 					<label class="col-sm-3 control-label">回收率(%)</label>
 					<div class="col-sm-3">
-						<input id="huishoulv" name="huishoulv" type="text" class="form-control" readonly>
+						<input id="huishoulv" name="huishoulv" type="text" class="form-control  input-sm" readonly>
 					</div>
 
 				</div>
 				<div class="form-group">
 				<label class="col-sm-3 control-label">签单率(%)</label>
 					<div class="col-sm-3">
-						<input id="qiandanlv" name="qiandanlv" type="text" class="form-control" readonly>
+						<input id="qiandanlv" name="qiandanlv" type="text" class="form-control  input-sm" readonly>
 					</div>
 					
 					<!--   <label class="col-sm-3 control-label">客户经理</label> -->
 					<div class="col-sm-3">
 						<input id="kehujingli" name="kehujingli" type="hidden"
-							class="form-control"> <input id="riqi" name="riqi"
-							type="hidden" class="form-control">
+							class="form-control  input-sm"> <input id="riqi" name="riqi"
+							type="hidden" class="form-control  input-sm">
 					</div>
 				</div>
 
@@ -123,8 +123,8 @@
 					<label class="col-sm-3 control-label">平台名称</label>
 					<div class="col-sm-3">
 						<input id="tongjibizplatTitle" name="tongjibizplatTitle" type="text"
-							class="form-control" readonly> <input id="tongjibizplatId"
-							name="tongjibizplatId" type="hidden" class="form-control" readonly>
+							class="form-control  input-sm" readonly> <input id="tongjibizplatId"
+							name="tongjibizplatId" type="hidden" class="form-control  input-sm" readonly>
 						<!--  同一个平台可能在多天举行 -->
 					</div>
 
@@ -132,33 +132,33 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">邀约客户数</label>
 					<div class="col-sm-3">
-						<input id="tongjiyaoyueNum" name="tongjiyaoyueNum" type="text" readonly class="form-control" readonly>
+						<input id="tongjiyaoyueNum" name="tongjiyaoyueNum" type="text" readonly class="form-control  input-sm" readonly>
 					</div>
 					<label class="col-sm-3 control-label">回收保费</label>
 					<div class="col-sm-3">
-						<input id="tongjireceiveBaofei" name="tongjireceiveBaofei" type="text" class="form-control" readonly>
+						<input id="tongjireceiveBaofei" name="tongjireceiveBaofei" type="text" class="form-control  input-sm" readonly>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="col-sm-3 control-label">到会客户数</label>
 					<div class="col-sm-3">
-						<input id="tongjidaohuiNum" name="tongjidaohuiNum" type="text" class="form-control" readonly>
+						<input id="tongjidaohuiNum" name="tongjidaohuiNum" type="text" class="form-control  input-sm" readonly>
 					</div>
 					<label class="col-sm-3 control-label">签单保费</label>
 					<div class="col-sm-3">
-						<input id="tongjiqiandanBaofei" name="tongjiqiandanBaofei" type="text" class="form-control" readonly>
+						<input id="tongjiqiandanBaofei" name="tongjiqiandanBaofei" type="text" class="form-control  input-sm" readonly>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="col-sm-3 control-label">签单件数</label>
 					<div class="col-sm-3">
-						<input id="tongjiqiandanNum" name="tongjiqiandanNum" type="text" class="form-control" readonly>
+						<input id="tongjiqiandanNum" name="tongjiqiandanNum" type="text" class="form-control  input-sm" readonly>
 					</div>
 					<label class="col-sm-3 control-label">回收件数</label>
 					<div class="col-sm-3">
-						<input id="tongjireceiveNum" name="tongjireceiveNum" type="text" class="form-control" readonly>
+						<input id="tongjireceiveNum" name="tongjireceiveNum" type="text" class="form-control  input-sm" readonly>
 					</div>
 
 				</div>
@@ -166,25 +166,25 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">到会率(%)</label>
 					<div class="col-sm-3">
-						<input id="tongjidaohuilv" name="tongjidaohuilv" type="text" class="form-control" readonly>
+						<input id="tongjidaohuilv" name="tongjidaohuilv" type="text" class="form-control  input-sm" readonly>
 					</div>
 					<label class="col-sm-3 control-label">回收率(%)</label>
 					<div class="col-sm-3">
-						<input id="tongjihuishoulv" name="tongjihuishoulv" type="text" class="form-control" readonly>
+						<input id="tongjihuishoulv" name="tongjihuishoulv" type="text" class="form-control  input-sm" readonly>
 					</div>
 
 				</div>
 				<div class="form-group">
 				<label class="col-sm-3 control-label">签单率(%)</label>
 					<div class="col-sm-3">
-						<input id="tongjiqiandanlv" name="tongjiqiandanlv" type="text" class="form-control" readonly>
+						<input id="tongjiqiandanlv" name="tongjiqiandanlv" type="text" class="form-control  input-sm" readonly>
 					</div>
 					
 					<!--   <label class="col-sm-3 control-label">客户经理</label> -->
 					<div class="col-sm-3">
 						<input id="tongjikehujingli" name="tongjikehujingli" type="hidden"
-							class="form-control"> <input id="tongjiriqi" name="riqi"
-							type="hidden" class="form-control">
+							class="form-control  input-sm"> <input id="tongjiriqi" name="riqi"
+							type="hidden" class="form-control  input-sm">
 					</div>
 				</div>
 

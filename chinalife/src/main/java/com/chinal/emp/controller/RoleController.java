@@ -13,7 +13,7 @@ import com.chinal.emp.service.RoleService;
 public class RoleController extends BsgridController<Role, RoleService> {
 
 	@RequestMapping("/openRole.do")
-	public String openEmployee() {
+	public String openRole() {
 		return "role";
 	}
 

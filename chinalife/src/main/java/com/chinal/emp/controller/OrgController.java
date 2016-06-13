@@ -13,7 +13,7 @@ import com.chinal.emp.service.OrgService;
 public class OrgController extends BsgridController<Org, OrgService> {
 
 	@RequestMapping("/openOrg.do")
-	public String openEmployee() {
+	public String openOrg() {
 		return "org";
 	}
 

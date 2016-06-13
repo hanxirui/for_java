@@ -21,53 +21,53 @@
                <div class="box-body">
                  <!-- form start -->
                 <!--  <form id="schFrm" class="form-inline" onsubmit="return false;">
-										                       序号:<input name="xuhao" type="text" class="form-control">      
-					 										                       部门:<input name="bumen" type="text" class="form-control">      
-					 										                       姓名:<input name="xingming" type="text" class="form-control">      
-					 										                       性别:<input name="xingbie" type="text" class="form-control">      
-					 										                       银行账号:<input name="yinhangzhanghao" type="text" class="form-control">      
-					 										                       身份证号:<input name="shenfenzhenghao" type="text" class="form-control">      
-					 										                       工号:<input name="gonghao" type="text" class="form-control">      
-					 										                       职级津贴:<input name="zhijijintie" type="text" class="form-control">      
-					 										                       销售精英津贴:<input name="xiaoshoujingyingjintie" type="text" class="form-control">      
-					 										                       新人保护/推荐津贴:<input name="xinrenbaohu" type="text" class="form-control">      
-					 										                       年资津贴:<input name="nianzijintie" type="text" class="form-control">      
-					 										                       管理津贴:<input name="guanlijintie" type="text" class="form-control">      
-					 										                       短险佣金:<input name="duanxianyongjin" type="text" class="form-control">      
-					 										                       渠道佣金:<input name="qudaoyongjin" type="text" class="form-control">      
-					 										                       自营佣金:<input name="ziyingyongjin" type="text" class="form-control">      
-					 										                       自营续期:<input name="ziyingxuqi" type="text" class="form-control">      
-					 										                       网点续期:<input name="wangdianxuqi" type="text" class="form-control">      
-					 										                       借发/补发:<input name="jiefa" type="text" class="form-control">      
-					 										                       小计:<input name="xiaoji" type="text" class="form-control">      
-					 										                       其他扣款:<input name="qitakoukuan" type="text" class="form-control">      
-					 										                       扣款小计:<input name="koukuanxiaoji" type="text" class="form-control">      
-					 										                       应发小计:<input name="yingfaxiaoji" type="text" class="form-control">      
-					 										                       分公司奖励:<input name="fengognsijiangli" type="text" class="form-control">      
-					 										                       基层奖励:<input name="jicengjiangli" type="text" class="form-control">      
-					 										                       其他补贴:<input name="qitabutie" type="text" class="form-control">      
-					 										                       其他补贴（基层承担）:<input name="jicengqitabutie" type="text" class="form-control">      
-					 										                       展业津贴:<input name="zhanyejintie" type="text" class="form-control">      
-					 										                       分公司实物奖励:<input name="fengongsishiwujiangli" type="text" class="form-control">      
-					 										                       基层公司实物奖励:<input name="jicengshiwujiangli" type="text" class="form-control">      
-					 										                       保险保障:<input name="baoxianbaozhang" type="text" class="form-control">      
-					 										                       应发合计:<input name="yingfaheji" type="text" class="form-control">      
-					 										                       委托社保:<input name="weituoshebao" type="text" class="form-control">      
-					 										                       产说会扣款:<input name="chanshuohuikoukuan" type="text" class="form-control">      
-					 										                       三代扣款和超期扣款:<input name="sandaikoukuanhechaoqikoukuan" type="text" class="form-control">      
-					 										                       个人所得税:<input name="gerensuodeshui" type="text" class="form-control">      
-					 										                       增值税:<input name="zengzhishui" type="text" class="form-control">      
-					 										                       城建税:<input name="chengjianshui" type="text" class="form-control">      
-					 										                       教育费附加:<input name="jiaoyufeifujia" type="text" class="form-control">      
-					 										                       地方教育费附加:<input name="difangjiaoyufeifujia" type="text" class="form-control">      
-					 										                       防洪费:<input name="fanghongfei" type="text" class="form-control">      
-					 										                       扣分公司实物奖励:<input name="koufengongsishiwujiangli" type="text" class="form-control">      
-					 										                       扣基层公司实物奖励:<input name="koujicenggongsishiwujiangli" type="text" class="form-control">      
-					 										                       扣保险保障:<input name="koubaoxianbaozhang" type="text" class="form-control">      
-					 										                       寿险实发金额:<input name="shouxianshifajine" type="text" class="form-control">      
-					 										                       财险绩效:<input name="caixianjixiao" type="text" class="form-control">      
-					 										                       扣财险绩效:<input name="koucaixianjixiao" type="text" class="form-control">      
-					 										                       实发合计:<input name="shifaheji" type="text" class="form-control">      
+										                       序号:<input name="xuhao" type="text" class="form-control  input-sm">      
+					 										                       部门:<input name="bumen" type="text" class="form-control  input-sm">      
+					 										                       姓名:<input name="xingming" type="text" class="form-control  input-sm">      
+					 										                       性别:<input name="xingbie" type="text" class="form-control  input-sm">      
+					 										                       银行账号:<input name="yinhangzhanghao" type="text" class="form-control  input-sm">      
+					 										                       身份证号:<input name="shenfenzhenghao" type="text" class="form-control  input-sm">      
+					 										                       工号:<input name="gonghao" type="text" class="form-control  input-sm">      
+					 										                       职级津贴:<input name="zhijijintie" type="text" class="form-control  input-sm">      
+					 										                       销售精英津贴:<input name="xiaoshoujingyingjintie" type="text" class="form-control  input-sm">      
+					 										                       新人保护/推荐津贴:<input name="xinrenbaohu" type="text" class="form-control  input-sm">      
+					 										                       年资津贴:<input name="nianzijintie" type="text" class="form-control  input-sm">      
+					 										                       管理津贴:<input name="guanlijintie" type="text" class="form-control  input-sm">      
+					 										                       短险佣金:<input name="duanxianyongjin" type="text" class="form-control  input-sm">      
+					 										                       渠道佣金:<input name="qudaoyongjin" type="text" class="form-control  input-sm">      
+					 										                       自营佣金:<input name="ziyingyongjin" type="text" class="form-control  input-sm">      
+					 										                       自营续期:<input name="ziyingxuqi" type="text" class="form-control  input-sm">      
+					 										                       网点续期:<input name="wangdianxuqi" type="text" class="form-control  input-sm">      
+					 										                       借发/补发:<input name="jiefa" type="text" class="form-control  input-sm">      
+					 										                       小计:<input name="xiaoji" type="text" class="form-control  input-sm">      
+					 										                       其他扣款:<input name="qitakoukuan" type="text" class="form-control  input-sm">      
+					 										                       扣款小计:<input name="koukuanxiaoji" type="text" class="form-control  input-sm">      
+					 										                       应发小计:<input name="yingfaxiaoji" type="text" class="form-control  input-sm">      
+					 										                       分公司奖励:<input name="fengognsijiangli" type="text" class="form-control  input-sm">      
+					 										                       基层奖励:<input name="jicengjiangli" type="text" class="form-control  input-sm">      
+					 										                       其他补贴:<input name="qitabutie" type="text" class="form-control  input-sm">      
+					 										                       其他补贴（基层承担）:<input name="jicengqitabutie" type="text" class="form-control  input-sm">      
+					 										                       展业津贴:<input name="zhanyejintie" type="text" class="form-control  input-sm">      
+					 										                       分公司实物奖励:<input name="fengongsishiwujiangli" type="text" class="form-control  input-sm">      
+					 										                       基层公司实物奖励:<input name="jicengshiwujiangli" type="text" class="form-control  input-sm">      
+					 										                       保险保障:<input name="baoxianbaozhang" type="text" class="form-control  input-sm">      
+					 										                       应发合计:<input name="yingfaheji" type="text" class="form-control  input-sm">      
+					 										                       委托社保:<input name="weituoshebao" type="text" class="form-control  input-sm">      
+					 										                       产说会扣款:<input name="chanshuohuikoukuan" type="text" class="form-control  input-sm">      
+					 										                       三代扣款和超期扣款:<input name="sandaikoukuanhechaoqikoukuan" type="text" class="form-control  input-sm">      
+					 										                       个人所得税:<input name="gerensuodeshui" type="text" class="form-control  input-sm">      
+					 										                       增值税:<input name="zengzhishui" type="text" class="form-control  input-sm">      
+					 										                       城建税:<input name="chengjianshui" type="text" class="form-control  input-sm">      
+					 										                       教育费附加:<input name="jiaoyufeifujia" type="text" class="form-control  input-sm">      
+					 										                       地方教育费附加:<input name="difangjiaoyufeifujia" type="text" class="form-control  input-sm">      
+					 										                       防洪费:<input name="fanghongfei" type="text" class="form-control  input-sm">      
+					 										                       扣分公司实物奖励:<input name="koufengongsishiwujiangli" type="text" class="form-control  input-sm">      
+					 										                       扣基层公司实物奖励:<input name="koujicenggongsishiwujiangli" type="text" class="form-control  input-sm">      
+					 										                       扣保险保障:<input name="koubaoxianbaozhang" type="text" class="form-control  input-sm">      
+					 										                       寿险实发金额:<input name="shouxianshifajine" type="text" class="form-control  input-sm">      
+					 										                       财险绩效:<input name="caixianjixiao" type="text" class="form-control  input-sm">      
+					 										                       扣财险绩效:<input name="koucaixianjixiao" type="text" class="form-control  input-sm">      
+					 										                       实发合计:<input name="shifaheji" type="text" class="form-control  input-sm">      
 					 					                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
 				</form> -->
@@ -149,283 +149,283 @@
 											   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">序号</label>
 	                      <div class="col-sm-7">
-	                        <input name="xuhao" type="text" class="form-control" required="true">
+	                        <input name="xuhao" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">部门</label>
 	                      <div class="col-sm-7">
-	                        <input name="bumen" type="text" class="form-control" required="true">
+	                        <input name="bumen" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">姓名</label>
 	                      <div class="col-sm-7">
-	                        <input name="xingming" type="text" class="form-control" required="true">
+	                        <input name="xingming" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">性别</label>
 	                      <div class="col-sm-7">
-	                        <input name="xingbie" type="text" class="form-control" required="true">
+	                        <input name="xingbie" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">银行账号</label>
 	                      <div class="col-sm-7">
-	                        <input name="yinhangzhanghao" type="text" class="form-control" required="true">
+	                        <input name="yinhangzhanghao" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">身份证号</label>
 	                      <div class="col-sm-7">
-	                        <input name="shenfenzhenghao" type="text" class="form-control" required="true">
+	                        <input name="shenfenzhenghao" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">工号</label>
 	                      <div class="col-sm-7">
-	                        <input name="gonghao" type="text" class="form-control" required="true">
+	                        <input name="gonghao" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">职级津贴</label>
 	                      <div class="col-sm-7">
-	                        <input name="zhijijintie" type="text" class="form-control" required="true">
+	                        <input name="zhijijintie" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">销售精英津贴</label>
 	                      <div class="col-sm-7">
-	                        <input name="xiaoshoujingyingjintie" type="text" class="form-control" required="true">
+	                        <input name="xiaoshoujingyingjintie" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">新人保护/推荐津贴</label>
 	                      <div class="col-sm-7">
-	                        <input name="xinrenbaohu" type="text" class="form-control" required="true">
+	                        <input name="xinrenbaohu" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">年资津贴</label>
 	                      <div class="col-sm-7">
-	                        <input name="nianzijintie" type="text" class="form-control" required="true">
+	                        <input name="nianzijintie" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">管理津贴</label>
 	                      <div class="col-sm-7">
-	                        <input name="guanlijintie" type="text" class="form-control" required="true">
+	                        <input name="guanlijintie" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">短险佣金</label>
 	                      <div class="col-sm-7">
-	                        <input name="duanxianyongjin" type="text" class="form-control" required="true">
+	                        <input name="duanxianyongjin" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">渠道佣金</label>
 	                      <div class="col-sm-7">
-	                        <input name="qudaoyongjin" type="text" class="form-control" required="true">
+	                        <input name="qudaoyongjin" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">自营佣金</label>
 	                      <div class="col-sm-7">
-	                        <input name="ziyingyongjin" type="text" class="form-control" required="true">
+	                        <input name="ziyingyongjin" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">自营续期</label>
 	                      <div class="col-sm-7">
-	                        <input name="ziyingxuqi" type="text" class="form-control" required="true">
+	                        <input name="ziyingxuqi" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">网点续期</label>
 	                      <div class="col-sm-7">
-	                        <input name="wangdianxuqi" type="text" class="form-control" required="true">
+	                        <input name="wangdianxuqi" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">借发/补发</label>
 	                      <div class="col-sm-7">
-	                        <input name="jiefa" type="text" class="form-control" required="true">
+	                        <input name="jiefa" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">小计</label>
 	                      <div class="col-sm-7">
-	                        <input name="xiaoji" type="text" class="form-control" required="true">
+	                        <input name="xiaoji" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">其他扣款</label>
 	                      <div class="col-sm-7">
-	                        <input name="qitakoukuan" type="text" class="form-control" required="true">
+	                        <input name="qitakoukuan" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">扣款小计</label>
 	                      <div class="col-sm-7">
-	                        <input name="koukuanxiaoji" type="text" class="form-control" required="true">
+	                        <input name="koukuanxiaoji" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">应发小计</label>
 	                      <div class="col-sm-7">
-	                        <input name="yingfaxiaoji" type="text" class="form-control" required="true">
+	                        <input name="yingfaxiaoji" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">分公司奖励</label>
 	                      <div class="col-sm-7">
-	                        <input name="fengognsijiangli" type="text" class="form-control" required="true">
+	                        <input name="fengognsijiangli" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">基层奖励</label>
 	                      <div class="col-sm-7">
-	                        <input name="jicengjiangli" type="text" class="form-control" required="true">
+	                        <input name="jicengjiangli" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">其他补贴</label>
 	                      <div class="col-sm-7">
-	                        <input name="qitabutie" type="text" class="form-control" required="true">
+	                        <input name="qitabutie" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">其他补贴（基层承担）</label>
 	                      <div class="col-sm-7">
-	                        <input name="jicengqitabutie" type="text" class="form-control" required="true">
+	                        <input name="jicengqitabutie" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">展业津贴</label>
 	                      <div class="col-sm-7">
-	                        <input name="zhanyejintie" type="text" class="form-control" required="true">
+	                        <input name="zhanyejintie" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">分公司实物奖励</label>
 	                      <div class="col-sm-7">
-	                        <input name="fengongsishiwujiangli" type="text" class="form-control" required="true">
+	                        <input name="fengongsishiwujiangli" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">基层公司实物奖励</label>
 	                      <div class="col-sm-7">
-	                        <input name="jicengshiwujiangli" type="text" class="form-control" required="true">
+	                        <input name="jicengshiwujiangli" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">保险保障</label>
 	                      <div class="col-sm-7">
-	                        <input name="baoxianbaozhang" type="text" class="form-control" required="true">
+	                        <input name="baoxianbaozhang" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">应发合计</label>
 	                      <div class="col-sm-7">
-	                        <input name="yingfaheji" type="text" class="form-control" required="true">
+	                        <input name="yingfaheji" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">委托社保</label>
 	                      <div class="col-sm-7">
-	                        <input name="weituoshebao" type="text" class="form-control" required="true">
+	                        <input name="weituoshebao" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">产说会扣款</label>
 	                      <div class="col-sm-7">
-	                        <input name="chanshuohuikoukuan" type="text" class="form-control" required="true">
+	                        <input name="chanshuohuikoukuan" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">三代扣款和超期扣款</label>
 	                      <div class="col-sm-7">
-	                        <input name="sandaikoukuanhechaoqikoukuan" type="text" class="form-control" required="true">
+	                        <input name="sandaikoukuanhechaoqikoukuan" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">个人所得税</label>
 	                      <div class="col-sm-7">
-	                        <input name="gerensuodeshui" type="text" class="form-control" required="true">
+	                        <input name="gerensuodeshui" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">增值税</label>
 	                      <div class="col-sm-7">
-	                        <input name="zengzhishui" type="text" class="form-control" required="true">
+	                        <input name="zengzhishui" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">城建税</label>
 	                      <div class="col-sm-7">
-	                        <input name="chengjianshui" type="text" class="form-control" required="true">
+	                        <input name="chengjianshui" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">教育费附加</label>
 	                      <div class="col-sm-7">
-	                        <input name="jiaoyufeifujia" type="text" class="form-control" required="true">
+	                        <input name="jiaoyufeifujia" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">地方教育费附加</label>
 	                      <div class="col-sm-7">
-	                        <input name="difangjiaoyufeifujia" type="text" class="form-control" required="true">
+	                        <input name="difangjiaoyufeifujia" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">防洪费</label>
 	                      <div class="col-sm-7">
-	                        <input name="fanghongfei" type="text" class="form-control" required="true">
+	                        <input name="fanghongfei" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">扣分公司实物奖励</label>
 	                      <div class="col-sm-7">
-	                        <input name="koufengongsishiwujiangli" type="text" class="form-control" required="true">
+	                        <input name="koufengongsishiwujiangli" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">扣基层公司实物奖励</label>
 	                      <div class="col-sm-7">
-	                        <input name="koujicenggongsishiwujiangli" type="text" class="form-control" required="true">
+	                        <input name="koujicenggongsishiwujiangli" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">扣保险保障</label>
 	                      <div class="col-sm-7">
-	                        <input name="koubaoxianbaozhang" type="text" class="form-control" required="true">
+	                        <input name="koubaoxianbaozhang" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">寿险实发金额</label>
 	                      <div class="col-sm-7">
-	                        <input name="shouxianshifajine" type="text" class="form-control" required="true">
+	                        <input name="shouxianshifajine" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">财险绩效</label>
 	                      <div class="col-sm-7">
-	                        <input name="caixianjixiao" type="text" class="form-control" required="true">
+	                        <input name="caixianjixiao" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">扣财险绩效</label>
 	                      <div class="col-sm-7">
-	                        <input name="koucaixianjixiao" type="text" class="form-control" required="true">
+	                        <input name="koucaixianjixiao" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">实发合计</label>
 	                      <div class="col-sm-7">
-	                        <input name="shifaheji" type="text" class="form-control" required="true">
+	                        <input name="shifaheji" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										</form>

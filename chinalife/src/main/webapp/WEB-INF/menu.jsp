@@ -67,6 +67,7 @@
             <li <%="role".equals(am)?"class='active'":""%> <%=userDetails.getLevel()==5?"":"style='display:none'" %>><a href="${ctx}openRole.do"><i class="fa fa-child"></i>职务管理</a></li>
             <li <%="jixiao".equals(am)?"class='active'":""%> <%=userDetails.getLevel()==5?"":"style='display:none'" %>><a href="${ctx}openGongzidan.do"><i class="fa fa-trophy"></i>绩效管理</a></li>
             <li <%="bank".equals(am)?"class='active'":""%> <%=userDetails.getLevel()==5?"":"style='display:none'" %>><a href="${ctx}openBankRecord.do"><i class="fa fa-trophy"></i>银行机构管理</a></li>
+            <li <%="login".equals(am)?"class='active'":""%> <%=userDetails.getLevel()==5?"":"style='display:none'" %>><a href="${ctx}openLoginrecord.do"><i class="fa fa-trophy"></i>登录日志</a></li>
           </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->
@@ -78,19 +79,19 @@
 						<div class="form-group">
 	                      <label class="col-sm-3 control-label">原始密码</label>
 	                      <div class="col-sm-7">
-	                        <input name="oldpassword" id="oldpassword" type="password" class="form-control">
+	                        <input name="oldpassword" id="oldpassword" type="password" class="form-control  input-sm">
 	                      </div>
 	                    </div>
 					   	<div class="form-group">
 	                      <label class="col-sm-3 control-label">新密码</label>
 	                      <div class="col-sm-7">
-	                        <input name="password" id="password" type="password" class="form-control">
+	                        <input name="password" id="password" type="password" class="form-control  input-sm">
 	                      </div>
 	                    </div>
 					   	<div class="form-group">
 	                      <label class="col-sm-3 control-label">请确认</label>
 	                      <div class="col-sm-7">
-	                        <input name="repassword" id="repassword" type="password" class="form-control">
+	                        <input name="repassword" id="repassword" type="password" class="form-control  input-sm">
 	                      </div>
 	                    </div>
 	                    <input name="id" id="id" type="hidden"  value="<%=userDetails.getId() %>">

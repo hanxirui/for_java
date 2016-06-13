@@ -21,17 +21,17 @@
                <div class="box-body">
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
-										                       :<input name="id" type="text" class="form-control">      
-					 										                       邀约客户数:<input name="yaoyueNum" type="text" class="form-control">      
-					 										                       到会客户数:<input name="daohuiNum" type="text" class="form-control">      
-					 										                       当日回收件数:<input name="receiveNum" type="text" class="form-control">      
-					 										                       当日回收保费:<input name="receiveBaofei" type="text" class="form-control">      
-					 										                       到会率:<input name="daohuilv" type="text" class="form-control">      
-					 										                       签单件数:<input name="qiandanNum" type="text" class="form-control">      
-					 										                       签单率:<input name="qiandanlv" type="text" class="form-control">      
-					 										                       回收率:<input name="huishoulv" type="text" class="form-control">      
-					 										                       客户经理:<input name="kehujingli" type="text" class="form-control">      
-					 										                       当日签单保费:<input name="qiandanBaofei" type="text" class="form-control">      
+										                       :<input name="id" type="text" class="form-control  input-sm">      
+					 										                       邀约客户数:<input name="yaoyueNum" type="text" class="form-control  input-sm">      
+					 										                       到会客户数:<input name="daohuiNum" type="text" class="form-control  input-sm">      
+					 										                       当日回收件数:<input name="receiveNum" type="text" class="form-control  input-sm">      
+					 										                       当日回收保费:<input name="receiveBaofei" type="text" class="form-control  input-sm">      
+					 										                       到会率:<input name="daohuilv" type="text" class="form-control  input-sm">      
+					 										                       签单件数:<input name="qiandanNum" type="text" class="form-control  input-sm">      
+					 										                       签单率:<input name="qiandanlv" type="text" class="form-control  input-sm">      
+					 										                       回收率:<input name="huishoulv" type="text" class="form-control  input-sm">      
+					 										                       客户经理:<input name="kehujingli" type="text" class="form-control  input-sm">      
+					 										                       当日签单保费:<input name="qiandanBaofei" type="text" class="form-control  input-sm">      
 					 					                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
 				</form>
@@ -72,85 +72,85 @@
 											   						<div class="form-group">
 	                      <label class="col-sm-3 control-label"></label>
 	                      <div class="col-sm-7">
-	                        <input name="id" type="text" class="form-control" required="true">
+	                        <input name="id" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">邀约客户数</label>
 	                      <div class="col-sm-7">
-	                        <input name="yaoyueNum" type="text" class="form-control" required="true">
+	                        <input name="yaoyueNum" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">到会客户数</label>
 	                      <div class="col-sm-7">
-	                        <input name="daohuiNum" type="text" class="form-control" required="true">
+	                        <input name="daohuiNum" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">当日回收件数</label>
 	                      <div class="col-sm-7">
-	                        <input name="receiveNum" type="text" class="form-control" required="true">
+	                        <input name="receiveNum" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">当日回收保费</label>
 	                      <div class="col-sm-7">
-	                        <input name="receiveBaofei" type="text" class="form-control" required="true">
+	                        <input name="receiveBaofei" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">到会率</label>
 	                      <div class="col-sm-7">
-	                        <input name="daohuilv" type="text" class="form-control" required="true">
+	                        <input name="daohuilv" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">签单件数</label>
 	                      <div class="col-sm-7">
-	                        <input name="qiandanNum" type="text" class="form-control" required="true">
+	                        <input name="qiandanNum" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">签单率</label>
 	                      <div class="col-sm-7">
-	                        <input name="qiandanlv" type="text" class="form-control" required="true">
+	                        <input name="qiandanlv" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">回收率</label>
 	                      <div class="col-sm-7">
-	                        <input name="huishoulv" type="text" class="form-control" required="true">
+	                        <input name="huishoulv" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">客户经理</label>
 	                      <div class="col-sm-7">
-	                        <input name="kehujingli" type="text" class="form-control" required="true">
+	                        <input name="kehujingli" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">当日签单保费</label>
 	                      <div class="col-sm-7">
-	                        <input name="qiandanBaofei" type="text" class="form-control" required="true">
+	                        <input name="qiandanBaofei" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">日期</label>
 	                      <div class="col-sm-7">
-	                        <input name="riqi" type="text" class="form-control" required="true">
+	                        <input name="riqi" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">业务平台</label>
 	                      <div class="col-sm-7">
-	                        <input name="bizplatTitle" type="text" class="form-control" required="true">
+	                        <input name="bizplatTitle" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label"></label>
 	                      <div class="col-sm-7">
-	                        <input name="bizplatId" type="text" class="form-control" required="true">
+	                        <input name="bizplatId" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										</form>

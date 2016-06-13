@@ -20,8 +20,8 @@
 			<div class="box-body">
 				<!-- form start -->
 				<form id="schFrm" class="form-inline" onsubmit="return false;">
-					年:<select id="year" name="year" class="form-control"></select> 
-					季度:<select id="jidu" name="jidu" class="form-control">
+					年:<select id="year" name="year" class="form-control  input-sm"></select> 
+					季度:<select id="jidu" name="jidu" class="form-control  input-sm">
 					    <option value="1">1季度</option>
 					    <option value="2">2季度</option>
 					    <option value="3">3季度</option>
@@ -73,7 +73,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">平台名称</label>
 					<div class="col-sm-7">
-						<input name="title" type="text" class="form-control"
+						<input name="title" type="text" class="form-control  input-sm"
 							required="true">
 					</div>
 				</div>
@@ -91,18 +91,18 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">开始时间</label>
 					<div class="col-sm-7">
-						<input name="startdate" type="text" class="form-control"
+						<input name="startdate" type="text" class="form-control  input-sm"
 							required="true" onfocus="WdatePicker({skin:'default'})">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label">结束时间</label>
 					<div class="col-sm-7">
-						<input name="enddate" type="text" class="form-control" required="true" onfocus="WdatePicker({skin:'default'})">
+						<input name="enddate" type="text" class="form-control  input-sm" required="true" onfocus="WdatePicker({skin:'default'})">
 					</div>
 				</div>
 
-				<input name="empcode" type="hidden" class="form-control"
+				<input name="empcode" type="hidden" class="form-control  input-sm"
 					value="<%=userDetails.getCode()%>">
 			</form>
 		</div>

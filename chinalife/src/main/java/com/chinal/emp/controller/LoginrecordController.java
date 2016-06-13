@@ -9,10 +9,13 @@ import com.chinal.emp.entity.Loginrecord;
 import com.chinal.emp.entity.LoginrecordSch;
 import com.chinal.emp.service.LoginrecordService;
 
-
 @Controller
-public class LoginrecordController extends
-		BsgridController<Loginrecord, LoginrecordService> {
+public class LoginrecordController extends BsgridController<Loginrecord, LoginrecordService> {
+
+	@RequestMapping("/openLoginrecord.do")
+	public String openLoginrecord() {
+		return "loginrecord";
+	}
 
 	@RequestMapping("/addLoginrecord.do")
 	public ModelAndView addLoginrecord(Loginrecord entity) {
@@ -33,5 +36,5 @@ public class LoginrecordController extends
 	public ModelAndView delLoginrecord(Loginrecord entity) {
 		return this.remove(entity);
 	}
-	
+
 }

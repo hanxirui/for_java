@@ -20,16 +20,16 @@
                <div class="box-body">
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
-			        姓名:<input name="name" type="text" class="form-control">      
-                     <!-- 职务:<input name="role" type="text" class="form-control">      
-                     密码:<input name="password" type="text" class="form-control">     -->  
-                     工号:<input name="code" type="text" class="form-control">      
-                    <!--  身份证号:<input name="pid" type="text" class="form-control">   -->    
-                     所属公司:<input name="orgname" type="text" class="form-control">      
-                    <!--  公司代码:<input name="orgcode" type="text" class="form-control">    -->   
-                   <!--   性别:<input name="sex" type="text" class="form-control">     -->  
-                     电话:<input name="phone" type="text" class="form-control">      
-                     <!-- 入司时间:<input name="jointime" type="text" class="form-control">   -->    
+			        姓名:<input name="name" type="text" class="form-control  input-sm">      
+                     <!-- 职务:<input name="role" type="text" class="form-control  input-sm">      
+                     密码:<input name="password" type="text" class="form-control  input-sm">     -->  
+                     工号:<input name="code" type="text" class="form-control  input-sm">      
+                    <!--  身份证号:<input name="pid" type="text" class="form-control  input-sm">   -->    
+                     所属公司:<input name="orgname" type="text" class="form-control  input-sm">      
+                    <!--  公司代码:<input name="orgcode" type="text" class="form-control  input-sm">    -->   
+                   <!--   性别:<input name="sex" type="text" class="form-control  input-sm">     -->  
+                     电话:<input name="phone" type="text" class="form-control  input-sm">      
+                     <!-- 入司时间:<input name="jointime" type="text" class="form-control  input-sm">   -->    
                    	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
 				</form>
@@ -70,12 +70,12 @@
 						 <div class="form-group">
 	                      <label class="col-sm-2 control-label">姓名</label>
 	                      <div class="col-sm-3">
-	                        <input name="name" type="text" class="form-control" required="true">
+	                        <input name="name" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    
 	                      <label class="col-sm-2 control-label">职务</label>
 	                      <div class="col-sm-3">
-	                        <select id="role" name="role"  class="form-control" required="true">
+	                        <select id="role" name="role"  class="form-control  input-sm" required="true">
 	                        </select>
 	                      </div>
 	                    </div>
@@ -91,7 +91,7 @@
 	                      </div>
 	                       <label class="col-sm-2 control-label">电话</label>
 	                      <div class="col-sm-3">
-	                        <input name="phone" type="text" class="form-control" required="true">
+	                        <input name="phone" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                       
 	                     
@@ -99,24 +99,24 @@
                          <div class="form-group">
 	                      <label class="col-sm-2 control-label">工号</label>
 	                      <div class="col-sm-3">
-	                        <input name="code" type="text" class="form-control" required="true">
+	                        <input name="code" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    
 	                      <label class="col-sm-2 control-label">身份证号</label>
 	                      <div class="col-sm-3">
-	                        <input name="idcardnum" type="text" class="form-control" required="true">
+	                        <input name="idcardnum" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
                          <div class="form-group">
 	                      <label class="col-sm-2 control-label">所属公司</label>
 	                      <div class="col-sm-3">
-	                        <select id="orgname" name="orgname"  class="form-control" required="true">
+	                        <select id="orgname" name="orgname"  class="form-control  input-sm" required="true">
 	                        </select>
 	                      </div>
 	                     
 	                      <label class="col-sm-2 control-label">公司代码</label>
 	                      <div class="col-sm-3">
-	                       <select id="orgcode" name="orgcode"  class="form-control" required="true" readonly>
+	                       <select id="orgcode" name="orgcode"  class="form-control  input-sm" required="true" readonly>
 	                        </select>
 	                      </div>
 	                        
@@ -126,13 +126,13 @@
                           <div class="form-group">
 	                     <label class="col-sm-2 control-label">直接上级</label>
 	                      <div class="col-sm-3">
-	                        <select id="managercode" name="managercode"  class="form-control">
+	                        <select id="managercode" name="managercode"  class="form-control  input-sm">
 	                        </select>
 	                      </div>
 	                   
 	                      <label class="col-sm-2 control-label">入司时间</label>
 	                      <div class="col-sm-3">
-	                        <input name="jointime" type="text" class="form-control" required="true"  onfocus="WdatePicker({skin:'default'})">
+	                        <input name="jointime" type="text" class="form-control  input-sm" required="true"  onfocus="WdatePicker({skin:'default'})">
 	                      </div>
 	                    </div>
 	                   <!--  <div class="form-group">

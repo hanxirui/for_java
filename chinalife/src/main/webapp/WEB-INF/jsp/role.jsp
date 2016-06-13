@@ -20,8 +20,8 @@
                <div class="box-body">
                  <!-- form start -->
                  <form id="schFrm" class="form-inline" onsubmit="return false;">
-				   级别:<input name="level" type="text" class="form-control">      
-                      职务:<input name="name" type="text" class="form-control">      
+				   级别:<input name="level" type="text" class="form-control  input-sm">      
+                      职务:<input name="name" type="text" class="form-control  input-sm">      
                    	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
 				</form>
@@ -53,13 +53,13 @@
 											   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">级别</label>
 	                      <div class="col-sm-7">
-	                        <input name="level" type="text" class="form-control" required="true">
+	                        <input name="level" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										   						<div class="form-group">
 	                      <label class="col-sm-3 control-label">职务</label>
 	                      <div class="col-sm-7">
-	                        <input name="name" type="text" class="form-control" required="true">
+	                        <input name="name" type="text" class="form-control  input-sm" required="true">
 	                      </div>
 	                    </div>
 					   										</form>
