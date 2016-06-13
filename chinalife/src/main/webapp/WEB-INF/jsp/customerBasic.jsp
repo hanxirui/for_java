@@ -230,35 +230,62 @@
 		</div>
 
 		<div id="kpiWin">
-
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-md-10">
-						时段：<input name="startTime" type="text"
-							onfocus="WdatePicker({skin:'default'})">- <input
-							name="endTime" type="text"
-							onfocus="WdatePicker({skin:'default'})">
+			<form id="kpiFrm" class="form-horizontal">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">开始时间</label>
+					<div class="col-sm-3">
+						<input id="startTime" name="startTime" type="text" class="form-control"
+							required="true" onfocus="WdatePicker({skin:'default'})">
 					</div>
 
+					<label class="col-sm-3 control-label">结束时间</label>
+					<div class="col-sm-3">
+						<input id="endTime" name="endTime" type="text" class="form-control"
+							required="true" onfocus="WdatePicker({skin:'default'})">
+					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-3">拜访量： 15人次</div>
-				</div>
-				<div class="row">
-					<div class="col-md-5">日均拜访量： 5人次</div>
+				<br>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">拜访量</label>
+					<div class="col-sm-3">
+						<input name="baifangliang" type="text" class="form-control"
+							readonly>
+					</div>
 
+					<label class="col-sm-3 control-label">日均拜访量</label>
+					<div class="col-sm-3">
+						<input name="rijunbaifangliang" type="text" class="form-control"
+							readonly>
+					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-5">新开自营件数：512件</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">新开自营件数</label>
+					<div class="col-sm-3">
+						<input name="ziyingcount" type="text" class="form-control"
+							readonly>
+					</div>
 
-					<div class="col-md-5">保费： 1024</div>
+					<label class="col-sm-3 control-label">保费</label>
+					<div class="col-sm-3">
+						<input name="ziyingbaofei" type="text" class="form-control"
+							readonly>
+					</div>
 				</div>
-				<div class="row">
-					<div class="col-md-5">新开渠道件数：256</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">新开渠道件数</label>
+					<div class="col-sm-3">
+						<input name="qudiaocount" type="text" class="form-control"
+							readonly>
+					</div>
 
-					<div class="col-md-5">保费：1024</div>
+					<label class="col-sm-3 control-label">保费</label>
+					<div class="col-sm-3">
+						<input name="qudaobaofei" type="text" class="form-control"
+							readonly>
+					</div>
 				</div>
-			</div>
+
+			</form>
 		</div>
 
 		<input type="hidden" id="winFrom">
@@ -310,7 +337,7 @@
 				/* 三访客户 */
 				search('3');
 			});
-			
+
 			$("#unfenpeiBtn").click(function() {
 				/* 未分配客户 */
 				search('NAN');
@@ -396,16 +423,6 @@
 					crudWin.showModal();
 				}
 			}
-
-			/* this.detail = function(row) {
-			 if (row) {
-			 submitUrl = detailUrl + '?' + pk + '=' + row[pk];
-			 reset();
-			 crudWin.title('详情');
-			 loadFormData($crudFrm,row);		
-			 crudWin.showModal();
-			 }
-			 } */
 
 			// 删除
 			this.del = function(row) {
@@ -544,8 +561,7 @@
 					}
 
 					if ($("#winFrom").val() == "empname") {
-						$('#empcode').val(
-								cusGridObj.getCheckedValues('code'));
+						$('#empcode').val(cusGridObj.getCheckedValues('code'));
 						$('#empname').val(cusGridObj.getCheckedValues('name'));
 					} else {
 
@@ -601,6 +617,7 @@
 			});
 
 			$("#apiBtn").click(function() {
+				getKpiInfo();
 				kpiWin.showModal();
 			});
 
@@ -610,18 +627,28 @@
 				content : document.getElementById('kpiWin'),
 				okValue : '查询',
 				ok : function() {
-					that.save();
+					getKpiInfo();
 					return false;
 				},
 				cancelValue : '关闭',
 				cancel : function() {
 					this.close();
 					return false;
-				},
-				onshow : function() {
-					alert("show");
 				}
 			});
+
+			function getKpiInfo() {
+				var startTime = $("#startTime").val();
+				var endTime = $("#endTime").val();
+
+				$.getJSON("${ctx}getKpiInfo.do", {
+					'startTime' : startTime,
+					'endTime' : endTime
+				}, function(result) {
+					console.log(result);
+					loadFormData($("#kpiFrm"), result);
+				});
+			}
 
 			var getOrgList = function() {
 
@@ -644,7 +671,6 @@
 			$.getJSON("${ctx}getCustomerCountByVisit.do", {
 				'count' : 2
 			}, function(result) {
-				console.log(result);
 				$("#vtBtn").append("<i class='fa'></i>二访客户数量：" + result + "位");
 			});
 

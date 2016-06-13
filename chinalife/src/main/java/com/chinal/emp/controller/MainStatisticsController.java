@@ -76,14 +76,25 @@ public class MainStatisticsController extends BaseController {
 			birthCount = customerBasicService.findTotalCount(cusquery);
 
 			// 制式服务未录
-			// TODO 找到当前的制式服务
+			// 找到当前的制式服务
 			ExpressionQuery bizQuery = new ExpressionQuery();
 			bizQuery.addValueExpression(new ValueExpression("t.orgcode", getOnlineUser().getEmployee().getOrgcode()));
-			bizQuery.addSqlExpression(new SqlExpression(
-					"t.startdate>" + DateUtil.getShortFormatNow() + " and t.enddate<" + DateUtil.getShortFormatNow()));
+			bizQuery.addSqlExpression(new SqlExpression("t.startdate<'" + DateUtil.getShortFormatNow()
+					+ "' and t.enddate>'" + DateUtil.getShortFormatNow() + "'"));
 			List<Bizplatform> plats = bizplatformService.find(bizQuery);
-			// TODO 找到登录人员所有的客户
-			// TODO 找到已经进行过制式服务的客户
+			// 找到登录人员所有的客户
+			if (plats != null && plats.size() > 0) {
+				cusquery = genCustomerQueryByPrincipal(onlineUser);
+				cusquery.addSqlExpression(new SqlExpression(
+						"t.idcardnum not in (select s.idcardnum from service_record s where s.content='"
+								+ plats.get(0).getTitle() + "')"));
+				unService = customerBasicService.findTotalCount(cusquery);
+			}
+
+			//
+			// SELECT c.* from customer_basic c where c.idcardnum not in (select
+			// idcardnum from service_record s where s.content='基因检测') and
+			// c.empcode='81000000'
 
 		}
 		ModelAndView mv = new ModelAndView();

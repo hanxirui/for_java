@@ -39,7 +39,7 @@
           <div class="box">
 				<div class="box-header">
 					 <div class="btn-group">
-			         	<a id="addBtn" class="btn btn-primary">
+			         	<a id="addServiceBtn" class="btn btn-primary">
 			            	<i class="fa"></i> 批量维护制式服务 
 			         	</a>
 			          </div>
@@ -48,7 +48,7 @@
 				<div class="box-body">	 
 					<table id="searchTable">
 						<tr>     
-						    <th w_check="true" w_index="idcardnum" width="3%;"   ></th>      
+						    <th w_check="true" w_index="id" width="3%;"   ></th>      
 							<th w_index="name">客户姓名</th>
 							<th w_index="sex"  w_render="sexRender">性别</th>
 							<th w_index="idcardnum" >身份证号</th>
@@ -149,29 +149,19 @@
 					</form>
 			    </div>
 			    
-		     <div id="importWin">
-                    <form id="importFrm"  method="post"   enctype="multipart/form-data"  class="form-horizontal" action="${ctx}importCustomer.do">                   
-                       <div class="form-group">
-                          <label class="col-sm-2 control-label">选择文件</label>
-                          <div class="col-sm-3">
-                           <input class="btn btn-default" id="filename" type="file" name="filename"  accept="xls"/>
-                          </div>
-                        </div>
-                    </form>
-             </div>
                
-             <div class="box-body" id="cusWin">	 
-					<table id="cusTable">
-						<tr>          
-						    <th w_check="true" w_index="code" width="3%;"></th> 
-						    <th w_index="name">姓名</th>
-							<th w_index="role" w_render="roleRender">职务</th>
-							<th w_index="code">工号</th>
-							<th w_index="orgname">所属公司</th>
-							<th w_index="orgcode">公司代码</th>
-						</tr>
-					</table>
+			<div class="box-body" id="cusWin">
+				<table id="cusTable">
+					<tr>
+					    <th w_check="true" w_index="id" width="3%;"></th> 
+						<th w_index="title">平台名称</th>
+						<th w_index="zhishibaifang" w_render="zhishiRender">制式拜访</th>
+						<th w_index="startdate">开始时间</th>
+						<th w_index="enddate">结束时间</th>
+					</tr>
+				</table>
 			</div>
+			
 				
 			
 				
@@ -194,8 +184,7 @@ var $schFrm = $('#schFrm'); // 查询表单
 var $crudFrm = $('#crudFrm'); // 编辑表单
 
 var $schBtn = $('#schBtn'); // 查询按钮
-var $vtBtn = $('#vtBtn'); // 二访查询按钮
-var $vsBtn = $('#vsBtn'); // 三访查询按钮
+
 var $addBtn = $('#addBtn'); // 添加按钮
 
 var validator; // 验证器
@@ -217,12 +206,7 @@ $addBtn.click(function() {
 $schBtn.click(function() {
 	search();
 });
-$vtBtn.click(function() {
-	search('2');
-});
-$vsBtn.click(function() {
-	search('3');
-});
+
 
 gridObj = $.fn.bsgrid.init('searchTable', {
 	url: listUrl
@@ -351,42 +335,9 @@ var leibieRender = function(record, rowIndex, colIndex, options){
 
 }
 
-var $importBtn= $('#importBtn'); // 导入按钮
-$importBtn.click(function() {   
-	    importWin.showModal();    
-});
-
-var importWin = dialog({
-	title: '导入',
-	width:400,
-	content: document.getElementById('importWin'),
-	okValue: '导入',
-    ok: function () {
-           $.ajaxFileUpload({
-               url:ctx+"importCustomer.do",
-               fileElementId:"filename",
-               dataType: 'json',
-               success: function (data, status){
-                 if("success"==data.status){
-                     gridObj.refreshPage();
-                     importWin.close();
-                 }else if("error"==data.status){
-                     alert("上传失败!");
-                    return false; 
-                 }
-               }
-               });
-        return false;
-    },
-	cancelValue: '取消',
-	cancel: function () {
-		this.close();
-		return false;
-	}
-});
 
 
-$("#fenpeiBtn").click(function(){
+$("#addServiceBtn").click(function(){
 	var cardnums = gridObj.getCheckedValues('idcardnum');
 	if(cardnums.length<1){
 		alert("请至少选择一个客户.");
@@ -408,18 +359,22 @@ $("#empname").click(function() {
 });
 
 var cusGridObj = $.fn.bsgrid.init('cusTable', {
-	url: ctx + 'listEmployeeForCus.do'
-    ,pageSizeSelect: true
-    ,rowHoverColor: true // 移动行变色
-    ,rowSelectedColor: false // 选择行不高亮
-    ,isProcessLockScreen:false // 加载数据不显示遮罩层
-	,displayBlankRows: false
-	,pagingLittleToolbar: true
-    //
+	url : ctx + 'listBizplatform.do',
+	pageSizeSelect : true,
+	rowHoverColor : true // 移动行变色
+	,
+	rowSelectedColor : false // 选择行不高亮
+	,
+	isProcessLockScreen : false // 加载数据不显示遮罩层
+	,
+	displayBlankRows : false,
+	pagingLittleToolbar : true
 });
 
+
+
 var cusWin = dialog({
-	title: '选择客户经理',
+	title: '选择业务平台',
 	width:800,
 	content: document.getElementById('cusWin'),
 	okValue: '保存',
@@ -427,7 +382,7 @@ var cusWin = dialog({
 		
 		var name = cusGridObj.getCheckedValues('name');
 		if(name.length!=1){
-			alert("请选择一个客户经理.");
+			alert("请选择一个业务平台.");
 			return false;
 		}
 		
@@ -436,7 +391,7 @@ var cusWin = dialog({
 			$('#empname').val(cusGridObj.getCheckedValues('name'));
 		}else{
 			
-			var cardnums = gridObj.getCheckedValues('idcardnum');
+			var cardnums = gridObj.getCheckedValues('id');
 			if(cardnums.length<1){
 				alert("请至少选择一个客户.");
 				return false;
@@ -445,10 +400,10 @@ var cusWin = dialog({
 			var _cardnums=new Array()
 			
 			$.each(cardnums, function(i, n){
-				_cardnums[i]="'"+n+"'";
+				_cardnums[i]=n;
 				});
 			
-			 Action.post(ctx + 'fenpeiCustomer.do?cusIds='+_cardnums+"&empcode="+cusGridObj.getCheckedValues('code'), null, function(result) {
+			 Action.post(ctx + 'batchAddServiceRecord.do?cusIds='+_cardnums+"&platId="+cusGridObj.getCheckedValues('id'), null, function(result) {
 				Action.execResult(result, function(result) {
 					gridObj.refreshPage();
 					
@@ -484,30 +439,6 @@ $("#type").change(function(){
 	}
 });
 
-$("#apiBtn").click(function(){
-	kpiWin.showModal();
-});
-
-var kpiWin = dialog({
-	title: '编辑',
-	width:600,
-	content: document.getElementById('kpiWin'),
-	okValue: '查询',
-	ok: function () {
-		that.save();
-		return false;
-	},
-	cancelValue: '关闭',
-	cancel: function () {
-		this.close();
-		return false;
-	},
-	onshow:function(){
-		alert("show");
-	}
-});
-
-
 
 var getOrgList = function (){
 	  
@@ -527,15 +458,14 @@ var getOrgList = function (){
 }
 getOrgList();
 
-$.getJSON("${ctx}getCustomerCountByVisit.do", {'count':2}, function (result) {
-  	console.log(result);
-  	$("#vtBtn").append("<i class='fa'></i>二访客户数量："+result+"位");
-});
+var zhishiRender = function(record, rowIndex, colIndex, options) {
+	if (record.zhishibaifang == 0) {
+		return "是";
+	} else {
+		return "否";
+	}
 
-$.getJSON("${ctx}getCustomerCountByVisit.do", {'count':3}, function (result) {
-	$("#vsBtn").append("<i class='fa'></i>三访及以上客户数量："+result+"位");
-});
-  
+}
 validator = $crudFrm.validate();
 </script>
 

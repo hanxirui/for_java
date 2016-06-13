@@ -205,8 +205,6 @@ var cusWin = dialog({
 	content: document.getElementById('cusWin'),
 	okValue: '保存',
 	ok: function () {
-		/* alert(cusGridObj.getCheckedValues('name'));
-		alert(cusGridObj.getCheckedValues('idcardnum')); */
 		var name = cusGridObj.getCheckedValues('name');
 		if(name.length!=1){
 			alert("请选择一个客户.");

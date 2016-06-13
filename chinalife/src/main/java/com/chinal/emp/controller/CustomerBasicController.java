@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -20,12 +21,10 @@ import org.durcframework.core.expression.subexpression.LikeRightExpression;
 import org.durcframework.core.expression.subexpression.SqlExpression;
 import org.durcframework.core.expression.subexpression.ValueExpression;
 import org.durcframework.core.support.BsgridController;
-import org.durcframework.core.util.DateUtil;
 import org.jxls.reader.ReaderBuilder;
 import org.jxls.reader.XLSReadStatus;
 import org.jxls.reader.XLSReader;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,14 +34,19 @@ import org.springframework.web.servlet.ModelAndView;
 import org.xml.sax.SAXException;
 
 import com.alibaba.fastjson.JSONObject;
+import com.chinal.emp.entity.Bizplatform;
 import com.chinal.emp.entity.CustomerBasic;
 import com.chinal.emp.entity.CustomerBasicSch;
 import com.chinal.emp.entity.Employee;
+import com.chinal.emp.entity.KpiInfo;
 import com.chinal.emp.entity.Org;
 import com.chinal.emp.security.AuthUser;
+import com.chinal.emp.service.BizplatformService;
 import com.chinal.emp.service.CustomerBasicService;
 import com.chinal.emp.service.EmployeeService;
 import com.chinal.emp.service.OrgService;
+import com.chinal.emp.service.SitRecordService;
+import com.chinal.emp.util.DateUtil;
 import com.chinal.emp.util.FileUtils;
 
 @Controller
@@ -60,6 +64,12 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 
 	@Autowired
 	private OrgService orgService;
+
+	@Autowired
+	private BizplatformService bizplatformService;
+
+	@Autowired
+	private SitRecordService sitRecordService;
 
 	@RequestMapping("/openCustomerBasic.do")
 	public String openCustomerBasic() {
@@ -115,7 +125,19 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 		}
 
 		// 制式服务未录客户
-		if (false) {
+		else if (null != from && "s".equals(from)) {
+			ExpressionQuery bizQuery = new ExpressionQuery();
+			bizQuery.addValueExpression(new ValueExpression("t.orgcode", getOnlineUser().getEmployee().getOrgcode()));
+			bizQuery.addSqlExpression(new SqlExpression("t.startdate<'" + DateUtil.getShortFormatNow()
+					+ "' and t.enddate>'" + DateUtil.getShortFormatNow() + "'"));
+			List<Bizplatform> plats = bizplatformService.find(bizQuery);
+			// 找到登录人员所有的客户
+			if (plats != null && plats.size() > 0) {
+				query.addSqlExpression(new SqlExpression(
+						"t.idcardnum not in (select s.idcardnum from service_record s where s.content='"
+								+ plats.get(0).getTitle() + "')"));
+			}
+
 		}
 
 		// 返回查询结果
@@ -145,10 +167,8 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 	}
 
 	private ExpressionQuery genCustomerQuery(CustomerBasicSch searchEntity) {
-		SecurityContextImpl securityContextImpl = (SecurityContextImpl) getRequest().getSession()
-				.getAttribute("SPRING_SECURITY_CONTEXT");
 
-		AuthUser onlineUser = (AuthUser) securityContextImpl.getAuthentication().getPrincipal();
+		AuthUser onlineUser = getOnlineUser();
 
 		ExpressionQuery empquery = new ExpressionQuery();
 		ExpressionQuery cusquery = new ExpressionQuery();
@@ -170,9 +190,6 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 				for (Employee t_employee : emps) {
 					empCodes.append(",").append(t_employee.getCode());
 				}
-				// String cussql = "FIND_IN_SET(t.empcode, getChildList('" +
-				// empCodes.toString().substring(1) + "'))";
-				// modify 20160604 感觉上面逻辑不对
 				String cussql = "FIND_IN_SET(t.empcode, '" + empCodes.toString().substring(1) + "')";
 				cusquery.addSqlExpression(new SqlExpression(cussql));
 			}
@@ -218,51 +235,55 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 
 	@RequestMapping("/getCustomerCountByVisit.do")
 	public ModelAndView getCustomerCountByVisit(int count) {
-		SecurityContextImpl securityContextImpl = (SecurityContextImpl) getRequest().getSession()
-				.getAttribute("SPRING_SECURITY_CONTEXT");
-
-		AuthUser onlineUser = (AuthUser) securityContextImpl.getAuthentication().getPrincipal();
-
-		ExpressionQuery empquery = new ExpressionQuery();
-		ExpressionQuery cusquery = new ExpressionQuery();
-		// 不同的级别，查询的用户数量不一样
-
-		// 四级，五级查询全部
-		if (onlineUser.getLevel() == 5 || onlineUser.getLevel() == 4) {
-
-		}
-
-		// 二级，三级查询自己及下属的
-		else if (onlineUser.getLevel() == 2 || onlineUser.getLevel() == 3) {
-			String sql = "FIND_IN_SET(code, getChildList('" + onlineUser.getEmployee().getCode() + "'))";
-
-			empquery.addSqlExpression(new SqlExpression(sql));
-			List<Employee> emps = employeeService.findTree(empquery);
-			if (emps.size() > 0) {
-				StringBuffer empCodes = new StringBuffer();
-				for (Employee t_employee : emps) {
-					empCodes.append(",").append(t_employee.getCode());
-				}
-				// String cussql = "FIND_IN_SET(t.empcode, getChildList('" +
-				// empCodes.toString().substring(1) + "'))";
-				// modify 20160604 感觉上面逻辑不对
-				String cussql = "FIND_IN_SET(t.empcode, '" + empCodes.toString().substring(1) + "')";
-				cusquery.addSqlExpression(new SqlExpression(cussql));
-			}
-		}
-
-		// 一级查询自己负责的
-		else if (onlineUser.getLevel() == 1) {
-			cusquery.add(new ValueExpression("t.kehujingli", onlineUser.getEmployee().getCode()));
-		}
-		if (count == 2) {
-			cusquery.add(new ValueExpression("t.vcount", count));
-		}
-
-		else if (count == 3) {
-			cusquery.add(new ValueExpression("t.vcount", count));
-		}
-
+		// SecurityContextImpl securityContextImpl = (SecurityContextImpl)
+		// getRequest().getSession()
+		// .getAttribute("SPRING_SECURITY_CONTEXT");
+		//
+		// AuthUser onlineUser = (AuthUser)
+		// securityContextImpl.getAuthentication().getPrincipal();
+		//
+		// ç empquery = new ExpressionQuery();
+		// ExpressionQuery cusquery = new ExpressionQuery();
+		// // 不同的级别，查询的用户数量不一样
+		//
+		// // 四级，五级查询全部
+		// if (onlineUser.getLevel() == 5 || onlineUser.getLevel() == 4) {
+		//
+		// }
+		//
+		// // 二级，三级查询自己及下属的
+		// else if (onlineUser.getLevel() == 2 || onlineUser.getLevel() == 3) {
+		// String sql = "FIND_IN_SET(code, getChildList('" +
+		// onlineUser.getEmployee().getCode() + "'))";
+		//
+		// empquery.addSqlExpression(new SqlExpression(sql));
+		// List<Employee> emps = employeeService.findTree(empquery);
+		// if (emps.size() > 0) {
+		// StringBuffer empCodes = new StringBuffer();
+		// for (Employee t_employee : emps) {
+		// empCodes.append(",").append(t_employee.getCode());
+		// }
+		// String cussql = "FIND_IN_SET(t.empcode, '" +
+		// empCodes.toString().substring(1) + "')";
+		// cusquery.addSqlExpression(new SqlExpression(cussql));
+		// }
+		// }
+		//
+		// // 一级查询自己负责的
+		// else if (onlineUser.getLevel() == 1) {
+		// cusquery.add(new ValueExpression("t.kehujingli",
+		// onlineUser.getEmployee().getCode()));
+		// }
+		// if (count == 2) {
+		// cusquery.add(new ValueExpression("t.vcount", count));
+		// }
+		//
+		// else if (count == 3) {
+		// cusquery.add(new ValueExpression("t.vcount", count));
+		// }
+		CustomerBasicSch sch = new CustomerBasicSch();
+		sch.setVcount(count + "");
+		ExpressionQuery cusquery = genCustomerQuery(sch);
 		// 返回查询结果
 		ModelAndView mv = new ModelAndView();
 		mv.addObject(DEF_MODEL_NAME, this.getService().findVisitCount(cusquery));
@@ -272,14 +293,7 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 
 	@RequestMapping("/listCustomerForEmp.do")
 	public ModelAndView listCustomerForEmp(SearchEntity searchEntity) {
-
-		AuthUser authUser = (AuthUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-		ExpressionQuery query = new ExpressionQuery();
-
-		query.add(new ValueExpression("t.empcode", authUser.getEmployee().getCode()));
-		query.setPageIndex(searchEntity.getPageIndex());
-		query.setPageSize(searchEntity.getPageSize());
+		ExpressionQuery query = genCustomerQuery(new CustomerBasicSch());
 		// 返回查询结果
 		return this.list(query);
 	}
@@ -366,6 +380,34 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 		}
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().print(JSONObject.toJSON(result).toString());
+	}
+
+	@RequestMapping("/getKpiInfo.do")
+	public ModelAndView getKpiInfo(String startTime, String endTime) {
+		KpiInfo kpiInfo = new KpiInfo();
+		int days = 1;
+		ExpressionQuery query = genCustomerQuery(new CustomerBasicSch());
+		if (null == startTime || null == endTime || "".equals(startTime) || "".equals(endTime)) {
+			String currMonth = DateUtil.getCurrYear() + "-" + DateUtil.getCurrMonth();
+			query.addSqlExpression(new SqlExpression("t.visittime like '" + currMonth + "%'"));
+			days = DateUtil.getDayNumOfMonth(Integer.parseInt(DateUtil.getCurrYear()),
+					Integer.parseInt(DateUtil.getCurrMonth()));
+		} else {
+			query.addSqlExpression(
+					new SqlExpression("t.visittime<'" + endTime + "' and t.visittime>'" + startTime + "'"));
+			kpiInfo.setStartTime(startTime);
+			kpiInfo.setEndTime(endTime);
+			try {
+				days = DateUtil.daysBetween(startTime, endTime);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+
+		int visitCount = sitRecordService.findTotalCount(query);
+		kpiInfo.setBaifangliang(visitCount + "");
+		kpiInfo.setRijunbaifangliang(visitCount / days + "");
+		return this.render(kpiInfo);
 	}
 
 	public List<CustomerBasic> read(final MultipartFile file) {
