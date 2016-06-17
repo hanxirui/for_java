@@ -162,7 +162,8 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 					if (emp == null || emp.size() == 0) {
 						// 根据银行网点和员工对应关系，获得员工信息，，将用专管员信息填充原专管员；新分配人员为空，客户中的客户经理保持为空
 						ExpressionQuery bankQuery = new ExpressionQuery();
-						bankQuery.addValueExpression(new ValueExpression("t.code", insuranceRecord.getYewuyuandaima()));
+						bankQuery.addValueExpression(
+								new ValueExpression("t.mzhuanguanyuancode", insuranceRecord.getYewuyuandaima()));
 						List<BankRecord> banks = bankService.find(bankQuery);
 						if (banks != null && banks.size() > 0) {
 							BankRecord bank = banks.get(0);
@@ -228,7 +229,7 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 			beibaoren.setAddr(insuranceRecord.getBeibaoxianrentongxundizhi());
 			beibaoren.setPhone(insuranceRecord.getBeibaoxianrenshoujihao());
 			beibaoren.setIdcardnum(insuranceRecord.getBeibaoxianrenshenfenzhenghao());
-			beibaoren.setEmporgcode(insuranceRecord.getJigouhao());
+			beibaoren.setOldorgcode(insuranceRecord.getJigouhao());
 			// beibaoren.setEmporgname(emporgname);
 			beibaoren.setEmpname(insuranceRecord.getYewuyuanxingming());
 			beibaoren.setEmpcode(insuranceRecord.getYewuyuandaima());
@@ -247,7 +248,7 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 			// shouyiren.setAddr(insuranceRecord.getShouyirentongxundizhi());
 			// shouyiren.setPhone(insuranceRecord.getShouyirenshoujihao());
 			shouyiren.setIdcardnum(insuranceRecord.getShouyirenshenfenzhenghao());
-			shouyiren.setEmporgcode(insuranceRecord.getJigouhao());
+			shouyiren.setOldorgcode(insuranceRecord.getJigouhao());
 			// shouyiren.setEmporgname(emporgname);
 			shouyiren.setEmpname(insuranceRecord.getYewuyuanxingming());
 			shouyiren.setEmpcode(insuranceRecord.getYewuyuandaima());
@@ -271,7 +272,7 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 		toubaoren.setAddr(insuranceRecord.getToubaorentongxundizhi());
 		toubaoren.setPhone(insuranceRecord.getToubaorenshoujihao());
 		toubaoren.setIdcardnum(insuranceRecord.getToubaorenshenfenzhenghao());
-		toubaoren.setEmporgcode(insuranceRecord.getJigouhao());
+		toubaoren.setOldorgcode(insuranceRecord.getJigouhao());
 		String jigouName = getJigouName(insuranceRecord.getJigouhao());
 		if (null != jigouName) {
 			toubaoren.setEmporgname(jigouName);

@@ -20,17 +20,17 @@
 			<div class="box-body">
 				<!-- form start -->
 				<form id="schFrm" class="form-inline" onsubmit="return false;">
-					年:<select id="year" name="year" class="form-control  input-sm"></select> 
+					年:<select id="year" name="year" class="form-control  input-sm"></select>
 					季度:<select id="jidu" name="jidu" class="form-control  input-sm">
-					    <option value="1">1季度</option>
-					    <option value="2">2季度</option>
-					    <option value="3">3季度</option>
-					    <option value="4">4季度</option>
-					   </select> 
+						<option value="1">1季度</option>
+						<option value="2">2季度</option>
+						<option value="3">3季度</option>
+						<option value="4">4季度</option>
+					</select>
 					<button id="schBtn" type="submit" class="btn btn-primary">
 						<i class="fa fa-search"></i> 查询
 					</button>
-					
+
 				</form>
 			</div>
 			<!-- /.box-body -->
@@ -39,12 +39,11 @@
 		<div class="box">
 			<div class="box-header">
 				<div class="btn-group">
-					<a id="addBtn" class="btn btn-primary"> <i class="fa"></i>
-						录入
+					<a id="addBtn" class="btn btn-primary"> <i class="fa"></i> 录入
 					</a>
 				</div>
 				<div class="btn-group">
-					 <a href="${ctx}openBizplatform.do"><i class="fa fa-reply"></i>返回</a>
+					<a href="${ctx}openBizplatform.do"><i class="fa fa-reply"></i>返回</a>
 				</div>
 			</div>
 			<!-- /.box-header -->
@@ -98,28 +97,46 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">结束时间</label>
 					<div class="col-sm-7">
-						<input name="enddate" type="text" class="form-control  input-sm" required="true" onfocus="WdatePicker({skin:'default'})">
+						<input name="enddate" type="text" class="form-control  input-sm"
+							required="true" onfocus="WdatePicker({skin:'default'})">
 					</div>
 				</div>
 
+				<div class="form-group">
+					<label class="col-sm-3 control-label">平台排期</label>
+					<div class="col-sm-7">
+						<div class="btn-group">
+							<a id="plusBtn" class="btn btn-primary btn-sm"> <i
+								class="fa fa-plus"></i>
+							</a>
+						</div>
+						<div class="btn-group">
+							<a id="minusBtn" class="btn btn-primary btn-sm"> <i
+								class="fa fa-minus"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+				
 				<input name="empcode" type="hidden" class="form-control  input-sm"
 					value="<%=userDetails.getCode()%>">
 			</form>
 		</div>
-		
-<div id="importWin">
-	<form id="importFrm" method="post" enctype="multipart/form-data"
-		class="form-horizontal" action="${ctx}importPlatform.do">
-		<div class="form-group">
-			<label class="col-sm-3 control-label">选择文件</label>
-			<div class="col-sm-7">
-				<input class="btn btn-default" id="filename" type="file"
-					name="filename" accept="xls" /> <input id="filetype" type="hidden"
-					name="filetype" /> <input id="platid" type="hidden" name="platid" />
-			</div>
+
+		<div id="importWin">
+			<form id="importFrm" method="post" enctype="multipart/form-data"
+				class="form-horizontal" action="${ctx}importPlatform.do">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">选择文件</label>
+					<div class="col-sm-7">
+						<input class="btn btn-default" id="filename" type="file"
+							name="filename" accept="xls" /> <input id="filetype"
+							type="hidden" name="filetype" /> <input id="platid"
+							type="hidden" name="platid" />
+					</div>
+				</div>
+			</form>
 		</div>
-	</form>
-</div>
 		<script type="text/javascript">
 			var that = this;
 
@@ -169,6 +186,19 @@
 				 }); */
 
 			});
+			 
+			$("#plusBtn").click(function(){
+				$("#crudFrm").append("<div class='form-group' style='margin-bottom: 0.5em;'> <label class='col-sm-3 control-label'>日期</label> <div class='col-sm-4'> <input name='times' type='text' class='form-control' required='true' onfocus=\"WdatePicker({skin:'default'})\"></div> <div class='col-sm-3'> <select class='form-control' name='noons'> <option value='上午'>上午</option> <option value='下午'>下午</option> </select> </div> </div>");
+			});
+			
+			$("#minusBtn").click(function(){
+			
+				if($("input[name='times']").length==0){
+					return;
+				}
+				
+				$(".form-group:last").remove();
+			});
 
 			gridObj = $.fn.bsgrid.init('searchTable', {
 				url : listUrl,
@@ -179,8 +209,9 @@
 				,
 				isProcessLockScreen : false // 加载数据不显示遮罩层
 				,
-				displayBlankRows : false//,
-				//pageSize : 10
+				displayBlankRows : false
+			//,
+			//pageSize : 10
 			});
 
 			crudWin = dialog({
@@ -215,8 +246,10 @@
 
 			// 保存
 			this.save = function() {
+				
 				var self = this;
 				var data = getFormData($crudFrm);
+				console.log(data);
 				var validateVal = validator.form();
 				if (validateVal) {
 					Action.post(submitUrl, data, function(result) {
@@ -266,21 +299,21 @@
 				importWin.showModal();
 			});
 
-			var showImp = function(id,col) {
+			var showImp = function(id, col) {
 				$("#platid").val(id);
-				if(col==4){
+				if (col == 4) {
 					$("#filetype").val("caiye");
-				}else if(col==5){
+				} else if (col == 5) {
 					$("#filetype").val("huashu");
-				}else if(col==6){
+				} else if (col == 6) {
 					$("#filetype").val("jishuziliao");
-				}else if(col==7){
+				} else if (col == 7) {
 					$("#filetype").val("others");
 				}
-				
+
 				importWin.showModal();
 			}
-			
+
 			var importWin = dialog({
 				title : '导入',
 				width : 600,
@@ -288,7 +321,9 @@
 				okValue : '导入',
 				ok : function() {
 					$.ajaxFileUpload({
-						url : ctx + "uploadPlatform.do?platid="+$("#platid").val()+"&filetype="+$("#filetype").val(),
+						url : ctx + "uploadPlatform.do?platid="
+								+ $("#platid").val() + "&filetype="
+								+ $("#filetype").val(),
 						fileElementId : "filename",
 						dataType : 'json',
 						success : function(data, status) {
@@ -318,66 +353,78 @@
 				}
 
 			}
-			
-		   var uploadRender = function(record, rowIndex, colIndex, options) {
-			   var pathString="";
-			   
-			    if(colIndex==4){
-			    	 if(record.caiye){
-						    
-						    var paths=record.caiye.split(",");
-						    $.each(paths,function (i,path){
-						    	var t_path = "platform/"+record.id+"/caiye/"+path;
-						    	pathString += " <a href='"+t_path+"'>"+path+"</a><br>";
-						    });
-						    }
-				}else if(colIndex==5){
-					 if(record.huashu){
-						    
-						    var paths=record.huashu.split(",");
-						    $.each(paths,function (i,path){
-						    	var t_path = "platform/"+record.id+"/huashu/"+path;
-						    	pathString += " <a href='"+t_path+"'>"+path+"</a><br>";
-						    });
-						    }
-				}else if(colIndex==6){
-					 if(record.jishuziliao){
-						    
-						    var paths=record.jishuziliao.split(",");
-						    $.each(paths,function (i,path){
-						    	var t_path = "platform/"+record.id+"/jishuziliao/"+path;
-						    	pathString += " <a href='"+t_path+"'>"+path+"</a><br>";
-						    });
-						    }
-				}else if(colIndex==7){
-					 if(record.others){
-						    
-						    var paths=record.others.split(",");
-						    $.each(paths,function (i,path){
-						    	var t_path = "platform/"+record.id+"/others/"+path;
-						    	pathString += " <a href='"+t_path+"'>"+path+"</a><br>";
-						    });
-						    }
+
+			var uploadRender = function(record, rowIndex, colIndex, options) {
+				var pathString = "";
+
+				if (colIndex == 4) {
+					if (record.caiye) {
+
+						var paths = record.caiye.split(",");
+						$.each(paths, function(i, path) {
+							var t_path = "platform/" + record.id + "/caiye/"
+									+ path;
+							pathString += " <a href='"+t_path+"'>" + path
+									+ "</a><br>";
+						});
+					}
+				} else if (colIndex == 5) {
+					if (record.huashu) {
+
+						var paths = record.huashu.split(",");
+						$.each(paths, function(i, path) {
+							var t_path = "platform/" + record.id + "/huashu/"
+									+ path;
+							pathString += " <a href='"+t_path+"'>" + path
+									+ "</a><br>";
+						});
+					}
+				} else if (colIndex == 6) {
+					if (record.jishuziliao) {
+
+						var paths = record.jishuziliao.split(",");
+						$.each(paths, function(i, path) {
+							var t_path = "platform/" + record.id
+									+ "/jishuziliao/" + path;
+							pathString += " <a href='"+t_path+"'>" + path
+									+ "</a><br>";
+						});
+					}
+				} else if (colIndex == 7) {
+					if (record.others) {
+
+						var paths = record.others.split(",");
+						$.each(paths, function(i, path) {
+							var t_path = "platform/" + record.id + "/others/"
+									+ path;
+							pathString += " <a href='"+t_path+"'>" + path
+									+ "</a><br>";
+						});
+					}
 				}
-			    
-			    /* pathString += "</ul>"; */
-				return "<a id='importBtn' class='btn btn-primary btn-xs' onClick='showImp("+record.id+","+colIndex+")' style='color:#eee;'><i class='fa'></i> 上传 </a><br>"+pathString;
+
+				/* pathString += "</ul>"; */
+				return "<a id='importBtn' class='btn btn-primary btn-xs' onClick='showImp("
+						+ record.id
+						+ ","
+						+ colIndex
+						+ ")' style='color:#eee;'><i class='fa'></i> 上传 </a><br>"
+						+ pathString;
 
 			}
-		   
-		   var setYear = function(){
-			 //设置年份的选择 
-			   var myDate= new Date(); 
-			   var startYear=myDate.getFullYear()-10;//起始年份 
-			   var endYear=myDate.getFullYear();//结束年份 
-			   var obj=document.getElementById('year') 
-			   for (var i=startYear;i<=endYear;i++) 
-			   { 
-			      obj.options.add(new Option(i,i)); 
-			   } 
-			   obj.options[obj.options.length-1].selected=1; 
-		   }
-		   setYear();
+
+			var setYear = function() {
+				//设置年份的选择 
+				var myDate = new Date();
+				var startYear = myDate.getFullYear() - 10;//起始年份 
+				var endYear = myDate.getFullYear();//结束年份 
+				var obj = document.getElementById('year')
+				for (var i = startYear; i <= endYear; i++) {
+					obj.options.add(new Option(i, i));
+				}
+				obj.options[obj.options.length - 1].selected = 1;
+			}
+			setYear();
 
 			validator = $crudFrm.validate();
 		</script>

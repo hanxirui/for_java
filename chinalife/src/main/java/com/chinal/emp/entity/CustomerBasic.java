@@ -39,6 +39,11 @@ public class CustomerBasic {
 	// 机构
 	private String emporgname;
 
+	// 机构编号
+	private String oldorgcode;
+	// 机构
+	private String oldorgname;
+
 	private String beizhu;
 
 	// 拜访次数，界面和查询用，持久化不用
@@ -194,6 +199,22 @@ public class CustomerBasic {
 
 	public void setBeizhu(String beizhu) {
 		this.beizhu = beizhu;
+	}
+
+	public String getOldorgcode() {
+		return oldorgcode;
+	}
+
+	public void setOldorgcode(String oldorgcode) {
+		this.oldorgcode = oldorgcode;
+	}
+
+	public String getOldorgname() {
+		return oldorgname;
+	}
+
+	public void setOldorgname(String oldorgname) {
+		this.oldorgname = oldorgname;
 	}
 
 }

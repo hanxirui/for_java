@@ -29,22 +29,6 @@
 					<!-- 投诉原因:<input name="reason" type="text" class="form-control  input-sm">    -->
 					涉及保单:<input name="insuranceid" type="text" class="form-control  input-sm">
 					客户经理:<input name="firstaccount" type="text" class="form-control  input-sm">
-					<!--  处理内容:<input name="firstcontent" type="text" class="form-control  input-sm">      
-                      赔偿金额:<input name="firstclaim" type="text" class="form-control  input-sm">      
-                      处理时间:<input name="firsttime" type="text" class="form-control  input-sm">      
-                      区域经理:<input name="secondaccount" type="text" class="form-control  input-sm">      
-                      处理内容:<input name="secondcontent" type="text" class="form-control  input-sm">      
-                      处理时间:<input name="secondtime" type="text" class="form-control  input-sm">      
-                      赔偿金额:<input name="secondclaim" type="text" class="form-control  input-sm">      
-                      部门经理:<input name="thirdaccount" type="text" class="form-control  input-sm">      
-                      处理内容:<input name="thirdcontent" type="text" class="form-control  input-sm">      
-                      赔偿金额:<input name="thirdclaim" type="text" class="form-control  input-sm">      
-                      处理时间:<input name="thirdtime" type="text" class="form-control  input-sm">      
-                      经理室:<input name="fourthaccount" type="text" class="form-control  input-sm">      
-                      处理内容:<input name="fourthcontent" type="text" class="form-control  input-sm">      
-                      赔偿金额:<input name="fourthclaim" type="text" class="form-control  input-sm">      
-                      赔偿时间:<input name="fourthtime" type="text" class="form-control  input-sm">      
-                      投诉时间:<input name="claimtime" type="text" class="form-control  input-sm">   -->
 					<button id="schBtn" type="submit" class="btn btn-primary">
 						<i class="fa fa-search"></i> 查询
 					</button>
@@ -103,26 +87,31 @@
 					<label class="col-sm-2 control-label">客户</label>
 					<div class="col-sm-3">
 						<input id="cusname"  name="cusname" type="text" class="form-control  input-sm"
-							required="true"> 
-						<input id="idcardnum" name="idcardnum" type="hidden"
-							class="form-control  input-sm" >
+							> 
 					</div>
-					<label class="col-sm-2 control-label">涉及保单</label>
+					<label class="col-sm-2 control-label">身份证号</label>
 					<div class="col-sm-3">
-						<input name="insuranceid" type="text" class="form-control  input-sm"
-							required="true">
+						<input id="idcardnum" name="idcardnum" type="text"
+							class="form-control  input-sm" >
 					</div>
 				</div>
 				<div class="form-group"  style="margin-bottom: 0em;">
+				   <label class="col-sm-2 control-label">涉及保单</label>
+					<div class="col-sm-3">
+						<input name="insuranceid" type="text" class="form-control  input-sm"
+							>
+					</div>
 					<label class="col-sm-2 control-label">投诉时间</label>
 					<div class="col-sm-3">
 						<input name="claimtime" type="text" class="form-control  input-sm"
-							required="true"  onfocus="WdatePicker({skin:'default'})">
+							  onfocus="WdatePicker({skin:'default'})">
 					</div>
+				</div>
+				<div class="form-group"  style="margin-bottom: 0em;">
 					<label class="col-sm-2 control-label">投诉原因</label>
-					<div class="col-sm-3">
+					<div class="col-sm-8">
 						<input name="reason" type="text" class="form-control  input-sm"
-							required="true">
+							>
 					</div>
 				</div>
 				<div class="form-group"  style="margin-bottom: 0em;">
@@ -132,7 +121,7 @@
 					<label class="col-sm-2 control-label">处理内容</label>
 					<div class="col-sm-8">
 						<input name="firstcontent" type="text" class="form-control  input-sm"
-							required="true">
+							>
 					</div>
 				</div>
 
@@ -140,12 +129,12 @@
 					<label class="col-sm-2 control-label">处理时间</label>
 					<div class="col-sm-3">
 						<input name="firsttime" type="text" class="form-control  input-sm"
-							required="true"  onfocus="WdatePicker({skin:'default'})">
+							  onfocus="WdatePicker({skin:'default'})">
 					</div>
 					<label class="col-sm-2 control-label">赔偿金额</label>
 					<div class="col-sm-3">
 						<input name="firstclaim" type="text" class="form-control  input-sm"
-							required="true">
+							>
 					</div>
 				</div>
 				
@@ -158,19 +147,19 @@
 					<label class="col-sm-2 control-label">处理内容</label>
 					<div class="col-sm-8">
 						<input name="secondcontent" type="text" class="form-control  input-sm"
-							required="true">
+							>
 					</div>
 				</div>
 				<div class="form-group" style="margin-bottom: 0em;">
 					<label class="col-sm-2 control-label">处理时间</label>
 					<div class="col-sm-3">
 						<input name="secondtime" type="text" class="form-control  input-sm"
-							required="true"  onfocus="WdatePicker({skin:'default'})">
+							  onfocus="WdatePicker({skin:'default'})">
 					</div>
 					<label class="col-sm-2 control-label">赔偿金额</label>
 					<div class="col-sm-3">
 						<input name="secondclaim" type="text" class="form-control  input-sm"
-							required="true">
+							>
 					</div>
 				</div>
 				<%} %>
@@ -182,19 +171,19 @@
 					<label class="col-sm-2 control-label">处理内容</label>
 					<div class="col-sm-8">
 						<input name="thirdcontent" type="text" class="form-control  input-sm"
-							required="true">
+							>
 					</div>
 				</div>
 				<div class="form-group" style="margin-bottom: 0em;">
 					<label class="col-sm-2 control-label">处理时间</label>
 					<div class="col-sm-3">
 						<input name="thirdtime" type="text" class="form-control  input-sm"
-							required="true"  onfocus="WdatePicker({skin:'default'})">
+							  onfocus="WdatePicker({skin:'default'})">
 					</div>
 					<label class="col-sm-2 control-label">赔偿金额</label>
 					<div class="col-sm-3">
 						<input name="thirdclaim" type="text" class="form-control  input-sm"
-							required="true">
+							>
 					</div>
 				</div> 
 				<%} %>
@@ -204,22 +193,28 @@
 				</div>
 				<div class="form-group" style="margin-bottom: 0em;">
 					<label class="col-sm-2 control-label">处理内容</label>
-					<div class="col-sm-8">
+					<div class="col-sm-3">
 						<input name="fourthcontent" type="text" class="form-control  input-sm"
-							required="true">
+							>
+					</div>
+					<label class="col-sm-2 control-label">处理人</label>
+					<div class="col-sm-3">
+						<input name="fourthaccount" type="text" class="form-control  input-sm"
+							>
 					</div>
 				</div>
 				<div class="form-group" style="margin-bottom: 0em;">
+				    <label class="col-sm-2 control-label">处理时间</label>
+					<div class="col-sm-3">
+						<input name="fourthtime" type="text" class="form-control  input-sm"
+							  onfocus="WdatePicker({skin:'default'})">
+					</div>
 					<label class="col-sm-2 control-label">赔偿金额</label>
 					<div class="col-sm-3">
 						<input name="fourthclaim" type="text" class="form-control  input-sm"
-							required="true">
+							>
 					</div>
-					<label class="col-sm-2 control-label">处理时间</label>
-					<div class="col-sm-3">
-						<input name="fourthtime" type="text" class="form-control  input-sm"
-							required="true"  onfocus="WdatePicker({skin:'default'})">
-					</div>
+					
 				</div>
 				<%} %>
 			</form>
@@ -302,6 +297,17 @@
 					return false;
 				}
 			});
+			
+			/* var detailWin = dialog({
+				title : '详细信息',
+				width : 600,
+				content : document.getElementById('crudWin'),
+				cancelValue : '关闭',
+				cancel : function() {
+					this.close();
+					return false;
+				}
+			}); */
 
 			function search() {
 				var schData = getFormData($schFrm);
@@ -312,6 +318,9 @@
 				return '<a href="#" onclick="'
 						+ FunUtil.createFun(that, 'edit', row)
 						+ ' return false;">修改</a>' + '&nbsp;&nbsp;'
+						+'<a href="#" onclick="'
+						+ FunUtil.createFun(that, 'detail', row)
+						+ ' return false;">详情</a>' + '&nbsp;&nbsp;'
 						+ '<a href="#" onclick="'
 						+ FunUtil.createFun(that, 'del', row)
 						+ ' return false;">删除</a>';
@@ -338,6 +347,27 @@
 					reset();
 					crudWin.title('修改');
 					loadFormData($crudFrm, row);
+					$(":text").each(
+							   function(){
+								   $(this).removeAttr("disabled");
+							   }
+					);
+					crudWin.showModal();
+				}
+			}
+			
+			// 详情
+			this.detail = function(row) {
+				if (row) {
+					submitUrl = updateUrl + '?' + pk + '=' + row[pk];
+					reset();
+					crudWin.title('详情');
+					loadFormData($crudFrm, row);
+					$(":text").each(
+					   function(){
+						   $(this).attr("disabled","true");
+					   }
+					);
 					crudWin.showModal();
 				}
 			}

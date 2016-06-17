@@ -166,14 +166,16 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 		query.addJoinExpression(new InnerJoinExpression("role", "t2", "role", "id"));
 		query.addJoinExpression(new LeftJoinExpression("employee", "t3", "managercode", "code"));
 
-		if (null == orgcode || "".equals(orgcode)) {
-			AuthUser userDetails = getAuthUser();
-			query.addValueExpression(new ValueExpression("t.orgcode", userDetails.getEmployee().getOrgcode()));
-		} else {
-			query.addValueExpression(new ValueExpression("t.orgcode", orgcode));
-		}
+		// 先取消对机构的限制
+		// if (null == orgcode || "".equals(orgcode)) {
+		// AuthUser userDetails = getAuthUser();
+		// query.addValueExpression(new ValueExpression("t.orgcode",
+		// userDetails.getEmployee().getOrgcode()));
+		// } else {
+		// query.addValueExpression(new ValueExpression("t.orgcode", orgcode));
+		// }
 
-		query.addValueExpression(new ValueExpression("t2.level", ">=", role.getLevel()));
+		query.addValueExpression(new ValueExpression("t2.level", ">", role.getLevel()));
 
 		return this.listAll(query);
 	}

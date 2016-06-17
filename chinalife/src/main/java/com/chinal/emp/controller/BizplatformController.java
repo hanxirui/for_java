@@ -23,9 +23,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.chinal.emp.entity.BizRecord;
 import com.chinal.emp.entity.Bizplatform;
 import com.chinal.emp.entity.BizplatformSch;
 import com.chinal.emp.security.AuthUser;
+import com.chinal.emp.service.BizRecordService;
 import com.chinal.emp.service.BizplatformService;
 import com.chinal.emp.util.FileUtils;
 
@@ -36,6 +38,9 @@ public class BizplatformController extends BsgridController<Bizplatform, Bizplat
 
 	@Autowired
 	HttpServletRequest request;
+
+	@Autowired
+	BizRecordService bizRecordService;
 
 	@RequestMapping("/openBizplatform.do")
 	public String openBizplatform() {
@@ -72,7 +77,22 @@ public class BizplatformController extends BsgridController<Bizplatform, Bizplat
 	@RequestMapping("/addBizplatform.do")
 	public ModelAndView addBizplatform(Bizplatform entity) {
 		entity.setOrgcode(getOnlineUser().getEmployee().getOrgcode());
-		return this.add(entity);
+		ModelAndView mv = this.add(entity);
+
+		List<String> times = entity.getTimes();
+		List<String> noons = entity.getNoons();
+		for (int t_i = 0; t_i < times.size() && t_i < noons.size(); t_i++) {
+			if (!"".equals(times.get(t_i)) && !"".equals(noons.get(t_i))) {
+				BizRecord br = new BizRecord();
+				br.setBizplatId(entity.getId());
+				br.setBizplatTitle(entity.getTitle() + "(" + noons.get(t_i) + ")");
+				br.setRiqi(times.get(t_i));
+				bizRecordService.save(br);
+			}
+
+		}
+
+		return mv;
 	}
 
 	@RequestMapping("/listBizplatform.do")

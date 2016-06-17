@@ -388,6 +388,7 @@ function setOrgCode(){
 	getManagerList();
 }
 
+getManagerList();
 var getManagerList = function (){
 	  $("#managercode").empty();
 	  

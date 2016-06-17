@@ -1,14 +1,14 @@
 package com.chinal.emp.entity;
 
-import java.util.Date;
+import java.util.List;
 
 /**
   
 */
 public class Bizplatform {
-	// 
+	//
 	private int id;
-	// 
+	//
 	private String title;
 	// 是否制式拜访
 	private String zhishibaifang;
@@ -29,92 +29,112 @@ public class Bizplatform {
 	// 业务平台所属机构
 	private String orgcode;
 
-	public void setId(int id){
+	private List<String> times;
+
+	private List<String> noons;
+
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public int getId(){
+	public int getId() {
 		return this.id;
 	}
 
-	public void setTitle(String title){
+	public void setTitle(String title) {
 		this.title = title;
 	}
 
-	public String getTitle(){
+	public String getTitle() {
 		return this.title;
 	}
 
-	public void setZhishibaifang(String zhishibaifang){
+	public void setZhishibaifang(String zhishibaifang) {
 		this.zhishibaifang = zhishibaifang;
 	}
 
-	public String getZhishibaifang(){
+	public String getZhishibaifang() {
 		return this.zhishibaifang;
 	}
 
-	public void setCaiye(String caiye){
+	public void setCaiye(String caiye) {
 		this.caiye = caiye;
 	}
 
-	public String getCaiye(){
+	public String getCaiye() {
 		return this.caiye;
 	}
 
-	public void setStartdate(String startdate){
+	public void setStartdate(String startdate) {
 		this.startdate = startdate;
 	}
 
-	public String getStartdate(){
+	public String getStartdate() {
 		return this.startdate;
 	}
 
-	public void setEnddate(String enddate){
+	public void setEnddate(String enddate) {
 		this.enddate = enddate;
 	}
 
-	public String getEnddate(){
+	public String getEnddate() {
 		return this.enddate;
 	}
 
-	public void setHuashu(String huashu){
+	public void setHuashu(String huashu) {
 		this.huashu = huashu;
 	}
 
-	public String getHuashu(){
+	public String getHuashu() {
 		return this.huashu;
 	}
 
-	public void setJishuziliao(String jishuziliao){
+	public void setJishuziliao(String jishuziliao) {
 		this.jishuziliao = jishuziliao;
 	}
 
-	public String getJishuziliao(){
+	public String getJishuziliao() {
 		return this.jishuziliao;
 	}
 
-	public void setOthers(String others){
+	public void setOthers(String others) {
 		this.others = others;
 	}
 
-	public String getOthers(){
+	public String getOthers() {
 		return this.others;
 	}
 
-	public void setEmpcode(String empcode){
+	public void setEmpcode(String empcode) {
 		this.empcode = empcode;
 	}
 
-	public String getEmpcode(){
+	public String getEmpcode() {
 		return this.empcode;
 	}
 
-	public void setOrgcode(String orgcode){
+	public void setOrgcode(String orgcode) {
 		this.orgcode = orgcode;
 	}
 
-	public String getOrgcode(){
+	public String getOrgcode() {
 		return this.orgcode;
+	}
+
+	public List<String> getTimes() {
+		return times;
+	}
+
+	public void setTimes(List<String> times) {
+		this.times = times;
+	}
+
+	public List<String> getNoons() {
+		return noons;
+	}
+
+	public void setNoons(List<String> noons) {
+		this.noons = noons;
 	}
 
 }

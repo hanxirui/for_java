@@ -19,6 +19,8 @@
                 <result column="empname" property="empname" jdbcType="VARCHAR" />
                 <result column="emporgcode" property="emporgcode" jdbcType="VARCHAR" />
                 <result column="emporgname" property="emporgname" jdbcType="VARCHAR" />
+                <result column="oldorgcode" property="oldorgcode" jdbcType="VARCHAR" />
+                <result column="oldorgname" property="oldorgname" jdbcType="VARCHAR" />
                 <result column="beizhu" property="beizhu" jdbcType="VARCHAR" />
             </resultMap>
 
@@ -42,6 +44,8 @@
                 , t.empname
                 , t.emporgcode
                 , t.emporgname
+                , t.oldorgcode
+                , t.oldorgname
                 , t.beizhu
         		FROM customer_basic t
 		<include refid="expressionBlock.where" />
@@ -87,6 +91,8 @@
                 , t.empname
                 , t.emporgcode
                 , t.emporgname
+                , t.oldorgcode
+                , t.oldorgname
                 , t.beizhu
         		FROM customer_basic t
 		<include refid="expressionBlock.where" />
@@ -131,6 +137,8 @@
                                         , `empname`
                                         , `emporgcode`
                                         , `emporgname`
+                                        , `oldorgcode`
+                                        , `oldorgname`
                                         , `beizhu`
                               )
 	VALUES (
@@ -150,6 +158,8 @@
                                         , #{empname,jdbcType=VARCHAR}
                                         , #{emporgcode,jdbcType=VARCHAR}
                                         , #{emporgname,jdbcType=VARCHAR}
+                                        , #{oldorgcode,jdbcType=VARCHAR}
+                                        , #{oldorgname,jdbcType=VARCHAR}
                                         , #{beizhu,jdbcType=VARCHAR}
                      
         )
@@ -238,6 +248,16 @@
         ,
          emporgname=#{emporgname,jdbcType=VARCHAR}
         </if>
+        
+         <if test="oldorgcode!=null and oldorgcode!=''">
+        ,
+         oldorgcode=#{oldorgcode,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="oldorgname!=null and oldorgname!=''">
+        ,
+         oldorgname=#{oldorgname,jdbcType=VARCHAR}
+        </if>
         <if test="beizhu!=null and beizhu!=''">
         ,
          beizhu=#{beizhu,jdbcType=VARCHAR}
@@ -258,16 +278,6 @@
          empname=#{empname,jdbcType=VARCHAR}
         </if>
                                       
-        <if test="emporgcode!=null and emporgcode!=''">
-        ,
-         emporgcode=#{emporgcode,jdbcType=VARCHAR}
-        </if>
-                                      
-        <if test="emporgname!=null and emporgname!=''">
-        ,
-         emporgname=#{emporgname,jdbcType=VARCHAR}
-        </if>
-       
         WHERE idcardnum in (${idcardnum})
     </update>
 
@@ -290,6 +300,8 @@
                 , empname
                 , emporgcode
                 , emporgname
+                 , oldorgcode
+                , oldorgname
                 , t.beizhu
         		FROM customer_basic t
 		WHERE id = #{id,jdbcType=INTEGER}
