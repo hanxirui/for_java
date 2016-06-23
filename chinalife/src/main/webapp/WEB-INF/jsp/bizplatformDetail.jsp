@@ -38,13 +38,22 @@
 
 		<div class="box">
 			<div class="box-header">
+			 <%
+					if (userDetails.getLevel() >= 3) {
+				%>
 				<div class="btn-group">
 					<a id="addBtn" class="btn btn-primary"> <i class="fa"></i> 录入
 					</a>
 				</div>
+			<%} %>
+				<div class="btn-group">
+					<a href="${ctx}openBizCalendar.do" class="btn btn-primary"><i class="fa"></i>平台行事历</a>
+				</div>
+				
 				<div class="btn-group">
 					<a href="${ctx}openBizplatform.do"><i class="fa fa-reply"></i>返回</a>
 				</div>
+				
 			</div>
 			<!-- /.box-header -->
 
@@ -59,7 +68,11 @@
 						<th w_index="huashu" w_render="uploadRender">话术</th>
 						<th w_index="jishuziliao" w_render="uploadRender">技术资料</th>
 						<th w_index="others" w_render="uploadRender">其他</th>
+						<%
+							if (userDetails.getLevel() >= 3) {
+						%>
 						<th w_render="operate" width="10%;">操作</th>
+						<%} %>
 					</tr>
 				</table>
 			</div>
@@ -188,7 +201,8 @@
 			});
 			 
 			$("#plusBtn").click(function(){
-				$("#crudFrm").append("<div class='form-group' style='margin-bottom: 0.5em;'> <label class='col-sm-3 control-label'>日期</label> <div class='col-sm-4'> <input name='times' type='text' class='form-control' required='true' onfocus=\"WdatePicker({skin:'default'})\"></div> <div class='col-sm-3'> <select class='form-control' name='noons'> <option value='上午'>上午</option> <option value='下午'>下午</option> </select> </div> </div>");
+				$("#crudFrm").append("<div class='form-group' style='margin-bottom: 0.5em;'> <div class='col-sm-4'> <input name='times' placeholder='日期' type='text' class='form-control' onfocus=\"WdatePicker({skin:'default'})\"></div> <div class='col-sm-3'> <select class='form-control' name='noons'> <option value='上午'>上午</option> <option value='下午'>下午</option> </select> </div>"
+				                                                                            +"<div class='col-sm-4'><input name='places' placeholder='网点' type='text' class='form-control'>  </div></div>");
 			});
 			
 			$("#minusBtn").click(function(){

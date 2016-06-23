@@ -24,6 +24,9 @@
 					<a id="tongji" class="btn btn-primary"> <i class="fa"></i> 统计
 					</a>
 				</div>
+				<div class="btn-group">
+					<a href="${ctx}openBizPlatformDetail.do" class="btn btn-primary"><i class="fa"></i>平台信息</a>
+				</div>
 				<!-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 				&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 			    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->

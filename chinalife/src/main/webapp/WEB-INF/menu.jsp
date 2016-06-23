@@ -2,12 +2,13 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page import="com.chinal.emp.security.AuthUser"  %>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder"%>
-<c:set var="ctx" value='<%=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/" %>'/>
-
 <%
 	String am = request.getParameter("activeMenu");
     AuthUser userDetails = (AuthUser) SecurityContextHolder.getContext().getAuthentication() .getPrincipal();
 %>
+
+<c:set var="ctx" value='<%=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/" %>'/>
+
 <body class="hold-transition skin-blue-light sidebar-mini">
     <div class="wrapper">
 
@@ -66,8 +67,9 @@
             <li <%="org".equals(am)?"class='active'":""%> <%=userDetails.getLevel()==5?"":"style='display:none'" %>><a href="${ctx}openOrg.do"><i class="fa fa-bank"></i> 机构管理</a></li>
             <li <%="role".equals(am)?"class='active'":""%> <%=userDetails.getLevel()==5?"":"style='display:none'" %>><a href="${ctx}openRole.do"><i class="fa fa-child"></i>职务管理</a></li>
             <li <%="jixiao".equals(am)?"class='active'":""%>> <a href="${ctx}openGongzidan.do"><i class="fa fa-trophy"></i>绩效管理</a></li>
+             <%-- <li <%="report".equals(am)?"class='active'":""%>> <a href="${ctx}openReport.do"><i class="fa fa-trophy"></i>统计报表</a></li> --%>
             <li <%="bank".equals(am)?"class='active'":""%> <%=userDetails.getLevel()==5?"":"style='display:none'" %>><a href="${ctx}openBankRecord.do"><i class="fa fa-trophy"></i>银行机构管理</a></li>
-            <li <%="login".equals(am)?"class='active'":""%> <%=userDetails.getLevel()==5?"":"style='display:none'" %>><a href="${ctx}openLoginrecord.do"><i class="fa fa-trophy"></i>登录日志</a></li>
+            <li <%="login".equals(am)?"class='active'":""%> <%=userDetails.getcName().equals("admin")?"":"style='display:none'" %>><a href="${ctx}openLoginrecord.do"><i class="fa fa-trophy"></i>登录日志</a></li>
           </ul><!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->

@@ -33,6 +33,8 @@ public class Bizplatform {
 
 	private List<String> noons;
 
+	private List<String> places;
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -135,6 +137,14 @@ public class Bizplatform {
 
 	public void setNoons(List<String> noons) {
 		this.noons = noons;
+	}
+
+	public List<String> getPlaces() {
+		return places;
+	}
+
+	public void setPlaces(List<String> places) {
+		this.places = places;
 	}
 
 }

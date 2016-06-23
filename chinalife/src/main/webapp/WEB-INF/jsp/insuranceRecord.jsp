@@ -3,6 +3,114 @@
 <jsp:include page="../menu.jsp">
 	<jsp:param name="activeMenu" value="insurance" />
 </jsp:include>
+<style>
+@font-face {
+	font-family: "demo";
+	src: url('fonts/icons.woff') format("woff"), url('fonts/icons.ttf')
+		format("truetype");
+}
+
+@
+keyframes loadingStart { 0% {
+	opacity: 0;
+}
+
+100%
+{
+opacity
+:
+ 
+1;
+}
+}
+@
+keyframes loading { 0% {
+	transform: rotate(0deg);
+}
+
+50%
+{
+transform
+:
+ 
+rotate
+(180deg);
+
+  
+}
+100%
+{
+transform
+:
+ 
+rotate
+(360deg);
+
+  
+}
+}
+.loading {
+	position: relative;
+	pointer-events: none;
+}
+
+#css-input:checked ~ .loading .loading-overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	-webkit-animation: loadingStart 3s 300ms linear 1 both;
+	-moz-animation: loadingStart 3s 300ms linear 1 both;
+	-o-animation: loadingStart 3s 300ms linear 1 both;
+	animation: loadingStart 3s 300ms linear 1 both;
+	background: rgba(255, 255, 255, 0.5);
+	text-align: center;
+}
+
+#css-input:checked ~ .loading .loading-text {
+	font-size: 0.875rem;
+	line-height: 1.3125rem;
+	text-shadow: white 0 0 1em, white 0 0 0.5em, white 0 0 0.25em;
+	position: relative;
+	display: block;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+#css-input:checked ~ .loading .loading-text:after {
+	content: "...";
+}
+
+#css-input:checked ~ .loading .loading-spinner {
+	position: absolute;
+	top: 50%;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: -3.9375rem auto 0;
+	color: #1a1d1d;
+	text-align: center;
+}
+
+#css-input:checked ~ .loading .loading-icon {
+	font-size: 4.8125rem;
+	line-height: 5.25rem;
+	text-shadow: rgba(255, 255, 255, 0.75) 0 0 0.5em;
+	-webkit-animation: loading 1s steps(4) infinite;
+	-moz-animation: loading 1s steps(4) infinite;
+	-o-animation: loading 1s steps(4) infinite;
+	animation: loading 1s steps(4) infinite;
+	display: block;
+	vertical-align: middle;
+}
+
+#css-input:checked ~ .loading .loading-icon:before {
+	vertical-align: middle;
+	content: "\e000";
+	font-family: "demo";
+}
+</style>
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -73,9 +181,9 @@
 						<th w_index="shengxiaoriqi">生效日期</th>
 						<th w_index="jibenbaoe">基本保额</th>
 						<th w_index="jibenbaofei">基本保费</th>
-						<th w_index="toubaorenxingming">投保人姓名</th>
+						<th w_index="toubaorenxingming" w_sort="toubaorenxingming">投保人姓名</th>
 						<th w_index="toubaorenxingbie">投保人性别</th>
-						<th w_index="toubaorenshenfenzhenghao">投保人身份证号</th>
+						<th w_index="toubaorenshenfenzhenghao" w_sort="toubaorenshenfenzhenghao">投保人身份证号</th>
 						<th w_index="toubaorenshoujihao">投保人手机号</th>
 						<th w_index="toubaorentongxundizhi" w_sort="toubaorentongxundizhi">投保人通讯地址</th>
 						<th w_index="toubaorenzhiye">投保人职业</th>
@@ -119,8 +227,9 @@
 		</div>
 
 		<div id="crudWin">
-			<form id="crudFrm" class="form-horizontal" style="margin-right:-182px">
-				<div class="form-group" style="margin-bottom: 0em;">
+			<form id="crudFrm" class="form-horizontal"
+				style="margin-right: -182px">
+				<div class="form-group" style="margin-bottom: 0.1em;">
 					<label class="col-sm-1 control-label">保单号</label>
 					<div class="col-sm-1">
 						<input name="baoxiandanhao" type="text"
@@ -151,7 +260,7 @@
 							class="form-control  input-sm">
 					</div>
 				</div>
-				<div class="form-group" style="margin-bottom: 0em;">
+				<div class="form-group" style="margin-bottom: 0.1em;">
 					<label class="col-sm-1 control-label">保单状态</label>
 					<div class="col-sm-1">
 						<input name="baodanzhuangtai" type="text"
@@ -183,7 +292,7 @@
 							class="form-control  input-sm">
 					</div>
 				</div>
-				<div class="form-group" style="margin-bottom: 0em;">
+				<div class="form-group" style="margin-bottom: 0.1em;">
 					<label class="col-sm-1 control-label">投保人姓名</label>
 					<div class="col-sm-1">
 						<input name="toubaorenxingming" type="text"
@@ -192,8 +301,10 @@
 
 					<label class="col-sm-1 control-label">投保人性别</label>
 					<div class="col-sm-1">
-						<input name="toubaorenxingbie" type="text"
-							class="form-control  input-sm">
+						<select name="toubaorenxingbie" class="form-control  input-sm">
+							<option value="男">男</option>
+							<option value="女">女</option>
+						</select>
 					</div>
 
 					<label class="col-sm-1 control-label">投保人身份证号</label>
@@ -214,7 +325,7 @@
 							class="form-control  input-sm">
 					</div>
 				</div>
-				<div class="form-group" style="margin-bottom: 0em;">
+				<div class="form-group" style="margin-bottom: 0.1em;">
 					<label class="col-sm-1 control-label">投保人职业</label>
 					<div class="col-sm-1">
 						<input name="toubaorenzhiye" type="text"
@@ -229,8 +340,13 @@
 
 					<label class="col-sm-1 control-label">被保险人性别</label>
 					<div class="col-sm-1">
-						<input name="beibaoxianrenxingbie" type="text"
-							class="form-control  input-sm">
+						<!-- <input name="beibaoxianrenxingbie" type="text"
+							class="form-control  input-sm"> -->
+						<select name="beibaoxianrenxingbie" class="form-control  input-sm">
+							<option value="男">男</option>
+							<option value="女">女</option>
+						</select>
+
 					</div>
 
 					<label class="col-sm-1 control-label">被保险人身份证号</label>
@@ -245,7 +361,7 @@
 							class="form-control  input-sm">
 					</div>
 				</div>
-				<div class="form-group" style="margin-bottom: 0em;">
+				<div class="form-group" style="margin-bottom: 0.1em;">
 					<label class="col-sm-1 control-label">被保险人通讯地址</label>
 					<div class="col-sm-1">
 						<input name="beibaoxianrentongxundizhi" type="text"
@@ -272,11 +388,13 @@
 
 					<label class="col-sm-1 control-label">受益人性别</label>
 					<div class="col-sm-1">
-						<input name="shouyirenxingbie" type="text"
-							class="form-control  input-sm">
+					    <select name="shouyirenxingbie" class="form-control  input-sm">
+							<option value="男">男</option>
+							<option value="女">女</option>
+						</select>
 					</div>
 				</div>
-				<div class="form-group" style="margin-bottom: 0em;">
+				<div class="form-group" style="margin-bottom: 0.1em;">
 					<label class="col-sm-1 control-label">受益人身份证号</label>
 					<div class="col-sm-1">
 						<input name="shouyirenshenfenzhenghao" type="text"
@@ -306,7 +424,7 @@
 						<input name="jiaofeiqi" type="text" class="form-control  input-sm">
 					</div>
 				</div>
-				<div class="form-group" style="margin-bottom: 0em;">
+				<div class="form-group" style="margin-bottom: 0.1em;">
 					<label class="col-sm-1 control-label">保险期</label>
 					<div class="col-sm-1">
 						<input name="baoxianqi" type="text" class="form-control  input-sm">
@@ -334,7 +452,7 @@
 							class="form-control  input-sm">
 					</div>
 				</div>
-				<div class="form-group" style="margin-bottom: 0em;">
+				<div class="form-group" style="margin-bottom: 0.1em;">
 					<label class="col-sm-1 control-label">险种代码</label>
 					<div class="col-sm-1">
 						<input name="xianzhongdaima" type="text"
@@ -361,7 +479,7 @@
 						<input name="dianhua" type="text" class="form-control  input-sm">
 					</div>
 				</div>
-				<div class="form-group" style="margin-bottom: 0em;">
+				<div class="form-group" style="margin-bottom: 0.1em;">
 					<label class="col-sm-1 control-label">部门经理</label>
 					<div class="col-sm-1">
 						<input name="bumengjingli" type="text"
@@ -374,28 +492,15 @@
 							class="form-control  input-sm">
 					</div>
 
-					<label class="col-sm-1 control-label">新分配人员</label>
-					<div class="col-sm-1">
-						<input name="xinfenpeirenyuan" type="text"
-							class="form-control  input-sm">
-					</div>
-
-					<label class="col-sm-1 control-label">发放时间</label>
-					<div class="col-sm-1">
-						<input name="fafangshijian" type="text"
-							class="form-control  input-sm">
-					</div>
-					<label class="col-sm-1 control-label">出生日期</label>
-					<div class="col-sm-1">
-						<input name="chushengriqi" type="text"
-							class="form-control  input-sm">
-					</div>
-				</div>
-				<div class="form-group" style="margin-bottom: 0em;">
 
 					<label class="col-sm-1 control-label">原专管员工号</label>
 					<div class="col-sm-1">
 						<input name="yuanzhuanguanyuangonghao" type="text"
+							class="form-control  input-sm">
+					</div>
+					<label class="col-sm-1 control-label">新分配人员</label>
+					<div class="col-sm-1">
+						<input name="xinfenpeirenyuan" type="text"
 							class="form-control  input-sm">
 					</div>
 					<label class="col-sm-1 control-label">新分配人员工号</label>
@@ -403,6 +508,22 @@
 						<input name="xinfenpeirenyuangonghao" type="text"
 							class="form-control  input-sm">
 					</div>
+
+				</div>
+				<div class="form-group" style="margin-bottom: 0.1em;">
+					<label class="col-sm-1 control-label">发放时间</label>
+					<div class="col-sm-1">
+						<input name="fafangshijian" type="text"
+							class="form-control  input-sm"
+							onfocus="WdatePicker({skin:'default'})">
+					</div>
+					<label class="col-sm-1 control-label">出生日期</label>
+					<div class="col-sm-1">
+						<input name="chushengriqi" type="text"
+							class="form-control  input-sm"
+							onfocus="WdatePicker({skin:'default'})">
+					</div>
+
 
 					<label class="col-sm-1 control-label">初始来源</label>
 					<div class="col-sm-1">
@@ -422,9 +543,10 @@
 							name="filename" accept="xls" />
 					</div>
 				</div>
+				<div id="forLoad"></div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">
-				<a href="${ctx}template/InsuranceTemplate.xlsx">下载模板</a></label>
+					<label class="col-sm-3 control-label"> <a
+						href="${ctx}template/InsuranceTemplate.xlsx">下载模板</a></label>
 				</div>
 			</form>
 		</div>
@@ -594,11 +716,16 @@
 				content : document.getElementById('importWin'),
 				okValue : '导入',
 				ok : function() {
+					$("#importWin").LoadingOverlay("show", {
+						image : "",
+						fontawesome : "fa fa-spinner fa-spin"
+					});
 					$.ajaxFileUpload({
 						url : ctx + "importInsurance.do",
 						fileElementId : "filename",
 						dataType : 'json',
 						success : function(data, status) {
+							$("#importWin").LoadingOverlay("hide");
 							if ("success" == data.status) {
 								gridObj.refreshPage();
 								importWin.close();

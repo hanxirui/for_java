@@ -1,0 +1,46 @@
+<Template>
+	<id>template_dummy</id>
+	<name>添加portlet的模板</name>
+	<portlets>
+		<Portlet>
+			<id>report_insur_num_trend</id>
+			<name>签单数量趋势</name>
+			<desc>签单数量趋势</desc>
+			<x>1</x>
+			<y>1</y>
+			<width>20</width>
+			<height>15</height>
+			<vm>report_insur_num_trend.vm</vm>
+			<action>com.chinal.emp.report.action.InsurNumTrendAction</action>
+			<data></data>
+			<visibility>true</visibility>
+			<order>1</order>
+			<buttons>
+				<Button>
+					<id>button_refresh</id>
+					<name>刷新</name>
+					<icon>Details_ico_refresh</icon>
+					<jsNameSpace>ButtonComm</jsNameSpace>
+					<jsFun>refresh</jsFun>
+					<jsFile>/res/js/button_comm.js</jsFile>
+					<action>com.chinal.emp.report.action.InsurNumTrendAction</action>
+				</Button>
+			</buttons>
+		</Portlet>
+		<Portlet>
+			<id>Portlet_placeholder</id>
+			<name>添加窗口</name>
+			<desc>添加窗口</desc>
+			<x>0</x>
+			<y>0</y>
+			<width>11</width>
+			<height>7</height>
+			<vm>placeholder.vm</vm>
+			<action>com.riil.comprehensive.portal.action.PlaceholderAction</action>
+			<data></data>
+			<visibility>true</visibility>
+			<order>9999</order>
+			<buttons />
+		</Portlet>
+	</portlets>
+</Template>

@@ -57,6 +57,7 @@
 						<th w_index="visittime">拜访时间</th>
 						<th w_index="content">拜访内容</th>
 						<th w_index="type" w_render="typeRender">拜访性质</th>
+						<th w_index="xijie" >拜访细节</th>
 						<th w_index="empcode" w_render="empRender">客户经理</th>
 						<th w_render="operate" width="10%;">操作</th>
 					</tr>
@@ -96,6 +97,20 @@
 						</label> <label class="radio-inline"> <input type="radio"
 							name="type" id="type1" value="1">自主拜访
 						</label>
+					</div>
+
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">拜访细节</label>
+					<div class="col-sm-7">
+						<select class='form-control' name='xijie'> 
+						  <option value='约访'>约访</option> 
+						  <option value='销售面谈'>销售面谈</option> 
+						  <option value='说明会'>说明会</option> 
+						  <option value='售后服务'>售后服务</option> 
+						  <option value='增员面谈'>增员面谈</option> 
+						  <option value='开拓准客户'>开拓准客户</option> 
+					    </select>
 					</div>
 
 				</div>

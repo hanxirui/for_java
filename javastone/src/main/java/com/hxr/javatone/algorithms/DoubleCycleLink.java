@@ -21,8 +21,8 @@ public class DoubleCycleLink {
 class Child {
 
     int no;
-    Child nextChild;
-    Child previousChild;
+    Child next;
+    Child previous;
 
     public Child(final int no) {
 
@@ -55,17 +55,17 @@ class CycleLink {
 
             } else if (i < length) {
 
-                cursor.nextChild = ch;
-                ch.previousChild = cursor;
+                cursor.next = ch;
+                ch.previous = cursor;
                 cursor = ch;
 
             } else {
 
-                cursor.nextChild = ch;
-                ch.previousChild = cursor;
+                cursor.next = ch;
+                ch.previous = cursor;
                 cursor = ch;
-                ch.nextChild = first;
-                first.previousChild = ch;
+                ch.next = first;
+                first.previous = ch;
 
             }
         }
@@ -77,7 +77,7 @@ class CycleLink {
         cursor = first;
         do {
             System.out.print(cursor.no + "<<");
-            cursor = cursor.nextChild;
+            cursor = cursor.next;
 
         } while (cursor != first);
         System.out.println();
@@ -90,25 +90,25 @@ class CycleLink {
         cursor = first;
         // 先找到第k个小孩
         while (cursor.no < k) {
-            cursor = cursor.nextChild;
+            cursor = cursor.next;
         }
         while (length > 1) {
             // 数m下
             for (int i = 1; i < m; i++) {
 
-                cursor = cursor.nextChild;
+                cursor = cursor.next;
             }
             System.out.println("小孩" + cursor.no + "出局了！");
             // 找到前一个小孩
-            temp = cursor.previousChild;
+            temp = cursor.previous;
             // 如果是单向链表
             // temp=cursor;
             // do{
             // temp=temp.nextChild;
             // }while(temp.nextChild!=cursor);
-            temp.nextChild = cursor.nextChild;
-            cursor.nextChild.previousChild = temp;
-            cursor = cursor.nextChild;
+            temp.next = cursor.next;
+            cursor.next.previous = temp;
+            cursor = cursor.next;
             length--;
         }
         System.out.println("最后一个出局的小孩是" + cursor.no);

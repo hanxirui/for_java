@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.durcframework.core.expression.ExpressionQuery;
+import org.durcframework.core.expression.subexpression.SqlExpression;
 import org.durcframework.core.expression.subexpression.ValueExpression;
 import org.durcframework.core.support.BsgridController;
 import org.durcframework.core.util.DateUtil;
@@ -23,6 +24,7 @@ import org.jxls.reader.ReaderBuilder;
 import org.jxls.reader.XLSReadStatus;
 import org.jxls.reader.XLSReader;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
@@ -37,6 +39,7 @@ import com.chinal.emp.entity.Employee;
 import com.chinal.emp.entity.InsuranceRecord;
 import com.chinal.emp.entity.InsuranceRecordSch;
 import com.chinal.emp.entity.Org;
+import com.chinal.emp.security.AuthUser;
 import com.chinal.emp.service.BankRecordService;
 import com.chinal.emp.service.CustomerBasicService;
 import com.chinal.emp.service.EmployeeService;
@@ -88,7 +91,19 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 		if (idcardnum != null && !"".equals(idcardnum)) {
 			searchEntity.setToubaorenshenfenzhenghao(idcardnum);
 		}
-		return this.list(searchEntity);
+		ExpressionQuery query = this.buildExpressionQuery(searchEntity);
+
+		List<Employee> employees = empService.findSimple(genEmployeeQuery());
+		StringBuffer empcardnum = new StringBuffer();
+		for (Employee employee : employees) {
+			empcardnum.append("," + employee.getCode());
+		}
+
+		if (null != empcardnum && empcardnum.length() > 1) {
+			query.addSqlExpression(new SqlExpression(
+					"FIND_IN_SET(t.xinfenpeirenyuangonghao , '" + empcardnum.toString().substring(1) + "')"));
+		}
+		return this.list(query);
 	}
 
 	@RequestMapping("/updateInsuranceRecord.do")
@@ -373,6 +388,48 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 		return this.successView();
 	}
 
+	private ExpressionQuery genEmployeeQuery() {
+		SecurityContextImpl securityContextImpl = (SecurityContextImpl) getRequest().getSession()
+				.getAttribute("SPRING_SECURITY_CONTEXT");
+
+		AuthUser onlineUser = (AuthUser) securityContextImpl.getAuthentication().getPrincipal();
+
+		ExpressionQuery empquery = new ExpressionQuery();
+		// 不同的级别，查询的用户数量不一样
+
+		// 四级，五级，三级查询全部
+		if (onlineUser.getLevel() == 5 || onlineUser.getLevel() == 4 || onlineUser.getLevel() == 3) {
+
+		}
+
+		// 二级，三级查询自己及下属的
+		// else if (onlineUser.getLevel() == 2 || onlineUser.getLevel() == 3) {
+		// String sql = "FIND_IN_SET(code, getChildList('" +
+		// onlineUser.getEmployee().getCode() + "'))";
+		//
+		// ExpressionQuery tmpquery = new ExpressionQuery();
+		// tmpquery.addSqlExpression(new SqlExpression(sql));
+		// List<Employee> emps = empService.findTree(tmpquery);
+		// if (emps.size() > 0) {
+		// StringBuffer empCodes = new StringBuffer();
+		// for (Employee t_employee : emps) {
+		// empCodes.append(",").append(t_employee.getCode());
+		// }
+		//
+		// String cussql = "FIND_IN_SET(t.code, '" +
+		// empCodes.toString().substring(1) + "')";
+		// empquery.addSqlExpression(new SqlExpression(cussql));
+		// }
+		// }
+
+		// 二级，一级查询自己负责的
+		else if (onlineUser.getLevel() == 2 || onlineUser.getLevel() == 1) {
+			empquery.add(new ValueExpression("t.code", onlineUser.getEmployee().getCode()));
+		}
+
+		return empquery;
+	}
+
 	public static void main(String[] args) {
 		for (int t_i = 0; t_i < 1914; t_i++) {
 			if (t_i < 10) {
@@ -391,4 +448,5 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 		}
 
 	}
+
 }

@@ -79,7 +79,7 @@ public class GongzidanController extends BsgridController<Gongzidan, GongzidanSe
 			query.addSqlExpression(
 					new SqlExpression("FIND_IN_SET(t.shenfenzhenghao , '" + empcardnum.toString().substring(1) + "')"));
 		}
-		return this.list(searchEntity);
+		return this.list(query);
 
 	}
 

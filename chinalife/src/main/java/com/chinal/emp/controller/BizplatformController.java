@@ -79,29 +79,40 @@ public class BizplatformController extends BsgridController<Bizplatform, Bizplat
 		entity.setOrgcode(getOnlineUser().getEmployee().getOrgcode());
 		ModelAndView mv = this.add(entity);
 
+		addBizRecord(entity);
+
+		return mv;
+	}
+
+	private void addBizRecord(Bizplatform entity) {
 		List<String> times = entity.getTimes();
 		List<String> noons = entity.getNoons();
+		List<String> places = entity.getPlaces();
+
 		for (int t_i = 0; t_i < times.size() && t_i < noons.size(); t_i++) {
 			if (!"".equals(times.get(t_i)) && !"".equals(noons.get(t_i))) {
 				BizRecord br = new BizRecord();
 				br.setBizplatId(entity.getId());
-				br.setBizplatTitle(entity.getTitle() + "(" + noons.get(t_i) + ")");
+				br.setBizplatTitle(entity.getTitle() + "(" + places.get(t_i) + "," + noons.get(t_i) + ")");
 				br.setRiqi(times.get(t_i));
 				bizRecordService.save(br);
 			}
 
 		}
-
-		return mv;
 	}
 
 	@RequestMapping("/listBizplatform.do")
 	public ModelAndView listBizplatform(BizplatformSch searchEntity) {
+		AuthUser user = getOnlineUser();
+		if (user.getLevel() <= 2) {
+			searchEntity.setOrgcode(user.getEmployee().getOrgcode());
+		}
 		return this.list(searchEntity);
 	}
 
 	@RequestMapping("/updateBizplatform.do")
 	public ModelAndView updateBizplatform(Bizplatform entity) {
+		addBizRecord(entity);
 		return this.modify(entity);
 	}
 

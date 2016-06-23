@@ -3,6 +3,12 @@
 <jsp:include page="../menu.jsp" >
     <jsp:param name="activeMenu" value="jixiao"/>
 </jsp:include>  
+<%@page import="com.chinal.emp.security.AuthUser"  %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%
+	String am = request.getParameter("activeMenu");
+    AuthUser userDetails = (AuthUser) SecurityContextHolder.getContext().getAuthentication() .getPrincipal();
+%>
 
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -76,6 +82,9 @@
            
           <div class="box" style="overflow-x:auto;">
 				<div class="box-header">
+				<%
+					if (userDetails.getLevel() >= 3) {
+				%>
 					 <div class="btn-group">
 			         	<a id="addBtn" class="btn btn-primary">
 			            	<i class="fa"></i> 录入 
@@ -86,6 +95,7 @@
                            <i class="fa"></i>  导入
                         </a>
 			          </div>
+			    <%} %>
 				</div><!-- /.box-header -->
 			
 				<div class="box-body" style="width:3000px;overflow-x:auto;">	 

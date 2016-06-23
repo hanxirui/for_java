@@ -10,18 +10,20 @@
                 <result column="content" property="content" jdbcType="VARCHAR" />
                 <result column="name" property="name" jdbcType="VARCHAR" />
                 <result column="type" property="type" jdbcType="VARCHAR" />
+                <result column="xijie" property="xijie" jdbcType="VARCHAR" />
             </resultMap>
 
     <select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
 		resultMap="queryResultMap">
 		SELECT 
-                  t.id
+                         t.id
                 , t.empcode
                 , t.visittime
                 , t.idcardnum
                 , t.content
                 , t.name
                 , t.type
+                , t.xijie
                 , t2.name as empname
         		FROM visit_record t
         		left join employee t2 on t.empcode=t2.code
@@ -64,6 +66,7 @@
                                         , `content`
                                         , `name`
                                         , `type`
+                                        , `xijie`
                               )
 	VALUES (
                                                   #{empcode,jdbcType=VARCHAR}
@@ -72,6 +75,7 @@
                                         , #{content,jdbcType=VARCHAR}
                                         , #{name,jdbcType=VARCHAR}
                                         , #{type,jdbcType=VARCHAR}
+                                        , #{xijie,jdbcType=VARCHAR}
                      
         )
 	</insert>
@@ -104,9 +108,15 @@
         ,
          name=#{name,jdbcType=VARCHAR}
         </if>
+                                      
         <if test="type!=null and type!=''">
         ,
          type=#{type,jdbcType=VARCHAR}
+        </if>
+                                      
+        <if test="xijie!=null and xijie!=''">
+        ,
+         xijie=#{xijie,jdbcType=VARCHAR}
         </if>
                       WHERE id = #{id,jdbcType=INTEGER}
     </update>
@@ -120,6 +130,7 @@
                 , content
                 , name
                 , type
+                , xijie
         		FROM visit_record t
 		WHERE id = #{id,jdbcType=INTEGER}
 	</select>

@@ -28,7 +28,7 @@
                      所属公司:<input name="orgname" type="text" class="form-control  input-sm">      
                     <!--  公司代码:<input name="orgcode" type="text" class="form-control  input-sm">    -->   
                    <!--   性别:<input name="sex" type="text" class="form-control  input-sm">     -->  
-                     电话:<input name="phone" type="text" class="form-control  input-sm">      
+                    <!--  电话:<input name="phone" type="text" class="form-control  input-sm">     -->  
                      <!-- 入司时间:<input name="jointime" type="text" class="form-control  input-sm">   -->    
                    	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
 					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
@@ -48,17 +48,17 @@
 				<div class="box-body">	 
 					<table id="searchTable">
 						<tr>           
-							<th w_index="name">姓名</th>
-							<th w_index="role" w_render="roleRender">职务</th>
+							<th w_index="name" w_sort="name">姓名</th>
+							<th w_index="role" w_render="roleRender" w_sort="role">职务</th>
 							<!-- <th w_index="password">密码</th> -->
-							<th w_index="code">工号</th>
-							<th w_index="idcardnum">身份证号</th>
-							<th w_index="orgname">所属公司</th>
-							<th w_index="orgcode">公司代码</th>
-							<th w_index="sex" w_render="sexRender">性别</th>
+							<th w_index="code" w_sort="code">工号</th>
+							<th w_index="idcardnum" w_sort="idcardnum">身份证号</th>
+							<th w_index="orgname" w_sort="orgname">所属公司</th>
+							<th w_index="orgcode" w_sort="orgcode">公司代码</th>
+							<th w_index="sex" w_render="sexRender" w_sort="sex">性别</th>
 							<th w_index="phone">电话</th>
-							<th w_index="jointime">入司时间</th>
-                            <th w_index="managerName">直接上级</th>
+							<th w_index="jointime" w_sort="jointime">入司时间</th>
+                            <th w_index="managerName" w_sort="managerName">直接上级</th>
 							<th w_render="operate" width="10%;">操作</th>
 						</tr>
 					</table>
@@ -374,7 +374,8 @@ this.getOrgList = function (){
 }
 
 $("#orgname").on("change",setOrgCode);
-$("#role").change(function(){getManagerList();});
+$("#role").on("change",getManagerList);
+//$("#role").change(function(){getManagerList();});
 
 function setOrgCode(){
 	var orgname = $("#orgname").val();
@@ -389,7 +390,7 @@ function setOrgCode(){
 }
 
 getManagerList();
-var getManagerList = function (){
+function getManagerList(){
 	  $("#managercode").empty();
 	  
 	  var roleId = $("#role").val();

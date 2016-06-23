@@ -1,0 +1,66 @@
+<div id="${portlet.id}_component" style="width:100%;height:100%;">
+    <div class="module_radius_blue #if(${bizId}) noborder #end" style="width:100%;height:100%;">
+        <div class="Det_title_blue" style="#if(!${bizId}) cursor:move; #end ">
+            <p class="Det_title_blue">用户体验趋势</p>
+            <!--select-->
+            <div class="btn-group" id="timeDropdown2">
+                <button type="button" id="timeDropdwon2Btn" class="btn_a btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <span id="currentText2">
+                       #if("${timeType}" == '1w') 最近1周
+                       #elseif("${timeType}" == 'custom') 自定义
+                       #else 最近1天
+                       #end 
+                    </span><span class="caret"></span>
+                </button>
+                <div class="dropdown-menu" role="menu" id="timeDropdown2Menu">
+                    <p style="cursor:default;width:100%;" data-val="1d"><a href="#">最近1天</a></p>
+                    <p style="cursor:default;width:100%;" data-val="1w"><a href="#">最近1周</a></p>
+                    <p style="cursor:default;width:100%;" data-val="custom"><a href="#">自定义</a></p>
+                </div>
+            </div>
+            <span class="Det_title_text Det_title_blue" id="timeRangeDisplay2" #if("${timeType}" == 'custom') style="display:none;" #end>
+                <span style="font-size:12px;">#if(${displayTimeRange})${displayTimeRange}#end</span>
+            </span>
+            <span class="Det_title_text Det_title_blue" id="timeRange2" #if("${timeType}" == '1d' || "${timeType}" == '1w') style="display:none;" #end>
+                <a class="btn_a btn-primary" style="text-indent:5px;padding:0 5px 0 0;">
+                  <input type="text" class="trans" #if(${startDate} && "${startDate}" != '') value="${startDate}" #end style="width:68px;" id="startDate2" />
+                </a>
+                ~
+                <a class="btn_a btn-primary" style="text-indent:5px;padding:0 5px 0 0;">
+                  <input type="text" class="trans" #if(${endDate} && "${endDate}" != '') value="${endDate}" #end style="width:68px;"id="endDate2" />
+                </a>
+            </span>
+            <span class="Det_title_text Det_title_blue" id=userExperienceTrendDownTimePoint style="display:none;">
+                <span style="font-size:12px;"></span>
+            </span>
+        </div>
+        <div class="public" style="height:92%;">
+        #if("${nodata}" == 'true')
+            <div style="width:100px;height:32px;margin:auto;left:0px;right:0px;top:-30px;bottom:0px;position:absolute;">
+                <ul><li class="ico_none_data"></li><li class="txt_none_data">暂无数据</li></ul>
+            </div>
+        #else
+        	<div id="userExperienceTrendBackBtn" class="back" style="display:none;z-index:100;"><span class="icon icon_whiteback"></span></div>
+        	<div id="userExperienceTrendDownTitle" class="col-xs-offset-6 col-xs-6" style="display:none;">
+				<p class="grayblue">总体验指数：<span class="numm"><span id="userExperienceTrendDownExpIndex" class="nummbig"></span>分</span></p>
+			</div>
+            <div id="user_exp_linediv" style="clear:left;width:100%;height:235px;"></div>
+        #end
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var freq = '${freq}';
+    var bizId = "${bizId}";
+    var templateId2 = "${templateId}";
+    var portletId2 = "${portlet.id}";
+    var userExperienceWlVos = ${userExperienceWlVos};
+    var userExperienceWdVos = ${userExperienceWdVos};
+    var timeType="${timeType}";
+    var displayTimeRange="${displayTimeRange}";
+    var nodata="${nodata}";
+    var validLocationIdsStr='${validLocationIdsStr}';
+    MaskShaw.stop("${portlet.id}");
+</script>
+<script type="text/javascript" src="${ctx}/education/static/js/wlportal/wl_user_exp_trend_contant.js" namespace="WlUserExpTrendContant" initparam="${portlet.id}"></script>

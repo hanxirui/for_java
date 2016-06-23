@@ -96,13 +96,19 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 			String sql = "FIND_IN_SET(t.code, getChildList('" + onlineUser.getEmployee().getCode() + "'))";
 			query.addSqlExpression(new SqlExpression(sql));
 		}
+		// （admin可以看到全部）
+		if (onlineUser.getCode().equals("admin")) {
+			query = new ExpressionQuery();
+		}
 
 		if (searchEntity.getName() != null) {
 			query.add(new LikeRightExpression("t.name", searchEntity.getName()));
 		}
-		// （admin可以看到全部）
-		if (onlineUser.getCode().equals("admin")) {
-			query = new ExpressionQuery();
+		if (searchEntity.getCode() != null) {
+			query.add(new LikeRightExpression("t.code", searchEntity.getCode()));
+		}
+		if (searchEntity.getOrgname() != null) {
+			query.add(new LikeRightExpression("t.orgname", searchEntity.getOrgname()));
 		}
 
 		query.addJoinExpression(new LeftJoinExpression("role", "t2", "role", "id"));
