@@ -39,6 +39,7 @@ import com.chinal.emp.entity.Employee;
 import com.chinal.emp.entity.InsuranceRecord;
 import com.chinal.emp.entity.InsuranceRecordSch;
 import com.chinal.emp.entity.Org;
+import com.chinal.emp.expression.LeftJoinExpression;
 import com.chinal.emp.security.AuthUser;
 import com.chinal.emp.service.BankRecordService;
 import com.chinal.emp.service.CustomerBasicService;
@@ -93,15 +94,21 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 		}
 		ExpressionQuery query = this.buildExpressionQuery(searchEntity);
 
-		List<Employee> employees = empService.findSimple(genEmployeeQuery());
+		// 根据登录人员信息，获得所有下属人员信息
+		ExpressionQuery t_query = genEmployeeQuery();
+		t_query.setLimit(1000);
+		List<Employee> employees = empService.findSimple(t_query);
 		StringBuffer empcardnum = new StringBuffer();
 		for (Employee employee : employees) {
 			empcardnum.append("," + employee.getCode());
 		}
 
+		query.addJoinExpression(
+				new LeftJoinExpression("customer_basic", "t2", "toubaorenshenfenzhenghao", "idcardnum"));
+
 		if (null != empcardnum && empcardnum.length() > 1) {
-			query.addSqlExpression(new SqlExpression(
-					"FIND_IN_SET(t.xinfenpeirenyuangonghao , '" + empcardnum.toString().substring(1) + "')"));
+			query.addSqlExpression(
+					new SqlExpression("FIND_IN_SET(t2.empcode , '" + empcardnum.toString().substring(1) + "')"));
 		}
 		return this.list(query);
 	}

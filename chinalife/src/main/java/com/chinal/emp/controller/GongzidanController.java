@@ -69,15 +69,17 @@ public class GongzidanController extends BsgridController<Gongzidan, GongzidanSe
 
 	@RequestMapping("/listGongzidan.do")
 	public ModelAndView listGongzidan(GongzidanSch searchEntity) {
-		List<Employee> employees = employeeService.findSimple(genEmployeeQuery());
+		ExpressionQuery t_query = genEmployeeQuery();
+		t_query.setLimit(1000);
+		List<Employee> employees = employeeService.findSimple(t_query);
 		StringBuffer empcardnum = new StringBuffer();
 		for (Employee employee : employees) {
-			empcardnum.append("," + employee.getIdcardnum());
+			empcardnum.append("," + employee.getCode());
 		}
 		ExpressionQuery query = this.buildExpressionQuery(searchEntity);
 		if (null != empcardnum && empcardnum.length() > 1) {
 			query.addSqlExpression(
-					new SqlExpression("FIND_IN_SET(t.shenfenzhenghao , '" + empcardnum.toString().substring(1) + "')"));
+					new SqlExpression("FIND_IN_SET(t.gonghao , '" + empcardnum.toString().substring(1) + "')"));
 		}
 		return this.list(query);
 

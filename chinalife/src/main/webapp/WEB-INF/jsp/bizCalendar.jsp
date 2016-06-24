@@ -52,6 +52,8 @@
 						<input id="bizplatTitle" name="bizplatTitle" type="text"
 							class="form-control  input-sm"> <input id="bizplatId"
 							name="bizplatId" type="hidden" class="form-control  input-sm">
+							<input id="id"
+							name="id" type="hidden">
 						<!--  同一个平台可能在多天举行 -->
 					</div>
 
@@ -128,6 +130,7 @@
 						<input id="tongjibizplatTitle" name="tongjibizplatTitle" type="text"
 							class="form-control  input-sm" readonly> <input id="tongjibizplatId"
 							name="tongjibizplatId" type="hidden" class="form-control  input-sm" readonly>
+							
 						<!--  同一个平台可能在多天举行 -->
 					</div>
 
@@ -268,7 +271,16 @@
 		                 return false;
 		             },
 		             autoFocus: true
-		         }],
+		         },
+		         {
+		             value: '删除',
+		             callback: function () {
+		            	 that.del(getFormData($crudFrm));
+		                 return false;
+		             },
+		             autoFocus: true
+		         }
+		         ],
 		         
 				okValue : '保存',
 				ok : function() {
@@ -322,7 +334,8 @@
 						ok : function() {
 							Action.post(delUrl, row, function(result) {
 								Action.execResult(result, function(result) {
-									gridObj.refreshPage();
+									location.reload();
+									crudWin.close();
 								});
 							});
 						},

@@ -84,34 +84,30 @@
 		<div id="crudWin" style="margin-bottom: 0em;">
 			<form id="crudFrm" class="form-horizontal">
 				<div class="form-group"  style="margin-bottom: 0em;">
+				     <label class="col-sm-2 control-label">涉及保单</label>
+					<div class="col-sm-3">
+						<input id="insuranceid" name="insuranceid" type="text" class="form-control  input-sm" >
+					</div>
 					<label class="col-sm-2 control-label">客户</label>
 					<div class="col-sm-3">
-						<input id="cusname"  name="cusname" type="text" class="form-control  input-sm"
-							> 
+						<input id="cusname"  name="cusname" type="text" class="form-control  input-sm"> 
 					</div>
-					<label class="col-sm-2 control-label">身份证号</label>
-					<div class="col-sm-3">
-						<input id="idcardnum" name="idcardnum" type="text"
-							class="form-control  input-sm" >
-					</div>
+					
 				</div>
 				<div class="form-group"  style="margin-bottom: 0em;">
-				   <label class="col-sm-2 control-label">涉及保单</label>
+				   <label class="col-sm-2 control-label">身份证号</label>
 					<div class="col-sm-3">
-						<input name="insuranceid" type="text" class="form-control  input-sm"
-							>
+						<input id="idcardnum" name="idcardnum" type="text" class="form-control  input-sm" >
 					</div>
 					<label class="col-sm-2 control-label">投诉时间</label>
 					<div class="col-sm-3">
-						<input name="claimtime" type="text" class="form-control  input-sm"
-							  onfocus="WdatePicker({skin:'default'})">
+						<input name="claimtime" type="text" class="form-control  input-sm" onfocus="WdatePicker({skin:'default'})">
 					</div>
 				</div>
 				<div class="form-group"  style="margin-bottom: 0em;">
 					<label class="col-sm-2 control-label">投诉原因</label>
 					<div class="col-sm-8">
-						<input name="reason" type="text" class="form-control  input-sm"
-							>
+						<input name="reason" type="text" class="form-control  input-sm" >
 					</div>
 				</div>
 				<div class="form-group"  style="margin-bottom: 0em;">
@@ -120,8 +116,7 @@
 				<div class="form-group" style="margin-bottom: 0em;">
 					<label class="col-sm-2 control-label">处理内容</label>
 					<div class="col-sm-8">
-						<input name="firstcontent" type="text" class="form-control  input-sm"
-							>
+						<input name="firstcontent" type="text" class="form-control  input-sm" >
 					</div>
 				</div>
 
@@ -229,6 +224,26 @@
 							<th w_index="sex"  w_render="sexRender">性别</th>
 							<th w_index="idcardnum">身份证号</th>
 							<th w_index="addr">地址</th>
+						</tr>
+					</table>
+		</div>
+		
+		<div class="box-body" id="insurWin">	 
+					<table id="insurTable">
+						<tr>          
+						    <th w_check="true" w_index="baoxiandanhao" width="3%;"></th>
+							<th w_index="baoxiandanhao" w_sort="baoxiandanhao">保单号</th>
+							<th w_index="toubaodanhao">投保单号</th>
+							<th w_index="yewuyuandaima">业务员代码</th>
+							<th w_index="yewuyuanxingming" w_sort="yewuyuanxingming">业务员姓名</th>
+							<th w_index="xianzhongmingcheng" w_sort="xianzhongmingcheng">险种名称</th>
+							<th w_index="baodanzhuangtai">保单状态</th>
+							<th w_index="toubaoriqi" w_sort="toubaoriqi">投保日期</th>
+							<th w_index="shengxiaoriqi">生效日期</th>
+							<th w_index="jibenbaoe">基本保额</th>
+							<th w_index="jibenbaofei">基本保费</th>
+							<th w_index="toubaorenxingming" w_sort="toubaorenxingming">投保人姓名</th>
+							<th w_index="toubaorenshenfenzhenghao" w_sort="toubaorenshenfenzhenghao">投保人身份证号</th>
 						</tr>
 					</table>
 		</div>
@@ -435,6 +450,49 @@
 					$("#cusTable_pt_outTab").width($("#cusTable").width());
 			    }
 			});
+			
+			$("#insuranceid").click(function() {
+				insurWin.showModal();
+			});
+			
+			var insurGridObj = $.fn.bsgrid.init('insurTable', {
+				url: ctx + 'listInsuranceRecord.do'
+			    ,pageSizeSelect: true
+			    ,rowHoverColor: true // 移动行变色
+			    ,rowSelectedColor: false // 选择行不高亮
+			    ,isProcessLockScreen:false // 加载数据不显示遮罩层
+				,displayBlankRows: false
+				,pagingLittleToolbar: true
+			    //
+			});
+
+			var insurWin = dialog({
+				title: '选择保单',
+				width:800,
+				content: document.getElementById('insurWin'),
+				okValue: '保存',
+				ok: function () {
+					var name = insurGridObj.getCheckedValues('baoxiandanhao');
+					if(name.length!=1){
+						alert("请选择一个保单.");
+						return false;
+					}
+					$('#insuranceid').val(insurGridObj.getCheckedValues('baoxiandanhao'));
+					$('#cusname').val(insurGridObj.getCheckedValues('toubaorenxingming'));
+					$('#idcardnum').val(insurGridObj.getCheckedValues('toubaorenshenfenzhenghao'));
+					this.close();
+					return false;
+				},
+				cancelValue: '取消',
+				cancel: function () {
+					this.close();
+					return false;
+				},
+				onshow: function () {
+					$("#insurTable_pt_outTab").width($("#insurTable").width());
+			    }
+			});
+			
 
 			var sexRender = function(record, rowIndex, colIndex, options){
 				if(record.sex==0){

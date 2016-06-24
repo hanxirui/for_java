@@ -42,8 +42,30 @@ $(document).ready( function() {
                    
                     $.getJSON(ctx+"getEventDay.do?day="+target.date._i, null, function (result) {
                     	
-                		
-                		if(result.data.length>0){
+                    	var content = '';
+        				var i = 0;
+                		if(result.data.length>1){
+                			_(result.data).forEach(function(value) {
+                				  content +=  '<div class="radio">  <label> <input type="radio" name="idx" id="idx" value="'+(i++)+'">'+value.bizplatTitle+'</label> </div>';
+                		});
+                			
+                		 var selWin = dialog({
+                				title : '请选择一个您想编辑的平台',
+                				width : 250,
+                				content : content,
+                				okValue : '确定',
+                				ok : function() {
+                					if($('input:radio[name="idx"]:checked').val()==undefined){
+                						this.close();
+                    					return false;
+                					}
+                					bizEdit(result.data[$('input:radio[name="idx"]:checked').val()]);
+                					this.close();
+                					return false;
+                				}
+                			});
+                		    selWin.showModal();
+                		}else if(result.data.length>0){
                 			bizEdit(result.data[0]);
                 		}else{
                 			$("#riqi").val(target.date._i);

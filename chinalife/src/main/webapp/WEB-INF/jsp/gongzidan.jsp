@@ -102,8 +102,9 @@
 					<table id="searchTable">
 						<tr>           
 														<!-- <th w_index="xuhao">序号</th> -->
+																			<th w_index="riqi" w_sort="riqi">月份</th>
 																			<th w_index="bumen">部门</th>
-																			<th w_index="xingming">姓名</th>
+																			<th w_index="xingming" w_sort="xingming">姓名</th>
 																			<th w_index="xingbie">性别</th>
 																			<th w_index="yinhangzhanghao">银行账号</th>
 																			<th w_index="shenfenzhenghao">身份证号</th>
@@ -147,7 +148,7 @@
 																			<th w_index="shouxianshifajine">寿险实发金额</th>
 																			<th w_index="caixianjixiao">财险绩效</th>
 																			<th w_index="koucaixianjixiao">扣财险绩效</th>
-																			<th w_index="shifaheji">实发合计</th>
+																			<th w_index="shifaheji" w_sort="shifaheji">实发合计</th>
 													<!-- <th w_render="operate" width="10%;">操作</th> -->
 						</tr>
 					</table>

@@ -253,13 +253,10 @@ this.edit = function(row) {
 		reset();
 		crudWin.title('修改');
 		getRole();
-		//getManagerList();
 		getOrgList();
 		loadFormData($crudFrm,row);	
-		
+		getManagerList(row.orgcode);
 		crudWin.showModal();
-		/* $("#managercode").val(row.managercode);
-		$("#orgcode").val(row.orgcode); */
 	}
 }
  
@@ -369,8 +366,6 @@ this.getOrgList = function (){
 	   $.each(orgList, function (i, item) {
 		   $("<option></option>").val(item.code).text(item.code).appendTo($("#orgcode"));
     });
-	   
-	   getManagerList();
 }
 
 $("#orgname").on("change",setOrgCode);
@@ -389,12 +384,14 @@ function setOrgCode(){
 	getManagerList();
 }
 
-getManagerList();
 function getManagerList(){
+	
 	  $("#managercode").empty();
 	  
 	  var roleId = $("#role").val();
 	  var orgcode =  $("#orgcode").val();
+	  
+	  console.log(orgcode);
 	  
 	  $("<option></option>").val(0).text("请选择").appendTo($("#managercode"));
 	  var empList;

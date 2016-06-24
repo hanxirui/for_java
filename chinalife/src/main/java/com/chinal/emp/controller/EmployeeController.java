@@ -84,7 +84,7 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 	@RequestMapping("/listEmployee.do")
 	public ModelAndView listEmployee(EmployeeSch searchEntity) {
 
-		ExpressionQuery query = new ExpressionQuery();
+		ExpressionQuery query = this.buildExpressionQuery(searchEntity);
 
 		AuthUser onlineUser = getAuthUser();
 
@@ -98,7 +98,7 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 		}
 		// （admin可以看到全部）
 		if (onlineUser.getCode().equals("admin")) {
-			query = new ExpressionQuery();
+			query = this.buildExpressionQuery(searchEntity);
 		}
 
 		if (searchEntity.getName() != null) {
@@ -172,16 +172,15 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 		query.addJoinExpression(new InnerJoinExpression("role", "t2", "role", "id"));
 		query.addJoinExpression(new LeftJoinExpression("employee", "t3", "managercode", "code"));
 
-		// 先取消对机构的限制
-		// if (null == orgcode || "".equals(orgcode)) {
-		// AuthUser userDetails = getAuthUser();
-		// query.addValueExpression(new ValueExpression("t.orgcode",
-		// userDetails.getEmployee().getOrgcode()));
-		// } else {
-		// query.addValueExpression(new ValueExpression("t.orgcode", orgcode));
-		// }
-
-		query.addValueExpression(new ValueExpression("t2.level", ">", role.getLevel()));
+		if (role.getLevel() < 4) {
+			if (null == orgcode || "".equals(orgcode)) {
+				AuthUser userDetails = getAuthUser();
+				query.addValueExpression(new ValueExpression("t.orgcode", userDetails.getEmployee().getOrgcode()));
+			} else {
+				query.addValueExpression(new ValueExpression("t.orgcode", orgcode));
+			}
+		}
+		query.addValueExpression(new ValueExpression("t2.level", ">=", role.getLevel()));
 
 		return this.listAll(query);
 	}
