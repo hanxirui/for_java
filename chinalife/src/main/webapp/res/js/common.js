@@ -16,9 +16,11 @@ var Action = {
 			dataType: "json",
 			data:data,
 			success: function(e){
+				console.log(e);
 				Action.ajsxSucc(e,succFun);
 			},
 			error:function(hxr,type,error){
+				console.log(error);
 				Action._showError('后台出错，请查看日志');
 			}
 		});

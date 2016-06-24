@@ -18,14 +18,15 @@
 		<!-- Your Page Content Here -->
 		<div class="box box-default">
 			<div class="box-header">
-			   <!--  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
-			    <!-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
+				<!--  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
+				<!-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
 				<div class="btn-group">
 					<a id="tongji" class="btn btn-primary"> <i class="fa"></i> 统计
 					</a>
 				</div>
 				<div class="btn-group">
-					<a href="${ctx}openBizPlatformDetail.do" class="btn btn-primary"><i class="fa"></i>平台信息</a>
+					<a href="${ctx}openBizPlatformDetail.do" class="btn btn-primary"><i
+						class="fa"></i>平台信息</a>
 				</div>
 				<!-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 				&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -52,8 +53,7 @@
 						<input id="bizplatTitle" name="bizplatTitle" type="text"
 							class="form-control  input-sm"> <input id="bizplatId"
 							name="bizplatId" type="hidden" class="form-control  input-sm">
-							<input id="id"
-							name="id" type="hidden">
+						<input id="id" name="id" type="hidden" value="0">
 						<!--  同一个平台可能在多天举行 -->
 					</div>
 
@@ -61,140 +61,177 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">邀约客户数</label>
 					<div class="col-sm-3">
-						<input id="yaoyueNum" name="yaoyueNum" type="text" class="form-control  input-sm">
+						<input id="yaoyueNum" name="yaoyueNum" type="text"
+							class="form-control  input-sm" value="0">
 					</div>
-				
+
 					<label class="col-sm-3 control-label">到会客户数</label>
 					<div class="col-sm-3">
-						<input id="daohuiNum" name="daohuiNum" type="text" class="form-control  input-sm">
+						<input id="daohuiNum" name="daohuiNum" type="text"
+							class="form-control  input-sm" value="0">
 					</div>
-					
+
 				</div>
 
 				<div class="form-group">
-				<label class="col-sm-3 control-label">签单保费</label>
+					<label class="col-sm-3 control-label">签单保费</label>
 					<div class="col-sm-3">
-						<input id="qiandanBaofei" name="qiandanBaofei" type="text" class="form-control  input-sm">
+						<input id="qiandanBaofei" name="qiandanBaofei" type="text"
+							class="form-control  input-sm" value="0.0">
 					</div>
 					<label class="col-sm-3 control-label">回收保费</label>
 					<div class="col-sm-3">
-						<input id="receiveBaofei" name="receiveBaofei" type="text" class="form-control  input-sm">
+						<input id="receiveBaofei" name="receiveBaofei" type="text"
+							class="form-control  input-sm" value="0.0">
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="col-sm-3 control-label">签单件数</label>
 					<div class="col-sm-3">
-						<input id="qiandanNum" name="qiandanNum" type="text" class="form-control  input-sm">
+						<input id="qiandanNum" name="qiandanNum" type="text"
+							class="form-control  input-sm" value="0">
 					</div>
 					<label class="col-sm-3 control-label">回收件数</label>
 					<div class="col-sm-3">
-						<input id="receiveNum" name="receiveNum" type="text" class="form-control  input-sm">
+						<input id="receiveNum" name="receiveNum" type="text"
+							class="form-control  input-sm" value="0">
 					</div>
 
 				</div>
-				
+
 				<div class="form-group">
 					<label class="col-sm-3 control-label">到会率(%)</label>
 					<div class="col-sm-3">
-						<input id="daohuilv" name="daohuilv" type="text" class="form-control  input-sm" readonly>
+						<input id="daohuilv" name="daohuilv" type="text"
+							class="form-control  input-sm" readonly value="0">
 					</div>
 					<label class="col-sm-3 control-label">回收率(%)</label>
 					<div class="col-sm-3">
-						<input id="huishoulv" name="huishoulv" type="text" class="form-control  input-sm" readonly>
+						<input id="huishoulv" name="huishoulv" type="text"
+							class="form-control  input-sm" readonly value="0">
 					</div>
 
 				</div>
 				<div class="form-group">
-				<label class="col-sm-3 control-label">签单率(%)</label>
+					<label class="col-sm-3 control-label">签单率(%)</label>
 					<div class="col-sm-3">
-						<input id="qiandanlv" name="qiandanlv" type="text" class="form-control  input-sm" readonly>
+						<input id="qiandanlv" name="qiandanlv" type="text"
+							class="form-control  input-sm" readonly value="0">
 					</div>
-					
+
 					<!--   <label class="col-sm-3 control-label">客户经理</label> -->
 					<div class="col-sm-3">
 						<input id="kehujingli" name="kehujingli" type="hidden"
-							class="form-control  input-sm"> <input id="riqi" name="riqi"
-							type="hidden" class="form-control  input-sm">
+							class="form-control  input-sm"> <input id="riqi"
+							name="riqi" type="hidden" class="form-control  input-sm">
 					</div>
 				</div>
 
 			</form>
 		</div>
-		
+
 		<div id="tongjiWin">
 			<form id="tongjiFrm" class="form-horizontal">
 				<div class="form-group">
+					<label class="col-sm-3 control-label">时间范围</label>
+					<div class="col-sm-3">
+						<input id="startDate" name="startDate" type="text"
+							class="form-control  input-sm" placeHolder="开始日期"
+							onfocus="WdatePicker({skin:'default'})">
+					</div>
+					<div class="col-sm-3">
+						<input id="endDate" name="endDate" type="text"
+							class="form-control  input-sm" placeHolder="结束日期"
+							onfocus="WdatePicker({skin:'default'})">
+					</div>
+
+				</div>
+				<div class="form-group">
 					<label class="col-sm-3 control-label">平台名称</label>
 					<div class="col-sm-3">
-						<input id="tongjibizplatTitle" name="tongjibizplatTitle" type="text"
-							class="form-control  input-sm" readonly> <input id="tongjibizplatId"
-							name="tongjibizplatId" type="hidden" class="form-control  input-sm" readonly>
-							
-						<!--  同一个平台可能在多天举行 -->
+						<select id="tongjibizplatTitle" name="tongjibizplatTitle"
+							class="form-control  input-sm"></select>
 					</div>
-
-				</div>
-				<div class="form-group">
-					<label class="col-sm-3 control-label">邀约客户数</label>
 					<div class="col-sm-3">
-						<input id="tongjiyaoyueNum" name="tongjiyaoyueNum" type="text" readonly class="form-control  input-sm" readonly>
-					</div>
-					<label class="col-sm-3 control-label">回收保费</label>
-					<div class="col-sm-3">
-						<input id="tongjireceiveBaofei" name="tongjireceiveBaofei" type="text" class="form-control  input-sm" readonly>
+						<div class="btn-group">
+							<a id="queding" class="btn btn-primary btn-sm"> <i class="fa"></i>
+								确定
+							</a>
+						</div>
 					</div>
 				</div>
-
-				<div class="form-group">
-					<label class="col-sm-3 control-label">到会客户数</label>
-					<div class="col-sm-3">
-						<input id="tongjidaohuiNum" name="tongjidaohuiNum" type="text" class="form-control  input-sm" readonly>
-					</div>
-					<label class="col-sm-3 control-label">签单保费</label>
-					<div class="col-sm-3">
-						<input id="tongjiqiandanBaofei" name="tongjiqiandanBaofei" type="text" class="form-control  input-sm" readonly>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<label class="col-sm-3 control-label">签单件数</label>
-					<div class="col-sm-3">
-						<input id="tongjiqiandanNum" name="tongjiqiandanNum" type="text" class="form-control  input-sm" readonly>
-					</div>
-					<label class="col-sm-3 control-label">回收件数</label>
-					<div class="col-sm-3">
-						<input id="tongjireceiveNum" name="tongjireceiveNum" type="text" class="form-control  input-sm" readonly>
-					</div>
-
-				</div>
-				
-				<div class="form-group">
-					<label class="col-sm-3 control-label">到会率(%)</label>
-					<div class="col-sm-3">
-						<input id="tongjidaohuilv" name="tongjidaohuilv" type="text" class="form-control  input-sm" readonly>
-					</div>
-					<label class="col-sm-3 control-label">回收率(%)</label>
-					<div class="col-sm-3">
-						<input id="tongjihuishoulv" name="tongjihuishoulv" type="text" class="form-control  input-sm" readonly>
-					</div>
-
-				</div>
-				<div class="form-group">
-				<label class="col-sm-3 control-label">签单率(%)</label>
-					<div class="col-sm-3">
-						<input id="tongjiqiandanlv" name="tongjiqiandanlv" type="text" class="form-control  input-sm" readonly>
-					</div>
-					
-					<!--   <label class="col-sm-3 control-label">客户经理</label> -->
-					<div class="col-sm-3">
-						<input id="tongjikehujingli" name="tongjikehujingli" type="hidden"
-							class="form-control  input-sm"> <input id="tongjiriqi" name="riqi"
-							type="hidden" class="form-control  input-sm">
-					</div>
-				</div>
-
 			</form>
+			<form id="tongjiShowFrm" class="form-horizontal">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">邀约客户数</label>
+				<div class="col-sm-3">
+					<input id="tongjiyaoyueNum" name="tongjiyaoyueNum" type="text"
+						readonly class="form-control  input-sm" readonly>
+				</div>
+				<label class="col-sm-3 control-label">回收保费</label>
+				<div class="col-sm-3">
+					<input id="tongjireceiveBaofei" name="tongjireceiveBaofei"
+						type="text" class="form-control  input-sm" readonly>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">到会客户数</label>
+				<div class="col-sm-3">
+					<input id="tongjidaohuiNum" name="tongjidaohuiNum" type="text"
+						class="form-control  input-sm" readonly>
+				</div>
+				<label class="col-sm-3 control-label">签单保费</label>
+				<div class="col-sm-3">
+					<input id="tongjiqiandanBaofei" name="tongjiqiandanBaofei"
+						type="text" class="form-control  input-sm" readonly>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">签单件数</label>
+				<div class="col-sm-3">
+					<input id="tongjiqiandanNum" name="tongjiqiandanNum" type="text"
+						class="form-control  input-sm" readonly>
+				</div>
+				<label class="col-sm-3 control-label">回收件数</label>
+				<div class="col-sm-3">
+					<input id="tongjireceiveNum" name="tongjireceiveNum" type="text"
+						class="form-control  input-sm" readonly>
+				</div>
+
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">到会率(%)</label>
+				<div class="col-sm-3">
+					<input id="tongjidaohuilv" name="tongjidaohuilv" type="text"
+						class="form-control  input-sm" readonly>
+				</div>
+				<label class="col-sm-3 control-label">回收率(%)</label>
+				<div class="col-sm-3">
+					<input id="tongjihuishoulv" name="tongjihuishoulv" type="text"
+						class="form-control  input-sm" readonly>
+				</div>
+
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">签单率(%)</label>
+				<div class="col-sm-3">
+					<input id="tongjiqiandanlv" name="tongjiqiandanlv" type="text"
+						class="form-control  input-sm" readonly>
+				</div>
+
+				<!--   <label class="col-sm-3 control-label">客户经理</label> -->
+				<div class="col-sm-3">
+					<input id="tongjikehujingli" name="tongjikehujingli" type="hidden"
+						class="form-control  input-sm"> <input id="tongjiriqi"
+						name="riqi" type="hidden" class="form-control  input-sm">
+				</div>
+			</div>
+           </form>
+
 		</div>
 
 
@@ -253,41 +290,63 @@
 				,
 				isProcessLockScreen : false // 加载数据不显示遮罩层
 				,
-				displayBlankRows : false//,
-				//pageSize : 10 和 pageSizeSelect : true, 冲突
+				displayBlankRows : false
+			//,
+			//pageSize : 10 和 pageSizeSelect : true, 冲突
 			});
 
 			crudWin = dialog({
 				title : '编辑',
 				width : 600,
 				content : document.getElementById('crudWin'),
-				
-				button:[ {
-		             value: '计算',
-		             callback: function () {
-		            	 $("#daohuilv").val(parseFloat($("#daohuiNum").val()*100/$("#yaoyueNum").val()).toFixed(0));
-		                 $("#huishoulv").val(parseFloat($("#receiveBaofei").val()*100/$("#qiandanBaofei").val()).toFixed(0));
-		                 $("#qiandanlv").val(parseFloat($("#qiandanNum").val()*100/$("#daohuiNum").val()).toFixed(0));
-		                 return false;
-		             },
-		             autoFocus: true
-		         },
-		         {
-		             value: '删除',
-		             callback: function () {
-		            	 that.del(getFormData($crudFrm));
-		                 return false;
-		             },
-		             autoFocus: true
-		         }
-		         ],
-		         
+
+				button : [
+						{
+							value : '计算',
+							callback : function() {
+								$("#daohuilv")
+										.val(
+												parseFloat(
+														$("#daohuiNum").val()
+																* 100
+																/ $(
+																		"#yaoyueNum")
+																		.val())
+														.toFixed(0));
+								$("#huishoulv").val(
+										parseFloat(
+												$("#receiveBaofei").val()
+														* 100
+														/ $("#qiandanBaofei")
+																.val())
+												.toFixed(0));
+								$("#qiandanlv")
+										.val(
+												parseFloat(
+														$("#qiandanNum").val()
+																* 100
+																/ $(
+																		"#daohuiNum")
+																		.val())
+														.toFixed(0));
+								return false;
+							},
+							autoFocus : true
+						}, {
+							value : '删除',
+							callback : function() {
+								that.del(getFormData($crudFrm));
+								return false;
+							},
+							autoFocus : true
+						} ],
+
 				okValue : '保存',
 				ok : function() {
 					that.save();
 					return false;
 				},
-				
+
 				cancelValue : '关闭',
 				cancel : function() {
 					this.close();
@@ -357,8 +416,9 @@
 				isProcessLockScreen : false // 加载数据不显示遮罩层
 				,
 				displayBlankRows : false,
-				pagingLittleToolbar : true//,
-				//pageSize : 10
+				pagingLittleToolbar : true
+			//,
+			//pageSize : 10
 			});
 			$("#bizplatTitle").click(
 					function() {
@@ -393,22 +453,32 @@
 					$("#cusTable_pt_outTab").width($("#cusTable").width());
 				}
 			});
-			
+
+			var currMonth;
 			var getTongjiInfo = function() {
+				$("#tongjiShowFrm").get(0).reset();
 				
-				$.getJSON("${ctx}getBizplatTongjiInfo.do", {'currMonth' : currMonth}, function(result) {
-					loadTongjiFormData($crudFrm, result);
+				$.getJSON("${ctx}getBizplatTongjiInfo.do", {
+					'startDate' : $('#startDate').val(),
+					'endDate' : $('#endDate').val(),
+					'title' : $('#tongjibizplatTitle').val()
+				}, function(result) {
+					loadTongjiFormData($("#tongjiShowFrm"), result);
 				});
-				
-				
-				
+			}
+
+			$("#queding").click(function() {
+				getTongjiInfo();
+			});
+
+			var showTongjiWin = function() {
+				getBizPlatformList();
 				tongjiWin.showModal();
 			}
-       var currMonth;
 			// 初始化事件
-		$tongji.click(getTongjiInfo);
-			
-		var	tongjiWin = dialog({
+			$tongji.click(showTongjiWin);
+
+			var tongjiWin = dialog({
 				title : '统计信息',
 				width : 600,
 				content : document.getElementById('tongjiWin'),
@@ -418,6 +488,26 @@
 					return false;
 				}
 			});
+
+			function getBizPlatformList() {
+
+				$("#tongjibizplatTitle").empty();
+
+				$("<option></option>").val("全部平台").text("全部平台").appendTo(
+						$("#tongjibizplatTitle"));
+				var empList;
+				$.getJSON("${ctx}listBizplatform.do", {}, function(result) {
+					empList = result.data;
+					if (empList) {
+						$.each(empList, function(i, item) {
+							$("<option></option>").val(item.title).text(
+									item.title).appendTo(
+									$("#tongjibizplatTitle"));
+						});
+					}
+				});
+
+			}
 
 			validator = $crudFrm.validate();
 		</script>

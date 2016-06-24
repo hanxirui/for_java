@@ -10,8 +10,8 @@ import com.chinal.emp.entity.BizRecord;
 
 @Service
 public class BizRecordService extends CrudService<BizRecord, BizRecordDao> {
-	public List<BizRecord> getTongjiInfo(String currMonth) {
-		return this.getDao().getTongjiInfo(currMonth);
+	public List<BizRecord> getTongjiInfo(String startDate, String endDate, String title) {
+		return this.getDao().getTongjiInfo(startDate, endDate, title);
 
 	}
 }

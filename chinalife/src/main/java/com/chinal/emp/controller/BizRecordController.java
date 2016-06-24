@@ -75,9 +75,10 @@ public class BizRecordController extends BsgridController<BizRecord, BizRecordSe
 	}
 
 	@RequestMapping("/getBizplatTongjiInfo.do")
-	public ModelAndView getBizplatTongjiInfo(String currMonth) {
+	public ModelAndView getBizplatTongjiInfo(String startDate, String endDate, String title) {
 		ModelAndView mv = new ModelAndView();
-		List<BizRecord> records = this.getService().getTongjiInfo(currMonth);
+
+		List<BizRecord> records = this.getService().getTongjiInfo(startDate, endDate, title);
 		BizRecord record = new BizRecord();
 		if (records != null && records.size() > 0) {
 			record = records.get(0);

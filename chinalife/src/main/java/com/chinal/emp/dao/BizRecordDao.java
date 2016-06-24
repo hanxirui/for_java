@@ -8,5 +8,5 @@ import com.chinal.emp.entity.BizRecord;
 
 public interface BizRecordDao extends BaseDao<BizRecord> {
 
-	List<BizRecord> getTongjiInfo(String currMonth);
+	List<BizRecord> getTongjiInfo(String startDate, String endDate, String title);
 }
