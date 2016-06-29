@@ -7,10 +7,10 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.chinal.emp.report.ButtonVo;
-import com.chinal.emp.report.PortletVo;
 import com.chinal.emp.report.util.I18nUtils;
 import com.chinal.emp.report.util.VmUtil;
+import com.chinal.emp.report.vo.ButtonVo;
+import com.chinal.emp.report.vo.PortletVo;
 import com.chinal.emp.util.WebUtil;
 
 /**

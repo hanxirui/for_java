@@ -3,7 +3,12 @@
 <jsp:include page="../menu.jsp">
 	<jsp:param name="activeMenu" value="org" />
 </jsp:include>
-
+<%@page import="com.chinal.emp.security.AuthUser"%>
+<%@ page
+	import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%
+	AuthUser userDetails = (AuthUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+%>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
@@ -38,11 +43,22 @@
 
 		<div class="box">
 			<div class="box-header">
+			    <%
+					if (userDetails.getLevel() >= 3) {
+				%>
 				<div class="btn-group">
 					<a id="addBtn" class="btn btn-primary"> <i class="fa"></i>
 						录入
 					</a>
 				</div>
+				<div class="btn-group">
+					<a id="importBtn" class="btn btn-primary"> <i class="fa"></i>
+						导入
+					</a>
+				</div>
+				<%
+					}
+				%>
 			</div>
 			<!-- /.box-header -->
 
@@ -132,6 +148,24 @@
 						<input name="szhuanguanyuancode" type="text" class="form-control  input-sm"
 							required="true">
 					</div>
+				</div>
+			</form>
+		</div>
+
+		<div id="importWin">
+			<form id="importFrm" method="post" enctype="multipart/form-data"
+				class="form-horizontal" action="${ctx}importBank.do">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">选择文件</label>
+					<div class="col-sm-7">
+						<input class="btn btn-default" id="filename" type="file"
+							name="filename" accept="xls" />
+					</div>
+				</div>
+				<div id="forLoad"></div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label"> <a
+						href="${ctx}template/BankTemplate.xlsx">下载模板</a></label>
 				</div>
 			</form>
 		</div>
@@ -263,6 +297,46 @@
 					d.showModal();
 				}
 			}
+			
+			var $importBtn = $('#importBtn'); // 导入按钮
+			$importBtn.click(function() {
+				importWin.showModal();
+			});
+
+			var importWin = dialog({
+				title : '导入',
+				width : 400,
+				content : document.getElementById('importWin'),
+				okValue : '导入',
+				ok : function() {
+					$("#importWin").LoadingOverlay("show", {
+						image : "",
+						fontawesome : "fa fa-spinner fa-spin"
+					});
+					$.ajaxFileUpload({
+						url : ctx + "importBank.do",
+						fileElementId : "filename",
+						dataType : 'json',
+						success : function(data, status) {
+							$("#importWin").LoadingOverlay("hide");
+							if ("success" == data.status) {
+								gridObj.refreshPage();
+								importWin.close();
+							} else if ("error" == data.status) {
+								alert("上传失败!");
+								return false;
+							}
+						}
+					});
+					return false;
+				},
+				cancelValue : '取消',
+				cancel : function() {
+					this.close();
+					return false;
+				}
+			});
+
 
 			validator = $crudFrm.validate();
 		</script>

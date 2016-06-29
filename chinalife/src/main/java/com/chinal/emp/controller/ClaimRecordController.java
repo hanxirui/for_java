@@ -14,16 +14,26 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.chinal.emp.entity.ClaimRecord;
 import com.chinal.emp.entity.ClaimRecordSch;
+import com.chinal.emp.entity.CustomerBasic;
 import com.chinal.emp.entity.Employee;
+import com.chinal.emp.entity.InsuranceRecord;
 import com.chinal.emp.security.AuthUser;
 import com.chinal.emp.service.ClaimRecordService;
+import com.chinal.emp.service.CustomerBasicService;
 import com.chinal.emp.service.EmployeeService;
+import com.chinal.emp.service.InsuranceRecordService;
 
 @Controller
 public class ClaimRecordController extends BsgridController<ClaimRecord, ClaimRecordService> {
 
 	@Autowired
+	private CustomerBasicService customerBasicService;
+
+	@Autowired
 	private EmployeeService employeeService;
+
+	@Autowired
+	private InsuranceRecordService insuranceRecordService;
 
 	@RequestMapping("/openClaimRecord.do")
 	public String openClaimRecord() {
@@ -34,6 +44,19 @@ public class ClaimRecordController extends BsgridController<ClaimRecord, ClaimRe
 	public ModelAndView addClaimRecord(ClaimRecord entity) {
 		if (null == entity.getFirstaccount() || "".equals(entity.getFirstaccount())) {
 			entity.setFirstaccount(getOnlineUser().getCode());
+		}
+		InsuranceRecord insur = new InsuranceRecord();
+		insur.setToubaorenshenfenzhenghao(entity.getIdcardnum());
+		insur.setTousujilu("曾投诉");
+		insuranceRecordService.updateByToubaoren(insur);
+
+		ExpressionQuery query = new ExpressionQuery();
+		query.addValueExpression(new ValueExpression("idcardnum", entity.getIdcardnum()));
+		List<CustomerBasic> cusList = customerBasicService.find(query);
+		if (cusList != null && cusList.size() > 0) {
+			CustomerBasic cus = cusList.get(0);
+			cus.setLeibie("3");
+			customerBasicService.update(cus);
 		}
 		return this.add(entity);
 	}
@@ -118,7 +141,7 @@ public class ClaimRecordController extends BsgridController<ClaimRecord, ClaimRe
 		else if (onlineUser.getLevel() == 1) {
 			empquery.add(new ValueExpression("t.code", onlineUser.getEmployee().getCode()));
 		}
-
+		empquery.setLimit(Integer.MAX_VALUE);
 		return empquery;
 	}
 

@@ -1,4 +1,4 @@
-package com.chinal.emp.report;
+package com.chinal.emp.report.vo;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
 import org.durcframework.core.expression.ExpressionQuery;
 import org.durcframework.core.expression.subexpression.SqlExpression;
 import org.durcframework.core.expression.subexpression.ValueExpression;
@@ -84,6 +85,43 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 
 	@RequestMapping("/addInsuranceRecord.do")
 	public ModelAndView addInsuranceRecord(InsuranceRecord entity) {
+		if ((StringUtils.isBlank(entity.getXinfenpeirenyuan())
+				|| StringUtils.isBlank(entity.getXinfenpeirenyuangonghao()))
+				&& (StringUtils.isNotBlank(entity.getYewuyuandaima())
+						&& StringUtils.isNotBlank(entity.getYewuyuanxingming()))) {
+			entity.setXinfenpeirenyuan(entity.getYewuyuanxingming());
+			entity.setXinfenpeirenyuangonghao(entity.getYewuyuandaima());
+		}
+		ExpressionQuery equery = new ExpressionQuery();
+		equery.addValueExpression(new ValueExpression("code", entity.getXinfenpeirenyuangonghao()));
+		List<Employee> empList = empService.findSimple(equery);
+
+		ExpressionQuery query = new ExpressionQuery();
+		query.addValueExpression(new ValueExpression("idcardnum", entity.getToubaorenshenfenzhenghao()));
+		List<CustomerBasic> cusList = customerBasicService.find(query);
+		if (cusList != null && cusList.size() > 0) {
+			CustomerBasic cus = cusList.get(0);
+			cus.setLeibie("5");
+			customerBasicService.update(cus);
+		} else {
+			CustomerBasic cus = new CustomerBasic();
+			cus.setName(entity.getToubaorenxingming());
+			cus.setSex("男".equals(entity.getToubaorenxingbie()) ? "1" : "0");
+			cus.setIdcardnum(entity.getToubaorenshenfenzhenghao());
+			cus.setBirthday(entity.getToubaorenshenfenzhenghao().substring(6, 14));
+			cus.setAddr(entity.getToubaorentongxundizhi());
+			cus.setEmpcode(entity.getYewuyuandaima());
+			cus.setEmpname(entity.getYewuyuanxingming());
+			if (empList != null && empList.size() > 0) {
+				cus.setEmporgcode(empList.get(0).getOrgcode());
+				cus.setEmporgname(empList.get(0).getOrgname());
+			}
+			cus.setPhone(entity.getToubaorenshoujihao());
+			cus.setType(2);
+			cus.setLaiyuan("2");
+			cus.setLeibie("5");
+			customerBasicService.save(cus);
+		}
 		return this.add(entity);
 	}
 
@@ -96,7 +134,7 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 
 		// 根据登录人员信息，获得所有下属人员信息
 		ExpressionQuery t_query = genEmployeeQuery();
-		t_query.setLimit(1000);
+		t_query.setLimit(Integer.MAX_VALUE);
 		List<Employee> employees = empService.findSimple(t_query);
 		StringBuffer empcardnum = new StringBuffer();
 		for (Employee employee : employees) {
@@ -162,7 +200,8 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 
 		CustomerBasic beibaoren = new CustomerBasic();
 		CustomerBasic shouyiren = new CustomerBasic();
-
+		insuranceRecord.setKaituoxindan("分配");
+		insuranceRecord.setTousujilu("未投诉");
 		String tb = insuranceRecord.getToubaorenshenfenzhenghao();
 		String bb = insuranceRecord.getBeibaoxianrenshenfenzhenghao();
 		String sy = insuranceRecord.getShouyirenshenfenzhenghao();

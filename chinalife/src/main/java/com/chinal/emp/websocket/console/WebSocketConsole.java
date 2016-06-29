@@ -9,9 +9,11 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
-import com.chinal.emp.websocket.IWebSocketManager;
+import com.chinal.emp.websocket.WebSocketManager;
 import com.chinal.emp.websocket.console.pojo.WSClientInfoPojo;
 import com.chinal.emp.websocket.console.pojo.WSServerInfoPojo;
 import com.corundumstudio.socketio.Configuration;
@@ -38,12 +40,14 @@ import com.corundumstudio.socketio.transport.NamespaceClient;
  *          -------------------------------------------<br>
  *          <br>
  */
+@Component
 public class WebSocketConsole implements IWebSocketConsole {
 
 	/**
 	 * <code>m_webSocketMgr</code> - webSocketMgr.
 	 */
-	private IWebSocketManager m_webSocketMgr;
+	@Autowired
+	private WebSocketManager m_webSocketMgr;
 
 	/**
 	 * 注入.
@@ -51,7 +55,7 @@ public class WebSocketConsole implements IWebSocketConsole {
 	 * @param webSocketMgr
 	 *            webSocketMgr
 	 */
-	public void setWebSocketMgr(final IWebSocketManager webSocketMgr) {
+	public void setWebSocketMgr(final WebSocketManager webSocketMgr) {
 		m_webSocketMgr = webSocketMgr;
 	}
 

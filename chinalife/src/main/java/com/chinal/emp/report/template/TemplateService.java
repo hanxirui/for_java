@@ -1,7 +1,6 @@
-package com.chinal.emp.report;
+package com.chinal.emp.report.template;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,6 +9,9 @@ import java.util.List;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
+import com.chinal.emp.report.vo.ButtonVo;
+import com.chinal.emp.report.vo.PortletVo;
+import com.chinal.emp.report.vo.TemplateVo;
 import com.chinal.emp.util.ServerEnvUtil;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
@@ -29,11 +31,6 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
  *          <br>
  */
 public class TemplateService {
-
-	/**
-	 * <code>S_UDATA_RELATIVE_PATH</code> - {description}.
-	 */
-	public static final String S_UDATA_RELATIVE_PATH = "/report_template/";
 
 	/**
 	 * <code>S_TEMPLATEID_DUMMY</code> - 创建template的模板文件.
@@ -100,7 +97,7 @@ public class TemplateService {
 	 *             IOException
 	 */
 	public TemplateVo readTemplate(final String templateId) throws IOException {
-		return (TemplateVo) read(templateId);
+		return (TemplateVo) readXml(ServerEnvUtil.S_TEMPLATE_PATH + templateId + S_XML);
 	}
 
 	/**
@@ -111,17 +108,17 @@ public class TemplateService {
 	 *             IOException
 	 */
 	public List<TemplateVo> readAllTemplate() throws IOException {
-		String filePath = S_UDATA_RELATIVE_PATH;
+		String filePath = ServerEnvUtil.S_TEMPLATE_PATH;
 		File templateDir = new File(filePath);
 		List<TemplateVo> templates = new ArrayList<TemplateVo>();
 		if (templateDir != null && templateDir.isDirectory()) {
 			File[] listFiles = templateDir.listFiles();
 			for (File file : listFiles) {
-				if (file.getName().startsWith(S_TEMPLATEID_DUMMY)) {
+				if (file.getName().startsWith(S_TEMPLATEID_DUMMY) || !file.getName().endsWith(S_XML)) {
 					// 跳过模板文件
 					continue;
 				}
-				TemplateVo template = readTemplate(file.getName().replace(S_XML, ""));
+				TemplateVo template = (TemplateVo) readXml(file);
 				templates.add(template);
 			}
 		}
@@ -139,7 +136,7 @@ public class TemplateService {
 	 *             IOException
 	 */
 	public void saveTemplate(final String templateId, final TemplateVo template) throws IOException {
-		write(templateId, template);
+		write(ServerEnvUtil.S_TEMPLATE_PATH + templateId + S_XML, template);
 	}
 
 	/**
@@ -152,7 +149,7 @@ public class TemplateService {
 	 *             IOException
 	 */
 	public boolean deleteTemplate(final String templateId) throws IOException {
-		String filePath = queryFile(templateId);
+		String filePath = ServerEnvUtil.S_TEMPLATE_PATH + templateId + S_XML;
 		if (StringUtils.isNotBlank(filePath)) {
 			File file = new File(filePath);
 			return file.delete();
@@ -297,17 +294,17 @@ public class TemplateService {
 	/**
 	 * 写文件.
 	 * 
-	 * @param templateId
+	 * @param templateFile
 	 *            templateId
 	 * @param template
 	 *            TemplateVo
 	 * @throws IOException
 	 *             IOException
 	 */
-	private void write(final String templateId, final TemplateVo template) throws IOException {
+	private void write(final String templateFile, final TemplateVo template) throws IOException {
 		FileWriter t_fw = null;
 		try {
-			t_fw = new FileWriter(assemblePath(S_UDATA_RELATIVE_PATH, templateId));
+			t_fw = new FileWriter(templateFile);
 			synchronized (m_xstream) {
 				t_fw.write(m_xstream.toXML(template));
 				t_fw.flush();
@@ -323,18 +320,17 @@ public class TemplateService {
 	/**
 	 * {method description}.
 	 * 
-	 * @param templateId
-	 *            templateId
+	 * @param filePath
+	 *            filePath
 	 * @return Object
 	 * @throws IOException
 	 *             IOException
 	 */
-	private Object read(final String templateId) throws IOException {
-		String filePath = queryFile(templateId);
-		if (StringUtils.isNotBlank(filePath)) {
-			return readXml(filePath);
+	private Object readXml(final String filePath) throws IOException {
+		if (StringUtils.isBlank(filePath)) {
+			return null;
 		}
-		return null;
+		return m_xstream.fromXML(new File(filePath));
 	}
 
 	/**
@@ -346,39 +342,11 @@ public class TemplateService {
 	 * @throws IOException
 	 *             IOException
 	 */
-	private Object readXml(final String filePath) throws IOException {
-		return m_xstream.fromXML(new File(filePath));
-	}
-
-	/**
-	 * 查询文件.
-	 * 
-	 * @param templateId
-	 *            templateId
-	 * @return filePath
-	 * @throws FileNotFoundException
-	 *             FileNotFoundException
-	 */
-	private String queryFile(final String templateId) throws FileNotFoundException {
-		String filePath = assemblePath(S_UDATA_RELATIVE_PATH, templateId);
-		if (new File(filePath).exists()) {
-			return filePath;
+	private Object readXml(final File file) throws IOException {
+		if (file.exists()) {
+			return m_xstream.fromXML(file);
 		}
 		return null;
-	}
 
-	/**
-	 * {method description}.
-	 * 
-	 * @param relativePath
-	 *            relativePath
-	 * @param templateId
-	 *            templateId
-	 * @return filePath
-	 */
-	private String assemblePath(final String relativePath, final String templateId) {
-		return new StringBuilder(ServerEnvUtil.RIIL_WORK_SPACE_FOLDER).append(relativePath).append(templateId)
-				.append(S_XML).toString();
 	}
-
 }

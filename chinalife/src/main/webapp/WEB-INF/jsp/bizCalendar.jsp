@@ -3,6 +3,12 @@
 <jsp:include page="../menu.jsp">
 	<jsp:param name="activeMenu" value="bizplat" />
 </jsp:include>
+<%@page import="com.chinal.emp.security.AuthUser"%>
+<%@ page
+	import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%
+	AuthUser userDetails = (AuthUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+%>
 <link rel="stylesheet" href="${res}css/clndr.css">
 <script src="${res}js/underscore-min.js"></script>
 <script src="${res}js/moment.min.js"></script>
@@ -299,7 +305,9 @@
 				title : '编辑',
 				width : 600,
 				content : document.getElementById('crudWin'),
-
+				 <%
+					if (userDetails.getLevel() >= 3) {
+				%>
 				button : [
 						{
 							value : '计算',
@@ -346,7 +354,7 @@
 					that.save();
 					return false;
 				},
-
+               <%}%>
 				cancelValue : '关闭',
 				cancel : function() {
 					this.close();

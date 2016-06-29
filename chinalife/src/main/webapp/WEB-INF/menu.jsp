@@ -18,10 +18,11 @@
         <!-- Logo -->
         <a href="#" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"></span>
+          <!-- <span class="logo-mini"></span> -->
+         <%--  <img alt="" src="${ctx}res/img/logo.jpg"> --%>
           <!-- logo for regular state and mobile devices -->
-          <!-- <span class="logo-lg">LBS管理</span> -->
-          <span class="logo-lg">银保业务经营分析系统</span>
+          <!--  <span class="logo-lg">LBS管理</span>  -->
+         <span class="logo-lg"style="font-size:18px;">银保业务经营分析系统</span>
         </a>
 
         <!-- Header Navbar -->
@@ -62,13 +63,15 @@
             <li <%="claim".equals(am)?"class='active'":""%>><a href="${ctx}openClaimRecord.do"><i class="fa fa-diamond"></i> <span>投诉及突发事件管理</span> </a></li>
             <li <%="visit".equals(am)?"class='active'":""%>><a href="${ctx}openCustomerForVisit.do"><i class="fa fa-diamond"></i> <span>拜访管理</span> </a></li>
             <li <%="service".equals(am)?"class='active'":""%>><a href="${ctx}openCustomerForService.do"><i class="fa fa-diamond"></i> <span>服务管理</span> </a></li>
+            <li <%="jixiao".equals(am)?"class='active'":""%>> <a href="${ctx}openGongzidan.do"><i class="fa fa-diamond"></i>绩效管理</a></li>
            
-            <li <%="employee".equals(am)?"class='active'":""%> <%=userDetails.getLevel()<3?"style='display:none'":"" %>><a href="${ctx}openEmployee.do"><i class="fa fa-diamond"></i> <span>人员管理</span> </a></li>
-            <li <%="org".equals(am)?"class='active'":""%> <%=userDetails.getLevel()==5?"":"style='display:none'" %>><a href="${ctx}openOrg.do"><i class="fa fa-bank"></i> 机构管理</a></li>
-            <li <%="role".equals(am)?"class='active'":""%> <%=userDetails.getLevel()==5?"":"style='display:none'" %>><a href="${ctx}openRole.do"><i class="fa fa-child"></i>职务管理</a></li>
-            <li <%="jixiao".equals(am)?"class='active'":""%>> <a href="${ctx}openGongzidan.do"><i class="fa fa-trophy"></i>绩效管理</a></li>
-             <%-- <li <%="report".equals(am)?"class='active'":""%>> <a href="${ctx}openReport.do"><i class="fa fa-trophy"></i>统计报表</a></li> --%>
-            <li <%="bank".equals(am)?"class='active'":""%> <%=userDetails.getLevel()==5?"":"style='display:none'" %>><a href="${ctx}openBankRecord.do"><i class="fa fa-trophy"></i>银行机构管理</a></li>
+           
+            <li <%="employee".equals(am)?"class='active'":""%> <%=userDetails.getLevel()>=3?"":"style='display:none'" %>><a href="${ctx}openEmployee.do"><i class="fa fa-diamond"></i> <span>人员管理</span> </a></li>
+            <li <%="org".equals(am)?"class='active'":""%> <%=userDetails.getLevel()>=3?"":"style='display:none'" %>><a href="${ctx}openOrg.do"><i class="fa fa-bank"></i> 机构管理</a></li>
+            <li <%="role".equals(am)?"class='active'":""%> <%=userDetails.getLevel()>=3?"":"style='display:none'" %>><a href="${ctx}openRole.do"><i class="fa fa-child"></i>职务管理</a></li>
+            
+            <li <%="report".equals(am)?"class='active'":""%> <%=userDetails.getLevel()>=3?"style='display:none'":"style='display:none'" %>> <a href="${ctx}openReport.do"><i class="fa fa-trophy"></i>统计报表</a></li>
+            <li <%="bank".equals(am)?"class='active'":""%> <%=userDetails.getLevel()>=3?"":"style='display:none'" %>><a href="${ctx}openBankRecord.do"><i class="fa fa-trophy"></i>银行机构管理</a></li>
             <li <%="login".equals(am)?"class='active'":""%> <%=userDetails.getcName().equals("admin")?"":"style='display:none'" %>><a href="${ctx}openLoginrecord.do"><i class="fa fa-trophy"></i>登录日志</a></li>
           </ul><!-- /.sidebar-menu -->
         </section>

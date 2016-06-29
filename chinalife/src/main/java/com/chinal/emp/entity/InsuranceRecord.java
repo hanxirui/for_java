@@ -1,10 +1,12 @@
 package com.chinal.emp.entity;
 
+import java.util.Date;
+
 /**
   
 */
 public class InsuranceRecord {
-	//
+	// 
 	private int id;
 	// 保单号
 	private String baoxiandanhao;
@@ -102,406 +104,427 @@ public class InsuranceRecord {
 	private String fafangshijian;
 	// 发放标识
 	private String fafangbiaoshi;
+	// 备注
 	private String beizhu;
+	// 开拓新单
+	private String kaituoxindan;
+	// 投诉记录
+	private String tousujilu;
 
-	public void setId(int id) {
+	public void setId(int id){
 		this.id = id;
 	}
 
-	public int getId() {
+	public int getId(){
 		return this.id;
 	}
 
-	public void setBaoxiandanhao(String baoxiandanhao) {
+	public void setBaoxiandanhao(String baoxiandanhao){
 		this.baoxiandanhao = baoxiandanhao;
 	}
 
-	public String getBaoxiandanhao() {
+	public String getBaoxiandanhao(){
 		return this.baoxiandanhao;
 	}
 
-	public void setToubaodanhao(String toubaodanhao) {
+	public void setToubaodanhao(String toubaodanhao){
 		this.toubaodanhao = toubaodanhao;
 	}
 
-	public String getToubaodanhao() {
+	public String getToubaodanhao(){
 		return this.toubaodanhao;
 	}
 
-	public void setYewuyuandaima(String yewuyuandaima) {
+	public void setYewuyuandaima(String yewuyuandaima){
 		this.yewuyuandaima = yewuyuandaima;
 	}
 
-	public String getYewuyuandaima() {
+	public String getYewuyuandaima(){
 		return this.yewuyuandaima;
 	}
 
-	public void setYewuyuanxingming(String yewuyuanxingming) {
+	public void setYewuyuanxingming(String yewuyuanxingming){
 		this.yewuyuanxingming = yewuyuanxingming;
 	}
 
-	public String getYewuyuanxingming() {
+	public String getYewuyuanxingming(){
 		return this.yewuyuanxingming;
 	}
 
-	public void setXianzhongmingcheng(String xianzhongmingcheng) {
+	public void setXianzhongmingcheng(String xianzhongmingcheng){
 		this.xianzhongmingcheng = xianzhongmingcheng;
 	}
 
-	public String getXianzhongmingcheng() {
+	public String getXianzhongmingcheng(){
 		return this.xianzhongmingcheng;
 	}
 
-	public void setBaodanzhuangtai(String baodanzhuangtai) {
+	public void setBaodanzhuangtai(String baodanzhuangtai){
 		this.baodanzhuangtai = baodanzhuangtai;
 	}
 
-	public String getBaodanzhuangtai() {
+	public String getBaodanzhuangtai(){
 		return this.baodanzhuangtai;
 	}
 
-	public void setToubaoriqi(String toubaoriqi) {
+	public void setToubaoriqi(String toubaoriqi){
 		this.toubaoriqi = toubaoriqi;
 	}
 
-	public String getToubaoriqi() {
+	public String getToubaoriqi(){
 		return this.toubaoriqi;
 	}
 
-	public void setShengxiaoriqi(String shengxiaoriqi) {
+	public void setShengxiaoriqi(String shengxiaoriqi){
 		this.shengxiaoriqi = shengxiaoriqi;
 	}
 
-	public String getShengxiaoriqi() {
+	public String getShengxiaoriqi(){
 		return this.shengxiaoriqi;
 	}
 
-	public void setJibenbaoe(String jibenbaoe) {
+	public void setJibenbaoe(String jibenbaoe){
 		this.jibenbaoe = jibenbaoe;
 	}
 
-	public String getJibenbaoe() {
+	public String getJibenbaoe(){
 		return this.jibenbaoe;
 	}
 
-	public void setJibenbaofei(String jibenbaofei) {
+	public void setJibenbaofei(String jibenbaofei){
 		this.jibenbaofei = jibenbaofei;
 	}
 
-	public String getJibenbaofei() {
+	public String getJibenbaofei(){
 		return this.jibenbaofei;
 	}
 
-	public void setToubaorenxingming(String toubaorenxingming) {
+	public void setToubaorenxingming(String toubaorenxingming){
 		this.toubaorenxingming = toubaorenxingming;
 	}
 
-	public String getToubaorenxingming() {
+	public String getToubaorenxingming(){
 		return this.toubaorenxingming;
 	}
 
-	public void setToubaorenxingbie(String toubaorenxingbie) {
+	public void setToubaorenxingbie(String toubaorenxingbie){
 		this.toubaorenxingbie = toubaorenxingbie;
 	}
 
-	public String getToubaorenxingbie() {
+	public String getToubaorenxingbie(){
 		return this.toubaorenxingbie;
 	}
 
-	public void setToubaorenshenfenzhenghao(String toubaorenshenfenzhenghao) {
+	public void setToubaorenshenfenzhenghao(String toubaorenshenfenzhenghao){
 		this.toubaorenshenfenzhenghao = toubaorenshenfenzhenghao;
 	}
 
-	public String getToubaorenshenfenzhenghao() {
+	public String getToubaorenshenfenzhenghao(){
 		return this.toubaorenshenfenzhenghao;
 	}
 
-	public void setToubaorenshoujihao(String toubaorenshoujihao) {
+	public void setToubaorenshoujihao(String toubaorenshoujihao){
 		this.toubaorenshoujihao = toubaorenshoujihao;
 	}
 
-	public String getToubaorenshoujihao() {
+	public String getToubaorenshoujihao(){
 		return this.toubaorenshoujihao;
 	}
 
-	public void setToubaorentongxundizhi(String toubaorentongxundizhi) {
+	public void setToubaorentongxundizhi(String toubaorentongxundizhi){
 		this.toubaorentongxundizhi = toubaorentongxundizhi;
 	}
 
-	public String getToubaorentongxundizhi() {
+	public String getToubaorentongxundizhi(){
 		return this.toubaorentongxundizhi;
 	}
 
-	public void setToubaorenzhiye(String toubaorenzhiye) {
+	public void setToubaorenzhiye(String toubaorenzhiye){
 		this.toubaorenzhiye = toubaorenzhiye;
 	}
 
-	public String getToubaorenzhiye() {
+	public String getToubaorenzhiye(){
 		return this.toubaorenzhiye;
 	}
 
-	public void setBeibaoxianrenxingming(String beibaoxianrenxingming) {
+	public void setBeibaoxianrenxingming(String beibaoxianrenxingming){
 		this.beibaoxianrenxingming = beibaoxianrenxingming;
 	}
 
-	public String getBeibaoxianrenxingming() {
+	public String getBeibaoxianrenxingming(){
 		return this.beibaoxianrenxingming;
 	}
 
-	public void setBeibaoxianrenxingbie(String beibaoxianrenxingbie) {
+	public void setBeibaoxianrenxingbie(String beibaoxianrenxingbie){
 		this.beibaoxianrenxingbie = beibaoxianrenxingbie;
 	}
 
-	public String getBeibaoxianrenxingbie() {
+	public String getBeibaoxianrenxingbie(){
 		return this.beibaoxianrenxingbie;
 	}
 
-	public void setBeibaoxianrenshenfenzhenghao(String beibaoxianrenshenfenzhenghao) {
+	public void setBeibaoxianrenshenfenzhenghao(String beibaoxianrenshenfenzhenghao){
 		this.beibaoxianrenshenfenzhenghao = beibaoxianrenshenfenzhenghao;
 	}
 
-	public String getBeibaoxianrenshenfenzhenghao() {
+	public String getBeibaoxianrenshenfenzhenghao(){
 		return this.beibaoxianrenshenfenzhenghao;
 	}
 
-	public void setBeibaoxianrenshoujihao(String beibaoxianrenshoujihao) {
+	public void setBeibaoxianrenshoujihao(String beibaoxianrenshoujihao){
 		this.beibaoxianrenshoujihao = beibaoxianrenshoujihao;
 	}
 
-	public String getBeibaoxianrenshoujihao() {
+	public String getBeibaoxianrenshoujihao(){
 		return this.beibaoxianrenshoujihao;
 	}
 
-	public void setBeibaoxianrentongxundizhi(String beibaoxianrentongxundizhi) {
+	public void setBeibaoxianrentongxundizhi(String beibaoxianrentongxundizhi){
 		this.beibaoxianrentongxundizhi = beibaoxianrentongxundizhi;
 	}
 
-	public String getBeibaoxianrentongxundizhi() {
+	public String getBeibaoxianrentongxundizhi(){
 		return this.beibaoxianrentongxundizhi;
 	}
 
-	public void setBeibaoxianrenzhiye(String beibaoxianrenzhiye) {
+	public void setBeibaoxianrenzhiye(String beibaoxianrenzhiye){
 		this.beibaoxianrenzhiye = beibaoxianrenzhiye;
 	}
 
-	public String getBeibaoxianrenzhiye() {
+	public String getBeibaoxianrenzhiye(){
 		return this.beibaoxianrenzhiye;
 	}
 
-	public void setBeibaoxianrenyutoubaorenguanxi(String beibaoxianrenyutoubaorenguanxi) {
+	public void setBeibaoxianrenyutoubaorenguanxi(String beibaoxianrenyutoubaorenguanxi){
 		this.beibaoxianrenyutoubaorenguanxi = beibaoxianrenyutoubaorenguanxi;
 	}
 
-	public String getBeibaoxianrenyutoubaorenguanxi() {
+	public String getBeibaoxianrenyutoubaorenguanxi(){
 		return this.beibaoxianrenyutoubaorenguanxi;
 	}
 
-	public void setShouyirenxingming(String shouyirenxingming) {
+	public void setShouyirenxingming(String shouyirenxingming){
 		this.shouyirenxingming = shouyirenxingming;
 	}
 
-	public String getShouyirenxingming() {
+	public String getShouyirenxingming(){
 		return this.shouyirenxingming;
 	}
 
-	public void setShouyirenxingbie(String shouyirenxingbie) {
+	public void setShouyirenxingbie(String shouyirenxingbie){
 		this.shouyirenxingbie = shouyirenxingbie;
 	}
 
-	public String getShouyirenxingbie() {
+	public String getShouyirenxingbie(){
 		return this.shouyirenxingbie;
 	}
 
-	public void setShouyirenshenfenzhenghao(String shouyirenshenfenzhenghao) {
+	public void setShouyirenshenfenzhenghao(String shouyirenshenfenzhenghao){
 		this.shouyirenshenfenzhenghao = shouyirenshenfenzhenghao;
 	}
 
-	public String getShouyirenshenfenzhenghao() {
+	public String getShouyirenshenfenzhenghao(){
 		return this.shouyirenshenfenzhenghao;
 	}
 
-	public void setShouyishunxu(String shouyishunxu) {
+	public void setShouyishunxu(String shouyishunxu){
 		this.shouyishunxu = shouyishunxu;
 	}
 
-	public String getShouyishunxu() {
+	public String getShouyishunxu(){
 		return this.shouyishunxu;
 	}
 
-	public void setShouyifene(String shouyifene) {
+	public void setShouyifene(String shouyifene){
 		this.shouyifene = shouyifene;
 	}
 
-	public String getShouyifene() {
+	public String getShouyifene(){
 		return this.shouyifene;
 	}
 
-	public void setShouyirenyutoubaorenguanxi(String shouyirenyutoubaorenguanxi) {
+	public void setShouyirenyutoubaorenguanxi(String shouyirenyutoubaorenguanxi){
 		this.shouyirenyutoubaorenguanxi = shouyirenyutoubaorenguanxi;
 	}
 
-	public String getShouyirenyutoubaorenguanxi() {
+	public String getShouyirenyutoubaorenguanxi(){
 		return this.shouyirenyutoubaorenguanxi;
 	}
 
-	public void setJiaofeiqi(String jiaofeiqi) {
+	public void setJiaofeiqi(String jiaofeiqi){
 		this.jiaofeiqi = jiaofeiqi;
 	}
 
-	public String getJiaofeiqi() {
+	public String getJiaofeiqi(){
 		return this.jiaofeiqi;
 	}
 
-	public void setBaoxianqi(String baoxianqi) {
+	public void setBaoxianqi(String baoxianqi){
 		this.baoxianqi = baoxianqi;
 	}
 
-	public String getBaoxianqi() {
+	public String getBaoxianqi(){
 		return this.baoxianqi;
 	}
 
-	public void setJiaofeiyinhang(String jiaofeiyinhang) {
+	public void setJiaofeiyinhang(String jiaofeiyinhang){
 		this.jiaofeiyinhang = jiaofeiyinhang;
 	}
 
-	public String getJiaofeiyinhang() {
+	public String getJiaofeiyinhang(){
 		return this.jiaofeiyinhang;
 	}
 
-	public void setJiaofeizhanghao(String jiaofeizhanghao) {
+	public void setJiaofeizhanghao(String jiaofeizhanghao){
 		this.jiaofeizhanghao = jiaofeizhanghao;
 	}
 
-	public String getJiaofeizhanghao() {
+	public String getJiaofeizhanghao(){
 		return this.jiaofeizhanghao;
 	}
 
-	public void setChushilaiyuan(String chushilaiyuan) {
+	public void setChushilaiyuan(String chushilaiyuan){
 		this.chushilaiyuan = chushilaiyuan;
 	}
 
-	public String getChushilaiyuan() {
+	public String getChushilaiyuan(){
 		return this.chushilaiyuan;
 	}
 
-	public void setJigouhao(String jigouhao) {
+	public void setJigouhao(String jigouhao){
 		this.jigouhao = jigouhao;
 	}
 
-	public String getJigouhao() {
+	public String getJigouhao(){
 		return this.jigouhao;
 	}
 
-	public void setXianzhongdaima(String xianzhongdaima) {
+	public void setXianzhongdaima(String xianzhongdaima){
 		this.xianzhongdaima = xianzhongdaima;
 	}
 
-	public String getXianzhongdaima() {
+	public String getXianzhongdaima(){
 		return this.xianzhongdaima;
 	}
 
-	public void setQudao(String qudao) {
+	public void setQudao(String qudao){
 		this.qudao = qudao;
 	}
 
-	public String getQudao() {
+	public String getQudao(){
 		return this.qudao;
 	}
 
-	public void setZhihang(String zhihang) {
+	public void setZhihang(String zhihang){
 		this.zhihang = zhihang;
 	}
 
-	public String getZhihang() {
+	public String getZhihang(){
 		return this.zhihang;
 	}
 
-	public void setWangdian(String wangdian) {
+	public void setWangdian(String wangdian){
 		this.wangdian = wangdian;
 	}
 
-	public String getWangdian() {
+	public String getWangdian(){
 		return this.wangdian;
 	}
 
-	public void setDianhua(String dianhua) {
+	public void setDianhua(String dianhua){
 		this.dianhua = dianhua;
 	}
 
-	public String getDianhua() {
+	public String getDianhua(){
 		return this.dianhua;
 	}
 
-	public void setChushengriqi(String chushengriqi) {
+	public void setChushengriqi(String chushengriqi){
 		this.chushengriqi = chushengriqi;
 	}
 
-	public String getChushengriqi() {
+	public String getChushengriqi(){
 		return this.chushengriqi;
 	}
 
-	public void setBumengjingli(String bumengjingli) {
+	public void setBumengjingli(String bumengjingli){
 		this.bumengjingli = bumengjingli;
 	}
 
-	public String getBumengjingli() {
+	public String getBumengjingli(){
 		return this.bumengjingli;
 	}
 
-	public void setYuanzhuanguanyuangonghao(String yuanzhuanguanyuangonghao) {
+	public void setYuanzhuanguanyuangonghao(String yuanzhuanguanyuangonghao){
 		this.yuanzhuanguanyuangonghao = yuanzhuanguanyuangonghao;
 	}
 
-	public String getYuanzhuanguanyuangonghao() {
+	public String getYuanzhuanguanyuangonghao(){
 		return this.yuanzhuanguanyuangonghao;
 	}
 
-	public void setYuanzhuanguanyuan(String yuanzhuanguanyuan) {
+	public void setYuanzhuanguanyuan(String yuanzhuanguanyuan){
 		this.yuanzhuanguanyuan = yuanzhuanguanyuan;
 	}
 
-	public String getYuanzhuanguanyuan() {
+	public String getYuanzhuanguanyuan(){
 		return this.yuanzhuanguanyuan;
 	}
 
-	public void setXinfenpeirenyuangonghao(String xinfenpeirenyuangonghao) {
+	public void setXinfenpeirenyuangonghao(String xinfenpeirenyuangonghao){
 		this.xinfenpeirenyuangonghao = xinfenpeirenyuangonghao;
 	}
 
-	public String getXinfenpeirenyuangonghao() {
+	public String getXinfenpeirenyuangonghao(){
 		return this.xinfenpeirenyuangonghao;
 	}
 
-	public void setXinfenpeirenyuan(String xinfenpeirenyuan) {
+	public void setXinfenpeirenyuan(String xinfenpeirenyuan){
 		this.xinfenpeirenyuan = xinfenpeirenyuan;
 	}
 
-	public String getXinfenpeirenyuan() {
+	public String getXinfenpeirenyuan(){
 		return this.xinfenpeirenyuan;
 	}
 
-	public void setFafangshijian(String fafangshijian) {
+	public void setFafangshijian(String fafangshijian){
 		this.fafangshijian = fafangshijian;
 	}
 
-	public String getFafangshijian() {
+	public String getFafangshijian(){
 		return this.fafangshijian;
 	}
 
-	public void setFafangbiaoshi(String fafangbiaoshi) {
+	public void setFafangbiaoshi(String fafangbiaoshi){
 		this.fafangbiaoshi = fafangbiaoshi;
 	}
 
-	public String getFafangbiaoshi() {
+	public String getFafangbiaoshi(){
 		return this.fafangbiaoshi;
 	}
 
-	public String getBeizhu() {
-		return beizhu;
+	public void setBeizhu(String beizhu){
+		this.beizhu = beizhu;
 	}
 
-	public void setBeizhu(String beizhu) {
-		this.beizhu = beizhu;
+	public String getBeizhu(){
+		return this.beizhu;
+	}
+
+	public void setKaituoxindan(String kaituoxindan){
+		this.kaituoxindan = kaituoxindan;
+	}
+
+	public String getKaituoxindan(){
+		return this.kaituoxindan;
+	}
+
+	public void setTousujilu(String tousujilu){
+		this.tousujilu = tousujilu;
+	}
+
+	public String getTousujilu(){
+		return this.tousujilu;
 	}
 
 }

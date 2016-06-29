@@ -195,6 +195,7 @@
 							<option value="2">维护期</option>
 							<option value="3">投诉客户</option>
 							<option value="4">待出单客户</option>
+							<option value="5">已新开发客户</option>
 						</select>
 					</div>
 				</div>
@@ -471,8 +472,10 @@
 					return "维护期";
 				} else if (record.leibie == 3) {
 					return "投诉客户";
-				} else {
+				} else if (record.leibie == 4)  {
 					return "待出单客户";
+				} else {
+					return "已新开发客户";
 				}
 
 			}

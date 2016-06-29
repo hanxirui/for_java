@@ -1,7 +1,5 @@
 package com.chinal.emp.report.enumeration;
 
-import com.chinal.emp.report.util.I18nUtils;
-
 /**
  * 综合展示时间范围选择 <br>
  * <p>
@@ -21,62 +19,62 @@ public enum TimeRange {
 	/**
 	 * 最近15分钟.
 	 */
-	recent_15_min(15 * 60 * 1000, I18nUtils.getMessage("label.time.15m")),
+	recent_15_min(15 * 60 * 1000, "15m"),
 
 	/**
 	 * 最近30分钟.
 	 */
-	recent_30_min(30 * 60 * 1000, I18nUtils.getMessage("label.time.30m")),
+	recent_30_min(30 * 60 * 1000, "30m"),
 
 	/**
 	 * 最近1小时.
 	 */
-	recent_1_hour(60 * 60 * 1000, I18nUtils.getMessage("label.time.1h")),
+	recent_1_hour(60 * 60 * 1000, "1h"),
 
 	/**
 	 * 最近4小时.
 	 */
-	recent_4_hour(4 * 60 * 60 * 1000, I18nUtils.getMessage("label.time.4h")),
+	recent_4_hour(4 * 60 * 60 * 1000, "4h"),
 
 	/**
 	 * 最近12小时.
 	 */
-	recent_12_hour(12 * 60 * 60 * 1000, I18nUtils.getMessage("label.time.12h")),
+	recent_12_hour(12 * 60 * 60 * 1000, "12h"),
 
 	/**
 	 * 最近24小时.
 	 */
-	recent_24_hour(24 * 60 * 60 * 1000, I18nUtils.getMessage("label.time.24h")),
+	recent_24_hour(24 * 60 * 60 * 1000, "24h"),
 
 	/**
 	 * 最近7天.
 	 */
-	recent_7_day(7 * 24 * 60 * 60 * 1000, I18nUtils.getMessage("label.time.7d")),
+	recent_7_day(7 * 24 * 60 * 60 * 1000, "7d"),
 
 	/**
 	 * 最近30天.
 	 */
-	recent_30_day(30 * 24 * 60 * 60 * 1000, I18nUtils.getMessage("label.time.30d")),
+	recent_30_day(30 * 24 * 60 * 60 * 1000, "30d"),
 
 	/**
 	 * 最近60天.
 	 */
-	recent_60_day(60 * 24 * 60 * 60 * 1000, I18nUtils.getMessage("label.time.60d")),
+	recent_60_day(60 * 24 * 60 * 60 * 1000, "60d"),
 
 	/**
 	 * 最近90天.
 	 */
-	recent_90_day(90 * 24 * 60 * 60 * 1000, I18nUtils.getMessage("label.time.90d")),
+	recent_90_day(90 * 24 * 60 * 60 * 1000, "90d"),
 
 	/**
 	 * 最近6个月.
 	 */
-	recent_6_month(6 * 30 * 24 * 60 * 60 * 1000, I18nUtils.getMessage("label.time.6mon")),
+	recent_6_month(6 * 30 * 24 * 60 * 60 * 1000, "6mon"),
 
 	/**
 	 * 最近1年.
 	 */
-	recent_1_year(365 * 24 * 60 * 60 * 1000, I18nUtils.getMessage("label.time.1year"));
+	recent_1_year(365 * 24 * 60 * 60 * 1000, "1year");
 
 	/**
 	 * S_7

@@ -84,7 +84,7 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 	@RequestMapping("/listEmployee.do")
 	public ModelAndView listEmployee(EmployeeSch searchEntity) {
 
-		ExpressionQuery query = this.buildExpressionQuery(searchEntity);
+		ExpressionQuery query = new ExpressionQuery();
 
 		AuthUser onlineUser = getAuthUser();
 
@@ -114,8 +114,7 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 		query.addJoinExpression(new LeftJoinExpression("role", "t2", "role", "id"));
 		query.addJoinExpression(new LeftJoinExpression("employee", "t3", "managercode", "code"));
 
-		query.setPageSize(searchEntity.getPageSize());
-		query.setPageIndex(searchEntity.getPageIndex());
+		query.addPaginationInfo(searchEntity);
 		// 返回查询结果
 		return this.list(query);
 

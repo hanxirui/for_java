@@ -84,6 +84,21 @@ public class ServerEnvUtil {
 		serverEnvUtil.init();
 	}
 
+	/**
+	 * <code>S_VM_PATH</code> - {description}.
+	 */
+	public static final String S_VM_PATH = "/Users/hanxirui/Documents/workspace/github/for_java/chinalife/src/main/webapp/vm/";
+
+	/**
+	 * <code>S_TEMPLATE_PATH</code> - {description}.
+	 */
+	public static final String S_TEMPLATE_PATH = "/Users/hanxirui/Documents/workspace/github/for_java/chinalife/src/main/webapp/report_template/";
+
+	/**
+	 * <code>S_UDATA_RELATIVE_PATH</code> - {description}.
+	 */
+	public static final String S_UDATA_RELATIVE_PATH = "/Users/hanxirui/Documents/workspace/github/for_java/chinalife/src/main/webapp/udata/";
+
 	private ServerEnvUtil() {
 
 	}

@@ -9,6 +9,10 @@ public class DateUtil {
 	public static String yyyy_MM_dd_HH_mm_ss = "yyyy-MM-dd HH:mm:ss";
 	public static String yyyy_MM_dd = "yyyy-MM-dd";
 
+	/**
+	 * @param date
+	 * @return 2016-07-12 00:00:00
+	 */
 	public static Date getDayBegin(Date date) {
 		Calendar t_calendar = Calendar.getInstance();
 		t_calendar.setTime(new Date());
@@ -20,6 +24,10 @@ public class DateUtil {
 		return t_startTime;
 	}
 
+	/**
+	 * @param date
+	 * @return 2016-07-12 23:59:59
+	 */
 	public static Date getDayEnd(Date date) {
 		Calendar t_calendar = Calendar.getInstance();
 		t_calendar.setTime(new Date());
@@ -32,14 +40,10 @@ public class DateUtil {
 	}
 
 	/**
-	 * @param format
 	 * @param date
+	 * @param format
 	 * @return
 	 */
-	public static String getDateByFormat(String format, Date date) {
-		return new SimpleDateFormat(format).format(date);
-	}
-
 	public static String format(Date date, String format) {
 		return new SimpleDateFormat(format).format(date);
 	}
@@ -48,6 +52,10 @@ public class DateUtil {
 		return getFullFormatDate(new Date());
 	}
 
+	/**
+	 * @param date
+	 * @return yyyy-MM-dd HH:mm:ss
+	 */
 	public static String getFullFormatDate(Date date) {
 		return new SimpleDateFormat(yyyy_MM_dd_HH_mm_ss).format(date);
 	}
@@ -56,6 +64,10 @@ public class DateUtil {
 		return getShortFormatDate(new Date());
 	}
 
+	/**
+	 * @param date
+	 * @return yyyy-MM-dd
+	 */
 	public static String getShortFormatDate(Date date) {
 		return new SimpleDateFormat(yyyy_MM_dd).format(date);
 	}
@@ -189,6 +201,11 @@ public class DateUtil {
 		return Integer.parseInt(String.valueOf(between_days));
 	}
 
+	/**
+	 * @param year
+	 * @param month
+	 * @return
+	 */
 	public static int getDayNumOfMonth(int year, int month) {
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.YEAR, year);

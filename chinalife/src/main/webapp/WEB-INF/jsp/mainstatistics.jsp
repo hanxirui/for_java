@@ -24,16 +24,16 @@
            
           <div class="box">
 				<div class="box-header">
-					 近六个月客户拜访覆盖率：${visitPercent}%
+					 <p>近六个月客户拜访覆盖率：${visitPercent}%</p>
 				</div><!-- /.box-header -->
 			
 				<div class="box-body">	 
 					客户开单率：${insurancePercent}%
 				</div><!-- /.box-body -->
 			</div>
-			 <div class="box">
+			 <div class="box" style="height:350px">
 				<div class="box-header">
-					 重要事项提醒
+					 重要事项提醒:
 				</div><!-- /.box-header -->
 			
 				<div class="box-body">	 

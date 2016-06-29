@@ -2,8 +2,12 @@ package com.chinal.emp.websocket;
 
 import java.util.concurrent.ExecutionException;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.dom4j.Document;
 import org.dom4j.Element;
+import org.springframework.stereotype.Component;
 
 import com.chinal.emp.util.XmlUtils;
 import com.corundumstudio.socketio.Configuration;
@@ -14,6 +18,7 @@ import io.netty.util.concurrent.Future;
 /**
  * WebSocket管理类 <br>
  */
+@Component
 public final class WebSocketManager implements IWebSocketManager {
 
 	/**
@@ -32,6 +37,7 @@ public final class WebSocketManager implements IWebSocketManager {
 	private SocketIOServer m_server;
 
 	@Override
+	@PostConstruct
 	public synchronized void startup() {
 		if (!isStart()) {
 			Configuration t_config = init();
@@ -50,6 +56,7 @@ public final class WebSocketManager implements IWebSocketManager {
 	}
 
 	@Override
+	@PreDestroy
 	public synchronized void shutdown() {
 		if (isStart()) {
 			m_server.stop();

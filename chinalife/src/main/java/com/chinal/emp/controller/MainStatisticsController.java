@@ -66,6 +66,7 @@ public class MainStatisticsController extends BaseController {
 
 			// 获得所有开单的客户数
 			ExpressionQuery insurancequery = genInsuranceQueryByPrincipal(onlineUser);
+			insurancequery.addValueExpression(new ValueExpression("t.kaituoxindan", "!=", "分配"));
 			Integer insuranceCount = insuranceRecordService.findInsuranceCount(insurancequery);
 			insurancePercent = format.format(insuranceCount / count);
 
@@ -159,14 +160,14 @@ public class MainStatisticsController extends BaseController {
 				for (Employee t_employee : emps) {
 					empCodes.append(",").append(t_employee.getCode());
 				}
-				String cussql = "FIND_IN_SET(t.yewuyuandaima, '" + empCodes.toString().substring(1) + "')";
+				String cussql = "FIND_IN_SET(t.xinfenpeirenyuangonghao, '" + empCodes.toString().substring(1) + "')";
 				cusquery.addSqlExpression(new SqlExpression(cussql));
 			}
 		}
 
 		// 一级查询自己负责的
 		if (onlineUser.getLevel() == 1) {
-			cusquery.add(new ValueExpression("t.yewuyuandaima", onlineUser.getEmployee().getCode()));
+			cusquery.add(new ValueExpression("t.xinfenpeirenyuangonghao", onlineUser.getEmployee().getCode()));
 		}
 		return cusquery;
 	}

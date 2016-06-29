@@ -1,6 +1,5 @@
 package com.chinal.emp.report.util;
 
-import java.io.File;
 import java.io.StringWriter;
 import java.util.Iterator;
 import java.util.Map;
@@ -10,6 +9,8 @@ import java.util.Properties;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
+
+import com.chinal.emp.util.ServerEnvUtil;
 
 /**
  * VM工具类. <br>
@@ -37,9 +38,8 @@ public final class VmUtil {
 	 */
 	static {
 		s_ve = new VelocityEngine();
-		String path = File.separator + "vm" + File.separator;
 		Properties p = new Properties();
-		p.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH, path);
+		p.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH, ServerEnvUtil.S_VM_PATH);
 		s_ve.init(p);
 	}
 

@@ -1,8 +1,10 @@
-package com.chinal.emp.report;
+package com.chinal.emp.report.template;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.chinal.emp.report.vo.TemplateVo;
 
 /**
  * 模板查询. <br>
@@ -27,6 +29,30 @@ public class TemplateQuery {
 	}
 
 	/**
+	 * 查询方式.
+	 * 
+	 * @param templateId
+	 *            templateId
+	 * @param userId
+	 *            userId
+	 * @param hasUdata
+	 *            是否包含用户数据
+	 * @return TemplateVo
+	 * @throws ServiceException
+	 *             ServiceException
+	 */
+	public static final TemplateVo query(final String templateId, final String userId, final boolean hasUdata)
+			throws Exception {
+		TemplateVo template = read(templateId);
+		if (template != null) {
+			if (hasUdata) {
+				UserDataService.instance().mergeUdata(templateId, userId, template);
+			}
+		}
+		return template;
+	}
+
+	/**
 	 * 查询所有template.
 	 * 
 	 * @return List<TemplateVo>
@@ -41,20 +67,6 @@ public class TemplateQuery {
 			throw new IOException(t_e);
 		}
 		return templates;
-	}
-
-	/**
-	 * 查询指定的template.
-	 * 
-	 * @param templateId
-	 *            templateId
-	 * @return TemplateVo
-	 * @throws IOException
-	 *             IOException
-	 */
-	public static final TemplateVo query(final String templateId) throws IOException {
-		TemplateVo template = read(templateId);
-		return template;
 	}
 
 	/**

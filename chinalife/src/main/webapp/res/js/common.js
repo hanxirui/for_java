@@ -108,7 +108,7 @@ var Action = {
 	}
 }
 
-
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 var EventUtil = {
 	/**
 	 * 格式化事件对象
@@ -153,6 +153,7 @@ var EventUtil = {
 		return oEvent;
 	}
 }
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 /*
 &nbsp;使用方法:
 &nbsp;FunUtil.createFun(scope,'some_mothod_name',obj1);
@@ -208,7 +209,7 @@ if (typeof(jQuery) != 'undefined') {
         }
     });
 }
-
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 // 全局函数
 var Globle = {
 	// 注销
@@ -238,7 +239,7 @@ var Globle = {
 	}
 }
 
-
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 
 function getFormData($schForm){
 	var fields = $schForm.serializeArray();
@@ -261,7 +262,7 @@ function getFormData($schForm){
 
 	return obj;
 }
-
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 function loadFormData($frm,data) {
 	for(var name in data) {
 		var val = data[name];
@@ -285,7 +286,7 @@ function loadTongjiFormData($frm,data) {
 		 $('[name=tongji'+name+']').val(val);
 	}
 }
-	
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */	
 var HtmlUtil = (function(){
 	
 	var parseHtmlMap = {
@@ -320,6 +321,8 @@ var HtmlUtil = (function(){
 	}
 	
 }());
+
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 /**
  * 使用方法:
  * 开启:MaskUtil.mask();
@@ -366,7 +369,7 @@ var MaskUtil = (function(){
 	}
 	
 }());
-
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
 // 导出工具
 var ExportUtil = {
 	doExport:function(url,param){
@@ -387,3 +390,134 @@ var ExportUtil = {
 	}
 }
 
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+var OnResize = {
+		flag :false,
+		timeout : null,
+		onresizeStart:false,
+		winSize : {},
+		layoutFn : [],
+		bind:function(){
+			if(!this.flag){
+				this.$win = $(window);
+				this.winSize.width = this.$win.width();
+				this.winSize.height = this.$win.height();
+				this._addEvent(window,"resize",function(){	
+					var or = OnResize;
+					var width = or.$win.width();
+					var height = or.$win.height();
+					if(width != or.winSize.width || height != or.winSize.height){
+						clearTimeout(or.timeout);
+						or.timeout = setTimeout(or.timeoutResize,1000);
+					}					
+					or.winSize.width = width;
+					or.winSize.height = height;
+				});
+				this.flag = true;
+			}
+		},
+		_addEvent:function(obj,type,fun){
+			if(obj.addEventListener){
+				obj.addEventListener(type,fun);
+				return true;
+			}else if(obj.attachEvent){
+				return obj.attachEvent("on"+type,fun);
+			}else{
+				return false;
+			}
+		},
+		timeoutResize:function(){
+			var or = OnResize;
+			for(var i=0;i<or.layoutFn.length;i++){
+				if(or.layoutFn[i]){
+					or.layoutFn[i]();
+				}
+			}
+		},
+		addLayout:function(fn){
+			for(var i=0, len = OnResize.layoutFn.length;i<len;i++){
+				if(OnResize.layoutFn[i] ==  fn){
+					return;
+				}
+			}
+			OnResize.layoutFn.push(fn);
+		}
+	};
+
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+var ReportScroll = {
+		scroll : {},
+		init : function(porlet){
+			if(porlet != null && $('#'+ porlet +' .scrolljs').length>0){
+				var scr = new IScroll('#'+ porlet +' .scrolljs', {
+				mouseWheel: true, 
+				scrollbars: 'custom'
+				});
+				ComprehensiveScroll.scroll[porlet] = scr;
+			}
+		},
+		scrollResize : function(porletcomponentId) {
+			if(ComprehensiveScroll.scroll[porletcomponentId]) {
+				ComprehensiveScroll.scroll[porletcomponentId].refresh();
+			}
+		}
+	};
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */
+/**
+ * conf {input:文本框id,trig:触发显示日历id,format：日期格式,week：是否显示星期,time：是否显示时间，language：语言，min：最小日期毫秒数,max：最大日期毫秒数，onSelect:选择时间后触发事件fnunction
+*/
+function loadcalendarConf(conf) {
+	var $trig = null;
+	if(_.isString(conf.trig)){
+		$trig = $(document.getElementById(conf.trig));
+	}else{
+		$trig = $(conf.trig);
+	}
+	
+	var $input = null;
+	if(_.isString(conf.input)){
+		$input = $(document.getElementById(conf.input));
+	}else{
+		$input = $(conf.input);
+	}		
+	
+	$trig.unbind().bind("click",function(){
+		if(conf.trigger){
+			conf.trigger()
+		}
+	
+	
+		var layout = $.getElementAbsolutePosition(this);
+		var $calendarWrapper =$("#calendarWrapper");
+			$calendarWrapper.css({width:300,height:300});
+            var isShowTodayBtn = conf.isShowTodayBtn === undefined ? true : conf.isShowTodayBtn;
+            var isShowClearBtn = conf.isShowClearBtn || false;
+			document.getElementById('TimeChooser').refreshChooser($input.val(),conf.min,conf.max,conf.time === true,"",isShowTodayBtn,isShowClearBtn);
+		
+		
+		layout = $.checkDomPosition($calendarWrapper,layout.x,layout.y);
+		$calendarWrapper.css({left:layout.x,top:layout.y});
+		window.timeChooserHandler = function(time){			
+			$input.val(time);
+			if(conf.onSelect){
+				conf.onSelect();
+			}      
+			closeCalendar();
+		}
+		
+		window.closeTimeChooser = function(time){
+			closeCalendar();
+		}
+		
+		window.clearTime = function(time){
+			$input.val("");
+		}		
+		setTimeout(function(){
+			$calendarWrapper.bind("click",closeCalendar);
+			$(document.body).bind("click",closeCalendar);
+		},100);
+	});
+
+};
+
+/* =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- */

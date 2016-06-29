@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workbook>
+	<worksheet idx="0">
+		<section startRow="0" endRow="0" />
+		<loop startRow="1" endRow="1" items="banks" var="bank"
+			varType="com.chinal.emp.entity.BankRecord">
+			<section startRow="1" endRow="1">
+				<mapping row="1" col="0">bank.bankname</mapping>
+				<mapping row="1" col="1">bank.bankcode</mapping>
+				<mapping row="1" col="2">bank.zhihangname</mapping>
+				<mapping row="1" col="3">bank.zhihangcode</mapping>
+				<mapping row="1" col="4">bank.wangdianname</mapping>
+				<mapping row="1" col="5">bank.wangdiancode</mapping>
+				<mapping row="1" col="6">bank.mzhuanguanyuan</mapping>
+				<mapping row="1" col="7">bank.mzhuanguanyuancode</mapping>
+			</section>
+			<loopbreakcondition>
+				<rowcheck offset="0">
+					<cellcheck offset="0"></cellcheck>
+				</rowcheck>
+			</loopbreakcondition>
+		</loop>
+	</worksheet>
+</workbook> 
+

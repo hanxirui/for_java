@@ -219,6 +219,9 @@ rotate
 						<th w_index="xinfenpeirenyuan">新分配人员</th>
 						<th w_index="fafangshijian">发放时间</th>
 						<th w_index="fafangbiaoshi">发放标识</th>
+						<th w_index="beizhu">备注</th>
+						<th w_index="kaituoxindan">开拓新单</th>
+						<th w_index="tousujilu">投诉记录</th>
 						<th w_render="operate">操作</th>
 					</tr>
 				</table>
@@ -527,9 +530,31 @@ rotate
 
 					<label class="col-sm-1 control-label">初始来源</label>
 					<div class="col-sm-1">
-						<input name="chushilaiyuan" type="text"
-							class="form-control  input-sm">
+						
+						<select id="chushilaiyuan" name="chushilaiyuan" class="form-control  input-sm"
+							required="true" disabled>
+							<option value="分配">分配</option>
+							<option value="新拓">新拓</option>
+						</select>
 					</div>
+					
+					<label class="col-sm-1 control-label">开拓新单</label>
+					<div class="col-sm-1">
+						<select name="kaituoxindan" class="form-control  input-sm">
+							<option value="自营新拓">自营新拓</option>
+							<option value="渠道新拓">渠道新拓</option>
+						</select>
+					</div>
+
+
+					<label class="col-sm-1 control-label">投诉记录</label>
+					<div class="col-sm-1">
+						<select name="tousujilu" class="form-control  input-sm">
+							<option value="未投诉">未投诉</option>
+							<option value="曾投诉">曾投诉</option>
+						</select>
+					</div>
+					
 				</div>
 			</form>
 		</div>
