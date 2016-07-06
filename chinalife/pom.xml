@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.durcframework</groupId>
 	<!-- 新项目修改此处和文件夹名即可 -->
-	<artifactId>emptyProject</artifactId>
+	<artifactId>crmtj</artifactId>
 	<version>1.0.0</version>
 	<packaging>war</packaging>
 
