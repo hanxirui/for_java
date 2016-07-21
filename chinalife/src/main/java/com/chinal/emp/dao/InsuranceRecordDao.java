@@ -11,7 +11,7 @@ import com.chinal.emp.report.vo.InsurTrendReportVo;
 public interface InsuranceRecordDao extends BaseDao<InsuranceRecord> {
 	Integer findInsuranceCount(ExpressionQuery query);
 
-	void delInsuranceByids(String[] ids);
+	void delById(int id);
 
 	void updateByToubaoren(InsuranceRecord record);
 

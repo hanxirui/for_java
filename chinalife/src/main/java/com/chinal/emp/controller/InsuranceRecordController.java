@@ -429,8 +429,10 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 	}
 
 	@RequestMapping("/delInsurances.do")
-	public ModelAndView delInsurances(String[] ids) {
-		this.getService().delInsurances(ids);
+	public ModelAndView delInsurances(int[] ids) {
+		for (int t_i = 0; t_i < ids.length; t_i++) {
+			this.getService().delById(ids[t_i]);
+		}
 		return this.successView();
 	}
 

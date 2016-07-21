@@ -977,5 +977,10 @@
 		DELETE FROM insurance_record
 		WHERE id = #{id,jdbcType=INTEGER}
 	</delete>
+	
+	<delete id="delById" parameterType="INTEGER">
+		DELETE FROM insurance_record
+		WHERE id = #{param1,jdbcType=INTEGER}
+	</delete>
 
 </mapper>
