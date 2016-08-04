@@ -30,100 +30,39 @@
         <section class="content">
 
           <!-- Your Page Content Here -->
-          <div class="box box-default">
-               <div class="box-body">
-                 <!-- form start -->
-                 <form id="schFrm" class="form-inline" onsubmit="return false;">
-										                       分配人编号:<input name="fenpeirenCode" type="text" class="form-control">      
-					 										                       分配人姓名:<input name="fenpeirenName" type="text" class="form-control">      
-					 										                       客户经理编号:<input name="kehujingliCode" type="text" class="form-control">      
-					 										                       客户经理姓名:<input name="kehujingliName" type="text" class="form-control">      
-					 										                       客户身份证号:<input name="customerId" type="text" class="form-control">      
-					 										                       客户名称:<input name="customerName" type="text" class="form-control">      
-					 										                       分配时间:<input name="fenpeishijian" type="text" class="form-control">      
-					 					                   	<button id="schBtn" type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 查询</button>
-					<button type="reset" class="btn btn-default"><i class="fa fa-remove"></i> 清空</button>
-				</form>
-               </div><!-- /.box-body -->
-           </div>
            
           <div class="box">
 				<div class="box-header">
 					 <div class="btn-group">
-			         	<a id="addBtn" class="btn btn-primary">
+			         	<!-- <a id="addBtn" class="btn btn-primary">
 			            	<i class="fa fa-plus"></i> 录入 
-			         	</a>
+			         	</a> -->
 			          </div>
 				</div><!-- /.box-header -->
 			
 				<div class="box-body">	 
 					<table id="searchTable">
 						<tr>           
-														<th w_index="fenpeirenCode">分配人编号</th>
-																			<th w_index="fenpeirenName">分配人姓名</th>
-																			<th w_index="kehujingliCode">客户经理编号</th>
-																			<th w_index="kehujingliName">客户经理姓名</th>
-																			<th w_index="customerId">客户身份证号</th>
-																			<th w_index="customerName">客户名称</th>
-																			<th w_index="fenpeishijian">分配时间</th>
-													<th w_render="operate" width="10%;">操作</th>
+							<th w_index="fenpeirenCode">分配人编号</th>
+							<th w_index="fenpeirenName">分配人姓名</th>
+							<th w_index="kehujingliCode">客户经理编号</th>
+							<th w_index="kehujingliName">客户经理姓名</th>
+							<!-- <th w_index="customerId">客户身份证号</th>
+							<th w_index="customerName">客户名称</th> -->
+							<th w_index="fenpeishijian">分配时间</th>
+						    <!-- <th w_render="operate" width="10%;">操作</th> -->
 						</tr>
 					</table>
 				</div><!-- /.box-body -->
 			</div>
 		    
-		    <div id="crudWin">
-			    	<form id="crudFrm" class="form-horizontal">
-											   						<div class="form-group">
-	                      <label class="col-sm-2 control-label">分配人编号</label>
-	                      <div class="col-sm-3">
-	                        <input name="fenpeirenCode" type="text" class="form-control" required="true">
-	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-2 control-label">分配人姓名</label>
-	                      <div class="col-sm-3">
-	                        <input name="fenpeirenName" type="text" class="form-control" required="true">
-	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-2 control-label">客户经理编号</label>
-	                      <div class="col-sm-3">
-	                        <input name="kehujingliCode" type="text" class="form-control" required="true">
-	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-2 control-label">客户经理姓名</label>
-	                      <div class="col-sm-3">
-	                        <input name="kehujingliName" type="text" class="form-control" required="true">
-	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-2 control-label">客户身份证号</label>
-	                      <div class="col-sm-3">
-	                        <input name="customerId" type="text" class="form-control" required="true">
-	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-2 control-label">客户名称</label>
-	                      <div class="col-sm-3">
-	                        <input name="customerName" type="text" class="form-control" required="true">
-	                      </div>
-	                    </div>
-					   										   						<div class="form-group">
-	                      <label class="col-sm-2 control-label">分配时间</label>
-	                      <div class="col-sm-3">
-	                        <input name="fenpeishijian" type="text" class="form-control" required="true">
-	                      </div>
-	                    </div>
-					   										</form>
-			    </div>
+		    
 		    
 <script type="text/javascript">     
 var that = this;
 
 var pk = ''; // java类中的主键字段
-var listUrl = ctx + 'listFenpeilishi.do?idcardnum=${customer.idcardnum}'; // 查询
+var listUrl = ctx + 'listFenpeilishi.do?customerId=${customer.idcardnum}'; // 查询
 var addUrl = ctx + 'addFenpeilishi.do'; // 添加
 var updateUrl = ctx + 'updateFenpeilishi.do'; // 修改
 var delUrl = ctx + 'delFenpeilishi.do'; // 删除

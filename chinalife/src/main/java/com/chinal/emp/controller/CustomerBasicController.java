@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -38,12 +39,14 @@ import com.chinal.emp.entity.Bizplatform;
 import com.chinal.emp.entity.CustomerBasic;
 import com.chinal.emp.entity.CustomerBasicSch;
 import com.chinal.emp.entity.Employee;
+import com.chinal.emp.entity.Fenpeilishi;
 import com.chinal.emp.entity.KpiInfo;
 import com.chinal.emp.entity.Org;
 import com.chinal.emp.security.AuthUser;
 import com.chinal.emp.service.BizplatformService;
 import com.chinal.emp.service.CustomerBasicService;
 import com.chinal.emp.service.EmployeeService;
+import com.chinal.emp.service.FenpeilishiService;
 import com.chinal.emp.service.OrgService;
 import com.chinal.emp.service.SitRecordService;
 import com.chinal.emp.util.DateUtil;
@@ -70,6 +73,9 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 
 	@Autowired
 	private SitRecordService sitRecordService;
+
+	@Autowired
+	private FenpeilishiService fenpeilishiService;
 
 	@RequestMapping("/openCustomerBasic.do")
 	public String openCustomerBasic() {
@@ -367,6 +373,19 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 			basic.setEmporgname(emp.getOrgname());
 			basic.setIdcardnum(cusIds);
 			this.getService().fenpeiCustomer(basic);
+			List<String> cusList = Arrays.asList(cusIds.split(","));
+			for (String cusid : cusList) {
+				Fenpeilishi fenpeilish = new Fenpeilishi();
+				String trueCusid = cusid.substring(1, cusid.length() - 1);
+				fenpeilish.setCustomerId(trueCusid);
+				fenpeilish.setFenpeirenCode(getOnlineUser().getCode());
+				fenpeilish.setFenpeirenName(getOnlineUser().getcName());
+				fenpeilish.setKehujingliCode(empcode);
+				fenpeilish.setKehujingliName(emp.getName());
+				fenpeilish.setFenpeishijian(DateUtil.getShortFormatNow());
+				fenpeilishiService.save(fenpeilish);
+			}
+
 		}
 	}
 
