@@ -104,12 +104,14 @@
 					<label class="col-sm-3 control-label">拜访细节</label>
 					<div class="col-sm-7">
 						<select class='form-control' name='xijie'> 
+						  <option value='自主服务'>自主服务</option> 
 						  <option value='约访'>约访</option> 
 						  <option value='销售面谈'>销售面谈</option> 
 						  <option value='说明会'>说明会</option> 
 						  <option value='售后服务'>售后服务</option> 
 						  <option value='增员面谈'>增员面谈</option> 
 						  <option value='开拓准客户'>开拓准客户</option> 
+						  <option value='其他服务'>其他服务</option> 
 					    </select>
 					</div>
 

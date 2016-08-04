@@ -52,7 +52,7 @@
 				</div>
 
 				<%
-					if (userDetails.getLevel() >= 3) {
+					if (userDetails.getLevel() == 5||userDetails.getLevel() == 7) {
 				%>
 				<div class="btn-group">
 					<!-- 按钮需要权限控制，3级及以上 -->
@@ -71,9 +71,9 @@
 				%>
 				<div class="btn-group">
 					<!-- 按钮需要权限控制，普通业务员查询自己的-->
-					<a id="apiBtn" class="btn btn-primary"> <i class="fa"></i>
+					<!-- <a id="apiBtn" class="btn btn-primary"> <i class="fa"></i>
 						KPI统计查询
-					</a>
+					</a> -->
 				</div>
 				<div class="btn-group">
 					<a id="vtBtn" class="btn btn-primary"> </a>

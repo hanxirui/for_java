@@ -88,16 +88,17 @@ public class BizplatformController extends BsgridController<Bizplatform, Bizplat
 		List<String> times = entity.getTimes();
 		List<String> noons = entity.getNoons();
 		List<String> places = entity.getPlaces();
+		if (times != null && noons != null) {
+			for (int t_i = 0; t_i < times.size() && t_i < noons.size(); t_i++) {
+				if (!"".equals(times.get(t_i)) && !"".equals(noons.get(t_i))) {
+					BizRecord br = new BizRecord();
+					br.setBizplatId(entity.getId());
+					br.setBizplatTitle(entity.getTitle() + "(" + places.get(t_i) + "," + noons.get(t_i) + ")");
+					br.setRiqi(times.get(t_i));
+					bizRecordService.save(br);
+				}
 
-		for (int t_i = 0; t_i < times.size() && t_i < noons.size(); t_i++) {
-			if (!"".equals(times.get(t_i)) && !"".equals(noons.get(t_i))) {
-				BizRecord br = new BizRecord();
-				br.setBizplatId(entity.getId());
-				br.setBizplatTitle(entity.getTitle() + "(" + places.get(t_i) + "," + noons.get(t_i) + ")");
-				br.setRiqi(times.get(t_i));
-				bizRecordService.save(br);
 			}
-
 		}
 	}
 

@@ -43,7 +43,11 @@
 			            	<i class="fa"></i> 录入 
 			         	</a>
 			          </div> -->
-			          
+			          <div class="btn-group">
+			         	<a id="addServiceBtn" class="btn btn-primary">
+			            	<i class="fa"></i> 批量维护制式服务 
+			         	</a>
+			          </div>
 				</div><!-- /.box-header -->
 			
 				<div class="box-body">	 
@@ -175,7 +179,17 @@
 						</tr>
 					</table>
 			</div>
-				
+	<div class="box-body" id="bizWin">
+				<table id="bizTable">
+					<tr>
+					    <th w_check="true" w_index="id" width="3%;"></th> 
+						<th w_index="title">平台名称</th>
+						<th w_index="zhishibaifang" w_render="zhishiRender">制式拜访</th>
+						<th w_index="startdate">开始时间</th>
+						<th w_index="enddate">结束时间</th>
+					</tr>
+				</table>
+			</div>				
 			<div id="kpiWin">
 			
 			         <div class="container-fluid">
@@ -224,7 +238,7 @@
 var that = this;
 
 var pk = 'id'; // java类中的主键字段
-var listUrl = ctx + 'listCustomerForVisit.do'; // 查询
+var listUrl = ctx + 'listCustomerForVisit.do?from=${from}'; // 查询
 var addUrl = ctx + 'addCustomerBasic.do'; // 添加
 var updateUrl = ctx + 'updateCustomerBasic.do'; // 修改
 var delUrl = ctx + 'delCustomerBasic.do'; // 删除
@@ -515,6 +529,70 @@ var cusWin = dialog({
 		$("#cusTable_pt_outTab").width($("#cusTable").width());
     }
 });
+
+var bizGridObj = $.fn.bsgrid.init('bizTable', {
+	url : ctx + 'listBizplatform.do',
+	pageSizeSelect : true,
+	rowHoverColor : true // 移动行变色
+	,
+	rowSelectedColor : false // 选择行不高亮
+	,
+	isProcessLockScreen : false // 加载数据不显示遮罩层
+	,
+	displayBlankRows : false,
+	pagingLittleToolbar : true
+});
+
+var bizWin = dialog({
+	title: '选择业务平台',
+	width:800,
+	content: document.getElementById('bizWin'),
+	okValue: '保存',
+	ok: function () {
+		
+		var name = bizGridObj.getCheckedValues('name');
+		if(name.length!=1){
+			alert("请选择一个业务平台.");
+			return false;
+		}
+		
+		if($("#winFrom").val()=="empname"){
+			$('#empcode').val(bizGridObj.getCheckedValues('code'));
+			$('#empname').val(bizGridObj.getCheckedValues('name'));
+		}else{
+			
+			var cardnums = gridObj.getCheckedValues('id');
+			if(cardnums.length<1){
+				alert("请至少选择一个客户.");
+				return false;
+			}
+			
+			var _cardnums=new Array()
+			
+			$.each(cardnums, function(i, n){
+				_cardnums[i]=n;
+				});
+			
+			 Action.post(ctx + 'batchAddServiceRecord.do?cusIds='+_cardnums+"&platId="+bizGridObj.getCheckedValues('id'), null, function(result) {
+				if(result=="success"){
+				    gridObj.refreshPage();
+				}else{
+					alert(result);
+				}
+			}); 
+	    }
+		this.close();
+		return false;
+	},
+	cancelValue: '取消',
+	cancel: function () {
+		this.close();
+		return false;
+	},
+	onshow: function () {
+		$("#bizTable_pt_outTab").width($("#bizTable").width());
+    }
+});
 var roleRender = function(record, rowIndex, colIndex, options){
 	var roleName;
 	$.each(roleList, function (i, item) {
@@ -584,6 +662,25 @@ $.getJSON("${ctx}getCustomerCountByVisit.do", {'count':3}, function (result) {
 	$("#vsBtn").append("<i class='fa'></i>三访及以上客户数量："+result+"位");
 });
   
+  
+ var zhishiRender = function(record, rowIndex, colIndex, options) {
+	if (record.zhishibaifang == 0) {
+		return "是";
+	} else {
+		return "否";
+	}
+
+}
+ 
+ $("#addServiceBtn").click(function(){
+		var cardnums = gridObj.getCheckedValues('idcardnum');
+		if(cardnums.length<1){
+			alert("请至少选择一个客户.");
+			return false;
+		}
+		$("#winFrom").val("fenpei");
+		bizWin.showModal();
+	})
 validator = $crudFrm.validate();
 </script>
 

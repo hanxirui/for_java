@@ -1,6 +1,7 @@
 package com.chinal.emp.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,6 +39,11 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 	@RequestMapping("/openEmployee.do")
 	public String openEmployee() {
 		return "employee";
+	}
+
+	@RequestMapping("/openOrgchart.do")
+	public String openOrgchart() {
+		return "orgchart";
 	}
 
 	@RequestMapping("checkPassword.do")
@@ -196,6 +202,41 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 	@RequestMapping("/delEmployee.do")
 	public ModelAndView delEmployee(Employee entity) {
 		return this.remove(entity);
+	}
+
+	@RequestMapping("/genOrgChart.do")
+	public ModelAndView genOrgChart() {
+		ExpressionQuery query = new ExpressionQuery();
+		query.addValueExpression(new ValueExpression("t.managercode", "=", "0"));
+		query.addValueExpression(new ValueExpression("t.code", "!=", "admin"));
+		List<Employee> topManagers = this.getService().findSimple(query);
+
+		StringBuffer orgchart = new StringBuffer();
+		if (topManagers != null && topManagers.size() > 0) {
+
+			for (Employee t_employee : topManagers) {
+				orgchart.append("<li>").append(t_employee.getName());
+				subOrgChart(t_employee, orgchart);
+				orgchart.append("</li>");
+			}
+		}
+		return this.render(orgchart);
+	}
+
+	private void subOrgChart(Employee manager, StringBuffer suborgchart) {
+		ExpressionQuery query = new ExpressionQuery();
+		query.addValueExpression(new ValueExpression("t.managercode", "=", manager.getCode()));
+		query.addValueExpression(new ValueExpression("t.code", "!=", "admin"));
+		List<Employee> topManagers = this.getService().findSimple(query);
+		if (topManagers != null && topManagers.size() > 0) {
+			suborgchart.append("<ul>");
+			for (Employee t_employee : topManagers) {
+				suborgchart.append("<li>").append(t_employee.getName());
+				subOrgChart(t_employee, suborgchart);
+				suborgchart.append("</li>");
+			}
+			suborgchart.append("</ul>");
+		}
 	}
 
 	public static void main(String[] args) {

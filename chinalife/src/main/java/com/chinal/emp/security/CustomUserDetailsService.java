@@ -101,7 +101,7 @@ public class CustomUserDetailsService extends CrudService<Employee, EmployeeDao>
 			authList.add(new SimpleGrantedAuthority("ROLE_2"));
 			authList.add(new SimpleGrantedAuthority("ROLE_1"));
 		}
-		if (access.compareTo(5) == 0) {
+		if (access >= 5) {
 			authList.add(new SimpleGrantedAuthority("ROLE_5"));
 			authList.add(new SimpleGrantedAuthority("ROLE_4"));
 			authList.add(new SimpleGrantedAuthority("ROLE_3"));

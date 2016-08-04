@@ -110,10 +110,14 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 	}
 
 	@RequestMapping("/openCustomerForVisit.do")
-	public String openCustomerForVisit() {
-		return "customerForVisit";
+	public ModelAndView openCustomerForVisit(String from) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("from", from);
+		mv.setViewName("customerForVisit");
+		return mv;
 	}
 
+	@Deprecated
 	@RequestMapping("/listCustomerForService.do")
 	public ModelAndView listCustomerForService(CustomerBasicSch searchEntity, String from) {
 		ExpressionQuery query = genCustomerQuery(searchEntity);
@@ -145,10 +149,32 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 	}
 
 	@RequestMapping("/listCustomerForVisit.do")
-	public ModelAndView listCustomerForVisit(CustomerBasicSch searchEntity) {
-		ExpressionQuery cusquery = genCustomerQuery(searchEntity);
+	public ModelAndView listCustomerForVisit(CustomerBasicSch searchEntity, String from) {
+		ExpressionQuery query = genCustomerQuery(searchEntity);
+
+		// 生日提醒客户
+		if (null != from && "b".equals(from)) {
+			query.addSqlExpression(new SqlExpression(
+					"DAYOFYEAR(t.birthday)  >= DAYOFYEAR(NOW())  and DAYOFYEAR(t.birthday)  <= (DAYOFYEAR(NOW())+7)"));
+		}
+
+		// 制式服务未录客户
+		else if (null != from && "s".equals(from)) {
+			ExpressionQuery bizQuery = new ExpressionQuery();
+			bizQuery.addValueExpression(new ValueExpression("t.orgcode", getOnlineUser().getEmployee().getOrgcode()));
+			bizQuery.addSqlExpression(new SqlExpression("t.startdate<'" + DateUtil.getShortFormatNow()
+					+ "' and t.enddate>'" + DateUtil.getShortFormatNow() + "'"));
+			List<Bizplatform> plats = bizplatformService.find(bizQuery);
+			// 找到登录人员所有的客户
+			if (plats != null && plats.size() > 0) {
+				query.addSqlExpression(new SqlExpression(
+						"t.idcardnum not in (select s.idcardnum from service_record s where s.content='"
+								+ plats.get(0).getTitle() + "')"));
+			}
+
+		}
 		// 返回查询结果
-		ModelAndView mv = this.list(cusquery);
+		ModelAndView mv = this.list(query);
 		return mv;
 	}
 

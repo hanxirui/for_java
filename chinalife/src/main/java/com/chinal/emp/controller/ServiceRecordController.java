@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.chinal.emp.entity.Bizplatform;
 import com.chinal.emp.entity.CustomerBasic;
 import com.chinal.emp.entity.ServiceRecord;
 import com.chinal.emp.entity.ServiceRecordSch;
@@ -19,7 +18,6 @@ import com.chinal.emp.security.AuthUser;
 import com.chinal.emp.service.BizplatformService;
 import com.chinal.emp.service.CustomerBasicService;
 import com.chinal.emp.service.ServiceRecordService;
-import com.chinal.emp.util.DateUtil;
 
 @Controller
 public class ServiceRecordController extends BsgridController<ServiceRecord, ServiceRecordService> {
@@ -59,31 +57,35 @@ public class ServiceRecordController extends BsgridController<ServiceRecord, Ser
 		return this.add(entity);
 	}
 
-	@RequestMapping("/batchAddServiceRecord.do")
-	public ModelAndView batchAddServiceRecord(String[] cusIds, String platId) {
-		SecurityContextImpl securityContextImpl = (SecurityContextImpl) request.getSession()
-				.getAttribute("SPRING_SECURITY_CONTEXT");
-		AuthUser onlineUser = (AuthUser) securityContextImpl.getAuthentication().getPrincipal();
-		if (cusIds != null && platId != null && cusIds.length > 0 && !"".equals(platId)) {
-			Bizplatform plat = bizplatformService.get(Integer.parseInt(platId));
-			for (String t_cusid : cusIds) {
-				CustomerBasic cus = customerBasicService.get(Integer.parseInt(t_cusid));
-
-				ServiceRecord entity = new ServiceRecord();
-				entity.setEmpcode(onlineUser.getEmployee().getCode());
-				entity.setEmpname(onlineUser.getEmployee().getName());
-				entity.setContent(plat.getTitle());
-				entity.setIdcardnum(cus.getIdcardnum());
-				entity.setName(cus.getName());
-				entity.setServicetime(DateUtil.getShortFormatNow());
-				entity.setType(plat.getZhishibaifang());
-
-				this.add(entity);
-			}
-		}
-
-		return this.render("success");
-	}
+	// @RequestMapping("/batchAddServiceRecord.do")
+	// public ModelAndView batchAddServiceRecord(String[] cusIds, String platId)
+	// {
+	// SecurityContextImpl securityContextImpl = (SecurityContextImpl)
+	// request.getSession()
+	// .getAttribute("SPRING_SECURITY_CONTEXT");
+	// AuthUser onlineUser = (AuthUser)
+	// securityContextImpl.getAuthentication().getPrincipal();
+	// if (cusIds != null && platId != null && cusIds.length > 0 &&
+	// !"".equals(platId)) {
+	// Bizplatform plat = bizplatformService.get(Integer.parseInt(platId));
+	// for (String t_cusid : cusIds) {
+	// CustomerBasic cus = customerBasicService.get(Integer.parseInt(t_cusid));
+	//
+	// ServiceRecord entity = new ServiceRecord();
+	// entity.setEmpcode(onlineUser.getEmployee().getCode());
+	// entity.setEmpname(onlineUser.getEmployee().getName());
+	// entity.setContent(plat.getTitle());
+	// entity.setIdcardnum(cus.getIdcardnum());
+	// entity.setName(cus.getName());
+	// entity.setServicetime(DateUtil.getShortFormatNow());
+	// entity.setType(plat.getZhishibaifang());
+	//
+	// this.add(entity);
+	// }
+	// }
+	//
+	// return this.render("success");
+	// }
 
 	@RequestMapping("/listServiceRecord.do")
 	public ModelAndView listServiceRecord(ServiceRecordSch searchEntity, String idcardnum) {

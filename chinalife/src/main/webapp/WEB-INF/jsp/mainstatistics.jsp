@@ -37,8 +37,10 @@
 				</div><!-- /.box-header -->
 			
 				<div class="box-body">	 
-					近期有<a href="openCustomerForService.do?from=b">${birthCount}</a>位客户生日服务未录<br>
-					近期有<a href="openCustomerForService.do?from=s">${unService}</a>位客户制式服务未录<br>
+					共有<a href="openCustomerForVisit.do?from=b">${birthCount}</a>位客户生日服务未录<br>
+					共有<a href="openCustomerForVisit.do?from=s">${unService}</a>位客户制式服务未录<br>
+					共有<a href="openCustomerForVisit.do?from=s">${unService}</a>位客户3个月没有开单<br>
+					共有<a href="openCustomerForVisit.do?from=s">${unService}</a>位客户6个月没有开单<br>
 				</div><!-- /.box-body -->
 			</div>
 		    

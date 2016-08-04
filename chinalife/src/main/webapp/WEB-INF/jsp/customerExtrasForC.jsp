@@ -19,7 +19,7 @@
        <ul class="nav nav-pills">
 		  <li role="presentation"  class="active"><a href="${ctx}openCustomerForC.do?id=${customer.id}">详情</a></li>
 		  <li role="presentation"><a href="${ctx}openInsuranceForC.do?id=${customer.id}">保单记录</a></li>
-		  <li role="presentation"><a href="${ctx}openServiceRecordForC.do?id=${customer.id}">服务记录</a></li>
+		  <%-- <li role="presentation"><a href="${ctx}openServiceRecordForC.do?id=${customer.id}">服务记录</a></li> --%>
 		  <li role="presentation"><a href="${ctx}openSitRecordForC.do?id=${customer.id}">拜访记录</a></li>
 		  <li>
                 <a href="${ctx}openCustomerBasic.do"><i class="fa fa-reply"></i>返回</a>
