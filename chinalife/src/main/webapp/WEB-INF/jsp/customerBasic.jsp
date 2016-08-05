@@ -293,7 +293,7 @@
 			var that = this;
 
 			var pk = 'id'; // java类中的主键字段
-			var listUrl = ctx + 'listCustomerBasic.do'; // 查询
+			var listUrl = ctx + 'listCustomerBasic.do?from=${from}'; // 查询
 			var addUrl = ctx + 'addCustomerBasic.do'; // 添加
 			var updateUrl = ctx + 'updateCustomerBasic.do'; // 修改
 			var delUrl = ctx + 'delCustomerBasic.do'; // 删除

@@ -78,33 +78,11 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 	private FenpeilishiService fenpeilishiService;
 
 	@RequestMapping("/openCustomerBasic.do")
-	public String openCustomerBasic() {
-		logger.debug("Received request to show common page");
-
-		SecurityContextImpl securityContextImpl = (SecurityContextImpl) request.getSession()
-				.getAttribute("SPRING_SECURITY_CONTEXT");
-		AuthUser onlineUser = (AuthUser) securityContextImpl.getAuthentication().getPrincipal();
-		// 登录名
-		// System.out.println("Username:" +
-		// securityContextImpl.getAuthentication().getName());
-		// 登录密码，未加密的
-		// System.out.println("Credentials:" +
-		// securityContextImpl.getAuthentication().getCredentials());
-		// WebAuthenticationDetails details = (WebAuthenticationDetails)
-		// securityContextImpl.getAuthentication()
-		// .getDetails();
-		// 获得访问地址
-		// System.out.println("RemoteAddress:" + details.getRemoteAddress());
-		// 获得sessionid
-		// System.out.println("SessionId:" + details.getSessionId());
-		// 获得当前用户所拥有的权限
-		// List<GrantedAuthority> authorities = (List<GrantedAuthority>)
-		// securityContextImpl.getAuthentication()
-		// .getAuthorities();
-		// for (GrantedAuthority grantedAuthority : authorities) {
-		// System.out.println("Authority:" + grantedAuthority.getAuthority());
-		// }
-		return "customerBasic";
+	public ModelAndView openCustomerBasic(String from) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("from", from);
+		mv.setViewName("customerBasic");
+		return mv;
 	}
 
 	@RequestMapping("/openCustomerForService.do")
@@ -191,8 +169,17 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 	}
 
 	@RequestMapping("/listCustomerBasic.do")
-	public ModelAndView listCustomerBasic(CustomerBasicSch searchEntity) {
+	public ModelAndView listCustomerBasic(CustomerBasicSch searchEntity, String from) {
 		ExpressionQuery cusquery = genCustomerQuery(searchEntity);
+		if (null != from) {
+			if ("three".equals(from)) {
+				cusquery.addSqlExpression(new SqlExpression(
+						"(select count(*) from insurance_record where toubaoriqi<DATE_SUB(NOW(),INTERVAL 3 month)  and toubaorenshenfenzhenghao=t.idcardnum) =0"));
+			} else if ("six".equals(from)) {
+				cusquery.addSqlExpression(new SqlExpression(
+						"(select count(*) from insurance_record where toubaoriqi<DATE_SUB(NOW(),INTERVAL 6 month)  and toubaorenshenfenzhenghao=t.idcardnum) =0"));
+			}
+		}
 		// 返回查询结果
 		ModelAndView mv = this.list(cusquery);
 		return mv;
@@ -267,52 +254,7 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 
 	@RequestMapping("/getCustomerCountByVisit.do")
 	public ModelAndView getCustomerCountByVisit(int count) {
-		// SecurityContextImpl securityContextImpl = (SecurityContextImpl)
-		// getRequest().getSession()
-		// .getAttribute("SPRING_SECURITY_CONTEXT");
-		//
-		// AuthUser onlineUser = (AuthUser)
-		// securityContextImpl.getAuthentication().getPrincipal();
-		//
-		// ç empquery = new ExpressionQuery();
-		// ExpressionQuery cusquery = new ExpressionQuery();
-		// // 不同的级别，查询的用户数量不一样
-		//
-		// // 四级，五级查询全部
-		// if (onlineUser.getLevel() == 5 || onlineUser.getLevel() == 4) {
-		//
-		// }
-		//
-		// // 二级，三级查询自己及下属的
-		// else if (onlineUser.getLevel() == 2 || onlineUser.getLevel() == 3) {
-		// String sql = "FIND_IN_SET(code, getChildList('" +
-		// onlineUser.getEmployee().getCode() + "'))";
-		//
-		// empquery.addSqlExpression(new SqlExpression(sql));
-		// List<Employee> emps = employeeService.findTree(empquery);
-		// if (emps.size() > 0) {
-		// StringBuffer empCodes = new StringBuffer();
-		// for (Employee t_employee : emps) {
-		// empCodes.append(",").append(t_employee.getCode());
-		// }
-		// String cussql = "FIND_IN_SET(t.empcode, '" +
-		// empCodes.toString().substring(1) + "')";
-		// cusquery.addSqlExpression(new SqlExpression(cussql));
-		// }
-		// }
-		//
-		// // 一级查询自己负责的
-		// else if (onlineUser.getLevel() == 1) {
-		// cusquery.add(new ValueExpression("t.kehujingli",
-		// onlineUser.getEmployee().getCode()));
-		// }
-		// if (count == 2) {
-		// cusquery.add(new ValueExpression("t.vcount", count));
-		// }
-		//
-		// else if (count == 3) {
-		// cusquery.add(new ValueExpression("t.vcount", count));
-		// }
+
 		CustomerBasicSch sch = new CustomerBasicSch();
 		sch.setVcount(count + "");
 		ExpressionQuery cusquery = genCustomerQuery(sch);
@@ -484,4 +426,79 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 		AuthUser onlineUser = (AuthUser) securityContextImpl.getAuthentication().getPrincipal();
 		return onlineUser;
 	}
+
+	// logger.debug("Received request to show common page");
+	//
+	// SecurityContextImpl securityContextImpl = (SecurityContextImpl)
+	// request.getSession()
+	// .getAttribute("SPRING_SECURITY_CONTEXT");
+	// AuthUser onlineUser = (AuthUser)
+	// securityContextImpl.getAuthentication().getPrincipal();
+	// 登录名
+	// System.out.println("Username:" +
+	// securityContextImpl.getAuthentication().getName());
+	// 登录密码，未加密的
+	// System.out.println("Credentials:" +
+	// securityContextImpl.getAuthentication().getCredentials());
+	// WebAuthenticationDetails details = (WebAuthenticationDetails)
+	// securityContextImpl.getAuthentication()
+	// .getDetails();
+	// 获得访问地址
+	// System.out.println("RemoteAddress:" + details.getRemoteAddress());
+	// 获得sessionid
+	// System.out.println("SessionId:" + details.getSessionId());
+	// 获得当前用户所拥有的权限
+	// List<GrantedAuthority> authorities = (List<GrantedAuthority>)
+	// securityContextImpl.getAuthentication()
+	// .getAuthorities();
+	// for (GrantedAuthority grantedAuthority : authorities) {
+	// System.out.println("Authority:" + grantedAuthority.getAuthority());
+	// }
+
+	// SecurityContextImpl securityContextImpl = (SecurityContextImpl)
+	// getRequest().getSession()
+	// .getAttribute("SPRING_SECURITY_CONTEXT");
+	//
+	// AuthUser onlineUser = (AuthUser)
+	// securityContextImpl.getAuthentication().getPrincipal();
+	//
+	// ç empquery = new ExpressionQuery();
+	// ExpressionQuery cusquery = new ExpressionQuery();
+	// // 不同的级别，查询的用户数量不一样
+	//
+	// // 四级，五级查询全部
+	// if (onlineUser.getLevel() == 5 || onlineUser.getLevel() == 4) {
+	//
+	// }
+	//
+	// // 二级，三级查询自己及下属的
+	// else if (onlineUser.getLevel() == 2 || onlineUser.getLevel() == 3) {
+	// String sql = "FIND_IN_SET(code, getChildList('" +
+	// onlineUser.getEmployee().getCode() + "'))";
+	//
+	// empquery.addSqlExpression(new SqlExpression(sql));
+	// List<Employee> emps = employeeService.findTree(empquery);
+	// if (emps.size() > 0) {
+	// StringBuffer empCodes = new StringBuffer();
+	// for (Employee t_employee : emps) {
+	// empCodes.append(",").append(t_employee.getCode());
+	// }
+	// String cussql = "FIND_IN_SET(t.empcode, '" +
+	// empCodes.toString().substring(1) + "')";
+	// cusquery.addSqlExpression(new SqlExpression(cussql));
+	// }
+	// }
+	//
+	// // 一级查询自己负责的
+	// else if (onlineUser.getLevel() == 1) {
+	// cusquery.add(new ValueExpression("t.kehujingli",
+	// onlineUser.getEmployee().getCode()));
+	// }
+	// if (count == 2) {
+	// cusquery.add(new ValueExpression("t.vcount", count));
+	// }
+	//
+	// else if (count == 3) {
+	// cusquery.add(new ValueExpression("t.vcount", count));
+	// }
 }

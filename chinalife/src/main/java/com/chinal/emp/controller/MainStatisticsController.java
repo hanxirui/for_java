@@ -57,6 +57,9 @@ public class MainStatisticsController extends BaseController {
 		String insurancePercent = "0.00";
 		Integer birthCount = 0;
 		Integer unService = 0;
+		Integer three = 0;
+		Integer six = 0;
+
 		if (count > 0) {
 			// 获得最近六个月的访问客户数
 			cusquery.addSqlExpression(new SqlExpression("t.visitTime  >= DATE_SUB(NOW(), INTERVAL 6 MONTH)"));
@@ -92,6 +95,15 @@ public class MainStatisticsController extends BaseController {
 				unService = customerBasicService.findTotalCount(cusquery);
 			}
 
+			cusquery = genCustomerQueryByPrincipal(onlineUser);
+			cusquery.addSqlExpression(new SqlExpression(
+					"(select count(*) from insurance_record where toubaoriqi<DATE_SUB(NOW(),INTERVAL 3 month)  and toubaorenshenfenzhenghao=t.idcardnum) =0"));
+			three = customerBasicService.findTotalCount(cusquery);
+			cusquery = genCustomerQueryByPrincipal(onlineUser);
+			cusquery.addSqlExpression(new SqlExpression(
+					"(select count(*) from insurance_record where toubaoriqi<DATE_SUB(NOW(),INTERVAL 6 month)  and toubaorenshenfenzhenghao=t.idcardnum) =0"));
+			six = customerBasicService.findTotalCount(cusquery);
+
 			//
 			// SELECT c.* from customer_basic c where c.idcardnum not in (select
 			// idcardnum from service_record s where s.content='基因检测') and
@@ -103,6 +115,8 @@ public class MainStatisticsController extends BaseController {
 		mv.addObject("visitPercent", visitPercent);
 		mv.addObject("birthCount", birthCount);
 		mv.addObject("unService", unService);
+		mv.addObject("six", six);
+		mv.addObject("three", three);
 		mv.addObject("insurancePercent", Double.parseDouble(insurancePercent) * 100);
 		mv.setViewName("mainstatistics");
 		return mv;

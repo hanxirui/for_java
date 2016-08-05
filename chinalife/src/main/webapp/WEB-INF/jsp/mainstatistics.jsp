@@ -39,8 +39,8 @@
 				<div class="box-body">	 
 					共有<a href="openCustomerForVisit.do?from=b">${birthCount}</a>位客户生日服务未录<br>
 					共有<a href="openCustomerForVisit.do?from=s">${unService}</a>位客户制式服务未录<br>
-					共有<a href="openCustomerForVisit.do?from=s">${unService}</a>位客户3个月没有开单<br>
-					共有<a href="openCustomerForVisit.do?from=s">${unService}</a>位客户6个月没有开单<br>
+					共有<a href="openCustomerBasic.do?from=three">${three}</a>位客户3个月没有开单<br>
+					共有<a href="openCustomerBasic.do?from=six">${six}</a>位客户6个月没有开单<br>
 				</div><!-- /.box-body -->
 			</div>
 		    
