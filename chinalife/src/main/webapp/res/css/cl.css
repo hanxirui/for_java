@@ -2265,7 +2265,6 @@ input.input_none.edited{ background:url(../images/comm/ico/edited.png) right top
 
 
 /*--4 icon--*/
-.icon { width: 16px; height: 16px; display: inline-block; background: url(../images/comm/ico/icon.png) 0 0 no-repeat; cursor: pointer;  margin:0px 2px; overflow: hidden; vertical-align: middle; }
 .icon_discursor { cursor: default;}
 .icon_disabled { background-position: 0 0; }
 .icon_enable { background-position: 0 -16px; }
@@ -2660,7 +2659,6 @@ ul.subsetul a.virtual09{background-position: 15px -1272px }
 .ico-chart	{ background-position:-120px -300px;}
 .ico-table	{ background-position:-90px -300px;}
 .ico-popup	{ background-position:-150px -300px;}
-.ico-narrow	{ background: url(../images/comm/ico/icon.png) 0 -992px no-repeat;}
 .ico-pie    { background-position:-180px -300px;}
 .ico-piepic  { background-position:-210px -300px;}
 .ico-brand   { background-position:-240px -300px;}

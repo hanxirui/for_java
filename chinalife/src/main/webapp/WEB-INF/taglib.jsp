@@ -32,19 +32,32 @@
 <link rel="stylesheet"
 	href="${AdminLTE}plugins/font-awesome/css/font-awesome.min.css">
 <!-- Ionicons -->
-<link rel="stylesheet" href="${res}css/ionicons.min.css">
+<%-- <link rel="stylesheet" href="${AdminLTE}plugins/ionicons/css/ionicons.min.css"> --%>
 <!-- Theme style -->
 <link rel="stylesheet" href="${AdminLTE}dist/css/AdminLTE.min.css">
+<link rel="stylesheet" href="${AdminLTE}dist/css/skins/_all-skins.min.css">
 <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
     -->
-<link rel="stylesheet" href="${AdminLTE}dist/css/skins/skin-blue-light.min.css">
+<!-- iCheck -->
+<link rel="stylesheet" href="${AdminLTE}plugins/iCheck/flat/blue.css">
+<!-- Morris chart -->
+<link rel="stylesheet" href="${AdminLTE}plugins/morris/morris.css">
+<!-- jvectormap -->
+<link rel="stylesheet" href="${AdminLTE}plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+<!-- Date Picker -->
+<link rel="stylesheet" href="${AdminLTE}plugins/datepicker/datepicker3.css">
+<!-- Daterange picker -->
+<link rel="stylesheet" href="${AdminLTE}plugins/daterangepicker/daterangepicker.css">
+<!-- bootstrap wysihtml5 - text editor -->
+<%-- <link rel="stylesheet" href="${AdminLTE}plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"> --%>
+<%-- <link rel="stylesheet" href="${AdminLTE}dist/css/skins/skin-blue-light.min.css"> --%>
 
 
 <%-- <script src="${AdminLTE}plugins/jQuery/jquery.min.js"></script> --%>
 
-<script src="${res}js/jquery-3.0.0.js" type="text/javascript"></script>
+<script src="${res}js/jquery-1.12.4.js" type="text/javascript"></script>
 <script src="${res}js/lodash.js" type="text/javascript"></script>
 <script src="${res}echart/echarts.min.js" type="text/javascript"></script>
 <script src="${res}js/common.js" type="text/javascript"></script>

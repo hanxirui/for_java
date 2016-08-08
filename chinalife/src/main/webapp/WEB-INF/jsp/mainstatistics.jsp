@@ -14,15 +14,78 @@
 
         <!-- Main content -->
         <section class="content">
+          <div class="box">
+           <div class="box-body">	 
+           <!-- Small boxes (Stat box) -->
+		      <div class="row">
+		        <div class="col-lg-3 col-xs-6">
+		          <!-- small box -->
+		          <div class="small-box bg-aqua">
+		            <div class="inner">
+		              <h3>${cusNum}</h3>
+		
+		              <p>客户总量</p>
+		            </div>
+		            <div class="icon">
+		              <i class="ion ion-bag"></i>
+		            </div>
+		          </div>
+		        </div>
+		        <!-- ./col -->
+		        <div class="col-lg-3 col-xs-6">
+		          <!-- small box -->
+		          <div class="small-box bg-green">
+		            <div class="inner">
+		              <h3>${visitPercent}<sup style="font-size: 20px">%</sup></h3>
+		
+		              <p>近六个月客户拜访覆盖率</p>
+		            </div>
+		            <div class="icon">
+		              <i class="ion ion-stats-bars"></i>
+		            </div>
+		          </div>
+		        </div>
+		        <!-- ./col -->
+		        <div class="col-lg-3 col-xs-6">
+		          <!-- small box -->
+		          <div class="small-box bg-yellow">
+		            <div class="inner">
+		              <h3>${insurancePercent}<sup style="font-size: 20px">%</sup></h3>
+		
+		              <p>客户开单率</p>
+		            </div>
+		            <div class="icon">
+		              <i class="ion ion-person-add"></i>
+		            </div>
+		          </div>
+		        </div>
+		        <!-- ./col -->
+		        <!-- <div class="col-lg-3 col-xs-6">
+		          small box
+		          <div class="small-box bg-red">
+		            <div class="inner">
+		              <h3></h3>
+		
+		              <p></p>
+		            </div>
+		            <div class="icon">
+		              <i class="ion ion-pie-graph"></i>
+		            </div>
+		            <a href="#" class="small-box-footer"> <i class="fa fa-arrow-circle-right"></i></a>
+		          </div>
+		        </div> -->
+		        <!-- ./col -->
+		      </div>
+		      <!-- /.row -->
 
-          <!-- Your Page Content Here -->
+       <%--    <!-- Your Page Content Here -->
           <div class="box box-default">
                <div class="box-body">
                 客户总量：${cusNum}
                </div><!-- /.box-body -->
-           </div>
+           </div> --%>
            
-          <div class="box">
+         <%--  <div class="box">
 				<div class="box-header">
 					 <p>近六个月客户拜访覆盖率：${visitPercent}%</p>
 				</div><!-- /.box-header -->
@@ -30,6 +93,8 @@
 				<div class="box-body">	 
 					客户开单率：${insurancePercent}%
 				</div><!-- /.box-body -->
+			</div> --%>
+			</div>
 			</div>
 			 <div class="box" style="height:350px">
 				<div class="box-header">
@@ -37,10 +102,74 @@
 				</div><!-- /.box-header -->
 			
 				<div class="box-body">	 
-					共有<a href="openCustomerForVisit.do?from=b">${birthCount}</a>位客户生日服务未录<br>
+				     <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-purple">
+            <div class="inner">
+              <h3>${birthCount}</h3>
+
+              <p>客户生日服务未录</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a href="openCustomerForVisit.do?from=b" class="small-box-footer">详情<i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-olive">
+            <div class="inner">
+              <h3>${unService}<sup style="font-size: 20px"></sup></h3>
+
+              <p>客户制式服务未录</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="openCustomerForVisit.do?from=s" class="small-box-footer">详情<i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>${three}</h3>
+
+              <p>客户3个月没有开单</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="openCustomerBasic.do?from=three" class="small-box-footer">详情<i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-orange">
+            <div class="inner">
+              <h3>${six}</h3>
+
+              <p>客户6个月没有开单</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="openCustomerBasic.do?from=six" class="small-box-footer">详情<i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+      <!-- /.row -->
+					<%-- 共有<a href="openCustomerForVisit.do?from=b">${birthCount}</a>位客户生日服务未录<br>
 					共有<a href="openCustomerForVisit.do?from=s">${unService}</a>位客户制式服务未录<br>
 					共有<a href="openCustomerBasic.do?from=three">${three}</a>位客户3个月没有开单<br>
-					共有<a href="openCustomerBasic.do?from=six">${six}</a>位客户6个月没有开单<br>
+					共有<a href="openCustomerBasic.do?from=six">${six}</a>位客户6个月没有开单<br> --%>
 				</div><!-- /.box-body -->
 			</div>
 		    

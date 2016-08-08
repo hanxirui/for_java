@@ -93,6 +93,14 @@
 		<result column="time" property="time" jdbcType="VARCHAR" />
 		<result column="value" property="value" jdbcType="VARCHAR" />
 	</resultMap>
+	
+	<resultMap id="queryAnalysisResult" type="com.chinal.emp.entity.AnalysisResultPojo">
+	    <result column="org" property="org" jdbcType="VARCHAR" />
+		<result column="time" property="time" jdbcType="VARCHAR" />
+	    <result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="baofei" property="baofei" jdbcType="VARCHAR" />
+		<result column="count" property="count" jdbcType="VARCHAR" />
+	</resultMap>
 
 	<select id="queryInsurTrendReport" parameterType="string"
 		resultMap="InsurTrendReportResult">
@@ -103,6 +111,31 @@
 		where toubaoriqi &gt;= #{param1,jdbcType=VARCHAR} and toubaoriqi &lt;=
 		#{param2,jdbcType=VARCHAR}
 		group by toubaoriqi order by toubaoriqi
+	</select>
+	
+	<select id="queryAnalysisReport" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryAnalysisResult">
+		
+		SELECT
+		toubaoriqi time
+		, count(baoxiandanhao) count
+		, sum(jibenbaofei) baofei
+		FROM insurance_record t
+		
+		<include refid="expressionBlock.where" />
+		group by t.toubaoriqi
+		<choose>
+			<when test="sortname == null">
+				ORDER BY t.id desc
+			</when>
+			<otherwise>
+				ORDER BY ${order}
+			</otherwise>
+		</choose>
+		<if test="!isQueryAll">
+			LIMIT
+			#{start,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+		</if>
 	</select>
 
 

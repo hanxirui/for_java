@@ -9,9 +9,10 @@
 
 <c:set var="ctx" value='<%=request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+request.getContextPath()+"/" %>'/>
 
-<body class="hold-transition skin-blue-light sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- <body class="hold-transition skin-blue-light sidebar-mini"> -->
     <div class="wrapper">
-
+ 
       <!-- Main Header -->
       <header class="main-header">
 
@@ -50,8 +51,8 @@
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
           <!-- Sidebar user panel -->
-          <div class="user-panel">
-              <div>你好,<span> <%=userDetails.getcName() %></div>
+          <div class="user-panel" style="height:50px;">
+               <p style="font-family:arial;color:white;font-size:14px;"><i class="fa fa-circle text-success"></i><%=userDetails.getcName() %>,<%=userDetails.getEmployee().getOrgname() %></p>
           </div>
           <!-- Sidebar Menu -->
           <ul class="sidebar-menu">
@@ -72,6 +73,7 @@
             <li <%="role".equals(am)?"class='active'":""%> <%=userDetails.getLevel()>=3?"":"style='display:none'" %>><a href="${ctx}openRole.do"><i class="fa fa-child"></i>职务管理</a></li>
             
            <%--  <li <%="report".equals(am)?"class='active'":""%> > <a href="${ctx}openReport.do"><i class="fa fa-trophy"></i>统计报表</a></li> --%>
+          <%--  <li <%="report".equals(am)?"class='active'":""%> > <a href="${ctx}openBaodanjinequshi.do"><i class="fa fa-trophy"></i>经营分析</a></li> --%>
             <li <%="bank".equals(am)?"class='active'":""%> <%=userDetails.getLevel()>=3?"":"style='display:none'" %>><a href="${ctx}openBankRecord.do"><i class="fa fa-trophy"></i>银行机构管理</a></li>
             <li <%="login".equals(am)?"class='active'":""%> <%=userDetails.getcName().equals("admin")?"":"style='display:none'" %>><a href="${ctx}openLoginrecord.do"><i class="fa fa-trophy"></i>登录日志</a></li>
           </ul><!-- /.sidebar-menu -->

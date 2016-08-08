@@ -52,7 +52,7 @@
 				</div>
 
 				<%
-					if (true||userDetails.getLevel() == 5||userDetails.getLevel() == 7) {
+					if (userDetails.getLevel() == 5||userDetails.getLevel() == 7) {
 				%>
 				<div class="btn-group">
 					<!-- 按钮需要权限控制，3级及以上 -->

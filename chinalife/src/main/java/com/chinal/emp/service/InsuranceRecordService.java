@@ -7,6 +7,7 @@ import org.durcframework.core.service.CrudService;
 import org.springframework.stereotype.Service;
 
 import com.chinal.emp.dao.InsuranceRecordDao;
+import com.chinal.emp.entity.AnalysisResultPojo;
 import com.chinal.emp.entity.InsuranceRecord;
 import com.chinal.emp.report.vo.InsurTrendReportVo;
 
@@ -27,5 +28,9 @@ public class InsuranceRecordService extends CrudService<InsuranceRecord, Insuran
 
 	public List<InsurTrendReportVo> queryInsurTrendReport(String startTime, String endTime) {
 		return this.getDao().queryInsurTrendReport(startTime, endTime);
+	}
+
+	public List<AnalysisResultPojo> queryAnalysisReport(ExpressionQuery query) {
+		return this.getDao().queryAnalysisReport(query);
 	}
 }
