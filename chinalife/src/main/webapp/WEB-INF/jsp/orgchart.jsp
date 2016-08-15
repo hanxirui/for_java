@@ -39,7 +39,7 @@
         <section class="content">
 
           <!-- Your Page Content Here -->
-          <div class="box box-default">
+          <div class="box box-default" style="height:570px">
                <div class="box-body">
                    <div id="chart" class="orgChart" style="overflow-x: auto;"></div>
                    

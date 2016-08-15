@@ -67,7 +67,7 @@
     
     <select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
 		resultType="java.lang.Integer">
-		SELECT count(*) FROM customer_basic t
+		SELECT count(idcardnum) FROM customer_basic t
 		<include refid="expressionBlock.where" />
     </select>
 

@@ -200,13 +200,13 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 
 	private void addCustomerBasic(InsuranceRecord insuranceRecord) {
 
-		CustomerBasic beibaoren = new CustomerBasic();
-		CustomerBasic shouyiren = new CustomerBasic();
+		// CustomerBasic beibaoren = new CustomerBasic();
+		// CustomerBasic shouyiren = new CustomerBasic();
 		insuranceRecord.setKaituoxindan("分配");
 		insuranceRecord.setTousujilu("未投诉");
 		String tb = insuranceRecord.getToubaorenshenfenzhenghao();
-		String bb = insuranceRecord.getBeibaoxianrenshenfenzhenghao();
-		String sy = insuranceRecord.getShouyirenshenfenzhenghao();
+		// String bb = insuranceRecord.getBeibaoxianrenshenfenzhenghao();
+		// String sy = insuranceRecord.getShouyirenshenfenzhenghao();
 		if (tb != null && !"".equals(tb)) {
 			CustomerBasic toubaoren = new CustomerBasic();
 			genToubanren(insuranceRecord, toubaoren);
@@ -265,7 +265,8 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 				} else {
 					// 新分配人员存在
 					// 如果客户经理和新分配人员相同
-					if (customer.getEmpcode().equals(insuranceRecord.getXinfenpeirenyuangonghao())) {
+					if (customer.getEmpcode() != null
+							&& customer.getEmpcode().equals(insuranceRecord.getXinfenpeirenyuangonghao())) {
 						// do nothing
 					} else {
 						// 客户经理和新分配人员不相同
@@ -277,56 +278,71 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 
 			}
 
-			ExpressionQuery insuranceQuery = new ExpressionQuery();
-			insuranceQuery
-					.addValueExpression(new ValueExpression("t.baoxiandanhao", insuranceRecord.getBaoxiandanhao()));
-			// 保单重复的处理逻辑
-			if (this.getService().find(insuranceQuery).size() == 0) {
-				this.add(insuranceRecord);
-			}
-		} else if (bb != null && !"".equals(bb) && !bb.equals(tb)) {
-			beibaoren.setName(insuranceRecord.getToubaorenxingming());
-			if (insuranceRecord.getBeibaoxianrenshenfenzhenghao() != null
-					&& insuranceRecord.getBeibaoxianrenshenfenzhenghao().length() == 18) {
-				beibaoren.setBirthday(insuranceRecord.getBeibaoxianrenshenfenzhenghao().substring(6, 14));
-			}
-			beibaoren.setSex(insuranceRecord.getBeibaoxianrenxingbie() != null
-					&& "男".equals(insuranceRecord.getBeibaoxianrenxingbie()) ? "1" : "0");
-			beibaoren.setAddr(insuranceRecord.getBeibaoxianrentongxundizhi());
-			beibaoren.setPhone(insuranceRecord.getBeibaoxianrenshoujihao());
-			beibaoren.setIdcardnum(insuranceRecord.getBeibaoxianrenshenfenzhenghao());
-			beibaoren.setOldorgcode(insuranceRecord.getJigouhao());
-			// beibaoren.setEmporgname(emporgname);
-			beibaoren.setEmpname(insuranceRecord.getYewuyuanxingming());
-			beibaoren.setEmpcode(insuranceRecord.getYewuyuandaima());
-			ExpressionQuery query = new ExpressionQuery();
-			query.addValueExpression(new ValueExpression("t.idcardnum", beibaoren.getIdcardnum()));
-			int count = customerBasicService.findTotalCount(query);
-			if (count == 0) {
-				customerBasicService.save(beibaoren);
-			}
-		} else if (sy != null && !"".equals(sy) && !sy.equals(tb) && !sy.equals(bb)) {
-			shouyiren.setName(insuranceRecord.getShouyirenxingming());
-			if (insuranceRecord.getShouyirenshenfenzhenghao() != null
-					&& insuranceRecord.getShouyirenshenfenzhenghao().length() == 18) {
-				shouyiren.setBirthday(insuranceRecord.getShouyirenshenfenzhenghao().substring(6, 14));
-			}
-			shouyiren.setSex(
-					insuranceRecord.getShouyirenxingbie() != null && "男".equals(insuranceRecord.getShouyirenxingbie())
-							? "1" : "0");
-			// shouyiren.setAddr(insuranceRecord.getShouyirentongxundizhi());
-			// shouyiren.setPhone(insuranceRecord.getShouyirenshoujihao());
-			shouyiren.setIdcardnum(insuranceRecord.getShouyirenshenfenzhenghao());
-			shouyiren.setOldorgcode(insuranceRecord.getJigouhao());
-			// shouyiren.setEmporgname(emporgname);
-			shouyiren.setEmpname(insuranceRecord.getYewuyuanxingming());
-			shouyiren.setEmpcode(insuranceRecord.getYewuyuandaima());
-			ExpressionQuery query = new ExpressionQuery();
-			query.addValueExpression(new ValueExpression("t.idcardnum", shouyiren.getIdcardnum()));
-			int count = customerBasicService.findTotalCount(query);
-			if (count == 0) {
-				customerBasicService.save(shouyiren);
-			}
+			// 被保险人加入客户
+			// if (bb != null && !"".equals(bb) && !bb.equals(tb)) {
+			// beibaoren.setName(insuranceRecord.getToubaorenxingming());
+			// if (insuranceRecord.getBeibaoxianrenshenfenzhenghao() != null
+			// && insuranceRecord.getBeibaoxianrenshenfenzhenghao().length() ==
+			// 18) {
+			// beibaoren.setBirthday(insuranceRecord.getBeibaoxianrenshenfenzhenghao().substring(6,
+			// 14));
+			// }
+			// beibaoren.setSex(insuranceRecord.getBeibaoxianrenxingbie() !=
+			// null
+			// && "男".equals(insuranceRecord.getBeibaoxianrenxingbie()) ? "1" :
+			// "0");
+			// beibaoren.setAddr(insuranceRecord.getBeibaoxianrentongxundizhi());
+			// beibaoren.setPhone(insuranceRecord.getBeibaoxianrenshoujihao());
+			// beibaoren.setIdcardnum(insuranceRecord.getBeibaoxianrenshenfenzhenghao());
+			// beibaoren.setOldorgcode(insuranceRecord.getJigouhao());
+			// // beibaoren.setEmporgname(emporgname);
+			// beibaoren.setEmpname(insuranceRecord.getYewuyuanxingming());
+			// beibaoren.setEmpcode(insuranceRecord.getYewuyuandaima());
+			// ExpressionQuery bbquery = new ExpressionQuery();
+			// bbquery.addValueExpression(new ValueExpression("t.idcardnum",
+			// beibaoren.getIdcardnum()));
+			// int count = customerBasicService.findTotalCount(bbquery);
+			// if (count == 0) {
+			// customerBasicService.save(beibaoren);
+			// }
+			// }
+
+			// 受益人加入客户
+			// if (sy != null && !"".equals(sy) && !sy.equals(tb) &&
+			// !sy.equals(bb)) {
+			// shouyiren.setName(insuranceRecord.getShouyirenxingming());
+			// if (insuranceRecord.getShouyirenshenfenzhenghao() != null
+			// && insuranceRecord.getShouyirenshenfenzhenghao().length() == 18)
+			// {
+			// shouyiren.setBirthday(insuranceRecord.getShouyirenshenfenzhenghao().substring(6,
+			// 14));
+			// }
+			// shouyiren.setSex(insuranceRecord.getShouyirenxingbie() != null
+			// && "男".equals(insuranceRecord.getShouyirenxingbie()) ? "1" :
+			// "0");
+			// // shouyiren.setAddr(insuranceRecord.getShouyirentongxundizhi());
+			// // shouyiren.setPhone(insuranceRecord.getShouyirenshoujihao());
+			// shouyiren.setIdcardnum(insuranceRecord.getShouyirenshenfenzhenghao());
+			// shouyiren.setOldorgcode(insuranceRecord.getJigouhao());
+			// // shouyiren.setEmporgname(emporgname);
+			// shouyiren.setEmpname(insuranceRecord.getYewuyuanxingming());
+			// shouyiren.setEmpcode(insuranceRecord.getYewuyuandaima());
+			// ExpressionQuery syquery = new ExpressionQuery();
+			// syquery.addValueExpression(new ValueExpression("t.idcardnum",
+			// shouyiren.getIdcardnum()));
+			// int count = customerBasicService.findTotalCount(syquery);
+			// if (count == 0) {
+			// customerBasicService.save(shouyiren);
+			// }
+			// }
+
+		}
+
+		ExpressionQuery insuranceQuery = new ExpressionQuery();
+		insuranceQuery.addValueExpression(new ValueExpression("t.baoxiandanhao", insuranceRecord.getBaoxiandanhao()));
+		// 保单重复的处理逻辑
+		if (this.getService().find(insuranceQuery).size() == 0) {
+			this.add(insuranceRecord);
 		}
 
 	}

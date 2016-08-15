@@ -136,6 +136,7 @@ public class MainStatisticsController extends BaseController {
 			String sql = "FIND_IN_SET(code, getChildList('" + onlineUser.getEmployee().getCode() + "'))";
 			ExpressionQuery empquery = new ExpressionQuery();
 			empquery.addSqlExpression(new SqlExpression(sql));
+			empquery.setQueryAll(true);
 			List<Employee> emps = employeeService.findTree(empquery);
 			if (emps.size() > 0) {
 				StringBuffer empCodes = new StringBuffer();
