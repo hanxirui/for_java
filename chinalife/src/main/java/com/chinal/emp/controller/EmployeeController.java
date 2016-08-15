@@ -95,16 +95,15 @@ public class EmployeeController extends BsgridController<Employee, EmployeeServi
 		AuthUser onlineUser = getAuthUser();
 
 		// 四级，五级查询自己部门的
-		query.addValueExpression(new ValueExpression("t.orgcode", onlineUser.getEmployee().getOrgcode()));
+		// （admin可以看到全部）
+		if (!onlineUser.getCode().equals("admin")) {
+			query.addValueExpression(new ValueExpression("t.orgcode", onlineUser.getEmployee().getOrgcode()));
+		}
 
 		// 三级查询自己及下属的
 		if (onlineUser.getLevel() == 3) {
 			String sql = "FIND_IN_SET(t.code, getChildList('" + onlineUser.getEmployee().getCode() + "'))";
 			query.addSqlExpression(new SqlExpression(sql));
-		}
-		// （admin可以看到全部）
-		if (onlineUser.getCode().equals("admin")) {
-			query = this.buildExpressionQuery(searchEntity);
 		}
 
 		if (searchEntity.getName() != null) {

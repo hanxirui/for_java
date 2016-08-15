@@ -198,11 +198,12 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 
 		}
 
-		// 二级，三级查询自己及下属的
-		else if (onlineUser.getLevel() == 2 || onlineUser.getLevel() == 3) {
+		// 三级查询自己及下属的
+		else if (onlineUser.getLevel() == 3) {
 			String sql = "FIND_IN_SET(code, getChildList('" + onlineUser.getEmployee().getCode() + "'))";
 
 			empquery.addSqlExpression(new SqlExpression(sql));
+			empquery.setQueryAll(true);
 			List<Employee> emps = employeeService.findTree(empquery);
 			if (emps.size() > 0) {
 				StringBuffer empCodes = new StringBuffer();
@@ -214,8 +215,8 @@ public class CustomerBasicController extends BsgridController<CustomerBasic, Cus
 			}
 		}
 
-		// 一级查询自己负责的
-		else if (onlineUser.getLevel() == 1) {
+		// 一级，二级，查询自己负责的
+		else if (onlineUser.getLevel() == 1 || onlineUser.getLevel() == 2) {
 			cusquery.add(new ValueExpression("t.empcode", onlineUser.getEmployee().getCode()));
 		}
 		if (searchEntity.getEmpname() != null && !"".equals(searchEntity.getEmpname())) {

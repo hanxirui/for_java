@@ -108,7 +108,9 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 			cus.setName(entity.getToubaorenxingming());
 			cus.setSex("男".equals(entity.getToubaorenxingbie()) ? "1" : "0");
 			cus.setIdcardnum(entity.getToubaorenshenfenzhenghao());
-			cus.setBirthday(entity.getToubaorenshenfenzhenghao().substring(6, 14));
+			if (entity.getToubaorenshenfenzhenghao() != null && entity.getToubaorenshenfenzhenghao().length() == 18) {
+				cus.setBirthday(entity.getToubaorenshenfenzhenghao().substring(6, 14));
+			}
 			cus.setAddr(entity.getToubaorentongxundizhi());
 			cus.setEmpcode(entity.getYewuyuandaima());
 			cus.setEmpname(entity.getYewuyuanxingming());
@@ -284,7 +286,10 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 			}
 		} else if (bb != null && !"".equals(bb) && !bb.equals(tb)) {
 			beibaoren.setName(insuranceRecord.getToubaorenxingming());
-			beibaoren.setBirthday(insuranceRecord.getBeibaoxianrenshenfenzhenghao().substring(6, 14));
+			if (insuranceRecord.getBeibaoxianrenshenfenzhenghao() != null
+					&& insuranceRecord.getBeibaoxianrenshenfenzhenghao().length() == 18) {
+				beibaoren.setBirthday(insuranceRecord.getBeibaoxianrenshenfenzhenghao().substring(6, 14));
+			}
 			beibaoren.setSex(insuranceRecord.getBeibaoxianrenxingbie() != null
 					&& "男".equals(insuranceRecord.getBeibaoxianrenxingbie()) ? "1" : "0");
 			beibaoren.setAddr(insuranceRecord.getBeibaoxianrentongxundizhi());
@@ -302,7 +307,10 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 			}
 		} else if (sy != null && !"".equals(sy) && !sy.equals(tb) && !sy.equals(bb)) {
 			shouyiren.setName(insuranceRecord.getShouyirenxingming());
-			shouyiren.setBirthday(insuranceRecord.getShouyirenshenfenzhenghao().substring(6, 14));
+			if (insuranceRecord.getShouyirenshenfenzhenghao() != null
+					&& insuranceRecord.getShouyirenshenfenzhenghao().length() == 18) {
+				shouyiren.setBirthday(insuranceRecord.getShouyirenshenfenzhenghao().substring(6, 14));
+			}
 			shouyiren.setSex(
 					insuranceRecord.getShouyirenxingbie() != null && "男".equals(insuranceRecord.getShouyirenxingbie())
 							? "1" : "0");
@@ -325,8 +333,10 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 
 	private void genToubanren(InsuranceRecord insuranceRecord, CustomerBasic toubaoren) {
 		toubaoren.setName(insuranceRecord.getToubaorenxingming());
-
-		toubaoren.setBirthday(insuranceRecord.getToubaorenshenfenzhenghao().substring(6, 14));
+		if (insuranceRecord.getToubaorenshenfenzhenghao() != null
+				&& insuranceRecord.getToubaorenshenfenzhenghao().length() == 18) {
+			toubaoren.setBirthday(insuranceRecord.getToubaorenshenfenzhenghao().substring(6, 14));
+		}
 		toubaoren.setSex(
 				insuranceRecord.getToubaorenxingbie() != null && "男".equals(insuranceRecord.getToubaorenxingbie()) ? "1"
 						: "0");

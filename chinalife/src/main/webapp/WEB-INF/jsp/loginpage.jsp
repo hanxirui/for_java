@@ -271,9 +271,9 @@ fieldset
 </head>
 
 <body>
-    <div class="error ${param.error == true ? '' : 'hide'}"> 
+    <%-- <div class="error ${param.error == true ? '' : 'hide'}"> 
      ${sessionScope.SPRING_SECURITY_LAST_EXCEPTION.message}  
-    </div> 
+    </div>  --%>
 <form id="login" action="${ctx}j_spring_security_check" method="post">
           <h1>中国人寿天津市分公司</h1>
           <h1>客户资源经营分析系统</h1>
@@ -288,4 +288,10 @@ fieldset
 
 
 </body>
+<script type="text/javascript">
+if(${param.error}){
+	alert('用户名或密码错误。');
+}
+
+</script>
 </html>

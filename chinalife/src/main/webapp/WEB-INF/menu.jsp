@@ -58,11 +58,11 @@
           <ul class="sidebar-menu">
             <!-- Optionally, you can add icons to the links -->
            <li <%="main".equals(am)?"class='active'":""%> ><a href="${ctx}openMainStatistics.do"><i class="fa fa-dashboard"></i> <span>统计分析</span></a></li>
-            <li <%="customer".equals(am)?"class='active'":""%> ><a href="${ctx}openCustomerBasic.do"><i class="fa fa-diamond"></i> <span>客户管理</span></a></li>
-            <li <%="insurance".equals(am)?"class='active'":""%>><a href="${ctx}openInsuranceRecord.do"><i class="fa fa-diamond"></i> <span>保单管理</span> </a></li>
+            <li <%="customer".equals(am)?"class='active'":""%> <%=userDetails.getLevel()==4?"style='display:none'":"" %>><a href="${ctx}openCustomerBasic.do"><i class="fa fa-diamond"></i> <span>客户管理</span></a></li>
+            <li <%="insurance".equals(am)?"class='active'":""%> <%=userDetails.getLevel()==4?"style='display:none'":"" %>><a href="${ctx}openInsuranceRecord.do"><i class="fa fa-diamond"></i> <span>保单管理</span> </a></li>
             <li <%="bizplat".equals(am)?"class='active'":""%>><a href="${ctx}openBizplatform.do"><i class="fa fa-diamond"></i> <span>业务平台</span> </a></li>
             <li <%="claim".equals(am)?"class='active'":""%>><a href="${ctx}openClaimRecord.do"><i class="fa fa-diamond"></i> <span>投诉及突发事件管理</span> </a></li>
-            <li <%="visit".equals(am)?"class='active'":""%>><a href="${ctx}openCustomerForVisit.do"><i class="fa fa-diamond"></i> <span>拜访管理</span> </a></li>
+            <li <%="visit".equals(am)?"class='active'":""%> <%=userDetails.getLevel()==4?"style='display:none'":"" %>><a href="${ctx}openCustomerForVisit.do"><i class="fa fa-diamond"></i> <span>拜访管理</span> </a></li>
             <%-- <li <%="service".equals(am)?"class='active'":""%>><a href="${ctx}openCustomerForService.do"><i class="fa fa-diamond"></i> <span>服务管理</span> </a></li> --%>
             <li <%="jixiao".equals(am)?"class='active'":""%>> <a href="${ctx}openGongzidan.do"><i class="fa fa-diamond"></i>绩效管理</a></li>
            
