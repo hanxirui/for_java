@@ -96,6 +96,7 @@
 						<th w_index="name" w_sort="name">客户姓名</th>
 						<th w_index="sex" w_render="sexRender">性别</th>
 						<th w_index="idcardnum">身份证号</th>
+						<th w_index="phone" w_sort="addr">电话号码</th>
 						<th w_index="addr" w_sort="addr">地址</th>
 						<th w_index="type" w_render="fromRender">初始来源</th>
 						<th w_index="leibie" w_render="leibieRender">类别</th>

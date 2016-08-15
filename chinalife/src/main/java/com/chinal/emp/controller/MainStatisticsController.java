@@ -132,7 +132,7 @@ public class MainStatisticsController extends BaseController {
 		}
 
 		// 二级，三级查询自己及下属的
-		if (onlineUser.getLevel() == 2 || onlineUser.getLevel() == 3) {
+		if (onlineUser.getLevel() == 3) {
 			String sql = "FIND_IN_SET(code, getChildList('" + onlineUser.getEmployee().getCode() + "'))";
 			ExpressionQuery empquery = new ExpressionQuery();
 			empquery.addSqlExpression(new SqlExpression(sql));
@@ -149,7 +149,7 @@ public class MainStatisticsController extends BaseController {
 		}
 
 		// 一级查询自己负责的
-		if (onlineUser.getLevel() == 1) {
+		if (onlineUser.getLevel() == 2 || onlineUser.getLevel() == 1) {
 			cusquery.add(new ValueExpression("t.empcode", onlineUser.getEmployee().getCode()));
 		}
 		return cusquery;

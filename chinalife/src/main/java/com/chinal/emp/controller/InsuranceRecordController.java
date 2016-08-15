@@ -129,28 +129,63 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 
 	@RequestMapping("/listInsuranceRecord.do")
 	public ModelAndView listInsuranceRecord(InsuranceRecordSch searchEntity, String idcardnum) {
+
+		ModelAndView result = null;
+
 		if (idcardnum != null && !"".equals(idcardnum)) {
 			searchEntity.setToubaorenshenfenzhenghao(idcardnum);
 		}
 		ExpressionQuery query = this.buildExpressionQuery(searchEntity);
 
 		// 根据登录人员信息，获得所有下属人员信息
-		ExpressionQuery t_query = genEmployeeQuery();
-		t_query.setLimit(Integer.MAX_VALUE);
-		List<Employee> employees = empService.findSimple(t_query);
-		StringBuffer empcardnum = new StringBuffer();
-		for (Employee employee : employees) {
-			empcardnum.append("," + employee.getCode());
+		ExpressionQuery t_query = new ExpressionQuery();
+		SecurityContextImpl securityContextImpl = (SecurityContextImpl) getRequest().getSession()
+				.getAttribute("SPRING_SECURITY_CONTEXT");
+
+		AuthUser onlineUser = (AuthUser) securityContextImpl.getAuthentication().getPrincipal();
+
+		// 不同的级别，查询的用户数量不一样
+
+		// 四级，五级查询全部
+		if (onlineUser.getLevel() > 4) {
+			result = this.list(query);
+		}
+		// 三级查询自己及下属的
+		else if (onlineUser.getLevel() == 3) {
+			String sql = "FIND_IN_SET(code, getChildList('" + onlineUser.getEmployee().getCode() + "'))";
+
+			ExpressionQuery tmpquery = new ExpressionQuery();
+			tmpquery.addSqlExpression(new SqlExpression(sql));
+			List<Employee> employees = empService.findTree(tmpquery);
+
+			StringBuffer empcardnum = new StringBuffer();
+			for (Employee employee : employees) {
+				empcardnum.append("," + employee.getCode());
+			}
+
+			query.addJoinExpression(
+					new LeftJoinExpression("customer_basic", "t2", "toubaorenshenfenzhenghao", "idcardnum"));
+
+			if (null != empcardnum && empcardnum.length() > 1) {
+				query.addSqlExpression(
+						new SqlExpression("FIND_IN_SET(t2.empcode , '" + empcardnum.toString().substring(1) + "')"));
+			}
+
+			result = this.list(query);
 		}
 
-		query.addJoinExpression(
-				new LeftJoinExpression("customer_basic", "t2", "toubaorenshenfenzhenghao", "idcardnum"));
+		// 二级，一级查询自己负责的
+		else if (onlineUser.getLevel() == 2 || onlineUser.getLevel() == 1) {
+			query.addJoinExpression(
+					new LeftJoinExpression("customer_basic", "t2", "toubaorenshenfenzhenghao", "idcardnum"));
 
-		if (null != empcardnum && empcardnum.length() > 1) {
 			query.addSqlExpression(
-					new SqlExpression("FIND_IN_SET(t2.empcode , '" + empcardnum.toString().substring(1) + "')"));
+					new SqlExpression("FIND_IN_SET(t2.empcode , '" + onlineUser.getEmployee().getCode() + "')"));
+
+			result = this.list(query);
 		}
-		return this.list(query);
+
+		return result;
 	}
 
 	@RequestMapping("/updateInsuranceRecord.do")
@@ -460,67 +495,6 @@ public class InsuranceRecordController extends BsgridController<InsuranceRecord,
 			this.getService().delById(ids[t_i]);
 		}
 		return this.successView();
-	}
-
-	private ExpressionQuery genEmployeeQuery() {
-		SecurityContextImpl securityContextImpl = (SecurityContextImpl) getRequest().getSession()
-				.getAttribute("SPRING_SECURITY_CONTEXT");
-
-		AuthUser onlineUser = (AuthUser) securityContextImpl.getAuthentication().getPrincipal();
-
-		ExpressionQuery empquery = new ExpressionQuery();
-		// 不同的级别，查询的用户数量不一样
-
-		// 四级，五级，三级查询全部
-		if (onlineUser.getLevel() == 5 || onlineUser.getLevel() == 4 || onlineUser.getLevel() == 3) {
-
-		}
-
-		// 二级，三级查询自己及下属的
-		// else if (onlineUser.getLevel() == 2 || onlineUser.getLevel() == 3) {
-		// String sql = "FIND_IN_SET(code, getChildList('" +
-		// onlineUser.getEmployee().getCode() + "'))";
-		//
-		// ExpressionQuery tmpquery = new ExpressionQuery();
-		// tmpquery.addSqlExpression(new SqlExpression(sql));
-		// List<Employee> emps = empService.findTree(tmpquery);
-		// if (emps.size() > 0) {
-		// StringBuffer empCodes = new StringBuffer();
-		// for (Employee t_employee : emps) {
-		// empCodes.append(",").append(t_employee.getCode());
-		// }
-		//
-		// String cussql = "FIND_IN_SET(t.code, '" +
-		// empCodes.toString().substring(1) + "')";
-		// empquery.addSqlExpression(new SqlExpression(cussql));
-		// }
-		// }
-
-		// 二级，一级查询自己负责的
-		else if (onlineUser.getLevel() == 2 || onlineUser.getLevel() == 1) {
-			empquery.add(new ValueExpression("t.code", onlineUser.getEmployee().getCode()));
-		}
-
-		return empquery;
-	}
-
-	public static void main(String[] args) {
-		for (int t_i = 0; t_i < 1914; t_i++) {
-			if (t_i < 10) {
-				System.out.println("12012319491010000" + t_i);
-			}
-			if (t_i >= 10 && t_i < 100) {
-				System.out.println("1201231949101000" + t_i);
-			}
-			if (t_i >= 100 && t_i < 1000) {
-				System.out.println("120123194910100" + t_i);
-			}
-			if (t_i >= 1000) {
-				System.out.println("12012319491010" + t_i);
-			}
-
-		}
-
 	}
 
 }
