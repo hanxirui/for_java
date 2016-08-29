@@ -1,4 +1,4 @@
-package com.riil.lightning.test;
+package com.stone.lightning.test;
 
 import org.junit.BeforeClass;
 import org.springframework.context.ApplicationContext;

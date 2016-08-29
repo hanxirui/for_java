@@ -41,12 +41,12 @@
 	
 	<!-- 类型别名 -->
 	<typeAliases>
-		<typeAlias alias="Page" type="com.riil.lightning.common.persistence.Page" /><!--分页  -->
+		<typeAlias alias="Page" type="com.stone.lightning.common.persistence.Page" /><!--分页  -->
 	</typeAliases>
 	
 	<!-- 插件配置 -->
 	<plugins>
-		<plugin interceptor="com.riil.lightning.common.persistence.interceptor.PaginationInterceptor" />
+		<plugin interceptor="com.stone.lightning.common.persistence.interceptor.PaginationInterceptor" />
     </plugins>
 	
 </configuration>

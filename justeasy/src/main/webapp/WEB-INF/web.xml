@@ -12,7 +12,7 @@
 		<param-value>classpath*:/spring-context*.xml</param-value>
 	</context-param>
 	<listener>
-		<listener-class>com.riil.lightning.sys.listener.WebContextListener</listener-class>
+		<listener-class>com.stone.lightning.sys.listener.WebContextListener</listener-class>
 	</listener>
 	<listener>
         <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>  
@@ -97,7 +97,7 @@
 	<!-- Validate code -->
 	<servlet>
 		<servlet-name>ValidateCodeServlet</servlet-name>
-		<servlet-class>com.riil.lightning.common.servlet.ValidateCodeServlet</servlet-class>
+		<servlet-class>com.stone.lightning.common.servlet.ValidateCodeServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ValidateCodeServlet</servlet-name>

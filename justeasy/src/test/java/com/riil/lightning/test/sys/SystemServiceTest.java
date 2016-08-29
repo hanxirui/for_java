@@ -1,16 +1,16 @@
-package com.riil.lightning.test.sys;
+package com.stone.lightning.test.sys;
 
 import java.util.Date;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.riil.lightning.common.utils.IdGen;
-import com.riil.lightning.sys.dao.LogDao;
-import com.riil.lightning.sys.entity.Log;
-import com.riil.lightning.sys.entity.User;
-import com.riil.lightning.sys.service.SystemServiceImpl;
-import com.riil.lightning.test.BaseTest;
+import com.stone.lightning.common.utils.IdGen;
+import com.stone.lightning.sys.dao.LogDao;
+import com.stone.lightning.sys.entity.Log;
+import com.stone.lightning.sys.entity.User;
+import com.stone.lightning.sys.service.SystemServiceImpl;
+import com.stone.lightning.test.BaseTest;
 
 public class SystemServiceTest extends BaseTest {
 

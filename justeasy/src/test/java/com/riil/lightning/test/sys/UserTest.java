@@ -1,4 +1,4 @@
-package com.riil.lightning.test.sys;
+package com.stone.lightning.test.sys;
 
 import java.util.Date;
 import java.util.List;
@@ -6,11 +6,11 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.riil.lightning.common.persistence.Page;
-import com.riil.lightning.sys.entity.User;
-import com.riil.lightning.sys.service.SystemServiceImpl;
-import com.riil.lightning.sys.service.UserServiceImpl;
-import com.riil.lightning.test.BaseTest;
+import com.stone.lightning.common.persistence.Page;
+import com.stone.lightning.sys.entity.User;
+import com.stone.lightning.sys.service.SystemServiceImpl;
+import com.stone.lightning.sys.service.UserServiceImpl;
+import com.stone.lightning.test.BaseTest;
 
 public class UserTest extends BaseTest {
 

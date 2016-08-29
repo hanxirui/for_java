@@ -24,9 +24,9 @@ if (Servlets.isAjaxRequest(request)) {
 else {
 %>
 <%@page import="org.slf4j.Logger,org.slf4j.LoggerFactory"%>
-<%@page import="com.riil.lightning.common.web.Servlets"%>
-<%@page import="com.riil.lightning.common.utils.Exceptions"%>
-<%@page import="com.riil.lightning.common.utils.StringUtils"%>
+<%@page import="com.stone.lightning.common.web.Servlets"%>
+<%@page import="com.stone.lightning.common.utils.Exceptions"%>
+<%@page import="com.stone.lightning.common.utils.StringUtils"%>
 <%@page contentType="text/html;charset=UTF-8" isErrorPage="true"%>
 <%@include file="/WEB-INF/views/include/taglib.jsp"%>
 <!DOCTYPE html>
