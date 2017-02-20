@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="permission.dao.RGroupDao">
+	<resultMap id="queryResultMap" type="permission.entity.RGroup">
+		<result column="group_id" property="groupId" jdbcType="INTEGER" />
+		<result column="group_name" property="groupName" jdbcType="VARCHAR" />
+		<result column="parent_id" property="parentId" jdbcType="INTEGER" />
+	</resultMap>
+
+	<select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT t.*
+		FROM r_group t
+		<include refid="expressionBlock.where" />
+		<choose>
+			<when test="sortname == null">
+				ORDER BY t.group_id asc
+			</when>
+			<otherwise>
+				ORDER BY ${order}
+			</otherwise>
+		</choose>
+		<if test="!isQueryAll">
+			LIMIT
+			#{start,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+		</if>
+	</select>
+
+
+	<select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM r_group t
+		<include refid="expressionBlock.where" />
+	</select>
+
+	<insert id="save" parameterType="permission.entity.RGroup"
+		keyProperty="groupId" keyColumn="group_id" useGeneratedKeys="true">
+		INSERT
+		INTO r_group
+		(
+		`group_name`
+		, `parent_id`
+		)
+		VALUES (
+		#{groupName,jdbcType=VARCHAR}
+		, #{parentId,jdbcType=INTEGER}
+
+		)
+	</insert>
+
+
+	<update id="update" parameterType="permission.entity.RGroup">
+		UPDATE r_group
+		SET
+		group_name=#{groupName,jdbcType=VARCHAR}
+		,
+		parent_id=#{parentId,jdbcType=INTEGER}
+		WHERE group_id =
+		#{groupId,jdbcType=INTEGER}
+	</update>
+
+	<select id="get" resultMap="queryResultMap" parameterType="permission.entity.RGroup">
+		SELECT t.*
+		FROM r_group t
+		WHERE group_id = #{groupId,jdbcType=INTEGER}
+	</select>
+
+	<delete id="del" parameterType="permission.entity.RGroup">
+		DELETE FROM r_group
+		WHERE group_id
+		= #{groupId,jdbcType=INTEGER}
+	</delete>
+
+
+</mapper>

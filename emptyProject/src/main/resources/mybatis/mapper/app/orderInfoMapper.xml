@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="app.dao.OrderInfoDao">
+	<resultMap id="queryResultMap" type="app.entity.OrderInfo">
+		<result column="order_id" property="orderId" jdbcType="INTEGER" />
+		<result column="city_name" property="cityName" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<!-- 根据条件查询记录 -->
+	<select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT t.order_id , t.city_name , t.mobile , t.address , t.create_date
+		FROM order_info t
+		<include refid="expressionBlock.where" />
+		<choose>
+			<when test="sortname == null">ORDER BY t.order_id desc</when>
+			<otherwise>ORDER BY ${order}</otherwise>
+		</choose>
+		<if test="!isQueryAll">LIMIT #{start,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+		</if>
+	</select>
+	<!-- 根据条件查询记录数 -->
+	<select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM order_info t
+		<include refid="expressionBlock.where" />
+	</select>
+	<!-- 保存,保存全部字段 -->
+	<insert id="save" parameterType="app.entity.OrderInfo"
+		keyProperty="orderId" keyColumn="order_id" useGeneratedKeys="true">INSERT
+		INTO order_info ( `city_name` , `mobile` , `address` , `create_date` )
+		VALUES ( #{cityName,jdbcType=VARCHAR} , #{mobile,jdbcType=VARCHAR} ,
+		#{address,jdbcType=VARCHAR} , #{createDate,jdbcType=TIMESTAMP} )
+	</insert>
+	<!-- 保存,保存不为NULL的字段 -->
+	<insert id="saveNotNull" parameterType="app.entity.OrderInfo"
+		keyProperty="orderId" keyColumn="order_id" useGeneratedKeys="true">
+		INSERT INTO order_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="cityName != null">`city_name`,</if>
+			<if test="mobile != null">`mobile`,</if>
+			<if test="address != null">`address`,</if>
+			<if test="createDate != null">`create_date`,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="cityName != null">#{cityName,jdbcType=VARCHAR},</if>
+			<if test="mobile != null">#{mobile,jdbcType=VARCHAR},</if>
+			<if test="address != null">#{address,jdbcType=VARCHAR},</if>
+			<if test="createDate != null">#{createDate,jdbcType=TIMESTAMP},</if>
+		</trim>
+	</insert>
+	<!-- 更新,更新全部字段 -->
+	<update id="update" parameterType="app.entity.OrderInfo">
+		UPDATE order_info
+		<set>city_name=#{cityName,jdbcType=VARCHAR},
+			mobile=#{mobile,jdbcType=VARCHAR},
+			address=#{address,jdbcType=VARCHAR},
+			create_date=#{createDate,jdbcType=TIMESTAMP},</set>
+		WHERE order_id = #{orderId,jdbcType=INTEGER}
+	</update>
+	<!-- 根据指定条件更新 -->
+	<update id="updateByExpression">
+		UPDATE order_info
+		<set>city_name=#{entity.cityName,jdbcType=VARCHAR},
+			mobile=#{entity.mobile,jdbcType=VARCHAR},
+			address=#{entity.address,jdbcType=VARCHAR},
+			create_date=#{entity.createDate,jdbcType=TIMESTAMP},</set>
+		<include refid="expressionBlock.updateWhere" />
+	</update>
+	<!-- 更新不为NULL的字段 -->
+	<update id="updateNotNull" parameterType="app.entity.OrderInfo">
+		UPDATE order_info
+		<set>
+			<if test="cityName != null">city_name=#{cityName,jdbcType=VARCHAR},</if>
+			<if test="mobile != null">mobile=#{mobile,jdbcType=VARCHAR},</if>
+			<if test="address != null">address=#{address,jdbcType=VARCHAR},</if>
+			<if test="createDate != null">create_date=#{createDate,jdbcType=TIMESTAMP},</if>
+		</set>
+		WHERE order_id = #{orderId,jdbcType=INTEGER}
+	</update>
+	<!-- 根据指定条件更新不为NULL的字段 -->
+	<update id="updateNotNullByExpression">
+		UPDATE order_info
+		<set>
+			<if test="entity.cityName != null">city_name=#{entity.cityName,jdbcType=VARCHAR},</if>
+			<if test="entity.mobile != null">mobile=#{entity.mobile,jdbcType=VARCHAR},</if>
+			<if test="entity.address != null">address=#{entity.address,jdbcType=VARCHAR},</if>
+			<if test="entity.createDate != null">create_date=#{entity.createDate,jdbcType=TIMESTAMP},</if>
+		</set>
+		<include refid="expressionBlock.updateWhere" />
+	</update>
+	<!-- 根据主键获取单条记录 -->
+	<select id="get" resultMap="queryResultMap" parameterType="app.entity.OrderInfo">SELECT
+		t.order_id , t.city_name , t.mobile , t.address , t.create_date FROM
+		order_info t WHERE order_id = #{orderId,jdbcType=INTEGER}</select>
+	<!-- 根据条件获取单条记录 -->
+	<select id="getByExpression" resultMap="queryResultMap"
+		parameterType="org.durcframework.core.expression.ExpressionQuery">
+		SELECT t.order_id , t.city_name , t.mobile , t.address , t.create_date
+		FROM order_info t
+		<include refid="expressionBlock.where" />
+	</select>
+	<!-- 根据主键删除记录 -->
+	<delete id="del" parameterType="app.entity.OrderInfo">DELETE FROM order_info WHERE
+		order_id = #{orderId,jdbcType=INTEGER}</delete>
+	<!-- 根据条件删除记录 -->
+	<delete id="delByExpression" parameterType="org.durcframework.core.expression.ExpressionQuery">
+		DELETE FROM order_info
+		<include refid="expressionBlock.where" />
+	</delete>
+</mapper>

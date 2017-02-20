@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="permission.dao.RDataPermissionDao">
+	<resultMap id="queryResultMap" type="permission.entity.RDataPermission">
+		<result column="dp_id" property="dpId" jdbcType="INTEGER" />
+		<result column="sr_id" property="srId" jdbcType="INTEGER" />
+		<result column="expression_type" property="expressionType"
+			jdbcType="TINYINT" />
+		<result column="column" property="column" jdbcType="VARCHAR" />
+		<result column="equal" property="equal" jdbcType="VARCHAR" />
+		<result column="value" property="value" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT t.*
+		FROM r_data_permission t
+		<include refid="expressionBlock.where" />
+		<choose>
+			<when test="sortname == null">
+				ORDER BY t.dp_id desc
+			</when>
+			<otherwise>
+				ORDER BY ${order}
+			</otherwise>
+		</choose>
+		<if test="!isQueryAll">
+			LIMIT
+			#{firstResult,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+		</if>
+	</select>
+
+
+	<select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM r_data_permission t
+		<include refid="expressionBlock.where" />
+	</select>
+
+	<insert id="save" parameterType="permission.entity.RDataPermission"
+		useGeneratedKeys="true" keyColumn="dp_id" keyProperty="dpId">
+		INSERT INTO r_data_permission
+		(
+		`sr_id`
+		,`expression_type`
+		, `column`
+		, `equal`
+		, `value`
+		, `remark`
+		)
+		VALUES (
+		#{srId,jdbcType=INTEGER}
+		, #{expressionType,jdbcType=TINYINT}
+		, #{column,jdbcType=VARCHAR}
+		,
+		#{equal,jdbcType=VARCHAR}
+		, #{value,jdbcType=VARCHAR}
+		,
+		#{remark,jdbcType=VARCHAR}
+
+		)
+	</insert>
+
+
+	<update id="update" parameterType="permission.entity.RDataPermission">
+		UPDATE r_data_permission
+		SET
+		sr_id = #{srId,jdbcType=INTEGER}
+		, expression_type=#{expressionType,jdbcType=TINYINT}
+		, `column`=#{column,jdbcType=VARCHAR}
+		, `equal`=#{equal,jdbcType=VARCHAR}
+		, `value`=#{value,jdbcType=VARCHAR}
+		, remark=#{remark,jdbcType=VARCHAR}
+		WHERE
+		dp_id = #{dpId,jdbcType=INTEGER}
+	</update>
+
+	<select id="get" resultMap="queryResultMap"
+		parameterType="permission.entity.RDataPermission">
+		SELECT t.*
+		FROM r_data_permission t
+		WHERE dp_id =
+		#{dpId,jdbcType=INTEGER}
+		LIMIT 0,1
+	</select>
+
+	<delete id="del" parameterType="permission.entity.RDataPermission">
+		DELETE FROM r_data_permission
+		WHERE dp_id = #{dpId,jdbcType=INTEGER}
+	</delete>
+
+</mapper>

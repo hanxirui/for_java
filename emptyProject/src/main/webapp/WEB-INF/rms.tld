@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib version="2.0" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd">
+
+	<description>RMS权限管理系统权限检查标签</description>
+	<display-name>RMS Tag</display-name>
+	<tlib-version>1.0</tlib-version>
+	<short-name>rms</short-name>
+	<uri>/rms</uri>
+
+	<tag>
+		<description>
+			权限检查,检查当前用户是否具有操作权限,如果有则显示标签中的内容.
+		</description>
+		<name>role</name>
+		<tag-class>permission.common.RmsRoleTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>
+				operateCode属性,表示操作代码
+			</description>
+			<name>operateCode</name>
+			<required>true</required>
+			<!-- rtexprvalue：属性值是否可以为request-time表达式，也就是类似于<%=…%>的表达式。 -->
+			<rtexprvalue>true</rtexprvalue>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+</taglib>

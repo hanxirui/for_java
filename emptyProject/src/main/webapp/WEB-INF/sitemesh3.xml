@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemesh>
+    <!-- 指明满足“*.do*”请求页面，将被“/decorator/main.jsp”所装饰 
+		    应该与springmvc的dispatcherServlet的url-pattern一致
+    -->
+    <mapping path="/permission/*.jsp*" decorator="/decorator/decorator.jsp" />
+    
+    <!-- 单独页面 -->
+    <mapping path="/main.jsp*" decorator="/decorator/decorator.jsp" />
+    <mapping path="/login.jsp*" decorator="/decorator/decorator.jsp" />
+    
+    <mapping path="/*_sd.jsp*" decorator="/decorator/static.jsp" />
+    
+</sitemesh>

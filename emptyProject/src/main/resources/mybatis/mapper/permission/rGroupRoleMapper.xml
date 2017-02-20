@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="permission.dao.RGroupRoleDao">
+	<resultMap id="queryResultMap" type="permission.entity.RGroupRole">
+		<result column="group_id" property="groupId" jdbcType="INTEGER" />
+		<result column="role_id" property="roleId" jdbcType="INTEGER" />
+		<result column="role_name" property="roleName" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT t.group_id,t.role_id,r.role_name
+		FROM r_group_role t
+		INNER JOIN r_role r ON t.role_id = r.role_id
+		<include refid="expressionBlock.where" />
+		<choose>
+			<when test="sortname == null">
+				ORDER BY t.group_id desc
+			</when>
+			<otherwise>
+				ORDER BY ${order}
+			</otherwise>
+		</choose>
+		<if test="!isQueryAll">
+			LIMIT
+			#{start,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+		</if>
+	</select>
+
+
+	<select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM r_group_role t
+		<include refid="expressionBlock.where" />
+	</select>
+
+	<insert id="save" parameterType="permission.entity.RGroupRole">
+		INSERT INTO r_group_role
+		(
+		`group_id`
+		, `role_id`
+		)
+		VALUES (
+		#{groupId,jdbcType=INTEGER}
+		, #{roleId,jdbcType=INTEGER}
+
+		)
+	</insert>
+
+	<delete id="delByRoleId" parameterType="int">
+		DELETE FROM r_group_role
+		WHERE role_id = #{roleId,jdbcType=INTEGER}
+	</delete>
+	
+	<select id="getRoleIdsByGroupId" parameterType="int" resultType="int">
+		SELECT role_id
+		FROM r_group_role
+		WHERE group_id=#{groupId,jdbcType=INTEGER}
+	</select>
+	
+</mapper>

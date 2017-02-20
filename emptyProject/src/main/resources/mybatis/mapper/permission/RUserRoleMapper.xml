@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="permission.dao.RUserRoleDao">
+	<resultMap id="queryResultMap" type="permission.entity.RUserRole">
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="role_id" property="roleId" jdbcType="INTEGER" />
+		<result column="role_type" property="roleType" jdbcType="TINYINT" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT t.user_id,t.role_id,t.role_type,u.username
+		FROM r_user_role t INNER JOIN r_user u ON t.user_id = u.user_id
+		<include refid="expressionBlock.where" />
+		<choose>
+			<when test="sortname == null">
+				ORDER BY t.role_id desc
+			</when>
+			<otherwise>
+				ORDER BY ${order}
+			</otherwise>
+		</choose>
+		<if test="!isQueryAll">
+			LIMIT
+			#{firstResult,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+		</if>
+	</select>
+
+
+	<select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM r_user_role t
+		INNER JOIN r_user u ON t.user_id = u.user_id
+		<include refid="expressionBlock.where" />
+	</select>
+
+	<insert id="save" parameterType="permission.entity.RUserRole">
+		INSERT INTO r_user_role
+		(
+		  user_id
+		, role_id
+		, role_type
+		)
+		VALUES (
+		  #{userId,jdbcType=VARCHAR}
+		, #{roleId,jdbcType=INTEGER}
+		, #{roleType,jdbcType=TINYINT}
+		)
+	</insert>
+
+	<select id="get" resultMap="queryResultMap" parameterType="java.io.Serializable">
+		SELECT t.user_id,t.role_id,t.role_type
+		FROM r_user_role t
+		WHERE 
+		t.role_id = #{roleId,jdbcType=INTEGER}
+		AND 
+		t.user_id = #{userId,jdbcType=VARCHAR}
+		
+	</select>
+
+	<delete id="del" parameterType="permission.entity.RUserRole">
+		DELETE FROM r_user_role
+		WHERE 
+		role_id = #{roleId,jdbcType=INTEGER}
+		AND 
+		user_id = #{userId,jdbcType=VARCHAR}
+	</delete>
+	
+	<delete id="delAllUserRole" parameterType="permission.entity.UserRoleParam">
+		DELETE FROM r_user_role
+		WHERE 
+		user_id = #{userId,jdbcType=VARCHAR}
+		AND role_type = #{roleType,jdbcType=TINYINT}
+	</delete>
+
+	<insert id="setUserRole" parameterType="permission.entity.UserRoleParam">
+		INSERT INTO r_user_role
+		(
+		user_id
+		, role_id
+		,role_type
+		)
+		VALUES 
+		<foreach collection="roleIds" item="roleId" separator=",">
+		(#{userId,jdbcType=INTEGER},#{roleId,jdbcType=INTEGER},#{roleType,jdbcType=TINYINT})
+		</foreach>
+	</insert>
+	
+	<delete id="delByRoleId" parameterType="int">
+		DELETE FROM r_user_role
+		WHERE role_id = #{roleId,jdbcType=INTEGER}
+	</delete>
+	
+	<!-- 根据条件删除记录 -->
+	<delete id="delByExpression" parameterType="org.durcframework.core.expression.ExpressionQuery">
+		DELETE FROM r_user_role 
+		<include refid="expressionBlock.where"/> 
+	</delete>
+	
+</mapper>

@@ -1,0 +1,73 @@
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="permission.dao.RGroupUserDao">
+	<resultMap id="queryResultMap" type="permission.entity.RGroupUser">
+		<result column="group_id" property="groupId" jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT t.group_id,t.user_id
+		,t2.username
+		FROM r_group_user t INNER JOIN r_user t2 ON t.user_id = t2.user_id
+		<include refid="expressionBlock.where" />
+		<choose>
+			<when test="sortname == null">
+				ORDER BY t.group_id desc
+			</when>
+			<otherwise>
+				ORDER BY ${order}
+			</otherwise>
+		</choose>
+		<if test="!isQueryAll">
+			LIMIT
+			#{start,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+		</if>
+	</select>
+
+
+	<select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(*) 
+		FROM r_group_user t INNER JOIN r_user t2 ON t.user_id = t2.user_id
+		<include refid="expressionBlock.where" />
+	</select>
+
+	<insert id="save" parameterType="permission.entity.RGroupUser">
+		INSERT INTO r_group_user
+		(
+		`group_id`
+		, `user_id`
+		)
+		VALUES (
+		#{groupId,jdbcType=INTEGER}
+		, #{userId,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<delete id="del" parameterType="permission.entity.RGroupUser">
+		DELETE FROM r_group_user
+		WHERE
+		group_id = #{groupId,jdbcType=INTEGER} AND user_id = #{userId,jdbcType=VARCHAR}
+	</delete>
+	
+	<insert id="addGroupUser" parameterType="permission.dao.AddGroupUserPojo">
+		INSERT INTO r_group_user
+		(
+		user_id
+		, group_id
+		)
+		VALUES 
+		<foreach collection="userIds" item="userId" separator=",">
+		(#{userId,jdbcType=VARCHAR},#{groupId,jdbcType=INTEGER})
+		</foreach>
+	</insert>
+	
+	<delete id="delByGroupId">
+		DELETE FROM r_group_user
+		WHERE
+		group_id = #{groupId,jdbcType=INTEGER}
+	</delete>
+
+</mapper>

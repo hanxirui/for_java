@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="permission.dao.RSysFunctionDao">
+	<resultMap id="queryResultMap" type="permission.entity.RSysFunction">
+		<result column="sf_id" property="sfId" jdbcType="INTEGER" />
+		<result column="sr_id" property="srId" jdbcType="INTEGER" />
+		<result column="operate_code" property="operateCode" jdbcType="VARCHAR" />
+		<result column="operate_name" property="operateName" jdbcType="VARCHAR" />
+		<result column="url" property="url" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT t.*
+		FROM r_sys_function t
+		<include refid="expressionBlock.where" />
+		<choose>
+			<when test="sortname == null">
+				ORDER BY t.sf_id desc
+			</when>
+			<otherwise>
+				ORDER BY ${order}
+			</otherwise>
+		</choose>
+		<if test="!isQueryAll">
+			LIMIT
+			#{firstResult,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+		</if>
+	</select>
+
+
+	<select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM r_sys_function t
+		<include refid="expressionBlock.where" />
+	</select>
+
+	<insert id="save" parameterType="permission.entity.RSysFunction"
+		keyProperty="sfId" keyColumn="sf_id" useGeneratedKeys="true">
+		INSERT INTO r_sys_function
+		(
+		 sr_id
+		, operate_code
+		, operate_name
+		, url
+		)
+		VALUES (
+		 #{srId,jdbcType=INTEGER}
+		,#{operateCode,jdbcType=VARCHAR}
+		, #{operateName,jdbcType=VARCHAR}
+		, #{url,jdbcType=VARCHAR}
+		)
+	</insert>
+
+
+	<update id="update" parameterType="permission.entity.RSysFunction">
+		UPDATE r_sys_function
+		SET
+		operate_name=#{operateName,jdbcType=VARCHAR}
+		WHERE sf_id = #{sfId,jdbcType=INTEGER}
+	</update>
+
+	<select id="get" resultMap="queryResultMap" parameterType="permission.entity.RSysFunction">
+		SELECT *
+		FROM r_sys_function
+		WHERE sf_id = #{sfId,jdbcType=INTEGER}
+		LIMIT 0,1
+	</select>
+
+	<delete id="del" parameterType="permission.entity.RSysFunction">
+		DELETE FROM r_sys_function
+		WHERE sf_id = #{sfId,jdbcType=INTEGER}
+	</delete>
+	
+	<!-- 获取用户权限的核心SQL
+		r_sys_function:系统功能表,系统功能=资源+操作
+		r_role_permission:角色权限表,存放[角色-系统功能]对应关系
+		r_user_role:用户角色表,存放用户具有哪些角色
+		
+		1. 子查询根据[角色权限表]和[用户角色表]过滤出用户的系统功能(主键sf_id)
+		2. 关联系统功能表
+	-->
+	<select id="findUserSysFunction" resultMap="queryResultMap" parameterType="int">
+		SELECT t.* 
+		FROM r_sys_function t
+		INNER JOIN 
+		(
+			SELECT DISTINCT rp.sf_id FROM r_role_permission rp INNER JOIN r_user_role ur ON rp.role_id = ur.role_id
+			WHERE ur.user_id = #{userId}
+		) tt ON t.sf_id = tt.sf_id
+	</select>
+	
+</mapper>

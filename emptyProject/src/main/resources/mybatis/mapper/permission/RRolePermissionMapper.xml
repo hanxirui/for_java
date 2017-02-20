@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="permission.dao.RRolePermissionDao">
+	<resultMap id="queryResultMap" type="permission.entity.RRolePermission">
+		<result column="role_id" property="roleId" jdbcType="INTEGER" />
+		<result column="sf_id" property="sfId" jdbcType="INTEGER" />
+	</resultMap>
+
+	<select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT *
+		FROM r_role_permission t
+		<include refid="expressionBlock.where" />
+		<choose>
+			<when test="sortname == null">
+				ORDER BY role_id desc
+			</when>
+			<otherwise>
+				ORDER BY ${order}
+			</otherwise>
+		</choose>
+		<if test="!isQueryAll">
+			LIMIT
+			#{firstResult,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+		</if>
+	</select>
+
+
+	<select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM r_role_permission t
+		<include refid="expressionBlock.where" />
+	</select>
+
+	<insert id="save" parameterType="permission.entity.RRolePermission"
+		keyProperty="rpId" keyColumn="rp_id" useGeneratedKeys="true">
+		INSERT INTO r_role_permission
+		(
+		role_id
+		, sf_id
+		)
+		VALUES (
+		#{roleId,jdbcType=INTEGER}
+		, #{sfId,jdbcType=INTEGER}
+		)
+	</insert>
+
+
+	<update id="update" parameterType="permission.entity.RRolePermission">
+		UPDATE r_role_permission
+		SET
+		WHERE rp_id = #{rpId,jdbcType=INTEGER}
+	</update>
+
+	<select id="get" resultMap="queryResultMap" parameterType="java.io.Serializable">
+		SELECT *
+		FROM r_role_permission
+		WHERE sf_id = #{roleId,jdbcType=INTEGER} AND role_id = #{roleId,jdbcType=INTEGER}
+		LIMIT 0,1
+	</select>
+
+	<delete id="del" parameterType="permission.entity.RRolePermission">
+		DELETE FROM r_role_permission
+		WHERE role_id = #{roleId,jdbcType=INTEGER} AND sf_id = #{sfId,jdbcType=INTEGER}
+	</delete>
+	
+	<delete id="delBySfId" parameterType="int">
+		DELETE FROM r_role_permission
+		WHERE sf_id = #{sfId,jdbcType=INTEGER}
+	</delete>
+	
+	<delete id="delByRoleId" parameterType="int">
+		DELETE FROM r_role_permission
+		WHERE role_id = #{roleId,jdbcType=INTEGER}
+	</delete>
+	
+	<insert id="setFunctionRole" parameterType="permission.entity.FunctionRoleParam">
+		INSERT INTO r_role_permission
+		(
+		`role_id`,
+        `sf_id`
+		)
+		VALUES 
+		<foreach collection="roleIds" item="roleId" separator=",">
+		(#{roleId,jdbcType=INTEGER},#{sfId,jdbcType=VARCHAR})
+		</foreach>
+	</insert>
+	
+</mapper>

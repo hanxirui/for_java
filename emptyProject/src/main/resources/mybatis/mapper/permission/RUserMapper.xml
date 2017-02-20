@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="permission.dao.RUserDao">
+	<resultMap id="queryResultMap" type="permission.entity.RUser">
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="TINYINT" />
+		<result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+		<result column="last_login_date" property="lastLoginDate"
+			jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<select id="find" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultMap="queryResultMap">
+		SELECT 
+		t.user_id
+		,t.username
+		, t.password
+		, t.state
+		, t.add_time
+		, t.last_login_date
+		FROM r_user t
+		<include refid="expressionBlock.where" />
+		<choose>
+			<when test="sortname == null">
+				ORDER BY t.add_time desc
+			</when>
+			<otherwise>
+				ORDER BY ${order}
+			</otherwise>
+		</choose>
+		<if test="!isQueryAll">
+			LIMIT
+			#{firstResult,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+		</if>
+	</select>
+
+
+	<select id="findTotalCount" parameterType="org.durcframework.core.expression.ExpressionQuery"
+		resultType="java.lang.Integer">
+		SELECT count(*) FROM r_user t
+		<include refid="expressionBlock.where" />
+	</select>
+
+	<insert id="save" parameterType="permission.entity.RUser">
+		INSERT INTO r_user
+		(
+		`username`
+		, `password`
+		, `state`
+		, `add_time`
+		, `last_login_date`
+		)
+		VALUES (
+		#{username,jdbcType=VARCHAR}
+		, #{password,jdbcType=VARCHAR}
+		, #{state,jdbcType=TINYINT}
+		, #{addTime,jdbcType=TIMESTAMP}
+		, #{lastLoginDate,jdbcType=TIMESTAMP}
+		)
+	</insert>
+
+
+	<update id="update" parameterType="permission.entity.RUser">
+		UPDATE r_user
+		SET
+		password=#{password,jdbcType=VARCHAR}
+		, state=#{state,jdbcType=TINYINT}
+		, add_time=#{addTime,jdbcType=TIMESTAMP}
+		, last_login_date=#{lastLoginDate,jdbcType=TIMESTAMP}
+		WHERE user_id = #{userId,jdbcType=INTEGER}
+	</update>
+
+	<select id="get" resultMap="queryResultMap" parameterType="java.lang.Object">
+		SELECT 
+		t.user_id
+		,t.username
+		, t.password
+		, t.state
+		, t.add_time
+		, t.last_login_date
+		FROM r_user t
+		WHERE t.user_id = #{userId,jdbcType=INTEGER}
+		LIMIT 0,1
+	</select>
+
+	<delete id="del" parameterType="permission.entity.RUser">
+		DELETE FROM r_user
+		WHERE user_id = #{userId,jdbcType=VARCHAR}
+	</delete>
+
+</mapper>

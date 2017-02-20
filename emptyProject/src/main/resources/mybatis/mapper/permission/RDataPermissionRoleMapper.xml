@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE  mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="permission.dao.RDataPermissionRoleDao">
+	<resultMap id="queryResultMap"
+		type="permission.entity.RDataPermissionRole">
+		<result column="dp_id" property="dpId" jdbcType="INTEGER" />
+		<result column="role_id" property="roleId" jdbcType="INTEGER" />
+	</resultMap>
+
+
+	<insert id="save" parameterType="permission.entity.RDataPermissionRole">
+		INSERT INTO r_data_permission_role
+		(
+		dp_id
+		, role_id
+		)
+		VALUES (
+		#{dpId,jdbcType=INTEGER}
+		, #{roleId,jdbcType=INTEGER}
+		)
+	</insert>
+
+
+	<delete id="del" parameterType="permission.entity.RDataPermissionRole">
+		DELETE FROM r_data_permission_role
+		WHERE dp_id = #{dpId,jdbcType=INTEGER}
+	</delete>
+
+</mapper>

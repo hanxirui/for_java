@@ -1,0 +1,15 @@
+.container {
+	margin-left: 0px;
+	margin-top: 0px;
+	width: auto;
+	padding: 20px 20px 0px 20px;
+}
+
+.detail-page, .form-page, .search-page {
+	padding: 0;
+}
+
+.tab-body {
+	border: 1px solid #c3c3d6;
+	padding: 10px;
+}
