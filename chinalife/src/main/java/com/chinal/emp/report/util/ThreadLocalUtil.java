@@ -1,1 +1,0 @@
-package com.chinal.emp.report.util;public class ThreadLocalUtil {	private static final ThreadLocal<Object> S_THREAD_LOCAL = new ThreadLocal<Object>();	public static final void add(Object obj) {		S_THREAD_LOCAL.set(obj);	}	public static final Object get() {		return S_THREAD_LOCAL.get();	}	public static final void remove() {		S_THREAD_LOCAL.remove();	}}
