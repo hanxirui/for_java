@@ -70,7 +70,7 @@ public class SqlTypeUtil {
 		javaBoxTypeMap.put("varchar", "String");
 		
 		
-		mybatisTypeMap.put("bigint", "LONG");
+		mybatisTypeMap.put("bigint", "BIGINT");
 		mybatisTypeMap.put("binary", "BLOB");
 		mybatisTypeMap.put("bit", "BOOLEAN");
 		mybatisTypeMap.put("blob", "BLOB");

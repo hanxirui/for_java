@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Hello World!</title>
+</head>
+<body>
+<h1>单文件上传</h1>
+<form method="POST" enctype="multipart/form-data" action="/upload">
+    <p>文件：<input type="file" name="file" /></p>
+    <p><input type="submit" value="上传" /></p>
+</form>
+
+<h1>多文件上传</h1>
+<form method="POST" enctype="multipart/form-data" action="/batch/upload">
+    <p>文件1：<input type="file" name="file" /></p>
+    <p>文件2：<input type="file" name="file" /></p>
+    <p>文件3：<input type="file" name="file" /></p>
+    <p><input type="submit" value="上传" /></p>
+</form>
+
+</body>
+</html>
