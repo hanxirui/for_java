@@ -33,11 +33,17 @@ public class ColumnDefinition  {
 	}
 	
 	public String getJavaFieldName() {
-		String lowerColumnName = columnName.toLowerCase();
-		if(lowerColumnName.startsWith("c_")){
-			lowerColumnName = lowerColumnName.substring(2);
+		String fieldName;
+		if(columnName.startsWith("c_")){
+            columnName = columnName.substring(2);
 		}
-		return FieldUtil.underlineFilter(lowerColumnName);
+		if(columnName.contains("_")){
+            fieldName =  FieldUtil.underlineFilter(columnName.toLowerCase());
+        }else{
+            fieldName = columnName;
+        }
+
+		return fieldName;
 	}
 	
 	/**

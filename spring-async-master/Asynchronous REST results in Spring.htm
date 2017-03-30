@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://niels.nu/blog/2016/spring-async-rest.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A web log on Software Engineering subjects: Java, Spring, Big Data, Cassandra, etc.">
+    <meta name="author" content="Niels Dommerholt">
+    <meta name="keywords" content="java, spring, rest, services, webservices, javascript, angular, programming, code">
+    <meta name="generator" content="JBake">
+
+    <title>Asynchronous REST results in Spring</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="./Asynchronous REST results in Spring_files/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="./Asynchronous REST results in Spring_files/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="./Asynchronous REST results in Spring_files/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="./Asynchronous REST results in Spring_files/css" rel="stylesheet" type="text/css">
+    <link href="./Asynchronous REST results in Spring_files/css(1)" rel="stylesheet" type="text/css">
+    <link href="./Asynchronous REST results in Spring_files/asciidoctor.css" rel="stylesheet">
+    <link href="./Asynchronous REST results in Spring_files/prettify.css" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script async="" src="./Asynchronous REST results in Spring_files/analytics.js"></script><script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-44674861-2', 'auto');
+        ga('send', 'pageview');
+    </script>
+</head>
+<body onload="prettyPrint()">
+
+
+
+
+	    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="http://niels.nu/index.html">Niels.nu</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="http://niels.nu/index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="http://niels.nu/archive.html">Archive</a>
+                    </li>
+                    <li>
+                        <a href="http://niels.nu/about.html">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <header class="intro-header" style="background-image: url(&#39;/img/post-bg.jpg&#39;)">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>Asynchronous REST results in Spring</h1>
+                        
+                            <h2 class="subheading">Improve resource utilization through Asynchronous results</h2>
+                        
+                        <span class="meta">Posted on 05 October 2016</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Most Spring Boot REST tutorials start with the basics, as they should. But when you start using Spring Boot in production you will soon find out that following the examples to the letter might cause you to run into performance problems. In this post I will show you how to make use of Spring’s built-in asynchronous capabilities.</p>
+</div>
+<div class="paragraph">
+<p>This blog post comes with <a href="https://github.com/nielsutrecht/spring-async">example code</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="introduction">Introduction</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In this example I will demonstrate four different approaches to returning JSON from a Spring Boot REST service. The example is a 'time server' whose calls will return a JSON result with the current date/time in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> format. All the calls with be simple GET calls that can be done from your browser.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="running_the_application">Running the application</h2>
+<div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+This example uses <a href="https://projectlombok.org/">Lombok</a> to generate getters, setters and constructors. To run your code in your IDE you need to have a Lombok plugin installed and have annotation preprocessing turned on.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>So let’s go and start our application. You can run the application by starting the <a href="https://github.com/nielsutrecht/spring-async/blob/master/src/main/java/com/nibado/example/springasync/AsyncApplication.java">AsyncApplication</a> class or by building the application with maven and starting the jar with java -jar target/spring-async-1.0-SNAPSHOT.jar. After starting the application you should end up with a few log lines that look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>18:37:38.653 [main] Tomcat started on port(s): 8080 (http)
+18:37:38.659 [main] Started AsyncApplication in 3.09 seconds (JVM running for 3.661)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should now be able to reach the following route: <a href="http://localhost:8080/time/basic" class="bare">http://localhost:8080/time/basic</a></p>
+</div>
+<div class="paragraph">
+<p>If you instead see a message about it not being able to start because the port is in use you can use an alternative port like so:</p>
+</div>
+<div class="paragraph">
+<p>java -jar target/spring-async-1.0-SNAPSHOT.jar --server.port=9000</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="basic_implementation">Basic implementation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Assuming you have the application running; if you GET <a href="http://localhost:8080/time/basic" class="bare">http://localhost:8080/time/basic</a> you should see a response similar to this one:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight prettyprinted"><code><span class="pun">{</span><span class="pln">
+	</span><span class="str">"time"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"2016-10-05T13:30:58.766"</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When we now take a look in the console we should see two log lines similar to these:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight prettyprinted"><code><span class="lit">18</span><span class="pun">:</span><span class="lit">39</span><span class="pun">:</span><span class="lit">54.241</span><span class="pln"> </span><span class="pun">[</span><span class="pln">http</span><span class="pun">-</span><span class="pln">nio</span><span class="pun">-</span><span class="lit">8080</span><span class="pun">-</span><span class="kwd">exec</span><span class="pun">-</span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Basic</span><span class="pln"> time request
+</span><span class="lit">18</span><span class="pun">:</span><span class="lit">39</span><span class="pun">:</span><span class="lit">54.241</span><span class="pln"> </span><span class="pun">[</span><span class="pln">http</span><span class="pun">-</span><span class="pln">nio</span><span class="pun">-</span><span class="lit">8080</span><span class="pun">-</span><span class="kwd">exec</span><span class="pun">-</span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Creating</span><span class="pln"> </span><span class="typ">TimeResponse</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The logger configuration only displays the time, thread name and the message for clarity. As you can see here both of these lines are created by the same thread; http-nio-8080-exec-1.</p>
+</div>
+<div class="paragraph">
+<p>So where do these lines come from? Let’s take a look at the <a href="https://github.com/nielsutrecht/spring-async/blob/master/src/main/java/com/nibado/example/springasync/controller/SimpleController.java">controller</a> to see where these requests are handled. The 'basic' request is mapped here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight prettyprinted"><code class="language-java" data-lang="java"><span class="lit">@RequestMapping</span><span class="pun">(</span><span class="pln">value </span><span class="pun">=</span><span class="pln"> </span><span class="str">"/basic"</span><span class="pun">,</span><span class="pln"> method </span><span class="pun">=</span><span class="pln"> </span><span class="typ">RequestMethod</span><span class="pun">.</span><span class="pln">GET</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="typ">TimeResponse</span><span class="pln"> timeBasic</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    log</span><span class="pun">.</span><span class="pln">info</span><span class="pun">(</span><span class="str">"Basic time request"</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> now</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you can see it logs the call to timeBasic() and then returns a <a href="https://github.com/nielsutrecht/spring-async/blob/master/src/main/java/com/nibado/example/springasync/domain/TimeResponse.java">TimeResponse</a> Data Transfer Object; created in a utility function in the same controller class:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight prettyprinted"><code class="language-java" data-lang="java"><span class="kwd">private</span><span class="pln"> </span><span class="kwd">static</span><span class="pln"> </span><span class="typ">TimeResponse</span><span class="pln"> now</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    log</span><span class="pun">.</span><span class="pln">info</span><span class="pun">(</span><span class="str">"Creating TimeResponse"</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">TimeResponse</span><span class="pun">(</span><span class="typ">LocalDateTime</span><span class="pln">
+            </span><span class="pun">.</span><span class="pln">now</span><span class="pun">()</span><span class="pln">
+            </span><span class="pun">.</span><span class="pln">format</span><span class="pun">(</span><span class="typ">DateTimeFormatter</span><span class="pun">.</span><span class="pln">ISO_LOCAL_DATE_TIME</span><span class="pun">));</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This function is where the "Creating TimeResponse" message is logged. All four different controller routes use this same function to log the creation of the TimeResponse DTO.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="responseentity_implementation">ResponseEntity implementation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A common approach in Spring REST API’s is to return ResponseEntity’s wrapping the result objects. This makes it easier to instead of a result return for example a 'not found' HTTP response.  Other than this wrapper the implementation is very similar:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight prettyprinted"><code class="language-java" data-lang="java"><span class="lit">@RequestMapping</span><span class="pun">(</span><span class="pln">value </span><span class="pun">=</span><span class="pln"> </span><span class="str">"/re"</span><span class="pun">,</span><span class="pln"> method </span><span class="pun">=</span><span class="pln"> </span><span class="typ">RequestMethod</span><span class="pun">.</span><span class="pln">GET</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="typ">ResponseEntity</span><span class="pun">&lt;?&gt;</span><span class="pln"> timeResponseEntity</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    log</span><span class="pun">.</span><span class="pln">info</span><span class="pun">(</span><span class="str">"Response entity request"</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">ResponseEntity</span><span class="pun">.</span><span class="pln">ok</span><span class="pun">(</span><span class="pln">now</span><span class="pun">());</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you call <a href="http://localhost:8080/time/re" class="bare">http://localhost:8080/time/re</a> we see log lines similar to the previous route:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight prettyprinted"><code><span class="lit">18</span><span class="pun">:</span><span class="lit">52</span><span class="pun">:</span><span class="lit">36.025</span><span class="pln"> </span><span class="pun">[</span><span class="pln">http</span><span class="pun">-</span><span class="pln">nio</span><span class="pun">-</span><span class="lit">8080</span><span class="pun">-</span><span class="kwd">exec</span><span class="pun">-</span><span class="lit">4</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Response</span><span class="pln"> entity request
+</span><span class="lit">18</span><span class="pun">:</span><span class="lit">52</span><span class="pun">:</span><span class="lit">36.025</span><span class="pln"> </span><span class="pun">[</span><span class="pln">http</span><span class="pun">-</span><span class="pln">nio</span><span class="pun">-</span><span class="lit">8080</span><span class="pun">-</span><span class="kwd">exec</span><span class="pun">-</span><span class="lit">4</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Creating</span><span class="pln"> </span><span class="typ">TimeResponse</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The TimeResponse is still created on the same worker that’s calling the controller function.</p>
+</div>
+<div class="paragraph">
+<p>So what happens when we call /time/basic or /time/re is that Spring MVC routes this to our SimpleController and timeBasic/timeResponseEntity() methods based on the route. To do this routing it uses one of it’s 'executor' threads. For performance reasons Spring doesn’t just create a new thread for every request but instead uses a pool with worker threads (named 'http-nio-8080-exec-#') that handle these requests. By default it has 10 of these workers allowing it to handle 10 requests in parallel.</p>
+</div>
+<div class="paragraph">
+<p>This is wonderful for simple short-lived requests like the ones I created but what happens if these requests block for a long time because they’re waiting on external connections or long-running database requests? We’ll easily block all our worker threads causing new requests to be dropped, no matter if some of these are really fast requests. So we should have a mechanism where we don’t block our executors.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="callable_implementation">Callable implementation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>An easy fix for this is to wrap our response in a Callable. Spring automatically knows that when it receives a callable, it should be considered a 'slow' call and should be executed on a different thread. Let’s take a look at the controller:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight prettyprinted"><code class="language-java" data-lang="java"><span class="lit">@RequestMapping</span><span class="pun">(</span><span class="pln">value </span><span class="pun">=</span><span class="pln"> </span><span class="str">"/callable"</span><span class="pun">,</span><span class="pln"> method </span><span class="pun">=</span><span class="pln"> </span><span class="typ">RequestMethod</span><span class="pun">.</span><span class="pln">GET</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="typ">Callable</span><span class="pun">&lt;</span><span class="typ">ResponseEntity</span><span class="pun">&lt;?&gt;&gt;</span><span class="pln"> timeCallable</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    log</span><span class="pun">.</span><span class="pln">info</span><span class="pun">(</span><span class="str">"Callable time request"</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="typ">ResponseEntity</span><span class="pun">.</span><span class="pln">ok</span><span class="pun">(</span><span class="pln">now</span><span class="pun">());</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And yes. It really is that simple. When we now do a GET request for <a href="http://localhost:8080/time/callable" class="bare">http://localhost:8080/time/callable</a> we see something interesting:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight prettyprinted"><code><span class="lit">19</span><span class="pun">:</span><span class="lit">04</span><span class="pun">:</span><span class="lit">24.508</span><span class="pln"> </span><span class="pun">[</span><span class="pln">http</span><span class="pun">-</span><span class="pln">nio</span><span class="pun">-</span><span class="lit">8080</span><span class="pun">-</span><span class="kwd">exec</span><span class="pun">-</span><span class="lit">10</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Callable</span><span class="pln"> time request
+</span><span class="lit">19</span><span class="pun">:</span><span class="lit">04</span><span class="pun">:</span><span class="lit">24.514</span><span class="pln"> </span><span class="pun">[</span><span class="typ">MvcAsync1</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Creating</span><span class="pln"> </span><span class="typ">TimeResponse</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The request is received on one of the workers but the work is done by a completely different thread named MvcAsync1. This is done for us by Spring MVC. When it receives a Callable from a controller it spins up a new thread to handle it.</p>
+</div>
+<div class="paragraph">
+<p>By default it actually spins up as many threads as you want. So if we hit the end-point a few more times the number increases sequentially:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight prettyprinted"><code><span class="lit">19</span><span class="pun">:</span><span class="lit">07</span><span class="pun">:</span><span class="lit">09.443</span><span class="pln"> </span><span class="pun">[</span><span class="typ">MvcAsync2</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Creating</span><span class="pln"> </span><span class="typ">TimeResponse</span><span class="pln">
+</span><span class="lit">19</span><span class="pun">:</span><span class="lit">07</span><span class="pun">:</span><span class="lit">10.123</span><span class="pln"> </span><span class="pun">[</span><span class="typ">MvcAsync3</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Creating</span><span class="pln"> </span><span class="typ">TimeResponse</span><span class="pln">
+</span><span class="lit">19</span><span class="pun">:</span><span class="lit">07</span><span class="pun">:</span><span class="lit">10.773</span><span class="pln"> </span><span class="pun">[</span><span class="typ">MvcAsync4</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Creating</span><span class="pln"> </span><span class="typ">TimeResponse</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tbody><tr>
+<td class="icon">
+<div class="title">Important</div>
+</td>
+<td class="content">
+You still need to figure out what threading pattern fits your use case. Creating threads is relatively expensive and with an unbounded maximum your application server can run out of memory and crash.
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="paragraph">
+<p>This behavior, as well as the name, can be configured through a WebMvcConfigurer bean.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deferredresult_implementation">DeferredResult implementation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>So we can now more easily handle long running results. But the Callable interface only allows us to return a result. We can’t inform the executor that we are done. This is fine for simple results but in some situations we need more control. This is where the DeferredResult class comes in. DeferredResult is a Future that allows us to signal completion. Let’s take a look at the controller method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight prettyprinted"><code class="language-java" data-lang="java"><span class="lit">@RequestMapping</span><span class="pun">(</span><span class="pln">value </span><span class="pun">=</span><span class="pln"> </span><span class="str">"/deferred"</span><span class="pun">,</span><span class="pln"> method </span><span class="pun">=</span><span class="pln"> </span><span class="typ">RequestMethod</span><span class="pun">.</span><span class="pln">GET</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="typ">DeferredResult</span><span class="pun">&lt;</span><span class="typ">ResponseEntity</span><span class="pun">&lt;?&gt;&gt;</span><span class="pln"> timeDeferred</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    log</span><span class="pun">.</span><span class="pln">info</span><span class="pun">(</span><span class="str">"Deferred time request"</span><span class="pun">);</span><span class="pln">
+    </span><span class="typ">DeferredResult</span><span class="pun">&lt;</span><span class="typ">ResponseEntity</span><span class="pun">&lt;?&gt;&gt;</span><span class="pln"> result </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">DeferredResult</span><span class="pun">&lt;&gt;();</span><span class="pln">
+
+    </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Thread</span><span class="pun">(()</span><span class="pln"> </span><span class="pun">-&gt;</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        result</span><span class="pun">.</span><span class="pln">setResult</span><span class="pun">(</span><span class="typ">ResponseEntity</span><span class="pun">.</span><span class="pln">ok</span><span class="pun">(</span><span class="pln">now</span><span class="pun">()));</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln"> </span><span class="str">"MyThread-"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> counter</span><span class="pun">.</span><span class="pln">incrementAndGet</span><span class="pun">()).</span><span class="pln">start</span><span class="pun">();</span><span class="pln">
+
+    </span><span class="kwd">return</span><span class="pln"> result</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is similar to the Callable version in that we wrap our result in a class. But what we do with it is different. Where the Callable is simply returned the DeferredResult need to be 'completed' by setting a result.</p>
+</div>
+<div class="paragraph">
+<p>In the example above I’m spinning up my own thread ('MyThread-') the same way Spring does it with Callables. I pass a runnable to the thread that sets calls the setResult with a new ResponseEntity&lt;TimeResponse&gt; and return the DeferredResult.</p>
+</div>
+<div class="paragraph">
+<p>When we GET the <a href="http://localhost:8080/time/deferred" class="bare">http://localhost:8080/time/deferred</a> route we see the following log lines:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight prettyprinted"><code><span class="lit">19</span><span class="pun">:</span><span class="lit">18</span><span class="pun">:</span><span class="lit">39.563</span><span class="pln"> </span><span class="pun">[</span><span class="pln">http</span><span class="pun">-</span><span class="pln">nio</span><span class="pun">-</span><span class="lit">8080</span><span class="pun">-</span><span class="kwd">exec</span><span class="pun">-</span><span class="lit">3</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Deferred</span><span class="pln"> time request
+</span><span class="lit">19</span><span class="pun">:</span><span class="lit">18</span><span class="pun">:</span><span class="lit">39.565</span><span class="pln"> </span><span class="pun">[</span><span class="typ">MyThread</span><span class="pun">-</span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="typ">Creating</span><span class="pln"> </span><span class="typ">TimeResponse</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Again as we can see the work is handled on a different thread than where the request came in.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="testing_asynchronous_controllers">Testing asynchronous controllers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>One thing to keep in mind when you are testing controllers with async calls through MockMvc that the async aspect requires you to slightly alter your tests. How to set up the tests is demonstrated in <a href="https://github.com/nielsutrecht/spring-async/blob/master/src/test/java/com/nibado/example/springasync/SimpleControllerIntegrationTest.java">SimpleControllerIntegrationTest</a>. A normal synchronous call (like /time/basic and /time/re) is tested through MockMvc like so:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight prettyprinted"><code class="language-java" data-lang="java"><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testSync</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> route</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">Exception</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    mockMvc</span><span class="pun">.</span><span class="pln">perform</span><span class="pun">(</span><span class="pln">get</span><span class="pun">(</span><span class="pln">route</span><span class="pun">))</span><span class="pln">
+            </span><span class="pun">.</span><span class="pln">andExpect</span><span class="pun">(</span><span class="pln">status</span><span class="pun">().</span><span class="pln">is2xxSuccessful</span><span class="pun">())</span><span class="pln">
+            </span><span class="pun">.</span><span class="pln">andExpect</span><span class="pun">(</span><span class="pln">jsonPath</span><span class="pun">(</span><span class="str">"$.time"</span><span class="pun">).</span><span class="pln">isString</span><span class="pun">());</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This won’t work with asynchronous calls since they need to be dispatched and handled first, so we need to wait for that. Fortunately MockMvc, with a few more lines of code, can handle that for us:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight prettyprinted"><code class="language-java" data-lang="java"><span class="kwd">private</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> testAsync</span><span class="pun">(</span><span class="typ">String</span><span class="pln"> route</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">Exception</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="typ">MvcResult</span><span class="pln"> resultActions </span><span class="pun">=</span><span class="pln"> mockMvc</span><span class="pun">.</span><span class="pln">perform</span><span class="pun">(</span><span class="pln">get</span><span class="pun">(</span><span class="pln">route</span><span class="pun">))</span><span class="pln">
+            </span><span class="pun">.</span><span class="pln">andExpect</span><span class="pun">(</span><span class="pln">request</span><span class="pun">().</span><span class="pln">asyncStarted</span><span class="pun">())</span><span class="pln">
+            </span><span class="pun">.</span><span class="pln">andReturn</span><span class="pun">();</span><span class="pln">
+
+    mockMvc</span><span class="pun">.</span><span class="pln">perform</span><span class="pun">(</span><span class="pln">asyncDispatch</span><span class="pun">(</span><span class="pln">resultActions</span><span class="pun">))</span><span class="pln">
+            </span><span class="pun">.</span><span class="pln">andExpect</span><span class="pun">(</span><span class="pln">status</span><span class="pun">().</span><span class="pln">is2xxSuccessful</span><span class="pun">())</span><span class="pln">
+            </span><span class="pun">.</span><span class="pln">andExpect</span><span class="pun">(</span><span class="pln">jsonPath</span><span class="pun">(</span><span class="str">"$.time"</span><span class="pun">).</span><span class="pln">isString</span><span class="pun">());</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The call and checking of the result is separated here into two steps. We first created the request and then ask MockMvc to block until it’s dispatched. A few more official examples can be found <a href="https://github.com/spring-projects/spring-mvc-showcase/tree/master/src/test/java/org/springframework/samples/mvc/async">here</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="a_real_example">A real example</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you have checked out the source you might also notice that we have <a href="https://github.com/nielsutrecht/spring-async/blob/master/src/main/java/com/nibado/example/springasync/controller/AggregatorController.java">another controller</a>. This is based on a real life example where I used DeferredResults to aggregate results from a number of different REST API’s into a single result. It uses OkHttp’s Async capabilities to perform multiple requests in parallel.</p>
+</div>
+<div class="paragraph">
+<p>An example of such a request would be:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight prettyprinted"><code><span class="pln">POST localhost</span><span class="pun">:</span><span class="lit">8080</span><span class="pun">/</span><span class="pln">aggregate
+
+</span><span class="pun">{</span><span class="str">"urls"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+	</span><span class="str">"https://api.ipify.org?format=json"</span><span class="pun">,</span><span class="pln">
+	</span><span class="str">"http://ip-api.com/json"</span><span class="pun">,</span><span class="pln">
+	</span><span class="str">"https://jsonplaceholder.typicode.com/posts/1"</span><span class="pln">
+</span><span class="pun">]}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The underlying service calls these endpoints and combines them into a single JSON result:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight prettyprinted"><code><span class="pun">{</span><span class="pln">
+  </span><span class="str">"responses"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+      </span><span class="str">"body"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"ip"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"123.456.123.456"</span><span class="pln">
+      </span><span class="pun">},</span><span class="pln">
+      </span><span class="str">"status"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">200</span><span class="pun">,</span><span class="pln">
+      </span><span class="str">"duration"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1799</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+      </span><span class="str">"body"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"as"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"ANONYMIZED"</span><span class="pln">
+      </span><span class="pun">},</span><span class="pln">
+      </span><span class="str">"status"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">200</span><span class="pun">,</span><span class="pln">
+      </span><span class="str">"duration"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">123</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+      </span><span class="str">"body"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="str">"userId"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"id"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"title"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"sunt aut facere repellat provident occaecati excepturi optio reprehenderit"</span><span class="pun">,</span><span class="pln">
+        </span><span class="str">"body"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"</span><span class="pln">
+      </span><span class="pun">},</span><span class="pln">
+      </span><span class="str">"status"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">200</span><span class="pun">,</span><span class="pln">
+      </span><span class="str">"duration"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1911</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+  </span><span class="pun">],</span><span class="pln">
+  </span><span class="str">"duration"</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2149</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>What is in my opinion really cool is that it’s as fast as the slowest API call demonstrating that such an asynchronous call brings benefits over doing the calls in sequence.</p>
+</div>
+<div class="paragraph">
+<p>It also comes with an <a href="https://github.com/nielsutrecht/spring-async/blob/master/src/test/java/com/nibado/example/springasync/AggregatorControllerIntegrationTest.java">integration test</a> that uses WireMock to create service stubs that are then called in parallel.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="conclusion">Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Spring makes it incredibly easy to handle long running processes from our controller. We can return a Callable with almost zero effort when we want to let spring handle the threading or we can used DeferredResults when we need to be in full control.</p>
+</div>
+<div class="paragraph">
+<p>I hope you enjoyed this post as much as I enjoyed writing it. Feel free to play
+around with the <a href="https://github.com/nielsutrecht/spring-async">example</a>
+and please let me know if you have comments or questions!</p>
+</div>
+</div>
+</div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <hr>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="https://twitter.com/nielsutrecht" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://nl.linkedin.com/in/nielsdommerholt" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/nielsutrecht/" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://niels.nu/feed.xml" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright © Niels Dommerholt 2017 - Baked With <a href="http://jbake.org/" target="_blank">JBake</a> - Template <a href="https://startbootstrap.com/template-overviews/clean-blog/" target="_blank">Clean Blog</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="./Asynchronous REST results in Spring_files/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="./Asynchronous REST results in Spring_files/bootstrap.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="./Asynchronous REST results in Spring_files/jqBootstrapValidation.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="./Asynchronous REST results in Spring_files/clean-blog.min.js"></script>
+
+    <script src="./Asynchronous REST results in Spring_files/prettify.js"></script>
+
+
+
+</body></html>
