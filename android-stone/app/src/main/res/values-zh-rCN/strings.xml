@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">第三方测验</string>
+    <string name="button_realm">realm_demo</string>
+    <string name="button_greendao">greendao_demo</string>
+    <string name="title_student">學生</string>
+    <string name="title_teacher">教師</string>
+    <string name="confirm">確認</string>
+    <string name="cancel">取消</string>
+    <string name="tool_id">5</string>
+    <string name="tool_name">王大明</string>
+    <string name="tool_teacher">王老師</string>
+    <string name="tool_age">12歲</string>
+    <string name="menu_age">Age</string>
+    <string name="menu_wang">王</string>
+    <string name="menu_big_chang">大陳</string>
+    <string name="title_edit">编辑</string>
+    <string name="title_text">Title Text</string>
+    <string name="title_back">返回</string>
+</resources>

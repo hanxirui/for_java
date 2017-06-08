@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.solaris.android_third_party.MainActivity">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="常用第三方组件功能演示"
+
+        android:layout_alignParentTop="true" />
+
+
+    <Button
+        android:text="@string/button_realm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:id="@+id/btnRealm" />
+
+    <Button
+        android:text="FirstCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnRealm"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="4dp"
+        android:id="@+id/firstcode" />
+
+    <Button
+        android:text="常用UI控件"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/firstcode"
+        android:layout_alignStart="@+id/firstcode"
+        android:layout_marginTop="11dp"
+        android:id="@+id/btnUI" />
+
+
+    <Button
+        android:text="Fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/btnUI"
+        android:layout_alignLeft="@+id/btnRealm"
+        android:id="@+id/btnFrg" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_above="@+id/text">
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnGreenDao"
+            android:text="@string/button_realm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            app:layout_behavior=".ScrollAwareBehavior"
+            android:src="@drawable/ic_school"
+            />
+
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnRetrofix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            app:layout_behavior=".ScrollAwareBehavior"
+            android:src="@drawable/ic_statistics"
+            />
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btnGlide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            app:layout_behavior=".ScrollAwareBehavior"
+            android:src="@drawable/ic_add"
+            />
+
+
+
+        <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:id="@+id/btnGreenDao1"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/btnGlide"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--app:layout_behavior=".ScrollAwareBehavior"-->
+            <!--android:src="@drawable/ic_done"-->
+            <!--/>-->
+
+        <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:id="@+id/btnGreenDao2"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/btnGreenDao1"-->
+            <!--android:layout_marginTop="4dp"-->
+            <!--app:layout_behavior=".ScrollAwareBehavior"-->
+            <!--android:src="@drawable/ic_menu"-->
+            <!--android:layout_alignStart="@+id/btnGreenDao1" />-->
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/text">
+        <TextView
+            android:text="GreenDAO"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4"/>
+
+        <TextView
+            android:text="        Retrofix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView5"/>
+
+        <TextView
+            android:text="        Glide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView6" />
+    </LinearLayout>
+
+    <Button
+        android:text="Broadcast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:id="@+id/broadcast"
+        android:layout_below="@+id/btnFrg"
+        android:layout_alignStart="@+id/btnFrg" />
+
+    <Button
+        android:text="Send Bct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/broadcast"
+        android:layout_alignStart="@+id/btnUI"
+        android:id="@+id/btnSendBCT" />
+
+    <Button
+        android:text="Force offline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/broadcast"
+        android:layout_alignStart="@+id/broadcast"
+        android:layout_marginBottom="17dp"
+        android:id="@+id/btn_offline" />
+
+    <Button
+        android:text="Show Storage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/broadcast"
+        android:id="@+id/btnShowStorage" />
+
+    <Button
+        android:text="SQLite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/btnShowStorage"
+        android:layout_toEndOf="@+id/btnShowStorage"
+        android:id="@+id/btnSQLite" />
+
+    <Button
+        android:text="Content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnShowStorage"
+        android:layout_alignStart="@+id/btnShowStorage"
+        android:id="@+id/btnContent" />
+
+    <Button
+        android:text="Notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnContent"
+        android:layout_alignStart="@+id/btnContent"
+        android:id="@+id/btnNotifi" />
+
+
+</RelativeLayout>
