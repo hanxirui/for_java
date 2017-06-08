@@ -1,0 +1,4 @@
+-Xbootclasspath/p:/Users/hanxirui/Downloads/apns2-netty-develop/sample/src/main/resources/alpn-boot-8.1.2.v20141202.jar
+
+不同的jdk版本依赖不同的alpn的jar包,详情参考
+https://www.eclipse.org/jetty/documentation/9.4.x/alpn-chapter.html
