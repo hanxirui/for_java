@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
 
         android:layout_margin="@dimen/activity_margin"
-             app:layout_behavior="com.solaris.android_third_party.ScrollAwareBehavior"
+             app:layout_behavior="com.solaris.androidstone.ScrollAwareBehavior"
    
         app:layout_anchor="@id/recycleTeacher"
         app:layout_anchorGravity="bottom|right|end"

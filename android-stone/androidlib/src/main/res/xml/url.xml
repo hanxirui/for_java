@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<url>
+    <Node
+        Expires="300"
+        NetType="get"
+        Url="http://www.weather.com.cn/data/sk/101010100.html"
+        key="getWeatherInfo" />
+    <Node
+        Expires="0"
+        Key="login"
+        NetType="post"
+        Url="http://www.weather.com.cn/data/login.api" />
+</url>

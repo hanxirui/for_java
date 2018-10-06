@@ -1,1 +1,13 @@
 存放的是与业务无关的Activity基类.
+
+
+对于具体的业务工程,可以按如下分包:
+activity  按模块继续拆分,将不同模块的Activity划分到不同的包下
+adapter   所有适配器放在一起
+entity    将所有的实体放在一起
+db        SQLLite相关逻辑的封装
+engine    将业务相关的类都放在一起
+ui        将自定义控件都放在这个包里
+utils     将所有的公共方法都放在这里
+interfaces 真正意义上的接口,命名以I作为开头
+listener  基于Listener的接口,命名以On作为开头

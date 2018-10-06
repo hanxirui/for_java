@@ -6,7 +6,7 @@
 
      <fragment
          android:id="@+id/news_content_fragment"
-         android:name="com.solaris.android_third_party.fragment.NewsContentFragment"
+         android:name="com.solaris.androidstone.fragment.NewsContentFragment"
          android:layout_width="match_parent"
          android:layout_height="match_parent"/>
 </LinearLayout>

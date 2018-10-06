@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">第三方测验</string>
+    <string name="app_name">android_stone</string>
     <string name="button_realm">realm_demo</string>
     <string name="button_greendao">greendao_demo</string>
     <string name="title_student">學生</string>

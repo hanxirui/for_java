@@ -16,8 +16,18 @@ import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 
+
+/**
+ * export HADOOP_CLASSPATH=bigdatademo.jar
+ * bin/hadoop com.hxr.bigdata.hadoop.firststep.WordCount input output
+ *
+ * The type Word count.
+ */
 public class WordCount {
 
+    /**
+     * The type Map.
+     */
     public static class Map extends Mapper<LongWritable, Text, Text, IntWritable> {
         private final static IntWritable one = new IntWritable(1);
         private final Text word = new Text();
@@ -34,6 +44,9 @@ public class WordCount {
         }
     }
 
+    /**
+     * The type Reduce.
+     */
     public static class Reduce extends Reducer<Text, IntWritable, Text, IntWritable> {
 
         @Override
@@ -47,6 +60,12 @@ public class WordCount {
         }
     }
 
+    /**
+     * Main.
+     *
+     * @param args the args
+     * @throws Exception the exception
+     */
     public static void main(final String[] args) throws Exception {
 
         Configuration conf = new Configuration();
@@ -54,6 +73,8 @@ public class WordCount {
         Job job = Job.getInstance(conf, "wordcount");
         // 原来代码没有这句，但是不加会执行报错，找不到$map类
         job.setJarByClass(WordCount.class);
+        job.setJobName("Just a demo for wordcount");
+
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
 

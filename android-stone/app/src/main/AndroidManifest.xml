@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.solaris.android_third_party">
+    package="com.solaris.androidstone">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -9,43 +9,43 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
-        android:name=".ThirdPartyShowApplication"
+        android:name="com.solaris.androidstone.ThirdPartyShowApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".view.TeacherActivity" />
-        <activity android:name=".view.StudentActivity" />
-        <activity android:name=".view.RetrofitActivity" />
-        <activity android:name=".view.RealmActivity" />
-        <activity android:name=".view.GlideActivity" />
+        <activity android:name="com.solaris.androidstone.MainActivity" />
+        <activity android:name="com.solaris.androidstone.view.TeacherActivity" />
+        <activity android:name="com.solaris.androidstone.view.StudentActivity" />
+        <activity android:name="com.solaris.androidstone.view.RetrofitActivity" />
+        <activity android:name="com.solaris.androidstone.view.RealmActivity" />
+        <activity android:name="com.solaris.androidstone.view.GlideActivity" />
         <activity
-            android:name=".view.FirstcodeActivity"
+            android:name="com.solaris.androidstone.view.FirstcodeActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name=".view.HiddenIntentActivity"
+            android:name="com.solaris.androidstone.view.HiddenIntentActivity"
             android:launchMode="singleTask">
             <intent-filter>
-                <action android:name="com.solaris.android_third_party.ACTION_START" />
+                <action android:name="com.solaris.androidstone.ACTION_START" />
 
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.solaris.android_third_party.MY_CATEGORY" />
+                <category android:name="com.solaris.androidstone.MY_CATEGORY" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.UIActivity" />
-        <activity android:name=".view.BasicUIActivity" />
-        <activity android:name=".view.RecyclerViewActivity" />
-        <activity android:name=".view.RecyclerView2Activity" />
-        <activity android:name=".view.RecyclerView3Activity" />
-        <activity android:name=".view.TalkActivity" />
-        <activity android:name=".view.NewsContentActivity" />
-        <activity android:name=".view.NewsActivity" />
-        <activity android:name=".view.BroadcastActivity" />
+        <activity android:name="com.solaris.androidstone.view.UIActivity" />
+        <activity android:name="com.solaris.androidstone.view.BasicUIActivity" />
+        <activity android:name="com.solaris.androidstone.view.RecyclerViewActivity" />
+        <activity android:name="com.solaris.androidstone.view.RecyclerView2Activity" />
+        <activity android:name="com.solaris.androidstone.view.RecyclerView3Activity" />
+        <activity android:name="com.solaris.androidstone.view.TalkActivity" />
+        <activity android:name="com.solaris.androidstone.view.NewsContentActivity" />
+        <activity android:name="com.solaris.androidstone.view.NewsActivity" />
+        <activity android:name="com.solaris.androidstone.view.BroadcastActivity" />
 
         <receiver
-            android:name=".utils.BootCompleteReceiver"
+            android:name="com.solaris.androidstone.utils.BootCompleteReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -53,7 +53,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".utils.MyBroadcastReceiver"
+            android:name="com.solaris.androidstone.utils.MyBroadcastReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -61,25 +61,25 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".view.LoginActivity">
+        <activity android:name="com.solaris.androidstone.view.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.StorageActivity" />
-        <activity android:name=".view.SQLiteActivity" />
-        <activity android:name=".view.ContentResolverActivity" />
+        <activity android:name="com.solaris.androidstone.view.StorageActivity" />
+        <activity android:name="com.solaris.androidstone.view.SQLiteActivity" />
+        <activity android:name="com.solaris.androidstone.view.ContentResolverActivity" />
 
         <provider
-            android:name=".provider.MyContentProvider"
+            android:name="com.solaris.androidstone.provider.MyContentProvider"
             android:authorities="com.solaris.app.provider"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".view.NotificationActivity" />
-        <activity android:name=".view.NotiResultActivity"></activity>
+        <activity android:name="com.solaris.androidstone.view.NotificationActivity" />
+        <activity android:name="com.solaris.androidstone.view.NotiResultActivity"></activity>
     </application>
 
 </manifest>

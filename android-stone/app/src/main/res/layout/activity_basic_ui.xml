@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.solaris.android_third_party.view.BasicUIActivity">
+    tools:context="com.solaris.androidstone.view.BasicUIActivity">
 
     <TextView
         android:text="TextView"

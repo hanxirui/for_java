@@ -1,0 +1,9 @@
+每个自定义的Adapter,都要实现以下4个方法:
+getCount()
+getItem()
+getItemId()
+getView()
+
+还要内置一个Holder嵌套类,用于存放ListView中每一行的控件,
+可以避免频繁创建同一个列表项,从而极大地节省内存.
+
