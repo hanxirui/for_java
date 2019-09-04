@@ -1,0 +1,1 @@
+package com.hxr.javatone.IncreaseLockSample;/** * Created with IntelliJ IDEA. * Project: test-jar * Author: Kevin * Date: 16/5/22 * Time: 上午10:53 */public class IncreaseObject {	private long simpleLong;	public long getSimpleLong() {		return simpleLong;	}	public void setSimpleLong(long simpleLong) {		this.simpleLong = simpleLong;	}}

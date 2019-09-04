@@ -1,0 +1,1 @@
+package com.hxr.javatone.AOP.aopconfig;import org.springframework.stereotype.Component;import java.util.Date;/** * Created with IntelliJ IDEA. * Project: test-jar * Author: Kevin * Date: 2018/9/29 * Time: 下午7:26 */@Componentpublic class TimeHandler {	public void printTime() {		System.out.println("Current time : " + new Date().getTime());	}}

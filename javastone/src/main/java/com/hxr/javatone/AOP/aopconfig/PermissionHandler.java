@@ -1,0 +1,1 @@
+package com.hxr.javatone.AOP.aopconfig;import org.springframework.stereotype.Component;/** * Created with IntelliJ IDEA. * Project: test-jar * Author: Kevin * Date: 2018/10/11 * Time: 下午8:30 */@Componentpublic class PermissionHandler {	public void check() {		System.out.println("check permission ");	}}

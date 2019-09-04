@@ -1,0 +1,1 @@
+package com.hxr.javatone.AOP.aopconfig;/** * Created with IntelliJ IDEA. * Project: test-jar * Author: Kevin * Date: 2018/9/29 * Time: 下午7:44 */public interface AopConfigInterface {	<T> void add(T t);		void print(String s);}
