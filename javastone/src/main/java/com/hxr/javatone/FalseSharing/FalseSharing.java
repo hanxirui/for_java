@@ -1,6 +1,7 @@
 package com.hxr.javatone.FalseSharing;
 
 /**
+ * https://tech.meituan.com/2016/11/18/disruptor.html
  * 什么是伪共享
  * ArrayBlockingQueue有三个成员变量：
  * <p>

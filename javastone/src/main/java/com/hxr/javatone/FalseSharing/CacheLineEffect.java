@@ -1,6 +1,7 @@
 package com.hxr.javatone.FalseSharing;
 
 /**
+ * https://tech.meituan.com/2016/11/18/disruptor.html
  * @author gongming
  * @description
  * @date 16/6/4
