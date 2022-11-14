@@ -10,7 +10,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jetty.version>9.2.10.v20150310</jetty.version>
-		<spring.version>4.2.1.RELEASE</spring.version>
+		<spring.version>4.2.7.RELEASE</spring.version>
 		<netty.version>4.0.31.Final</netty.version>
 		<mysql.version>5.1.32</mysql.version>
 		<mybatis.version>3.2.7</mybatis.version>
